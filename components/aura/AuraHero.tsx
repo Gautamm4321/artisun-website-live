@@ -7,7 +7,7 @@ import PdpGallery from '@/components/pdp/PdpGallery';
 import { usePanelEdgeScroll } from '@/hooks/usePanelEdgeScroll';
 import AddToBagButton from '@/components/cart/AddToBagButton';
 
-const BADGES = ['SPF 40', 'PA++++', 'All weathers', '50g'];
+const BADGES = ['SPF 40', 'PA++++', 'All weathers', 'ALL SKIN TYPES'];
 
 // Four distinct AURA product shots for the gallery.
 const GALLERY = [

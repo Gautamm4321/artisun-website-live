@@ -11,8 +11,9 @@ import { asset } from '@/lib/asset';
 const quickLinks: { label: string; href: string }[] = [
   { label: 'FAQs', href: '/faq' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Blog', href: '/about' },
+  { label: 'Blog', href: '/blog' },
 ];
+
 const policyLinks: { label: string; href: string }[] = [
   { label: 'Privacy Policy', href: '/privacypolicy' },
   { label: 'Shipping Policy', href: '/shipping' },

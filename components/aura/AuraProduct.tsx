@@ -102,7 +102,7 @@ export default function AuraProduct() {
           </div>
 
           {/* ── IMAGE — right on desktop, first on mobile, square on mobile ── */}
-      <div className="order-1 lg:order-2 relative w-[calc(100%+2.5rem)] -mx-5 sm:-mx-8 lg:mx-auto max-w-none lg:w-full aspect-[4/3] sm:aspect-square lg:aspect-[4/5] rounded-none lg:rounded-2xl overflow-hidden shrink-0">
+      <div className="order-1 lg:order-2 relative w-[calc(100%+2.5rem)] -mx-5 sm:-mx-8 lg:mx-auto max-w-none lg:w-full aspect-[4/3] sm:aspect-square lg:aspect-[1/1] rounded-none lg:rounded-2xl overflow-hidden shrink-0">
             <div
               className="absolute inset-0 z-0 rounded-full blur-2xl opacity-70"
               style={{ background: 'radial-gradient(circle at 50% 45%, rgba(233,85,30,0.35), transparent 65%)' }}
