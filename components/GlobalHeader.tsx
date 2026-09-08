@@ -41,29 +41,45 @@ export default function GlobalHeader() {
           <Link
             href="/origin"
             aria-label="Origin SPF 50+"
-            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-end justify-center transition-all duration-200 h-[36px]"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={asset('/origin.png')}
-              alt="Origin"
-              className="h-[25px] w-auto object-contain"
+            <span
+              aria-hidden="true"
+              className="w-[13px] h-[25px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
+              style={{
+                maskImage: `url(${asset('/origin.png')})`,
+                WebkitMaskImage: `url(${asset('/origin.png')})`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center',
+              }}
             />
           </Link>
 
           {/* Aura Jar Box */}
-            <Link
-              href="/aura"
-              aria-label="Aura SPF 40"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-end justify-center transition-all duration-200 h-[36px]"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset('/aura.png')}
-                alt="Aura"
-                className="h-[16px] w-auto object-contain"
-              />
-            </Link>
+          <Link
+            href="/aura"
+            aria-label="Aura SPF 40"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
+          >
+            <span
+              aria-hidden="true"
+              className="w-[22px] h-[16px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
+              style={{
+                maskImage: `url(${asset('/aura.png')})`,
+                WebkitMaskImage: `url(${asset('/aura.png')})`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center',
+              }}
+            />
+          </Link>
 
           {/* Skinwear™ */}
           <Link

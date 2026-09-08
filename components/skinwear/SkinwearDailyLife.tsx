@@ -47,14 +47,14 @@ export default function SkinwearDailyLife() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2">
           <a
             href="/origin"
-            className="inline-flex items-center justify-center min-w-[190px] px-8 py-3.5 md:py-4 rounded-full bg-[#EAE3D2] hover:bg-[#FAF6EE] text-[#8B1E13] font-editorial font-medium text-[17px] md:text-[19px] tracking-wide shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 text-center cursor-pointer"
+            className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap cursor-pointer"
           >
             Wear Origin
           </a>
 
           <a
             href="/aura"
-            className="inline-flex items-center justify-center min-w-[190px] px-8 py-3.5 md:py-4 rounded-full bg-[#EAE3D2] hover:bg-[#FAF6EE] text-[#8B1E13] font-editorial font-medium text-[17px] md:text-[19px] tracking-wide shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 text-center cursor-pointer"
+            className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap cursor-pointer"
           >
             Wear Aura
           </a>

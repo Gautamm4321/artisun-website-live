@@ -343,7 +343,7 @@ export default function ClimateHero() {
           </div>
           <AddToBagButton
             product="aura"
-            className="w-full bg-[#EAE3D2] text-[#6B241A] py-2 sm:py-3 text-xs sm:text-sm md:text-base font-medium hover:bg-white transition-colors"
+            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 text-[11px] sm:text-[12.5px] tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
           />
         </div>
 
@@ -368,7 +368,7 @@ export default function ClimateHero() {
           </div>
           <AddToBagButton
             product="origin"
-            className="w-full bg-[#EAE3D2] text-[#6B241A] py-2 sm:py-3 text-xs sm:text-sm md:text-base font-medium hover:bg-white transition-colors"
+            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 text-[11px] sm:text-[12.5px] tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
           />
         </div>
       </motion.div>

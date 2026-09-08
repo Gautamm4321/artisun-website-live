@@ -11,6 +11,52 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/**
+ * Shared button shape — single source of truth for every nav "pill" button
+ * (text or icon) so they're all the same size/shape/color, here and anywhere
+ * else this pattern is reused on the site.
+ *
+ * Box: #E6D5C1, hover → #A52A2C
+ * Text/icon: #A52A2C, hover → #E6D5C1
+ *
+ * `h-[36px] px-4 py-1.5` and `items-center justify-center` are now identical
+ * across every variant — previously the icon buttons (Origin/Aura) used
+ * `px-3.5` and `items-end` while the text buttons used `px-4` and
+ * `items-center`, which is why they didn't line up as the same shape.
+ */
+const NAV_PILL =
+  'group bg-[#E6D5C1] hover:bg-[#A52A2C] flex items-center justify-center h-[36px] px-4 py-1.5 transition-all duration-200';
+const NAV_PILL_TEXT =
+  'text-[#A52A2C] hover:text-[#E6D5C1] group-hover:text-[#E6D5C1] font-editorial text-[17px] tracking-tight whitespace-nowrap';
+
+/**
+ * Product icon color-swap on hover.
+ *
+ * The Origin/Aura icons are raster PNGs, not currentColor SVGs — text-color
+ * classes (like NAV_PILL_TEXT uses) can't touch their pixels. Instead this
+ * runs a CSS filter chain: `brightness(0)` first crushes every opaque pixel
+ * to solid black regardless of the PNG's original color, then the
+ * invert/sepia/saturate/hue-rotate/brightness/contrast chain tints that
+ * black to #E6D5C1 — the same technique already used on the hamburger menu
+ * icon below, just re-tuned for this color. Because it starts from a
+ * neutral black every time, it works no matter what color the source PNG
+ * currently is.
+ *
+ * Rest state has no filter, so the icon shows its native/original color.
+ * Hover applies the filter so it inverts to cream against the darkened
+ * #A52A2C box — matching how the text pills invert.
+ *
+ * NOTE: the exact filter values below are tuned to land on #E6D5C1 for a
+ * PNG whose opaque shape is otherwise uncolored/dark. If your Origin/Aura
+ * PNGs have strong color of their own (not just a dark silhouette), the
+ * brightness(0) step still neutralizes that, but check the hover result
+ * against your actual assets and nudge the hue-rotate/sepia values with a
+ * filter-generator tool (e.g. isotropic.co/tools/hex-color-to-css-filter)
+ * if it's off.
+ */
+const PRODUCT_ICON_HOVER =
+  'transition-[filter] duration-200 group-hover:[filter:brightness(0)_saturate(100%)_invert(85%)_sepia(20%)_saturate(378%)_hue-rotate(342deg)_brightness(101%)_contrast(94%)]';
+
 export default function HomeHeader({ ready = false }: { ready?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setOpen: setCartOpen, cart } = useCart();
@@ -35,6 +81,14 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
          position maps to a continuous transform;
        • the transform is written as one translate3d + scale string, keeping
          the element on its own compositor layer for the whole flight.
+
+     Mobile-only smoothing fix: mobile frame timing is far less stable than
+     desktop (GPU contention, address-bar animation, momentum-scroll
+     recalcs), so a fixed per-frame lerp factor (0.18) produces visibly
+     inconsistent follow speed frame-to-frame — that's the "wobble." On
+     mobile we instead use a time-normalized exponential follow based on
+     actual elapsed ms, so the ease converges at a consistent RATE regardless
+     of frame timing. Desktop keeps the original per-frame lerp untouched.
      ───────────────────────────────────────────────────────────────────── */
   useEffect(() => {
     const img = wordmarkRef.current;
@@ -47,6 +101,9 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     let smoothed = 0;        // eased progress actually painted
     let rafId = 0;
     let navOpacity = -1;     // cached so we only touch the DOM on change
+    let lastTime = performance.now();
+    const isMobile = window.innerWidth < 768;
+    const MOBILE_TAU = 110;  // ms — smoothing time-constant, tune to taste
 
     img.style.transformOrigin = 'left top';
     img.style.willChange = 'transform';
@@ -86,11 +143,23 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     };
 
     const tick = () => {
+      const now = performance.now();
+      const dt = now - lastTime;
+      lastTime = now;
+
       const target = Math.min(1, Math.max(0, window.scrollY / travel));
-      // Light critically-damped follow: kills scroll jitter without adding
-      // noticeable lag. Snap once we're inside a pixel of the target so the
-      // transform string stops changing and the layer can settle.
-      smoothed += (target - smoothed) * 0.18;
+
+      if (isMobile) {
+        // Time-normalized exponential follow: same convergence RATE
+        // regardless of frame timing, so uneven mobile frame deltas don't
+        // read as wobble.
+        const alpha = 1 - Math.exp(-dt / MOBILE_TAU);
+        smoothed += (target - smoothed) * alpha;
+      } else {
+        // Original per-frame follow, unchanged for desktop.
+        smoothed += (target - smoothed) * 0.18;
+      }
+
       if (Math.abs(target - smoothed) < 0.0004) smoothed = target;
       paint(smoothed);
       rafId = requestAnimationFrame(tick);
@@ -128,6 +197,15 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     gsap.to(headerRef.current, { opacity: 1, duration: 1.0, ease: 'power2.out' });
   }, [ready]);
 
+  const scrollToHero = () => {
+    const lenis = (window as any).lenis; // if you're using a Lenis instance
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
 
@@ -145,27 +223,41 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
             <span className="w-[100px] md:w-[145px] h-[36px]" aria-hidden />
           </div>
 
-          {/* Desktop Right Corner: Beige Modular Tabs Box */}
+          {/* Desktop Right Corner: Beige Modular Tabs Box.
+              Every pill below shares NAV_PILL for the box (same height,
+              padding, alignment) — only the inner content differs. Text
+              pills add NAV_PILL_TEXT for color/typography; icon pills keep
+              the same box but render an image instead. */}
           <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
             {/* Climate-smart */}
             <Link
               href="/climate"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
             >
-              Climate-smart
+              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
+                Climate-smart
+              </span>
             </Link>
 
             {/* Origin Bottle Box */}
             <Link
               href="/origin"
               aria-label="Origin SPF 50+"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-end justify-center transition-all duration-200 h-[36px]"
+              className={NAV_PILL}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset('/origin.png')}
-                alt="Origin"
-                className="h-[25px] w-auto object-contain"
+              <span
+                aria-hidden="true"
+                className="w-[13px] h-[25px] bg-[#A52A2C] group-hover:bg-[#E6D5C1] transition-colors duration-200 block shrink-0"
+                style={{
+                  maskImage: `url(${asset('/origin.png')})`,
+                  WebkitMaskImage: `url(${asset('/origin.png')})`,
+                  maskSize: 'contain',
+                  WebkitMaskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskPosition: 'center',
+                }}
               />
             </Link>
 
@@ -173,30 +265,42 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
             <Link
               href="/aura"
               aria-label="Aura SPF 40"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-end justify-center transition-all duration-200 h-[36px]"
+              className={NAV_PILL}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset('/aura.png')}
-                alt="Aura"
-                className="h-[16px] w-auto object-contain"
+              <span
+                aria-hidden="true"
+                className="w-[22px] h-[16px] bg-[#A52A2C] group-hover:bg-[#E6D5C1] transition-colors duration-200 block shrink-0"
+                style={{
+                  maskImage: `url(${asset('/aura.png')})`,
+                  WebkitMaskImage: `url(${asset('/aura.png')})`,
+                  maskSize: 'contain',
+                  WebkitMaskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskPosition: 'center',
+                }}
               />
             </Link>
 
             {/* Skinwear™ */}
             <Link
               href="/skinwear"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
             >
-              Skinwear™
+              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
+                Skinwear™
+              </span>
             </Link>
 
             {/* About */}
             <Link
               href="/about"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
             >
-              About
+              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
+                About
+              </span>
             </Link>
 
             {/* Cart Icon */}
@@ -204,15 +308,15 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               type="button"
               onClick={() => setCartOpen(true)}
               aria-label={`Open cart${cart?.totalQuantity ? `, ${cart.totalQuantity} items` : ''}`}
-              className="group relative bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px] cursor-pointer"
+              className={`${NAV_PILL} relative cursor-pointer`}
             >
-              <svg className="w-5 h-5 text-[#A52A2C] group-hover:text-[#E8DAC7] transition-colors duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-5 h-5 text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1.5"></circle>
                 <circle cx="20" cy="21" r="1.5"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               {!!cart?.totalQuantity && (
-                <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#A52A2C] text-[#E8DAC7] text-[10px] font-suisse font-medium grid place-items-center">
+                <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#A52A2C] text-[#E6D5C1] text-[10px] font-suisse font-medium grid place-items-center">
                   {cart.totalQuantity}
                 </span>
               )}
@@ -234,7 +338,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               {!!cart?.totalQuantity && (
-                <span className="absolute -top-1 -right-1 min-w-[15px] h-3.5 px-0.5 rounded-full bg-[#E8DAC7] text-[#78100E] text-[9px] font-suisse font-bold grid place-items-center">
+                <span className="absolute -top-1 -right-1 min-w-[15px] h-3.5 px-0.5 rounded-full bg-[#E6D5C1] text-[#A52A2C] text-[9px] font-suisse font-bold grid place-items-center">
                   {cart.totalQuantity}
                 </span>
               )}
@@ -270,7 +374,16 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
             ref={wordmarkRef}
             src={asset('/Artisun Primary Logo.webp')}
             alt="ARTISUN"
-            className="pointer-events-auto w-[min(90vw,1300px)] h-auto select-none drop-shadow-[0_6px_30px_rgba(0,0,0,0.45)]"
+            onClick={scrollToHero}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToHero();
+              }
+            }}
+            className="pointer-events-auto w-[min(90vw,1300px)] h-auto select-none drop-shadow-[0_6px_30px_rgba(0,0,0,0.45)] cursor-pointer"
             draggable={false}
           />
         </div>

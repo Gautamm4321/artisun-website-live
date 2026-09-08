@@ -338,7 +338,7 @@ export default function ProductShowcaseSection() {
               className="w-full flex flex-col items-center"
             >
               {/* Top Tag Badge */}
-              <div className="inline-flex items-center justify-center px-3 py-1 mb-3 bg-[#EAE3D2] text-[#8B1E13] font-suisse text-[12px] tracking-[0.06em] uppercase font-normal rounded-none shadow-sm">
+              <div className="inline-flex items-center justify-center px-3 py-1 mb-3 bg-[#E6D5C1] text-[#A52A2C] font-suisse text-[12px] tracking-[0.06em] uppercase font-normal rounded-none shadow-sm">
                 {product.id === 'origin' ? 'ORIGIN · 4-in-1 Milk Emulsion' : 'AURA · Pearl Skinwear'}
               </div>
 
@@ -421,7 +421,7 @@ export default function ProductShowcaseSection() {
                   type="button"
                   onClick={() => variant && add(variant.id, 1)}
                   disabled={!configured || !variant || busy || !variant.availableForSale}
-                  className="btn-solid-beige pointer-events-auto bg-[#E8C5A5] text-[#8B1E13] font-editorial text-[17px] font-medium tracking-wide px-7 py-2.5 rounded-none active:scale-95 transition-transform shadow-md"
+                  className="btn-solid-beige pointer-events-auto bg-[#E6D5C1] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] tracking-[0.14em] uppercase font-medium px-7 py-2.5 rounded-none active:scale-95 transition-transform shadow-md"
                 >
                   Add to bag
                 </button>

@@ -14,16 +14,15 @@ export default function TextRevealSection() {
     if (!el) return;
 
     const words = el.querySelectorAll('.reveal-word');
-    const isMobile = window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: isMobile ? 'top 85%' : 'top top',
-          end: isMobile ? 'top 25%' : '+=100%',
-          pin: !isMobile,
-          anticipatePin: isMobile ? 0 : 1,
+          start: 'top 85%',
+          end: 'top 25%',
+          pin: false,
+          anticipatePin: 0,
           scrub: 0.6,
           invalidateOnRefresh: true,
         },
@@ -34,7 +33,7 @@ export default function TextRevealSection() {
         { opacity: 0.25 },
         {
           opacity: 1,
-          stagger: isMobile ? 0.04 : 0.12,
+          stagger: 0.04,
           ease: 'none',
         }
       );
@@ -47,16 +46,15 @@ export default function TextRevealSection() {
   const line2 = ['kind', 'of', 'day', 'your', 'skin', 'gets.'];
 
   return (
-    <section
-      ref={containerRef}
-      className="relative w-full z-10 flex items-center justify-center select-none overflow-hidden py-8 xs:py-10 sm:py-20 md:py-0 md:h-[100svh] px-3 sm:px-6 md:px-18"
-    >
+   <section
+  ref={containerRef}
+  className="relative w-full z-10 flex items-center justify-center select-none overflow-hidden py-8 xs:py-10 sm:py-14 md:py-10 px-3 sm:px-6 md:px-18"
+>
       {/* Background Gradient */}
       <div
         className="absolute inset-0 -z-10"
         style={{
-          background:
-            'var(--bg-eclipse)',
+          background: 'var(--bg-eclipse)',
         }}
       />
 

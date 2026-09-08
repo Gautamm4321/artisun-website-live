@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --brand-red:      #C93B1A;
   --brand-cream:    #E8DCC8;
@@ -770,3 +771,17 @@ html.lenis, html.lenis body {
   overscroll-behavior-x: contain;
 }
 .pdp-thumbs::-webkit-scrollbar { display: none; }
+
+/* Prevent iOS Safari / mobile browsers from auto-zooming on input focus */
+html, body {
+  touch-action: manipulation;
+}
+
+@media screen and (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+

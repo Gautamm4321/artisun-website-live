@@ -506,7 +506,7 @@ export default function Blog() {
             <input
               type="email"
               placeholder="Email address"
-              className="w-full bg-transparent text-white placeholder:text-white placeholder:opacity-100 text-[14px] sm:text-[15px] outline-none px-2"
+              className="w-full bg-transparent text-white placeholder:text-white placeholder:opacity-100 text-base outline-none px-2"
               required
             />
             <button

@@ -26,6 +26,20 @@ import { asset } from '@/lib/asset';
  * 2. LAYOUT — the copy is now one bottom-left stack (eyebrow → headline →
  *    "Built for your day & weather"), and the model sits right of centre so the
  *    text column never lands on her face or the bottles.
+ *
+ * 3. MOBILE TEXT POSITIONING (this pass) —
+ *    a) The eyebrow ("So we made one that's ready for all of it") was landing
+ *       on the model's hairline/forehead. Moved up so it sits in the gap
+ *       between the nav bar and where her hair starts — above the head, not
+ *       across it.
+ *    b) The bottom-right stack ("The first Climate-smart... not just your
+ *       skin type") was sitting almost flush with the bottom CTA bar. Moved
+ *       up using a viewport-percentage offset (not a fixed px/rem step) so it
+ *       clears roughly to the car's tyres and holds that same relative
+ *       position across different phone heights, rather than being tuned to
+ *       one screen size.
+ *    Both changes are scoped to the `lg:hidden` mobile blocks only — the
+ *    desktop layout below is untouched.
  */
 
 /**
@@ -123,7 +137,6 @@ useEffect(() => {
           loop
           muted
           playsInline
-          autoPlay
           // `preload="auto"` pulled the whole clip down as soon as the page
           // loaded, even though this section sits several screens below the
           // fold. "metadata" fetches only the header; the poster holds the
@@ -169,8 +182,12 @@ useEffect(() => {
         }}
       />
 
-      {/* 5a. MOBILE eyebrow — top left */}
-      <div className="lg:hidden absolute left-4 xs:left-5 sm:left-8 md:left-10 lg:left-14 top-20 xs:top-24 sm:top-28 lg:top-[18%] z-30 max-w-[70vw] pointer-events-none text-left">
+      {/* 5a. MOBILE eyebrow — top left.
+          Moved up from top-20/24/28 to top-12/14/16 so it clears the
+          hairline instead of sitting across the forehead. Still below the
+          nav bar; adjust further if your nav's actual rendered height
+          differs from what this assumes. */}
+      <div className="lg:hidden absolute left-4 xs:left-5 sm:left-8 md:left-10 lg:left-14 top-12 xs:top-14 sm:top-16 lg:top-[18%] z-30 max-w-[70vw] pointer-events-none text-left">
         <p className="font-suisse text-[var(--brand-cream,#f5f0eb)] text-[14px] xs:text-[15.5px] sm:text-[19px] md:text-[22px] lg:text-[30px] font-normal leading-[1.16] tracking-[-0.015em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
           So we made one
           <br />
@@ -178,8 +195,13 @@ useEffect(() => {
         </p>
       </div>
 
-      {/* 5b. MOBILE headline + subtitle — bottom right */}
-      <div className="lg:hidden absolute right-4 xs:right-5 sm:right-8 md:right-10 lg:right-14 bottom-8 xs:bottom-10 sm:bottom-12 lg:bottom-14 z-30 max-w-[86vw] sm:max-w-[70vw] lg:max-w-[900px] pointer-events-none text-right">
+      {/* 5b. MOBILE headline + subtitle — bottom right.
+          Was bottom-8/10/12 (essentially flush with the CTA bar). Switched
+          to a viewport-percentage offset — bottom-[30%]/[32%]/[34%] — so the
+          block sits well clear of the bottom bar and lands roughly at the
+          car's tyre line, and keeps that same relative position across
+          different phone heights instead of being pinned to one screen. */}
+      <div className="lg:hidden absolute right-4 xs:right-5 sm:right-8 md:right-10 lg:right-14 bottom-[30%] xs:bottom-[32%] sm:bottom-[34%] z-30 max-w-[86vw] sm:max-w-[70vw] lg:max-w-[900px] pointer-events-none text-right">
         <h2 className="font-editorial font-[200] text-[var(--brand-cream,#f5f0eb)] text-[34px] xs:text-[39px] sm:text-[50px] md:text-[56px] lg:text-[78px] leading-[0.95] tracking-[-0.015em] lg:tracking-[-0.02em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] antialiased">
           The first
           <br />
@@ -196,7 +218,7 @@ useEffect(() => {
         </p>
       </div>
 
-      {/* ── DESKTOP (lg+): the ORIGINAL layout ──
+      {/* ── DESKTOP (lg+): the ORIGINAL layout, UNCHANGED ──
           Class strings are copied VERBATIM from the original component, mobile
           prefixes included. That is deliberate and load-bearing:
 

@@ -47,9 +47,9 @@ const N = CARDS.length;
 // for SWAP_MS, then fades back in — the heading over CITY_MS and the body over
 // BODY_MS. The two durations differ on purpose; the stagger is what makes the
 // line feel like it's being *replaced* rather than cross-dissolved.
-const SWAP_MS = 180;
-const CITY_MS = 500;
-const BODY_MS = 700;
+const SWAP_MS = 120;
+const CITY_MS = 380;
+const BODY_MS = 450;
 
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 const smoothstep = (a: number, b: number, x: number) => {
@@ -58,7 +58,7 @@ const smoothstep = (a: number, b: number, x: number) => {
 };
 
 // Opacity interpolation across scroll progress
-const BAND = 0.55;
+const BAND = 0.7;
 function cityOpacity(i: number, u: number) {
   const rise = i === 0 ? 1 : smoothstep(i - BAND / 2, i + BAND / 2, u);
   const fall = i === N - 1 ? 1 : 1 - smoothstep(i + 1 - BAND / 2, i + 1 + BAND / 2, u);
@@ -88,9 +88,10 @@ export default function ClimateVideoSection() {
       const render = (progress: number) => {
         const u = progress * N;
 
-        // Which card the scroll is sitting on. setActive is a no-op when the
-        // value is unchanged, so this is safe to call every frame.
-        setActive(Math.min(N - 1, Math.floor(u)));
+        // Which card the scroll is sitting on.
+        // With +0.35 offset, the next card activates after a single natural scroll step
+        // rather than requiring a full second scroll to reach Math.floor(1.0).
+        setActive(Math.min(N - 1, Math.floor(u + 0.35)));
 
         for (let i = 0; i < N; i++) {
           const op = cityOpacity(i, u);
@@ -107,7 +108,7 @@ export default function ClimateVideoSection() {
       ScrollTrigger.create({
         trigger: pinRef.current,
         start: 'top top',
-        end: () => '+=' + window.innerHeight * N * 0.9,
+        end: () => '+=' + window.innerHeight * (window.innerWidth < 768 ? 1.5 : 1.7),
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
@@ -142,16 +143,21 @@ export default function ClimateVideoSection() {
       ref={sectionRef}
       className="relative w-full z-20"
       style={{
-        background:
-          'var(--bg-eclipse)',
+        // Fallback to the panel's own fill color. If this variable is ever
+        // undefined (or any layout gap exposes it), it now matches the panel
+        // instead of falling through to a black/default background.
+        background: 'var(--bg-eclipse, var(--bg-eclipse-fill))',
       }}
     >
       <div
         ref={pinRef}
         className="relative w-full h-[100svh] min-h-[620px] overflow-hidden flex flex-col lg:flex-row"
       >
-        {/* ── TOP (80%) on Mobile & Tablets / LEFT (66%) on Laptop ── */}
-        <div className="relative w-full h-[80svh] lg:h-full lg:w-2/3 overflow-hidden bg-transparent">
+        {/* ── TOP (80%) on Mobile & Tablets / LEFT (66%) on Laptop ──
+            `shrink-0` pins this to exactly 80svh regardless of what the
+            sibling panel needs — without it, the flex-1 panel below could
+            pull height from this card under flex's default shrink behavior. */}
+        <div className="relative w-full h-[80svh] lg:h-full lg:w-2/3 shrink-0 overflow-hidden bg-transparent">
           {CARDS.map((card, i) => (
             <div
               key={card.city}
@@ -178,9 +184,15 @@ export default function ClimateVideoSection() {
           />
         </div>
 
-        {/* ── BOTTOM (20%) on Mobile & Tablets / RIGHT (33%) on Laptop ── */}
+        {/* ── BOTTOM (remaining space) on Mobile & Tablets / RIGHT (33%) on Laptop ──
+            Was `h-auto min-h-[175px]`, which sizes to *content* height and can
+            fall short of the real remaining space (100svh - 80svh), exposing
+            the section's own background as a black gap above the footer.
+            `flex-1` + `min-h-0` makes this panel consume exactly whatever is
+            left in the flex-col, on every phone, regardless of how tall the
+            heading/paragraph render. */}
         <div 
-          className="climate-panel-right relative w-full h-auto min-h-[175px] pb-6 sm:pb-8 lg:pb-0 lg:h-full lg:w-1/3 flex flex-col justify-between"
+          className="climate-panel-right relative w-full flex-1 min-h-0 pb-6 sm:pb-8 lg:pb-0 lg:h-full lg:flex-none lg:w-1/3 flex flex-col justify-between"
           style={{ background: 'var(--bg-eclipse-fill)' }}
         >
           <div className="relative h-full w-full">
