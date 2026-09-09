@@ -7,18 +7,19 @@ import { asset } from '@/lib/asset';
 /**
  * PdpGallery — the product-shot viewer shared by the Origin and Aura heroes.
  *
- * Mobile behaviour (what changed):
+ * Mobile behaviour:
  *  • the left/right chevrons are gone — the image is swiped instead;
  *  • swiping wraps in BOTH directions without end, so there is no dead edge:
  *    swiping left past the last shot lands on the first, swiping right past
  *    the first lands on the last;
- *  • the small previews now sit directly BELOW the main image instead of
+ *  • the small previews sit directly BELOW the main image instead of
  *    floating on top of it, so nothing covers the product. Because they are a
  *    real block in the flow, the badges, title and copy underneath shift down
  *    on their own — no manual offsets needed.
  *
- * Desktop is deliberately untouched: it keeps the overlaid previews and the
- * chevrons, since there is no swipe gesture to fall back on there.
+ * Desktop: previously had the previews overlaid top-left on the image with
+ * chevrons for navigation. Previews now use the SAME below-the-image strip
+ * as mobile — only the overlay position changed. Chevrons are untouched.
  */
 export default function PdpGallery({
   images,
@@ -116,25 +117,7 @@ export default function PdpGallery({
           className={`object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
         />
 
-        {/* Desktop-only overlaid previews (unchanged behaviour) */}
-        <div className="hidden lg:flex absolute top-3 left-3 z-10 gap-2">
-          {images.map((src, i) => (
-            <button
-              key={`ov-${src}-${i}`}
-              onClick={() => jumpTo(i)}
-              aria-label={`View image ${i + 1}`}
-              className={`pointer-events-auto relative h-11 w-11 overflow-hidden rounded-md border transition-all duration-300 ${
-                i === index
-                  ? 'opacity-100 border-white/70'
-                  : 'opacity-50 hover:opacity-80 border-white/20'
-              }`}
-            >
-              <Image src={asset(src)} alt="" fill sizes="48px" className="object-cover" />
-            </button>
-          ))}
-        </div>
-
-        {/* Desktop-only chevrons. Removed on mobile in favour of the swipe. */}
+        {/* Desktop-only chevrons — untouched. */}
         <button
           onClick={() => go(-1)}
           aria-label="Previous image"
@@ -156,23 +139,25 @@ export default function PdpGallery({
         </button>
       </div>
 
-      {/* ── Mobile previews: directly under the shot, pushing the copy down ── */}
-      <div
-        className="pdp-thumbs lg:hidden mt-2.5 flex gap-2 overflow-x-auto pb-0.5"
-      >
+      {/* ── Previews: directly under the shot, on every breakpoint now.
+          Was `lg:hidden` (mobile-only) with a separate overlaid desktop
+          version above — that overlay is gone, and this single strip is
+          shared so desktop looks identical to mobile. Sized a touch larger
+          from `lg:` up since desktop has more room. ── */}
+      <div className="pdp-thumbs mt-2.5 flex gap-2 overflow-x-auto pb-0.5">
         {images.map((src, i) => (
           <button
             key={`th-${src}-${i}`}
             onClick={() => jumpTo(i)}
             aria-label={`View image ${i + 1}`}
             aria-current={i === index}
-            className={`pointer-events-auto relative h-[46px] w-[46px] shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
+            className={`pointer-events-auto relative h-[46px] w-[46px] lg:h-[52px] lg:w-[52px] shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
               i === index
                 ? 'opacity-100 border-white/75'
-                : 'opacity-50 border-white/20'
+                : 'opacity-50 border-white/20 hover:opacity-80'
             }`}
           >
-            <Image src={asset(src)} alt="" fill sizes="48px" className="object-cover" />
+            <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
           </button>
         ))}
       </div>

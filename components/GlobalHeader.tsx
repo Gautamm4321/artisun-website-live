@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { asset } from '@/lib/asset';
 import { useCart } from './cart/CartProvider';
@@ -7,6 +7,14 @@ import { useCart } from './cart/CartProvider';
 export default function GlobalHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setOpen: setCartOpen, cart } = useCart();
+
+  // Broadcast drawer open/close so ScrollProgressBar (fixed, high z-index,
+  // mounted separately in OriginPage) can hide itself while the menu is
+  // open. Same event HomeHeader dispatches, so ScrollProgressBar's listener
+  // needs no changes — this was just the missing half.
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('artisun:mobile-menu', { detail: mobileMenuOpen }));
+  }, [mobileMenuOpen]);
 
   return (
     <>

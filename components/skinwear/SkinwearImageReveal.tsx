@@ -48,7 +48,7 @@ export default function SkinwearImageReveal() {
               alt="Artisun Skinwear Hero"
               fill
               sizes="100vw"
-              className="object-cover object-center"
+              className="object-cover object-center md:object-top"
               priority
             />
             {/* Subtle dark overlay for UI readability without changing background tone */}

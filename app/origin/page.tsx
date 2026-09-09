@@ -17,6 +17,7 @@ import StickyCartBar from '@/components/origin/StickyCartBar';
 import { asset } from '@/lib/asset';
 
 const PANELS = 6;
+const DESKTOP_MIN_WIDTH = 1024; // matches Tailwind `lg`
 
 export default function OriginPage() {
   const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
@@ -24,6 +25,7 @@ export default function OriginPage() {
   const trackRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
+  const isDesktopRef = useRef(false);
 
   // cursor proxy
   useEffect(() => {
@@ -41,18 +43,14 @@ export default function OriginPage() {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
 
-    // The horizontal track is driven by page scroll, so ANY leftover scroll
-    // offset on entry shows up as the first panel already part-way slid off to
-    // the left with the second one peeking in on the right. Two things cause
-    // that offset: the browser restoring a previous scroll position, and the
-    // mobile address bar collapsing during load. Taking manual control of
-    // restoration and pinning the page to the top before the trigger is built
-    // guarantees the first panel is framed exactly to the screen on arrival.
+    // Same reasoning as before: kill any scroll-position offset before the
+    // trigger/track measures itself, on both breakpoints.
     const prevRestoration = history.scrollRestoration;
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    // A) Lenis setup with syncTouch: false
+    // Lenis still drives smoothing on mobile's normal vertical scroll, not
+    // just the desktop horizontal track.
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -60,7 +58,6 @@ export default function OriginPage() {
       syncTouch: false,
     });
     lenisRef.current = lenis;
-    // Expose for in-panel scrollers (usePanelEdgeScroll) to release gestures into.
     (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__ = lenis;
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -78,10 +75,15 @@ export default function OriginPage() {
       '--mc-pos-6': '300%',
     });
 
-    const track = trackRef.current;
-    const wrapper = wrapperRef.current;
-    if (track && wrapper) {
-      // B) Fixed scroll amount math using window.innerWidth & exact panel count
+    const mm = gsap.matchMedia();
+
+    // ── Desktop: unchanged pinned, scrubbed, horizontal track ──
+    mm.add(`(min-width: ${DESKTOP_MIN_WIDTH}px)`, () => {
+      isDesktopRef.current = true;
+      const track = trackRef.current;
+      const wrapper = wrapperRef.current;
+      if (!track || !wrapper) return;
+
       const getScrollAmount = () => (PANELS - 1) * window.innerWidth;
 
       const tween = gsap.to(track, {
@@ -89,7 +91,6 @@ export default function OriginPage() {
         ease: 'none',
       });
 
-      // D) Exact end matching the scroll amount
       const st = ScrollTrigger.create({
         trigger: wrapper,
         start: 'top top',
@@ -101,14 +102,33 @@ export default function OriginPage() {
         invalidateOnRefresh: true,
       });
       stRef.current = st;
-    }
 
-    // Re-assert the top position after the pin is measured — anticipatePin and
-    // the initial refresh can both nudge scroll by a few px on mobile.
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
-      ScrollTrigger.refresh();
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        lenis.scrollTo(0, { immediate: true });
+        ScrollTrigger.refresh();
+      });
+
+      // gsap.matchMedia calls this automatically when the query stops matching
+      return () => {
+        st.kill();
+        stRef.current = null;
+        gsap.set(track, { clearProps: 'transform' });
+      };
+    });
+
+    // ── Mobile: plain vertical stack — no pin, no horizontal drive ──
+    mm.add(`(max-width: ${DESKTOP_MIN_WIDTH - 1}px)`, () => {
+      isDesktopRef.current = false;
+      stRef.current = null;
+
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        lenis.scrollTo(0, { immediate: true });
+        ScrollTrigger.refresh();
+      });
+
+      return () => {};
     });
 
     document.fonts.ready.then(() => ScrollTrigger.refresh());
@@ -119,16 +139,33 @@ export default function OriginPage() {
       lenis.destroy();
       lenisRef.current = null;
       delete (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__;
+      mm.revert();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
   const goToPanel = (i: number) => {
+    if (isDesktopRef.current) {
+      const lenis = lenisRef.current;
+      const st = stRef.current;
+      if (!lenis || !st) return;
+      const target = st.start + (i / (PANELS - 1)) * (st.end - st.start);
+      lenis.scrollTo(target, { duration: 1.2 });
+      return;
+    }
+
+    // Mobile: panels are in normal document flow — scroll straight to the
+    // panel element instead of computing a horizontal-track offset.
+    const panels = trackRef.current?.querySelectorAll<HTMLElement>('.origin-panel');
+    const el = panels?.[i];
+    if (!el) return;
+
     const lenis = lenisRef.current;
-    const st = stRef.current;
-    if (!lenis || !st) return;
-    const target = st.start + (i / (PANELS - 1)) * (st.end - st.start);
-    lenis.scrollTo(target, { duration: 1.2 });
+    if (lenis) {
+      lenis.scrollTo(el, { duration: 1.2, offset: -76 });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
@@ -140,17 +177,38 @@ export default function OriginPage() {
       <GlobalHeader />
 
       <style jsx global>{`
-        html, body {
-          overflow-x: hidden;
-        }
-      `}</style>
+  html, body {
+    overflow-x: hidden;
+  }
 
-      {/* ── 6 EXACT ORDERED PANELS ── */}
-      <div ref={wrapperRef} className="relative w-full h-[100svh] overflow-hidden">
-        {/* C) Fixed 600vw width on track */}
+  /* Mobile only: each origin-panel snaps to the top of the viewport and the
+     browser is forced to stop there — "freeze once fully in frame" — before
+     continuing to the next one, even on a fast scroll/fling. Desktop keeps
+     its GSAP pin/scrub track and is untouched by this rule. */
+  @media (max-width: 1023px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
+
+    .origin-panel {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+`}</style>
+
+      {/* ── 6 EXACT ORDERED PANELS ──
+          Desktop (lg+): fixed-height pinned wrapper, track slides horizontally
+          — same as before.
+          Mobile: wrapper/track fall back to plain block flow (flex-col, auto
+          height) so the six panels stack and the page scrolls vertically. */}
+      <div
+        ref={wrapperRef}
+        className="relative w-full lg:h-[100svh] lg:overflow-hidden"
+      >
         <div
           ref={trackRef}
-          className="flex flex-row flex-nowrap h-full w-[600vw] will-change-transform"
+          className="flex flex-col lg:flex-row lg:flex-nowrap w-full lg:h-full lg:w-[600vw] will-change-transform"
         >
           {/* 1. Home Section */}
           <OriginHero onNavigate={goToPanel} />

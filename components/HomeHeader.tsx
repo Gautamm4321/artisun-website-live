@@ -206,6 +206,9 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     }
   };
 
+    useEffect(() => {
+  window.dispatchEvent(new CustomEvent('artisun:mobile-menu', { detail: mobileMenuOpen }));
+}, [mobileMenuOpen]);
   return (
     <>
 

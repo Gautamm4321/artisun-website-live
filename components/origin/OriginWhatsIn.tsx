@@ -124,18 +124,26 @@ export default function OriginWhatsIn() {
                   </div>
 
                   {/* Toggle Arrow Button */}
-                  <button
-                    type="button"
-                    onClick={() => toggleAccordion(idx)}
-                    aria-label="Toggle details"
-                    className={`absolute z-20 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center bg-black/70 border border-white/35 text-white shadow-lg backdrop-blur-md transition-all duration-500 ${
-                      isOpen ? 'left-[44%] -translate-x-1/2 rotate-180' : 'right-2'
-                    }`}
-                  >
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="15 18 9 12 15 6" />
-                    </svg>
-                  </button>
+<style jsx global>{`
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Mobile only: each origin-panel snaps to the top of the viewport and the
+     browser is forced to stop there before continuing to the next one, even
+     on a fast scroll/fling. Desktop keeps its GSAP pin/scrub track and is
+     untouched by this rule. */
+  @media (max-width: 1023px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
+
+    .origin-panel {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+`}</style>
 
                   {/* Right Half: Only Hook + Detail (No duplicate Name) */}
                   {isOpen && (

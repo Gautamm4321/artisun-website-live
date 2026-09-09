@@ -13,6 +13,7 @@ export default function ScrollProgressBar({
   const barRef = useRef<HTMLDivElement>(null);
   const markerRef = useRef<HTMLImageElement>(null);
   const [hideAtFooter, setHideAtFooter] = useState(false);
+  const [hideForMenu, setHideForMenu] = useState(false);
 
   // Check if current page has sticky cart bar (Origin or Aura)
   const isProductPage = pathname?.includes('/origin') || pathname?.includes('/aura');
@@ -48,10 +49,24 @@ export default function ScrollProgressBar({
     return () => observer.disconnect();
   }, []);
 
+  /* ── Mobile menu listener ──
+     HomeHeader dispatches this whenever its drawer opens/closes. The bar and
+     marker are fixed-position with a very high z-index (9999/10000) so they
+     were painting on top of the drawer regardless of the drawer's own
+     z-index — hiding via opacity (same technique already used for the
+     footer) sidesteps that instead of trying to out-stack it. */
+  useEffect(() => {
+    const handler = (e: Event) => setHideForMenu(Boolean((e as CustomEvent<boolean>).detail));
+    window.addEventListener('artisun:mobile-menu', handler);
+    return () => window.removeEventListener('artisun:mobile-menu', handler);
+  }, []);
+
+  const hidden = hideAtFooter || hideForMenu;
+
   return (
     <div
       className={`transition-opacity duration-300 ${
-        hideAtFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        hidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Dynamic Bottom Progress Line */}
