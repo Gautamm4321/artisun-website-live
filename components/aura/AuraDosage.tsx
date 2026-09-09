@@ -40,7 +40,7 @@ const PEARL_TABS: PearlTab[] = [
 export default function AuraDosage() {
   const [activeTab, setActiveTab] = useState(1);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  usePanelEdgeScroll(scrollerRef);
+// usePanelEdgeScroll removed
 
   const current = PEARL_TABS[activeTab];
 
@@ -48,22 +48,20 @@ export default function AuraDosage() {
     <div
       id="aura-dosage"
       ref={scrollerRef}
-      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-20 pb-28 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden flex flex-col justify-between pt-20 pb-16 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Top Heading */}
-      <div className="relative z-10 max-w-[1500px] w-full mx-auto pt-6 sm:pt-8 lg:pt-10">
+      <div className="relative z-10 max-w-[1500px] w-full mx-auto pt-2 lg:pt-10">
         <div className="w-full max-w-[540px]">
-          <span className="font-suisse text-[11px] sm:text-xs tracking-[0.2em] uppercase text-[var(--brand-cream)]/70">
+          <span className="font-suisse text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[var(--brand-cream)]/70">
             How to wear
           </span>
-          <h2 className="font-editorial text-[28px] sm:text-[40px] lg:text-[48px] leading-[1.08] tracking-tight mt-1.5 text-white">
-            The first sunscreen that<br />
-            changes with the weather.
+          <h2 className="font-editorial text-[22px] sm:text-[36px] lg:text-[48px] leading-[1.08] tracking-tight mt-1 text-white">
+            The first sunscreen that changes with the weather.
           </h2>
-          <p className="font-suisse text-[12px] sm:text-[13.5px] text-[var(--brand-cream)]/80 mt-3 leading-[1.6]">
-            Two pearls when it’s humid. Three when it’s dry. It flexes to the day — so you’re <br className="hidden sm:inline" />
-            never overdoing it in a Bombay summer or under-protected in a Delhi winter.
+          <p className="font-suisse text-[11.5px] sm:text-[13.5px] text-[var(--brand-cream)]/80 mt-1.5 leading-[1.45]">
+            Two pearls when it’s humid. Three when it’s dry. Never the wrong amount.
           </p>
         </div>
       </div>

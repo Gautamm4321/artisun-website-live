@@ -44,17 +44,17 @@ export default function SkinwearDailyLife() {
         </p>
 
         {/* 4. CTA BUTTONS */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2">
+        <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 mt-2">
           <a
             href="/origin"
-            className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap cursor-pointer"
+            className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
           >
             Wear Origin
           </a>
 
           <a
             href="/aura"
-            className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap cursor-pointer"
+            className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
           >
             Wear Aura
           </a>

@@ -25,7 +25,7 @@ export default function FutureShowcase() {
 
           <motion.h2
             {...rise(0.08, reduce)}
-            className="about-shine font-editorial leading-[1.02] tracking-[-0.02em] text-[clamp(2.6rem,6vw,4.6rem)] text-center"
+            className="font-editorial leading-[1.02] tracking-[-0.02em] text-[clamp(2.6rem,6vw,4.6rem)] text-[var(--brand-cream)] text-center font-normal"
           >
             Artisun is just getting started
           </motion.h2>
@@ -50,21 +50,22 @@ export default function FutureShowcase() {
             </p>
           </motion.div>
 
-          <motion.div {...rise(0.24, reduce)} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <a 
-              href="/origin" 
-              className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap"
+          <motion.div {...rise(0.24, reduce)} className="mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4">
+            <a
+              href="/origin"
+              className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
             >
               Shop Origin
             </a>
 
-            <a 
-              href="/aura" 
-              className="inline-flex items-center justify-center min-w-[180px] px-8 py-3 md:py-3.5 bg-[#E6D5C1] hover:bg-[#FAF6EE] text-[#A52A2C] font-suisse text-[11px] sm:text-[12.5px] lg:text-[13px] tracking-[0.14em] font-medium uppercase shadow-md transition-all duration-300 active:scale-[0.98] text-center whitespace-nowrap"
+            <a
+              href="/aura"
+              className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
             >
               Shop Aura
             </a>
           </motion.div>
+
         </div>
       </div>
     </section>

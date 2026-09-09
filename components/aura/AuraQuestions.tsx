@@ -311,10 +311,10 @@ export default function AuraQuestions() {
           </div>
         )}
 
-        {/* Accordion Questions List with smooth isolated scroll */}
+        {/* Accordion Questions List */}
         <div
           ref={scrollerRef}
-          className="panel-scroll mt-2 flex-1 flex flex-col min-h-0 pr-1.5 sm:pr-2 pb-6"
+          className="overflow-y-auto mt-2 flex-1 flex flex-col min-h-0 pr-1.5 sm:pr-2 pb-6 [overscroll-behavior:contain]"
         >
 
 

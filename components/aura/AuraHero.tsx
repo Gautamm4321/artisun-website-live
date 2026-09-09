@@ -44,8 +44,9 @@ const NAV_ITEMS: NavItem[] = [
   { n: '02', label: 'How it feels', target: 2, kind: 'link' },      // AuraTexture
   { n: '03', label: 'Where it works', target: 3, kind: 'link' },    // AuraWhere
   { n: '04', label: "What's in it", target: 4, kind: 'link' },      // AuraWhatsIn
-  { n: '05', label: 'Questions', target: 6, kind: 'link' },         // AuraQuestions
-  { n: '06', label: 'Full ingredient list', target: null, kind: 'accordion' },
+  { n: '05', label: "What makes it different", target: 5, kind: 'link' },      // AuraWhatsIn
+  { n: '06', label: 'Questions', target: 6, kind: 'link' },         // AuraQuestions
+  { n: '07', label: 'Full ingredient list', target: null, kind: 'accordion' },
 ];
 
 export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: number) => void }) {
@@ -53,13 +54,13 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
   const scrollerRef = useRef<HTMLDivElement>(null);
   // Whole section (image + copy) scrolls vertically, then releases into the
   // horizontal track — the image is no longer pinned while only the text moves.
-  usePanelEdgeScroll(scrollerRef);
+// usePanelEdgeScroll removed to prevent inner frame scroll
 
   return (
-    <div className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden">
+    <div className="aura-panel relative w-screen shrink-0 h-auto lg:h-[100svh] overflow-visible lg:overflow-hidden">
       {/* Background Radial Gradient */}
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
             'var(--bg-eclipse)',
@@ -68,12 +69,12 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
 
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden h-full flex flex-col justify-start lg:justify-center pt-[76px] pb-24 sm:pt-24 sm:pb-24 lg:py-0"
+        className="w-full h-full flex flex-col justify-center pt-20 pb-10 lg:pt-20 lg:pb-12"
       >
-        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-5 sm:gap-6 lg:gap-12 items-center my-auto">
+        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-3 sm:gap-6 lg:gap-12 items-center my-auto">
 
-          {/* ── IMAGE: matches Origin hero sizing (top on mobile / left on desktop) ── */}
-          <div className="order-1 flex flex-col w-full max-w-[360px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
+          {/* ── IMAGE: compact fit for 100vh mobile ── */}
+          <div className="order-1 flex flex-col w-full max-w-[240px] sm:max-w-[320px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
             <PdpGallery
               images={GALLERY}
               alt="Aura Pearl Skinwear"

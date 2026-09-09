@@ -179,6 +179,8 @@ export default function ProductScrollStory({
                 alt={`${productLabel} ${mobileIndex + 1}`}
                 fill
                 sizes="90vw"
+                priority={mobileIndex === 0}
+                loading="eager"
                 className="object-cover pointer-events-none"
               />
             </motion.div>
@@ -200,13 +202,8 @@ export default function ProductScrollStory({
               transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
             >
               <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] opacity-95">
-                {paragraphs[mobileIndex]?.text}
+                {paragraphs[mobileIndex]?.text}{paragraphs[mobileIndex]?.em ? ` ${paragraphs[mobileIndex].em}` : ''}
               </p>
-              {paragraphs[mobileIndex]?.em && (
-                <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] mt-1.5 opacity-95">
-                  {paragraphs[mobileIndex].em}
-                </p>
-              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -232,9 +229,8 @@ export default function ProductScrollStory({
       <div className="hidden md:grid md:grid-cols-2 relative w-full items-start">
         {/* Editorial title side (desktop sticky pinned to section) */}
         <div
-          className={`self-start sticky top-0 h-screen flex items-center ${
-            flip ? 'md:order-2 justify-end text-right' : 'justify-start text-left'
-          }`}
+          className={`self-start sticky top-0 h-screen flex items-center ${flip ? 'md:order-2 justify-end text-right' : 'justify-start text-left'
+            }`}
         >
           <div>
 

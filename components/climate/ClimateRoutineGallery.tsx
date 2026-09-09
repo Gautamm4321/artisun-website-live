@@ -64,7 +64,7 @@ const ingredients: Ingredient[] = [
   },
 ];
 
-const marqueeList = [...ingredients, ...ingredients];
+const marqueeList = [...ingredients, ...ingredients, ...ingredients, ...ingredients];
 
 export default function ClimateRoutineGallery() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

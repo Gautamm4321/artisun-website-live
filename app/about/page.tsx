@@ -34,10 +34,10 @@ const ORIGIN_PARAS: StoryParagraph[] = [
 const AURA_PARAS: StoryParagraph[] = [
   {
     text:
-      'Sunscreens were sorted by skin type,as if your skin were a fixed thing. But your skin changes with the day.',
+      'Sunscreens were sorted by skin type, as if your skin were a fixed thing. But your skin changes with the day.',
   },
   {
-    text: 'Tight in a dry winter, greasy by ahumid afternoon, dull in the smog. The sun doesn’t check your skin type.',
+    text: 'Tight in a dry winter, greasy by a humid afternoon, dull in the smog. The sun doesn’t check your skin type.',
   },
   {
     text:

@@ -74,6 +74,7 @@ html {
   background-color: var(--brand-dark);
   overflow-x: clip;
   overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
   width: 100%;
 }
 

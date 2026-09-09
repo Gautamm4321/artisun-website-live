@@ -33,12 +33,12 @@ const IMG_MOBILE = '/pdp/aura-last-mobile.webp';
 
 export default function AuraProduct() {
   const scrollerRef = useRef<HTMLDivElement>(null);
-  usePanelEdgeScroll(scrollerRef);
+  // usePanelEdgeScroll removed
 
   return (
     <div
       id="aura-product"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden"
+      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden"
     >
       {/* Background Radial Gradient */}
       <div
@@ -51,7 +51,7 @@ export default function AuraProduct() {
       
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden h-full flex flex-col items-center justify-start lg:justify-center pt-[76px] pb-24 sm:pt-24 sm:pb-24 lg:py-0"
+        className="h-full overflow-hidden flex flex-col items-center justify-center pt-0 pb-16 lg:py-0"
       >
         {/* Desktop: copy LEFT, image RIGHT. Mobile: stacked, square image on top.
             Was a single centred column at every width, which read as a phone
