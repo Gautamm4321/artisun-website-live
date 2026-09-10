@@ -41,12 +41,9 @@ const NAV_ITEMS: NavItem[] = [
 export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: number) => void }) {
   const [ingredientsOpen, setIngredientsOpen] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  // Whole-section vertical scroll (image + copy together) that releases into the
-  // horizontal track at the edges. Inert on desktop where everything fits.
-  usePanelEdgeScroll(scrollerRef);
 
   return (
-    <div className="origin-panel relative w-screen shrink-0 h-[100svh] overflow-hidden">
+    <div className="origin-panel relative w-screen shrink-0 h-auto lg:h-[100svh] overflow-visible lg:overflow-hidden">
       {/* Background Radial Gradient */}
       <div
         className="absolute inset-0 -z-10"
@@ -56,11 +53,9 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
         }}
       />
 
-      {/* Scroller: on mobile the section scrolls vertically (with room to clear
-          the sticky bar); on desktop it's a centred, non-scrolling grid. */}
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden h-full flex flex-col justify-start lg:justify-center pt-[76px] pb-24 sm:pt-24 sm:pb-24 lg:py-0"
+        className="w-full h-full flex flex-col justify-center pt-20 pb-10 lg:pt-20 lg:pb-12"
       >
         <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-5 sm:gap-6 lg:gap-12 items-center my-auto">
 

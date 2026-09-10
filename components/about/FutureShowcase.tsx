@@ -50,19 +50,12 @@ export default function FutureShowcase() {
             </p>
           </motion.div>
 
-          <motion.div {...rise(0.24, reduce)} className="mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4">
+          <motion.div {...rise(0.24, reduce)} className="mt-8 flex items-center justify-center w-full max-w-[320px] mx-auto">
             <a
-              href="/origin"
-              className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
+              href="/collection"
+              className="w-full py-3 px-8 bg-white hover:bg-neutral-100 text-black font-suisse text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold rounded-none border border-black/10 shadow-md transition-all duration-300 text-center"
             >
-              Shop Origin
-            </a>
-
-            <a
-              href="/aura"
-              className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
-            >
-              Shop Aura
+              Wear Artisun
             </a>
           </motion.div>
 

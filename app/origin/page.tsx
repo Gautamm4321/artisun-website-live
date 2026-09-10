@@ -177,25 +177,10 @@ export default function OriginPage() {
       <GlobalHeader />
 
       <style jsx global>{`
-  html, body {
-    overflow-x: hidden;
-  }
-
-  /* Mobile only: each origin-panel snaps to the top of the viewport and the
-     browser is forced to stop there — "freeze once fully in frame" — before
-     continuing to the next one, even on a fast scroll/fling. Desktop keeps
-     its GSAP pin/scrub track and is untouched by this rule. */
-  @media (max-width: 1023px) {
-    html {
-      scroll-snap-type: y mandatory;
-    }
-
-    .origin-panel {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-  }
-`}</style>
+        html, body {
+          overflow-x: hidden;
+        }
+      `}</style>
 
       {/* ── 6 EXACT ORDERED PANELS ──
           Desktop (lg+): fixed-height pinned wrapper, track slides horizontally

@@ -16,8 +16,8 @@ const quickLinks: { label: string; href: string }[] = [
 
 const policyLinks: { label: string; href: string }[] = [
   { label: 'Privacy Policy', href: '/privacypolicy' },
-  { label: 'Shipping Policy', href: '/shipping' },
-  { label: 'Refunds & Cancellations', href: '/shipping' },
+  { label: 'Shipping  & Cancellations', href: '/shipping' },
+  { label: 'Shop All', href: '/collection' },
 ];
 
 function InstagramIcon() {

@@ -37,6 +37,14 @@ export default function GlobalHeader() {
 
         {/* Desktop Right Corner: Beige Modular Tabs Box */}
         <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
+          {/* Collection Tab */}
+          <Link
+            href="/collection"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            Collection
+          </Link>
+
           {/* Climate-smart */}
           <Link
             href="/climate"
@@ -209,6 +217,9 @@ export default function GlobalHeader() {
           </div>
           <Link href="/skinwear" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
             Skinwear™
+          </Link>
+          <Link href="/collection" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
+            Shop All
           </Link>
           <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
             About

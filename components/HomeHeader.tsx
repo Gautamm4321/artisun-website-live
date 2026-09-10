@@ -232,6 +232,16 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               pills add NAV_PILL_TEXT for color/typography; icon pills keep
               the same box but render an image instead. */}
           <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
+            {/* Collection Tab */}
+            <Link
+              href="/collection"
+              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
+            >
+              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
+                Collection
+              </span>
+            </Link>
+
             {/* Climate-smart */}
             <Link
               href="/climate"
@@ -438,6 +448,9 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           </div>
           <Link href="/skinwear" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
             Skinwear™
+          </Link>
+           <Link href="/collection" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
+            Shop All
           </Link>
           <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
             About

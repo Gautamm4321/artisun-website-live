@@ -36,28 +36,20 @@ export default function ClimateCTA() {
           </p>
         </motion.div>
 
-        {/* 3. Styled Pill Buttons */}
+        {/* 3. Styled Single Button */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-4"
+          className="flex items-center justify-center mt-5 w-full max-w-[320px]"
         >
-         <a
-            href="/origin"
-            className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
-          >
-            Shop Origin
-          </a>
-
           <a
-            href="/aura"
-            className="font-suisse text-[11px] sm:text-xs uppercase tracking-[0.14em] font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-none bg-[#EAE3D2] text-[#242623] hover:bg-white transition-colors text-center shrink-0"
+            href="/collection"
+            className="w-full py-3 px-8 bg-white hover:bg-neutral-100 text-black font-suisse text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold rounded-none border border-black/10 shadow-md transition-all duration-300 text-center"
           >
-            Shop Aura
+            Wear Artisun
           </a>
-
         </motion.div>
 
       </div>

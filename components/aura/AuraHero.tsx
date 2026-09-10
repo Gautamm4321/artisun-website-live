@@ -73,12 +73,12 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
       >
         <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-3 sm:gap-6 lg:gap-12 items-center my-auto">
 
-          {/* ── IMAGE: compact fit for 100vh mobile ── */}
-          <div className="order-1 flex flex-col w-full max-w-[240px] sm:max-w-[320px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
+          {/* ── TOP ON MOBILE / LEFT ON DESKTOP: Product Visual (Matched to Origin size) ── */}
+          <div className="order-1 flex flex-col w-full max-w-[360px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
             <PdpGallery
               images={GALLERY}
               alt="Aura Pearl Skinwear"
-              frameClassName="aspect-square lg:aspect-[4/4.75] lg:max-h-[74vh]"
+              frameClassName="aspect-square max-h-[70vh]"
             />
           </div>
 

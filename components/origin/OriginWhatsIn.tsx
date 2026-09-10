@@ -34,7 +34,7 @@ const INGREDIENTS_DATA: IngredientItem[] = [
     country: 'Germany',
     hook: 'One of the most advanced UVA filters made. ',
     detail:
-      'It holds in sunlight instead of fading — the protection you put on at eight is still there at four.',
+      'It holds in sunlight instead of fading the protection you put on at eight is still there at four.',
     image: asset('/unival.webp'),
   },
   {
@@ -77,7 +77,6 @@ export default function OriginWhatsIn() {
 
         {/* ── Cards Container: 4 Rows in 1 Frame on Mobile | 4 Columns on Desktop ── */}
         <div
-          data-lenis-prevent="true"
           className="flex-1 lg:flex-initial flex flex-col lg:grid lg:grid-cols-4 gap-2 lg:gap-6 items-stretch lg:items-start overflow-hidden lg:overflow-visible"
         >
 
@@ -89,10 +88,13 @@ export default function OriginWhatsIn() {
                 key={item.name}
                 className="group relative w-full flex flex-col bg-white/[0.06] border border-white/15 backdrop-blur-md rounded-lg lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/30 shadow-xl flex-1 min-h-0 lg:flex-none"
               >
-                {/* ── MOBILE VIEW (Compact Height + Permanent Image Name) ── */}
-                <div className="lg:hidden relative w-full h-full min-h-[74px] sm:min-h-[82px] overflow-hidden flex flex-row">
-                  {/* Image Section (Shrinks smoothly when opened) */}
-                  <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden ${isOpen ? 'w-[44%]' : 'w-full'}`}>
+                {/* ── MOBILE VIEW: Country Left-Top | Name Exactly at Marked Bottom-Right | Hook & Desc in White ── */}
+                <div 
+                  onClick={() => toggleAccordion(idx)}
+                  className="lg:hidden relative w-full h-full min-h-[78px] sm:min-h-[86px] overflow-hidden flex flex-row cursor-pointer select-none"
+                >
+                  {/* Image Section */}
+                  <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden ${isOpen ? 'w-[40%]' : 'w-full'}`}>
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -107,49 +109,55 @@ export default function OriginWhatsIn() {
                       {item.country}
                     </span>
 
-                    {/* Bottom-Right / Bottom-Left: Name Always on Image */}
-                    <div className={`absolute bottom-2 transition-all duration-300 ${
-                      isOpen ? 'left-2.5 right-auto max-w-[85%]' : 'left-2.5 right-9 text-right'
-                    }`}>
-                      <h3 className={`font-suisse font-medium text-[var(--brand-cream)] tracking-tight ${isOpen ? 'text-[10px] leading-tight' : 'text-[11.5px] sm:text-[13px]'}`}>
-                        {item.name}
-                      </h3>
-                      {/* byline, visible without opening the card */}
-                      {!isOpen && (
-                        <p className="font-suisse text-[8.5px] sm:text-[9.5px] leading-[1.25] text-[var(--brand-cream)]/75 mt-0.5 line-clamp-2">
-                          {item.hook}
-                        </p>
-                      )}
-                    </div>
+                    {/* Closed State: Name placed right at the bottom-right corner */}
+                    {!isOpen && (
+                      <div className="absolute bottom-2.5 right-3 text-right max-w-[75%] z-10">
+                        <h3 className="font-suisse font-medium text-white tracking-tight text-[11.5px] sm:text-[12.5px] leading-tight drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                          {item.name}
+                        </h3>
+                      </div>
+                    )}
+
+                    {/* Opened State: Name moves to bottom-left on compressed image */}
+                    {isOpen && (
+                      <div className="absolute bottom-2 left-2.5 max-w-[90%] text-left">
+                        <h3 className="font-suisse font-medium text-white tracking-tight text-[10px] leading-tight">
+                          {item.name}
+                        </h3>
+                      </div>
+                    )}
+
+                    {/* Right-Edge Floating Arrow '<' when closed (shifted up so it never collides with bottom name) */}
+                    {!isOpen && (
+                      <div
+                        className="absolute right-2.5 top-3 w-5 h-5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/85"
+                      >
+                        <svg
+                          width="9"
+                          height="9"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Toggle Arrow Button */}
-<style jsx global>{`
-  html, body {
-    overflow-x: hidden;
-  }
-
-  /* Mobile only: each origin-panel snaps to the top of the viewport and the
-     browser is forced to stop there before continuing to the next one, even
-     on a fast scroll/fling. Desktop keeps its GSAP pin/scrub track and is
-     untouched by this rule. */
-  @media (max-width: 1023px) {
-    html {
-      scroll-snap-type: y mandatory;
-    }
-
-    .origin-panel {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-  }
-`}</style>
-
-                  {/* Right Half: Only Hook + Detail (No duplicate Name) */}
+                  {/* Right Half: Hook & Description both Pure White and same compact font size */}
                   {isOpen && (
-                    <div className="w-[56%] h-full flex flex-col justify-center px-2.5 py-1.5 bg-black/50 backdrop-blur-md border-l border-white/10 overflow-hidden">
-                      <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none]">
-                        <p className="font-suisse text-[8.5px] text-[var(--brand-cream)]/80 leading-[1.3]">
+                    <div className="w-[60%] h-full flex flex-col justify-center px-3 py-1.5 bg-black/65 backdrop-blur-md border-l border-white/15 overflow-hidden">
+                      <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none] space-y-1">
+                        {/* Hook Line: Pure White & matched size */}
+                        <p className="font-suisse  text-[8px] sm:text-[8.5px] text-white leading-[1.3]">
+                          {item.hook}
+                        </p>
+                        {/* Detail Description: White/90 & same size */}
+                        <p className="font-suisse text-[8px] sm:text-[8.5px] text-white/90 leading-[1.3]">
                           {item.detail}
                         </p>
                       </div>
