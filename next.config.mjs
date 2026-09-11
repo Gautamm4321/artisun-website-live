@@ -25,6 +25,22 @@ const nextConfig = {
     ...(isExport && { unoptimized: true }),
   },
 
+async redirects() {
+    if (isExport) return [];
+    return [
+      {
+        source: '/shop',
+        destination: '/collection',
+        permanent: true,
+      },
+      {
+        source: '/collections/all',
+        destination: '/collection',
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     // headers() has no effect in a static export (no server to set them);
     // GitHub Pages applies its own caching.

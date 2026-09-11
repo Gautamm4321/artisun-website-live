@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About ARTISUN — An Indian Sun-Care House',
+  title: 'About Artisun – Sun Care Made Properly, for India',
   description:
-    'Artisun is an Indian sun-care house built around the sun and the way we live with it. We make Skinwear — wearable layers that protect, hydrate, and move with the day.',
+    "The story behind Artisun – why we made climate-smart sun care built for Indian weather and skin, by people who couldn't find one worth wearing.",
   openGraph: {
     title: 'About ARTISUN — An Indian Sun-Care House',
     description:

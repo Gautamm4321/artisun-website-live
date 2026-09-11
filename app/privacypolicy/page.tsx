@@ -23,6 +23,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
+      <h1 className="sr-only">Your data, respected.</h1>
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
       <PrivacyPolicyContent />

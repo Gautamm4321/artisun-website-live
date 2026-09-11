@@ -93,7 +93,7 @@ export default function SkinwearImgShrink2() {
             className="absolute left-0 top-0 h-full overflow-hidden z-20 rounded-[10px]"
           >
             <Image
-              src="/skinwear-media/Fourth picture.webp"
+              src="/skinwear-media/fourth-image.png"
               alt="Skinwear Red Box Visual"
               fill
               sizes="(max-width: 1024px) 60vw, 40vw"

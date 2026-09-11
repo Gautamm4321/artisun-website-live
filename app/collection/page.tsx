@@ -22,6 +22,7 @@ export default function CollectionPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
+      <h1 className="sr-only">Sun care, made properly.</h1>
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
       <Collection />

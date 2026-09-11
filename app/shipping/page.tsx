@@ -23,6 +23,7 @@ export default function ShippingPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
+      <h1 className="sr-only">Getting it to you, safely.</h1>
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
       <ShippingContent />

@@ -202,11 +202,19 @@ export default function OriginWhatsIn() {
                       <button
                         type="button"
                         aria-label="Toggle details"
-                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white/25 transition-all duration-300"
+                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white/25 transition-all duration-300 shrink-0"
                       >
-                        <span className={`text-sm font-light leading-none transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
-                          +
-                        </span>
+                        <svg
+                          className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                        >
+                          <line x1="6" y1="1" x2="6" y2="11" />
+                          <line x1="1" y1="6" x2="11" y2="6" />
+                        </svg>
                       </button>
                     </div>
 

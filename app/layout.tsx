@@ -5,8 +5,8 @@ import CartDrawer from "@/components/cart/CartDrawer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ARTISUN — A New Language of Suncare",
-  description: "ARTISUN — premium suncare redefined. A new language of sun protection crafted for those who move through the world with intention.",
+  title: "Artisun — Climate-Smart Sunscreen for Indian Cities & Weather",
+  description: "Sun care built for your weather, not just your skin type. Lightweight, broad-spectrum SPF that's skincare and protection in one. Meet Origin & Aura.",
   // The App Router already picks up app/icon.svg, app/favicon.ico and
   // app/apple-icon.png by filename convention. They are declared explicitly as
   // well so the order is deterministic: SVG first for crisp scaling on modern

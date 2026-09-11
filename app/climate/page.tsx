@@ -31,6 +31,7 @@ export default function ClimatePage() {
 
     return (
         <main className="relative w-full min-h-[100svh] overflow-clip">
+            <h1 className="sr-only">Why we build for weather, not just skin type.</h1>
             {/* Mood: Red Eclipse — fixed so it holds all the way down the page */}
             <div className="artisun-bg" aria-hidden />
             {/* Scroll Progress Bar */}

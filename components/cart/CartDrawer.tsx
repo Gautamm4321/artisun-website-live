@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useCart } from './CartProvider';
 import { formatPrice, firstVariant } from '@/lib/shopify';
+import { asset } from '@/lib/asset';
 
 export default function CartDrawer() {
   const { cart, open, setOpen, setQty, remove, checkout, busy, error, configured, products, add } = useCart();
@@ -172,57 +173,67 @@ export default function CartDrawer() {
           {/* Middle & Bottom Sections when Cart has items */}
           {lines.length > 0 && (
             <div className="flex flex-col justify-end w-full">
-              {/* 4 Trust Badges: In center when 1 item; down at bottom when both added */}
-              <div className={`${showCrossSell ? 'py-6 my-auto' : 'pt-8 pb-4'} border-t border-white/10`}>
+             
+            {/* 4 Trust Badges: Compact Height & Spacing */}
+              <div className="py-3 my-1 border-t border-white/10">
                 <div className="grid grid-cols-4 gap-2 text-center">
-                  {/* 1. No Artificial Dyes */}
+                  {/* 1. Clean (Star) */}
                   <div className="flex flex-col items-center">
-                    <div className="w-11 h-11 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mb-1.5 shadow-inner">
-                      <svg className="w-5 h-5 text-[#E8DAC7]/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-                      </svg>
+                    <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset('/cart-star.png')}
+                        alt="Clean"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <span className="font-suisse text-[9px] text-white/80 leading-tight">
-                      No Artificial<br />Dyes
+                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                      clean
                     </span>
                   </div>
 
-                  {/* 2. Alcohol Free */}
+                  {/* 2. Cruelty Free (Rabbit) */}
                   <div className="flex flex-col items-center">
-                    <div className="w-11 h-11 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mb-1.5 shadow-inner">
-                      <svg className="w-5 h-5 text-[#E8DAC7]/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M10 2v7.31L4 19a2 2 0 0 0 1.66 3h12.68A2 2 0 0 0 20 19l-6-9.69V2" />
-                        <line x1="8.5" y1="2" x2="15.5" y2="2" />
-                        <line x1="3" y1="3" x2="21" y2="21" />
-                      </svg>
+                    <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset('/cart-rebbit.png')}
+                        alt="Cruelty Free"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <span className="font-suisse text-[9px] text-white/80 leading-tight">
-                      Alcohol<br />Free
+                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                      cruelty free
                     </span>
                   </div>
 
-                  {/* 3. 100% Vegan */}
+                  {/* 3. Paraben Free (Cream) */}
                   <div className="flex flex-col items-center">
-                    <div className="w-11 h-11 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mb-1.5 shadow-inner">
-                      <svg className="w-5 h-5 text-[#E8DAC7]/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-                      </svg>
+                    <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset('/cart-cream.png')}
+                        alt="Paraben Free"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <span className="font-suisse text-[9px] text-white/80 leading-tight">
-                      100%<br />Vegan
+                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                      paraben<br />free
                     </span>
                   </div>
 
-                  {/* 4. Cruelty Free */}
+                  {/* 4. Vegan (Leaves) */}
                   <div className="flex flex-col items-center">
-                    <div className="w-11 h-11 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mb-1.5 shadow-inner">
-                      <svg className="w-5 h-5 text-[#E8DAC7]/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 21a6 6 0 0 0 6-6c0-2-2-4-2-4s.5-3-1-5c-2 0-3 2-3 2s-1-2-3-2c-1.5 2-1 5-1 5s-2 2-2 4a6 6 0 0 0 6 6z" />
-                      </svg>
+                    <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset('/cart-leaves.png')}
+                        alt="Vegan"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <span className="font-suisse text-[9px] text-white/80 leading-tight">
-                      Cruelty<br />Free
+                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                      vegan
                     </span>
                   </div>
                 </div>
@@ -279,12 +290,12 @@ export default function CartDrawer() {
               <span>✓</span> Free shipping on all orders
             </div>
 
-            <div className="mb-2 flex justify-between font-suisse text-[14px]">
+            <div className="mb-1.5 flex justify-between font-suisse text-[14px]">
               <span className="text-white/65">Subtotal</span>
               <span>{formatPrice(cart.cost.subtotalAmount)}</span>
             </div>
-            <p className="mb-3 font-suisse text-[11px] text-white/45">
-              Taxes calculated at checkout.
+            <p className="mb-3 font-suisse text-[11px] text-white/55">
+              MRP incl. of all taxes
             </p>
             <button
               type="button"

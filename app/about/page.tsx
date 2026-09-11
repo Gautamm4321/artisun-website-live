@@ -130,6 +130,7 @@ export default function AboutPage() {
 
   return (
     <main className="relative w-full min-h-[100svh]">
+      <h1 className="sr-only">It started with a bottle in a drawer.</h1>
       {/* Mood: Red Eclipse — fixed so it holds all the way down the page */}
       <div className="artisun-bg" aria-hidden />
       <ScrollProgressBar />

@@ -36,42 +36,42 @@ interface BandVisual {
 const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   HUMID_HEAT: {
     readLine: 'Sticky and hot out. You want light, not layers, today.',
-    originPumps: '2 pumps',
+    originPumps: '2 pumps — one light layer, sweat-proof and breathable',
     auraPearls: '2 pearls - light and fresh, melts right in',
     reapplyLine: 'Top up every 2 hours - the sweat eats it faster today.',
     leadProduct: 'Aura',
   },
   DRY_HEAT: {
     readLine: 'Dry heat and strong sun. Your skin will drink this up.',
-    originPumps: '2-3 pumps - go for 3 if your skin feels tight',
+    originPumps: '3 pumps — extra coverage for strong, dry sun',
     auraPearls: '2 pearls - and Origin underneath if you want the extra moisture',
     reapplyLine: 'Reapply every 2 hours - high sun, low mercy.',
     leadProduct: 'Origin',
   },
   HIGH_SUN: {
     readLine: "Bright out. The UV is doing the most today, even if it doesn't feel like it.",
-    originPumps: '2 pumps',
+    originPumps: '3 pumps — build it up when the UV is high',
     auraPearls: '2 pearls - even, light coverage',
     reapplyLine: "This is a reapply day — every 2 hours if you're out.",
     leadProduct: 'Aura',
   },
   COLD: {
     readLine: 'Cold and dry. Your skin wants a little more today.',
-    originPumps: '3 pumps - a touch more to keep skin from going tight',
+    originPumps: '3 pumps — a richer layer for dry, cold skin',
     auraPearls: '3 pearls - more nourishment for the dry cold',
     reapplyLine: "Every 3 hours is fine - the sun's gentler now.",
     leadProduct: 'Origin',
   },
   WET: {
     readLine: 'Damp and humid. A little goes a long way right now.',
-    originPumps: '2 pumps',
+    originPumps: '2 pumps — light, and it holds through the damp',
     auraPearls: '1-2 pearls - light, and it holds through the damp',
     reapplyLine: 'After you get caught in the rain, or every 2-3 hours out.',
     leadProduct: 'Aura',
   },
   MILD: {
     readLine: "Easy weather today but the sun's still on. Don't skip it.",
-    originPumps: '2 pumps',
+    originPumps: '2 pumps — your everyday layer',
     auraPearls: '2 pearls - your everyday amount',
     reapplyLine: "Every 2-3 hours if you're out for long.",
     leadProduct: 'Aura',
@@ -88,10 +88,9 @@ const BAND_VISUALS: Record<WeatherBand, BandVisual> = {
   MILD: { sunx: '72%', suny: '16%', skyWash: 'rgba(230,200,150,.4)' },
 };
 
-// Default fallback values used when geo fails entirely (spec fallback table)
 const GEO_FAIL_DEFAULTS = {
   readLine: 'Built for skin, built for weather — wherever you are.',
-  originPumps: '2 pumps',
+  originPumps: '2 pumps — your everyday layer',
   auraPearls: '2 pearls - "your everyday amount"',
   reapplyLine: 'Every 2-3 hours if you\'re out for long.',
   leadProduct: 'Aura' as const,

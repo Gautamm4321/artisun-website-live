@@ -24,6 +24,7 @@ export default function FAQPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
+      <h1 className="sr-only">Questions, answered.</h1>
       <ScrollProgressBar />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />

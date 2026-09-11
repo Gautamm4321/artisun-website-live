@@ -61,13 +61,13 @@ export default function ShippingContent() {
                 </div>
 
                 <div className="relative bg-gradient-to-br from-white/75 to-[#FFF8EE]/50 border border-[#242623]/10 rounded-xl p-5 overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[3px] before:bg-gradient-to-r before:from-[#A52A2C] before:to-[#FF9B45]">
-                  <div className="font-editorial text-xl font-normal text-[#7E1D1E] mb-2 leading-none">₹80 flat</div>
-                  <div className="text-xs opacity-75 leading-snug">On every order — first order ships free.</div>
+                  <div className="font-editorial text-xl font-normal text-[#7E1D1E] mb-2 leading-none">Free Shipping</div>
+                  <div className="text-xs opacity-75 leading-snug">First order ships free.</div>
                 </div>
 
                 <div className="relative bg-gradient-to-br from-white/75 to-[#FFF8EE]/50 border border-[#242623]/10 rounded-xl p-5 overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[3px] before:bg-gradient-to-r before:from-[#A52A2C] before:to-[#FF9B45]">
-                  <div className="font-editorial text-xl font-normal text-[#7E1D1E] mb-2 leading-none">3–5 days</div>
-                  <div className="text-xs opacity-75 leading-snug">A little longer for far corners, always tracked.</div>
+                  <div className="font-editorial text-xl font-normal text-[#7E1D1E] mb-2 leading-none"> 3-5 working days</div>
+                  <div className="text-xs opacity-75 leading-snug"> Across anywhere in India. Always Trackable.</div>
                 </div>
               </div>
 

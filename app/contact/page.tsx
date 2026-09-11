@@ -23,6 +23,7 @@ export default function ContactPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
+      <h1 className="sr-only">We're right here.</h1>
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
       <ContactContent />

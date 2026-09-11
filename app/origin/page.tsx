@@ -170,6 +170,7 @@ export default function OriginPage() {
 
   return (
     <main className="relative w-full min-h-[100svh] overflow-clip">
+      <h1 className="sr-only">Origin — 4-in-1 Milk Sunscreen SPF 50+</h1>
       <ScrollProgressBar marker={asset('/b2.webp')} markerHeight={20} />
       <div id="global-bg" className="theme-molten-core" />
 

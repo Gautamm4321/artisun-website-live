@@ -18,18 +18,18 @@ export default function GlobalHeader() {
 
   return (
     <>
-    <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-2.5 md:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md md:[background:none] md:backdrop-blur-none border-b border-[#E8DAC7]/15 md:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:shadow-none">
-        
+      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-2.5 md:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md md:[background:none] md:backdrop-blur-none border-b border-[#E8DAC7]/15 md:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:shadow-none">
+
         {/* Left: ARTISUN Wordmark Logo (Mobile & Desktop) */}
         <div className="flex items-center pointer-events-auto">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center hover:opacity-85 transition-opacity"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={asset('/Artisun Primary Logo.webp')} 
-              alt="ARTISUN" 
+            <img
+              src={asset('/Artisun Primary Logo.webp')}
+              alt="ARTISUN"
               className="h-6 md:h-8 lg:h-9 w-auto object-contain"
             />
           </Link>
@@ -83,7 +83,7 @@ export default function GlobalHeader() {
           >
             <span
               aria-hidden="true"
-              className="w-[22px] h-[16px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
+              className="w-[22px] h-[16px] translate-y-[4.5px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
               style={{
                 maskImage: `url(${asset('/aura.png')})`,
                 WebkitMaskImage: `url(${asset('/aura.png')})`,
@@ -174,9 +174,8 @@ export default function GlobalHeader() {
       {/* Mobile Drawer (Right to Left Slide) */}
       <div
         data-lenis-prevent="true"
-        className={`fixed inset-0 z-[120] bg-[#120404]/95 backdrop-blur-2xl md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed inset-0 z-[120] bg-[#120404]/95 backdrop-blur-2xl md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <div className="flex items-center justify-between">
           <div className="w-8 h-8 flex items-center justify-center">
@@ -196,33 +195,107 @@ export default function GlobalHeader() {
           </button>
         </div>
 
-        <nav className="flex flex-col gap-6 my-auto">
-          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
-            Home
+        <nav className="flex flex-col my-auto border-t border-b border-white/30 divide-y divide-white/30">
+          {/* 1. HOME (Arrow right next to text) */}
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-start py-3.5 group"
+          >
+            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+              Home
+              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+                ↗
+              </span>
+            </span>
           </Link>
-          <Link href="/climate" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
-            Climate-smart
-          </Link>
-          <div className="flex flex-col gap-4 py-3 border-y border-white/10">
-            <Link href="/origin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 font-editorial text-[var(--brand-cream)] text-2xl hover:opacity-70 transition-opacity">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset('/b2.webp')} alt="Origin" className="h-6 w-auto object-contain" />
-              <span>ORIGIN · SPF 50+</span>
+
+          {/* 2. RIGHT STACK: AURA, ORIGIN, SHOP ALL (With interior divider lines) */}
+          <div className="flex flex-col divide-y divide-white/20">
+            {/* ORIGIN */}
+            <Link
+              href="/origin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between py-3 group"
+            >
+              {/* === BOTTLE SIZE CONTROL: Change h-[26px] to increase/decrease Origin bottle size === */}
+              <div className="w-8 h-8 flex items-center justify-start shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset('/b2.webp')} alt="Origin" className="h-[30px] w-auto object-contain" />
+              </div>
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+                ORIGIN · SPF 50+
+              </span>
             </Link>
-            <Link href="/aura" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 font-editorial text-[var(--brand-cream)] text-2xl hover:opacity-70 transition-opacity">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset('/b1.webp')} alt="Aura" className="h-5 w-auto object-contain" />
-              <span>AURA · SPF 40</span>
+
+            {/* AURA */}
+            <Link
+              href="/aura"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between py-3 group"
+            >
+              {/* === BOTTLE SIZE CONTROL: Change h-[20px] to increase/decrease Aura jar size === */}
+              <div className="w-8 h-8 flex items-center justify-start shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset('/b1.webp')} alt="Aura" className="h-[22px] w-auto object-contain" />
+              </div>
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+                AURA · SPF 40
+              </span>
+            </Link>
+
+            {/* Shop All */}
+            <Link
+              href="/collection"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-end py-3 group"
+            >
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+                Shop All
+              </span>
             </Link>
           </div>
-          <Link href="/skinwear" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
-            Skinwear™
+
+          {/* 3. CLIMATE-SMART (Arrow right next to text) */}
+          <Link
+            href="/climate"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-start py-3.5 group"
+          >
+            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+              Climate-smart
+              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+                ↗
+              </span>
+            </span>
           </Link>
-          <Link href="/collection" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
-            Shop All
+
+          {/* 4. SKINWEAR™ (Same Editorial font style & color + 1-2px larger) */}
+          <Link
+            href="/skinwear"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-start py-3.5 group"
+          >
+            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+              Skinwear<span className="font-editorial text-[13px] sm:text-[14px] -mt-3.5 tracking-normal">TM</span>
+              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                ↗
+              </span>
+            </span>
           </Link>
-          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="font-editorial text-[var(--brand-cream)] text-3xl tracking-tight hover:opacity-70 transition-opacity">
-            About
+
+          {/* 5. ABOUT (Arrow right next to text) */}
+          <Link
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-start py-3.5 group"
+          >
+            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+              About
+              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+                ↗
+              </span>
+            </span>
           </Link>
         </nav>
 

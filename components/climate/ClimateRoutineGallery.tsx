@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { asset } from '@/lib/asset';
@@ -64,111 +64,239 @@ const ingredients: Ingredient[] = [
   },
 ];
 
-const marqueeList = [...ingredients, ...ingredients, ...ingredients, ...ingredients];
+/** How many times the set is repeated in the DOM. 4 gives a safe wrap window. */
+const REPEATS = 4;
+/** Auto-scroll speed in px per second. */
+const SPEED = 45;
+
+const loop = Array.from({ length: REPEATS }, () => ingredients).flat();
 
 export default function ClimateRoutineGallery() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const setWidthRef = useRef(0);
+  const accRef = useRef(0);
+  const lastTsRef = useRef(0);
+  const pausedRef = useRef(false);
+  const draggingRef = useRef(false);
+  const lastXRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+
+  /**
+   * Keeps scrollLeft inside the second copy of the set: [w, 2w).
+   * There is always a full set of cards rendered on both sides, so the
+   * track can never run out of content in either direction.
+   */
+  const wrap = useCallback(() => {
+    const el = scrollerRef.current;
+    const w = setWidthRef.current;
+    if (!el || w <= 0) return;
+    if (el.scrollLeft >= w * 2) el.scrollLeft -= w;
+    else if (el.scrollLeft < w) el.scrollLeft += w;
+  }, []);
+
+  const measure = useCallback(() => {
+    const el = scrollerRef.current;
+    const track = el?.firstElementChild as HTMLElement | null;
+    if (!el || !track) return;
+    const w = track.scrollWidth / REPEATS;
+    if (!w || Math.abs(w - setWidthRef.current) < 1) return;
+    setWidthRef.current = w;
+    el.scrollLeft = w;
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    const track = el?.firstElementChild as HTMLElement | null;
+    if (!el || !track) return;
+
+    measure();
+
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(el);
+    ro.observe(track);
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const tick = (ts: number) => {
+      rafRef.current = requestAnimationFrame(tick);
+      const dt = lastTsRef.current ? Math.min((ts - lastTsRef.current) / 1000, 0.05) : 0;
+      lastTsRef.current = ts;
+
+      const running =
+        !motionQuery.matches &&
+        !pausedRef.current &&
+        !draggingRef.current &&
+        setWidthRef.current > 0;
+
+      if (running) {
+        accRef.current += SPEED * dt;
+        const whole = Math.trunc(accRef.current);
+        if (whole !== 0) {
+          accRef.current -= whole;
+          el.scrollLeft += whole;
+        }
+      }
+      wrap();
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+
+    // Reset the clock when the tab comes back so it doesn't jump forward.
+    const onVisibility = () => {
+      lastTsRef.current = 0;
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      ro.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [measure, wrap]);
+
+  const isDesktop = () =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches;
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Desktop mouse drag completely blocked
+    if (isDesktop() || e.pointerType === 'mouse') return;
+    draggingRef.current = true;
+    lastXRef.current = e.clientX;
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDesktop() || !draggingRef.current) return;
+    const el = scrollerRef.current;
+    if (!el) return;
+    const dx = e.clientX - lastXRef.current;
+    lastXRef.current = e.clientX;
+    el.scrollLeft -= dx;
+    wrap();
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    draggingRef.current = false;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+  };
 
   return (
-
-    <section className="relative z-10 w-full min-h-auto lg:min-h-[85vh] flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 text-[var(--brand-cream)] overflow-hidden">
-      {/* Heading */}
+    <section className="relative z-10 w-full lg:min-h-[85vh] flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 text-[var(--brand-cream)] overflow-hidden">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.8 }}
-        className="text-center font-sans text-xl md:text-2xl font-normal opacity-95 max-w-[1250px] mb-4 sm:mb-6 md:mb-8 leading-relaxed px-4"
+        className="text-center font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-normal opacity-95 max-w-[1250px] mb-6 sm:mb-8 md:mb-10 leading-relaxed px-5"
       >
         Made to hold through early mornings, back-to-back meetings, the afternoon sun,
         <br className="hidden md:block" />
         the commute home and everything in between.
       </motion.h2>
 
-      {/* Marquee */}
-      {/* Marquee Container with Horizontal Touch Scroll */}
-      <div className="w-full relative overflow-x-auto lg:overflow-hidden py-4 group no-scrollbar scroll-smooth">
-        <div className="marquee-track flex gap-4 md:gap-6 w-max">
-          {marqueeList.map((item, index) => {
-            const isHovered = hoveredIndex === index;
+      <div
+        ref={scrollerRef}
+        role="region"
+        aria-label="Climate routine ingredients"
+        tabIndex={0}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onMouseEnter={() => {
+          if (isDesktop()) pausedRef.current = true;
+        }}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+        }}
+        onFocus={() => {
+          pausedRef.current = true;
+        }}
+        onBlur={() => {
+          pausedRef.current = false;
+        }}
+        className="edge-fade no-scrollbar w-full overflow-x-auto lg:overflow-x-hidden overflow-y-hidden py-4 select-none lg:cursor-default cursor-grab active:cursor-grabbing touch-pan-x pointer-events-auto"
+      >
+        <div className="flex w-max gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-3 sm:px-4 md:px-5 lg:px-6">
+          {loop.map((item, index) => (
+            <article
+              key={`${item.id}-${index}`}
+              className="group relative flex-shrink-0 overflow-hidden
+                         w-[210px] h-[300px]
+                         sm:w-[250px] sm:h-[340px]
+                         md:w-[290px] md:h-[390px]
+                         lg:w-[320px] lg:h-[430px]"
+            >
+              <Image
+                src={asset(item.src)}
+                alt={item.name}
+                fill
+                draggable={false}
+                sizes="(max-width: 640px) 210px, (max-width: 768px) 250px, (max-width: 1024px) 290px, 320px"
+                className="object-cover pointer-events-none transition-all duration-[600ms] ease-out lg:group-hover:scale-[1.06] lg:group-hover:blur-sm lg:group-hover:brightness-[0.55]"
+              />
 
-            return (
+              {/* Readability scrim: centered dark overlay for legibility */}
               <div
-                key={`${item.id}-${index}`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="relative w-[220px] sm:w-[280px] md:w-[320px] h-[300px] sm:h-[380px] md:h-[420px] flex-shrink-0 overflow-hidden cursor-pointer"
+                className="absolute inset-0 transition-opacity duration-500
+                           bg-black/45
+                           lg:bg-black/50
+                           lg:opacity-0 lg:group-hover:opacity-100"
+              />
+
+              <div
+                className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6
+                           text-center transition-all duration-500
+                           lg:scale-95 lg:opacity-0 lg:group-hover:scale-100 lg:group-hover:opacity-100"
               >
-                {/* Image */}
-                <Image
-                  src={asset(item.src)}
-                  alt={item.name}
-                  fill
-                  className={`object-cover transition-all duration-700 ease-out 
-                    blur-md scale-110 brightness-[0.4] 
-                    lg:blur-0 lg:scale-100 lg:brightness-100 
-                    ${isHovered ? 'lg:blur-md lg:scale-110 lg:brightness-[0.4]' : ''}`}
-                />
-
-                {/* Overlay */}
-                <div
-                  className={`absolute inset-0 transition-all duration-500 bg-black/30 opacity-100 lg:opacity-0 ${isHovered ? 'lg:opacity-100' : ''
-                    }`}
-                />
-
-                {/* Content */}
-                <div
-                  className={`absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 transition-opacity duration-300 opacity-100 lg:opacity-0 lg:pointer-events-none ${isHovered ? 'lg:opacity-100' : ''
-                    }`}
-                >
-
-                  <h3 className="font-editorial text-2xl sm:text-3xl md:text-4xl font-normal mb-4 tracking-wide text-[var(--brand-cream)]">
-                    {item.name}
-                  </h3>
-
-                  <p className="font-sans text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-[260px] text-[var(--brand-cream)]">
-                    {item.description}
-                  </p>
-                </div>
+                <h3 className="font-editorial text-xl sm:text-2xl md:text-[28px] lg:text-3xl font-normal mb-2 tracking-wide text-[var(--brand-cream)]">
+                  {item.name}
+                </h3>
+                <p className="font-sans text-[12px] sm:text-sm md:text-[15px] font-light leading-relaxed max-w-[260px] text-[var(--brand-cream)]/90">
+                  {item.description}
+                </p>
               </div>
-            );
-          })}
+            </article>
+          ))}
         </div>
       </div>
 
       <style jsx>{`
-        .marquee-track {
-          animation: marquee-scroll 60s linear infinite;
-        }
-
-        /* Pause animation only on Laptop/Desktop hover */
-        @media (min-width: 1024px) {
-          .marquee-track:hover {
-            animation-play-state: paused;
-          }
-        }
-
-        /* Hide Scrollbar for touch dragging */
         .no-scrollbar::-webkit-scrollbar {
           display: none;
         }
         .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
         }
-
-        @keyframes marquee-scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
+        .edge-fade {
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            #000 5%,
+            #000 95%,
+            transparent 100%
+          );
+          mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            #000 5%,
+            #000 95%,
+            transparent 100%
+          );
+        }
+        .edge-fade:focus-visible {
+          outline: 1px solid rgba(255, 255, 255, 0.5);
+          outline-offset: -2px;
         }
       `}</style>
 
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/20" />
-
     </section>
   );
 }

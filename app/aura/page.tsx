@@ -133,6 +133,7 @@ export default function AuraPage() {
 
   return (
     <main className="relative w-full min-h-[100svh] overflow-clip">
+      <h1 className="sr-only">Aura — Pearl Sunscreen SPF 40 PA++++</h1>
       <ScrollProgressBar marker={asset('/b1.webp')} markerHeight={13} />
       <div id="global-bg" className="theme-molten-core" />
 
