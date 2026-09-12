@@ -50,10 +50,10 @@ export default function FutureShowcase() {
             </p>
           </motion.div>
 
-          <motion.div {...rise(0.24, reduce)} className="mt-8 flex items-center justify-center w-full max-w-[320px] mx-auto">
+          <motion.div {...rise(0.24, reduce)} className="mt-8 flex items-center justify-center">
             <a
               href="/collection"
-              className="w-full py-3 px-8 bg-white hover:bg-neutral-100 text-black font-suisse text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold rounded-none border border-black/10 shadow-md transition-all duration-300 text-center"
+              className="inline-flex items-center justify-center py-3 px-6 sm:px-7 bg-[#E8DCC8] hover:bg-[#ded1bc] text-black font-suisse text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold rounded-none border border-black/10 shadow-md transition-all duration-300 text-center whitespace-nowrap"
             >
               Wear Artisun
             </a>

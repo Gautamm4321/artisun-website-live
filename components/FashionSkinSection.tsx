@@ -65,7 +65,7 @@ export default function FashionSkinSection() {
                 <div className="w-full max-w-[260px] xs:max-w-[280px] lg:max-w-none mt-3.5 sm:mt-5 lg:mt-6 mx-auto lg:mx-0">
                     <a
                         href="/collection"
-                        className="w-full py-2.5 sm:py-3.5 px-6 bg-white hover:bg-neutral-100 text-black font-suisse text-[13px] sm:text-[12.5px] lg:text-[13px] tracking-[0.16em] font-semibold uppercase flex items-center justify-center text-center transition-all duration-300 shadow-lg active:scale-[0.98] whitespace-nowrap rounded-none border border-black/10"
+                        className="w-full py-1.5 sm:py-1.5 px-6 bg-[#E8DCC8] hover:bg-[#ded1bc] text-black font-suisse text-[13px] sm:text-[12.5px] lg:text-[13px] tracking-[0.16em] font-semibold uppercase flex items-center justify-center text-center transition-all duration-300 shadow-lg active:scale-[0.98] whitespace-nowrap rounded-none border border-black/10"
                     >
                         Wear Artisun
                     </a>

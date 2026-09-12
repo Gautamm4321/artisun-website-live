@@ -37,23 +37,15 @@ export default function GlobalHeader() {
 
         {/* Desktop Right Corner: Beige Modular Tabs Box */}
         <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
-          {/* Collection Tab */}
+          {/* 1. Shop All */}
           <Link
             href="/collection"
             className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
           >
-            Collection
+            Shop All
           </Link>
 
-          {/* Climate-smart */}
-          <Link
-            href="/climate"
-            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
-          >
-            Climate-smart
-          </Link>
-
-          {/* Origin Bottle Box */}
+          {/* 2. Origin Bottle Box */}
           <Link
             href="/origin"
             aria-label="Origin SPF 50+"
@@ -75,7 +67,7 @@ export default function GlobalHeader() {
             />
           </Link>
 
-          {/* Aura Jar Box */}
+          {/* 3. Aura Jar Box */}
           <Link
             href="/aura"
             aria-label="Aura SPF 40"
@@ -97,7 +89,15 @@ export default function GlobalHeader() {
             />
           </Link>
 
-          {/* Skinwear™ */}
+          {/* 4. Climate-smart */}
+          <Link
+            href="/climate"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            Climate-smart
+          </Link>
+
+          {/* 5. Skinwear™ */}
           <Link
             href="/skinwear"
             className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
@@ -105,7 +105,7 @@ export default function GlobalHeader() {
             Skinwear™
           </Link>
 
-          {/* About */}
+          {/* 6. About */}
           <Link
             href="/about"
             className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
@@ -174,9 +174,11 @@ export default function GlobalHeader() {
       {/* Mobile Drawer (Right to Left Slide) */}
       <div
         data-lenis-prevent="true"
-        className={`fixed inset-0 z-[120] bg-[#120404]/95 backdrop-blur-2xl md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-[120] md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 overflow-hidden ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
+        {/* Red Eclipse Site-wide Background */}
+        <div className="artisun-bg pointer-events-none" />
         <div className="flex items-center justify-between">
           <div className="w-8 h-8 flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}

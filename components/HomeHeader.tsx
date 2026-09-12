@@ -232,27 +232,17 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               pills add NAV_PILL_TEXT for color/typography; icon pills keep
               the same box but render an image instead. */}
           <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
-            {/* Collection Tab */}
+            {/* 1. Shop All */}
             <Link
               href="/collection"
               className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
             >
               <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
-                Collection
+                Shop All
               </span>
             </Link>
 
-            {/* Climate-smart */}
-            <Link
-              href="/climate"
-              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
-            >
-              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
-                Climate-smart
-              </span>
-            </Link>
-
-            {/* Origin Bottle Box */}
+            {/* 2. Origin Bottle Box */}
             <Link
               href="/origin"
               aria-label="Origin SPF 50+"
@@ -274,7 +264,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               />
             </Link>
 
-            {/* Aura Jar Box */}
+            {/* 3. Aura Jar Box */}
             <Link
               href="/aura"
               aria-label="Aura SPF 40"
@@ -296,7 +286,17 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               />
             </Link>
 
-            {/* Skinwear™ */}
+            {/* 4. Climate-smart */}
+            <Link
+              href="/climate"
+              className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
+            >
+              <span className="text-[#A52A2C] group-hover:text-[#E6D5C1] transition-colors duration-200">
+                Climate-smart
+              </span>
+            </Link>
+
+            {/* 5. Skinwear™ */}
             <Link
               href="/skinwear"
               className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
@@ -306,7 +306,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               </span>
             </Link>
 
-            {/* About */}
+            {/* 6. About */}
             <Link
               href="/about"
               className={`${NAV_PILL} ${NAV_PILL_TEXT}`}
@@ -405,9 +405,11 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
       {/* Mobile Drawer (Right to Left Slide) */}
       <div
         data-lenis-prevent="true"
-        className={`fixed inset-0 z-[120] bg-[#120404]/95 backdrop-blur-2xl md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-[120] md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 overflow-hidden ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
+        {/* Red Eclipse Site-wide Background */}
+        <div className="artisun-bg pointer-events-none" />
         <div className="flex items-center justify-between">
           <div className="w-8 h-8 flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
