@@ -37,8 +37,18 @@ export default function OriginWhere() {
         }}
       />
 
+      {/* Mobile: bridge overlay — var(--bg-eclipse) is dark at top */}
+      <div
+        className="absolute top-0 left-0 right-0 h-20 lg:hidden pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(180,30,10,0.9) 0%, rgba(140,10,5,0.5) 40%, transparent 100%)',
+          zIndex: 0,
+        }}
+      />
+
       {/* Heading block */}
-      <div className="px-5 sm:px-8 lg:px-14 pt-24 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto">
+      <div className="px-5 sm:px-8 lg:px-14 pt-11 sm:pt-16 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto relative z-10">
         <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.03] tracking-tight not-italic">
           One sunscreen. Every Indian weather.
         </h2>

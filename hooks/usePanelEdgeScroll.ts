@@ -21,6 +21,11 @@ import { RefObject, useEffect } from 'react';
  * When the content fits (e.g. desktop, where everything is on-screen) the hook
  * is inert: there's nothing to scroll, so every gesture passes straight through
  * to the horizontal track as before.
+ *
+ * NOTE: This hook is intentionally disabled on mobile (< 1024px). On mobile
+ * there is no horizontal GSAP track — panels stack vertically with CSS
+ * scroll-snap on <html>. Intercepting touch events here via stopPropagation
+ * would prevent <html> from ever receiving the scroll, breaking snap entirely.
  */
 export function usePanelEdgeScroll(
   ref: RefObject<HTMLElement | null>,
@@ -28,7 +33,10 @@ export function usePanelEdgeScroll(
 ) {
   useEffect(() => {
     const el = ref.current;
-    if (!el || !enabled) return;
+    // Disabled on mobile: no horizontal track exists, and intercepting touch
+    // events via stopPropagation breaks CSS scroll-snap on the <html> element.
+    const isMobile = window.innerWidth < 1024;
+    if (!el || !enabled || isMobile) return;
 
     const EDGE = 1; // px tolerance for "at the edge"
     const canScroll = () => el.scrollHeight - el.clientHeight > 2;
@@ -37,19 +45,15 @@ export function usePanelEdgeScroll(
 
     // ── Wheel / trackpad (desktop) ──
     const onWheel = (e: WheelEvent) => {
-      if (!canScroll()) return; // nothing to scroll → let the page/track take it
+      if (!canScroll()) return;
       const down = e.deltaY > 0;
-      if ((down && atBottom()) || (!down && atTop())) return; // edge → release
-      // consume internally; stop it reaching Lenis so the track stays put
+      if ((down && atBottom()) || (!down && atTop())) return;
       e.stopPropagation();
       e.preventDefault();
       el.scrollTop += e.deltaY;
     };
 
-    // ── Touch (mobile / tablet) ──
-    // Native scrolling handles the interior smoothly; we only need to keep the
-    // gesture from reaching Lenis mid-content. At the edges we let it go so the
-    // browser chains into the document (which advances the horizontal track).
+    // ── Touch (desktop / tablet only — mobile returns early above) ──
     let lastY = 0;
     const onTouchStart = (e: TouchEvent) => {
       lastY = e.touches[0]?.clientY ?? 0;
@@ -57,9 +61,9 @@ export function usePanelEdgeScroll(
     const onTouchMove = (e: TouchEvent) => {
       if (!canScroll()) return;
       const y = e.touches[0]?.clientY ?? lastY;
-      const down = lastY - y > 0; // finger up → content scrolls down
+      const down = lastY - y > 0;
       lastY = y;
-      if ((down && atBottom()) || (!down && atTop())) return; // edge → chain out
+      if ((down && atBottom()) || (!down && atTop())) return;
       e.stopPropagation();
     };
 

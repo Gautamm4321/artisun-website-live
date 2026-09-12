@@ -53,11 +53,26 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
         }}
       />
 
+      {/* Mobile only: bridge the header into the panel.
+          var(--bg-eclipse) is near-black at the top (its red center is at 80vh),
+          so we overlay a red→transparent fade over the top ~100px to match the
+          header colour and eliminate the visible dark gap. */}
+      <div
+        className="absolute top-0 left-0 right-0 h-24 lg:hidden pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(180,30,10,0.95) 0%, rgba(140,10,5,0.6) 40%, transparent 100%)',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Scroller: on mobile the section scrolls vertically (with room to clear
+          the sticky bar); on desktop it's a centred, non-scrolling grid. */}
       <div
         ref={scrollerRef}
-        className="w-full h-full flex flex-col justify-center pt-20 pb-10 lg:pt-20 lg:pb-12"
+        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col justify-start lg:justify-center pt-11 pb-20 sm:pt-20 sm:pb-24 lg:py-0"
       >
-        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-5 sm:gap-6 lg:gap-12 items-center my-auto">
+        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-4 sm:gap-6 lg:gap-12 items-center">
 
           {/* ── TOP ON MOBILE / LEFT ON DESKTOP: Product Visual ── */}
           <div className="order-1 flex flex-col w-full max-w-[360px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">

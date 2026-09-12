@@ -74,6 +74,9 @@ html {
   background-color: var(--brand-dark);
   overflow-x: clip;
   overscroll-behavior-x: none;
+  /* overscroll-behavior-y is set per-page: none on desktop (prevents vertical
+     bounce during the horizontal GSAP track), auto on mobile (required for
+     native scroll to work). See origin/page.tsx for the mobile override. */
   overscroll-behavior-y: none;
   width: 100%;
 }

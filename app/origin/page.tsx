@@ -43,27 +43,30 @@ export default function OriginPage() {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
 
-    // Same reasoning as before: kill any scroll-position offset before the
-    // trigger/track measures itself, on both breakpoints.
     const prevRestoration = history.scrollRestoration;
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    // Lenis still drives smoothing on mobile's normal vertical scroll, not
-    // just the desktop horizontal track.
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      syncTouch: false,
-    });
-    lenisRef.current = lenis;
-    (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__ = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
+    const isMobile = window.innerWidth < DESKTOP_MIN_WIDTH;
 
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    let lenis: Lenis | null = null;
+    let raf: ((time: number) => void) | null = null;
+
+    if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        syncTouch: false,
+      });
+      lenisRef.current = lenis;
+      (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__ = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+
+      raf = (time: number) => lenis!.raf(time * 1000);
+      gsap.ticker.add(raf);
+      gsap.ticker.lagSmoothing(0);
+    }
 
     gsap.set(document.documentElement, {
       '--mc-center': '100%',
@@ -77,7 +80,7 @@ export default function OriginPage() {
 
     const mm = gsap.matchMedia();
 
-    // ── Desktop: unchanged pinned, scrubbed, horizontal track ──
+    // ── Desktop: pinned, scrubbed, horizontal track (unchanged) ──
     mm.add(`(min-width: ${DESKTOP_MIN_WIDTH}px)`, () => {
       isDesktopRef.current = true;
       const track = trackRef.current;
@@ -105,11 +108,10 @@ export default function OriginPage() {
 
       requestAnimationFrame(() => {
         window.scrollTo(0, 0);
-        lenis.scrollTo(0, { immediate: true });
+        lenis?.scrollTo(0, { immediate: true });
         ScrollTrigger.refresh();
       });
 
-      // gsap.matchMedia calls this automatically when the query stops matching
       return () => {
         st.kill();
         stRef.current = null;
@@ -117,14 +119,18 @@ export default function OriginPage() {
       };
     });
 
-    // ── Mobile: plain vertical stack — no pin, no horizontal drive ──
+    // ── Mobile: CSS scroll-snap on the wrapper div itself ──
+    // The wrapper (#origin-snap-container) is made height:100svh + overflow-y:auto
+    // + scroll-snap-type:y mandatory via inline CSS. This avoids the body
+    // overflow-x:clip interference that breaks html-level snap.
     mm.add(`(max-width: ${DESKTOP_MIN_WIDTH - 1}px)`, () => {
       isDesktopRef.current = false;
       stRef.current = null;
 
       requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-        lenis.scrollTo(0, { immediate: true });
+        // Snap back to top on load
+        const wrapper = wrapperRef.current;
+        if (wrapper) wrapper.scrollTop = 0;
         ScrollTrigger.refresh();
       });
 
@@ -135,10 +141,12 @@ export default function OriginPage() {
 
     return () => {
       if ('scrollRestoration' in history) history.scrollRestoration = prevRestoration;
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-      lenisRef.current = null;
-      delete (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__;
+      if (raf) gsap.ticker.remove(raf);
+      if (lenis) {
+        lenis.destroy();
+        lenisRef.current = null;
+        delete (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__;
+      }
       mm.revert();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
@@ -154,22 +162,16 @@ export default function OriginPage() {
       return;
     }
 
-    // Mobile: panels are in normal document flow — scroll straight to the
-    // panel element instead of computing a horizontal-track offset.
+    // Mobile: scroll the wrapper container (the snap container) to the panel.
+    const wrapper = wrapperRef.current;
     const panels = trackRef.current?.querySelectorAll<HTMLElement>('.origin-panel');
     const el = panels?.[i];
-    if (!el) return;
-
-    const lenis = lenisRef.current;
-    if (lenis) {
-      lenis.scrollTo(el, { duration: 1.2, offset: -76 });
-    } else {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (!el || !wrapper) return;
+    wrapper.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
   };
 
   return (
-    <main className="relative w-full min-h-[100svh] overflow-clip">
+    <main className="relative w-full lg:overflow-clip">
       <h1 className="sr-only">Origin — 4-in-1 Milk Sunscreen SPF 50+</h1>
       <ScrollProgressBar marker={asset('/b2.webp')} markerHeight={20} />
       <div id="global-bg" className="theme-molten-core" />
@@ -178,19 +180,56 @@ export default function OriginPage() {
       <GlobalHeader />
 
       <style jsx global>{`
-        html, body {
-          overflow-x: hidden;
-        }
-      `}</style>
+  /* ── Mobile snap: wrapper div as the scroll container ──
+     html/body are locked; #origin-snap-container (position:fixed,
+     height:100svh, overflow-y:auto) is the ONLY scroll container.
+     This completely bypasses the body{overflow-x:clip} interference. */
+  @media (max-width: 1023px) {
+    html, body {
+      overflow: hidden !important;
+    }
 
-      {/* ── 6 EXACT ORDERED PANELS ──
-          Desktop (lg+): fixed-height pinned wrapper, track slides horizontally
-          — same as before.
-          Mobile: wrapper/track fall back to plain block flow (flex-col, auto
-          height) so the six panels stack and the page scrolls vertically. */}
+    #origin-snap-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100svh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior-y: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Each panel is at least one full viewport — zero gap between sections.
+       height:auto lets tall content EXPAND the panel instead of being clipped.
+       overflow:visible ensures nothing is hidden on small screens. */
+    .origin-panel {
+      height: auto !important;
+      min-height: 100svh !important;
+      overflow: visible !important;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    /* Remove inner scroll containers — content flows into the panel naturally */
+    .panel-scroll {
+      overflow: visible !important;
+      height: auto !important;
+    }
+  }
+`}</style>
+
+      {/* ── 6 PANELS ──
+          Desktop: fixed-height pinned wrapper, GSAP drives horizontal track.
+          Mobile:  #origin-snap-container is height:100svh overflow-y:auto
+                   scroll-snap-type:y mandatory — each .origin-panel snaps to
+                   the top of this container one at a time. */}
       <div
         ref={wrapperRef}
-        className="relative w-full lg:h-[100svh] lg:overflow-hidden"
+        id="origin-snap-container"
+        className="relative w-full lg:h-[100svh] lg:overflow-hidden lg:position-static"
       >
         <div
           ref={trackRef}
@@ -205,7 +244,7 @@ export default function OriginPage() {
           {/* 3. One sunscreen. Every Indian weather. */}
           <OriginWhere />
 
-          {/* 4. The good vision of everything. */}
+          {/* 4. The good version of everything. */}
           <OriginWhatsIn />
 
           {/* 5. ORIGIN 4-in-1 Milk Emulsion SPF 50+ */}

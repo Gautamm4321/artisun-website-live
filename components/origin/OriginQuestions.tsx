@@ -254,7 +254,17 @@ export default function OriginQuestions() {
             'var(--bg-eclipse)',
         }}
       />
-      <div className="w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 my-auto flex flex-col justify-center max-h-[calc(100svh-140px)] lg:max-h-[84vh]">
+
+      {/* Mobile: bridge overlay — var(--bg-eclipse) is dark at top */}
+      <div
+        className="absolute top-0 left-0 right-0 h-20 lg:hidden pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(180,30,10,0.9) 0%, rgba(140,10,5,0.5) 40%, transparent 100%)',
+          zIndex: 0,
+        }}
+      />
+      <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-11 sm:pt-16 lg:pt-0 lg:my-auto flex flex-col justify-center lg:max-h-[84vh]">
         {/* Eyebrow + Heading */}
         <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-white/70 font-medium">
           FAQS
