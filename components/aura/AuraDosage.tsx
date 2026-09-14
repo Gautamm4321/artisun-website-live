@@ -61,7 +61,7 @@ export default function AuraDosage() {
             The first sunscreen that changes with the weather.
           </h2>
           <p className="font-suisse text-[11.5px] sm:text-[13.5px] text-[var(--brand-cream)]/80 mt-1.5 leading-[1.45]">
-            Two pearls when it’s humid. Three when it’s dry. Never the wrong amount.
+            Aura comes as tiny pearls you can see and count — so you choose how many to wear based on the weather you’re in. Here’s how many to take for each kind of weather:
           </p>
         </div>
       </div>

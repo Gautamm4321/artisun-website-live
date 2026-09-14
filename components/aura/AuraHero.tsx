@@ -10,9 +10,10 @@ import AddToBagButton from '@/components/cart/AddToBagButton';
 
 const BADGES = ['SPF 40', 'PA++++', 'All weathers', 'ALL SKIN TYPES'];
 
-// Four distinct AURA product shots for the gallery.
+// GALLERY array me video add karein:
 const GALLERY = [
   '/pdp/aura-1.webp',
+  '/Aura video.mov', // <--- Client video file
   '/pdp/aura-2.webp',
   '/pdp/aura-3.webp',
   '/pdp/aura-4.webp',
@@ -185,7 +186,6 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
           </div>
         </div>
       </div>
-
     </div>
   );
 }

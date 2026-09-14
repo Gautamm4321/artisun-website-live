@@ -71,7 +71,7 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
           the sticky bar); on desktop it's a centred, non-scrolling grid. */}
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col justify-start lg:justify-center pt-11 pb-20 sm:pt-20 sm:pb-24 lg:py-0"
+        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col justify-start lg:justify-center pt-20 pb-20 sm:pt-24 sm:pb-24 lg:py-0"
       >
         <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-4 sm:gap-6 lg:gap-12 items-center">
 

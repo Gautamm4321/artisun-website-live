@@ -93,6 +93,7 @@ export default function PdpGallery({
   };
 
   const activeImg = images[index];
+  const isVideo = (src: string) => /\.(mov|mp4|webm)$/i.test(src);
 
   return (
     <div className="flex flex-col w-full min-h-0">
@@ -106,16 +107,29 @@ export default function PdpGallery({
         style={{ touchAction: 'pan-y' }}
         className={`relative w-full ${frameClassName} rounded-xl lg:rounded-2xl overflow-hidden bg-white/[0.03] shadow-2xl select-none`}
       >
-        <Image
-          key={activeImg + index}
-          src={asset(activeImg)}
-          alt={alt}
-          fill
-          sizes="(max-width: 1024px) 90vw, 50vw"
-          priority
-          draggable={false}
-          className={`object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
-        />
+        {isVideo(activeImg) ? (
+          <video
+            key={activeImg + index}
+            src={asset(activeImg)}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={alt}
+            className={`absolute inset-0 h-full w-full object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
+          />
+        ) : (
+          <Image
+            key={activeImg + index}
+            src={asset(activeImg)}
+            alt={alt}
+            fill
+            sizes="(max-width: 1024px) 90vw, 50vw"
+            priority
+            draggable={false}
+            className={`object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
+          />
+        )}
 
         {/* Desktop-only chevrons — untouched. */}
         <button
@@ -157,7 +171,18 @@ export default function PdpGallery({
                 : 'opacity-50 border-white/20 hover:opacity-80'
             }`}
           >
-            <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
+            {isVideo(src) ? (
+              <video
+                src={asset(src)}
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={`${alt} video preview`}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            ) : (
+              <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
+            )}
           </button>
         ))}
       </div>

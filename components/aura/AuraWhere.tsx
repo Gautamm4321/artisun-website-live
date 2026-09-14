@@ -34,7 +34,7 @@ export default function AuraWhere() {
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Heading block */}
-      <div className="px-5 sm:px-8 lg:px-14 pt-24 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto">
+      <div className="px-5 sm:px-8 lg:px-14 pt-24 sm:pt-28 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto">
         <span className="font-suisse text-[11px] sm:text-xs tracking-[0.22em] uppercase text-[var(--brand-cream)]/70">
           Where it works
         </span>

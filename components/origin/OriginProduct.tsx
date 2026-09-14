@@ -48,21 +48,9 @@ export default function OriginProduct() {
         }}
       />
 
-      {/* Mobile only: bridge previous panel colour into this one.
-          var(--bg-eclipse) is near-black at top; overlay a red fade so the
-          section start visually connects to the section above it. */}
-      <div
-        className="absolute top-0 left-0 right-0 h-20 lg:hidden pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(180,30,10,0.9) 0%, rgba(140,10,5,0.5) 40%, transparent 100%)',
-          zIndex: 0,
-        }}
-      />
-
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col items-center justify-start lg:justify-center pt-11 pb-24 sm:pt-24 sm:pb-24 lg:py-0"
+        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col items-center justify-start lg:justify-center pt-0 pb-24 sm:pt-24 sm:pb-24 lg:py-0"
       >
         {/* Desktop: copy LEFT, image RIGHT. Mobile: stacked, square image on top.
             Was a single centred column at every width, which read as a phone

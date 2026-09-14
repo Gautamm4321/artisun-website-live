@@ -208,7 +208,6 @@ export default function OriginPage() {
       height: 100svh;
       overflow-y: auto;
       overflow-x: hidden;
-      scroll-snap-type: y mandatory;
       overscroll-behavior-y: contain;
       -webkit-overflow-scrolling: touch;
     }
@@ -220,8 +219,6 @@ export default function OriginPage() {
       height: auto !important;
       min-height: 100svh !important;
       overflow: visible !important;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
     }
 
     /* Remove inner scroll containers — content flows into the panel naturally */

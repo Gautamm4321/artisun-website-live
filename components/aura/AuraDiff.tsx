@@ -32,7 +32,7 @@ export default function AuraDiff() {
 
           {/* Headline (Fitted cleanly on desktop) */}
           <h2 className="font-editorial text-[var(--brand-cream)] text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.08] tracking-tight font-normal mb-1.5 lg:mb-2">
-            Two things in one pearl: <em className="italic font-light">protection, and skincare.</em>
+            Two things in one pearl: protection, and skincare.
           </h2>
 
           {/* Subline */}
@@ -61,14 +61,14 @@ export default function AuraDiff() {
 
               <div className="p-4 sm:p-5 lg:p-5 flex flex-col flex-1 justify-between">
                 <div>
-                  <div className="text-[10px] sm:text-[11px] font-serif italic text-[#FF9B45] mb-0.5">
+                  <div className="text-[10px] sm:text-[11px] font-serif  mb-0.5">
                     01 &mdash; The pearl
                   </div>
                   <h3 className="font-editorial text-xl sm:text-2xl text-[var(--brand-cream)] font-normal mb-1 tracking-tight">
                     The protection.
                   </h3>
                   <p className="font-sans text-xs sm:text-[12.5px] lg:text-[13px] leading-[1.45] text-[var(--brand-cream)]/85 font-light">
-                    Every pearl carries the sunscreen: <strong className="text-white font-medium">three broad-spectrum UV filters, including Uvinul A Plus</strong> &mdash; one of the most advanced UVA filters made anywhere in the world. Alongside them, <strong className="text-white font-medium">Beta-Glucan</strong> to support the skin barrier and <strong className="text-white font-medium">Bisabolol</strong> to calm skin against the sting of heat, sun and pollution.
+                    Every pearl carries the sunscreen: three broad-spectrum UV filters, including Uvinul A Plus one of the most advanced UVA filters made anywhere in the world. Alongside them, Beta-Glucan to support the skin barrier and Bisabolol to calm skin against the sting of heat, sun and pollution.
                   </p>
                 </div>
 
@@ -104,14 +104,14 @@ export default function AuraDiff() {
 
               <div className="p-4 sm:p-5 lg:p-5 flex flex-col flex-1 justify-between">
                 <div>
-                  <div className="text-[10px] sm:text-[11px] font-serif italic text-[#FF9B45] mb-0.5">
+                  <div className="text-[10px] sm:text-[11px] font-serif  mb-0.5">
                     02 &mdash; The gel
                   </div>
                   <h3 className="font-editorial text-xl sm:text-2xl text-[var(--brand-cream)] font-normal mb-1 tracking-tight">
                     The skincare.
                   </h3>
                   <p className="font-sans text-xs sm:text-[12.5px] lg:text-[13px] leading-[1.45] text-[var(--brand-cream)]/85 font-light">
-                    The gel is where the moisture and defence live: <strong className="text-white font-medium">Ectoin</strong>, one of skincare&rsquo;s most advanced protective actives, built to hold skin through heat, humidity and pollution &mdash; with <strong className="text-white font-medium">Sodium Hyaluronate</strong> for deep, lasting hydration.
+                    The gel is where the moisture and defence live: Ectoin one of skincare&rsquo;s most advanced protective actives, built to hold skin through heat, humidity and pollution &mdash; with Sodium Hyaluronate for deep, lasting hydration.
                   </p>
                 </div>
 

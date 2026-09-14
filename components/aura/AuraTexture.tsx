@@ -39,7 +39,7 @@ export default function AuraTexture() {
       <div className="absolute top-1/2 left-0 w-full h-px -translate-y-1/2 lg:top-0 lg:left-1/2 lg:w-px lg:h-full lg:-translate-x-1/2 lg:translate-y-0 bg-white/20 z-20 pointer-events-none" />
 
       {/* ── Center Container: Exact Heading & Description ── */}
-      <div className="relative z-30 h-full w-full flex flex-col items-center justify-center pointer-events-none px-6 sm:px-12">
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-center pointer-events-none px-6 sm:px-12 lg:static lg:inset-auto lg:translate-y-0 lg:h-full lg:w-full">
 
         {/* Centered Eyebrow Label directly above heading */}
         <span className="font-suisse text-[11px] sm:text-xs tracking-[0.24em] uppercase text-[var(--brand-cream)]/75 font-medium mb-3 sm:mb-4 text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">

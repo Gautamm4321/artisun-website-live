@@ -57,7 +57,7 @@ export default function OriginWhatsIn() {
   return (
     <div
       id="origin-whatsin"
-      className="origin-panel relative w-screen shrink-0 h-screen overflow-hidden flex flex-col justify-start lg:justify-center pt-20 pb-16 sm:pt-24 sm:pb-20 lg:py-0"
+      className="origin-panel relative w-screen shrink-0 h-screen overflow-hidden flex flex-col justify-start lg:justify-center pt-20 pb-16 sm:pt-24 sm:pb-20"
     >
       {/* Background Radial Gradient */}
       <div
@@ -67,7 +67,7 @@ export default function OriginWhatsIn() {
             'var(--bg-eclipse)',
         }}
       />
-      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col justify-between lg:justify-start h-full max-h-[calc(100svh-125px)] lg:max-h-none lg:h-auto overflow-hidden">
+      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col justify-start lg:justify-center h-full overflow-y-auto lg:overflow-visible pb-0 [scrollbar-width:none]">
         {/* ── Heading (With Top Breathing Room) ── */}
         <div className="mb-3 sm:mb-5 lg:mb-10 shrink-0 mt-1 sm:mt-2 lg:mt-0">
           <h2 className="font-editorial text-[var(--brand-cream)] text-[22px] sm:text-[32px] lg:text-[50px] leading-[1.08] tracking-tight">
@@ -88,50 +88,49 @@ export default function OriginWhatsIn() {
                 key={item.name}
                 className="group relative w-full flex flex-col bg-white/[0.06] border border-white/15 backdrop-blur-md rounded-lg lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/30 shadow-xl flex-1 min-h-0 lg:flex-none"
               >
-                {/* ── MOBILE VIEW: Country Left-Top | Name Exactly at Marked Bottom-Right | Hook & Desc in White ── */}
+                {/* ── MOBILE VIEW: Country Left-Top | Name Bottom-Right | Proper Responsive Height ── */}
                 <div 
                   onClick={() => toggleAccordion(idx)}
-                  className="lg:hidden relative w-full h-full min-h-[78px] sm:min-h-[86px] overflow-hidden flex flex-row cursor-pointer select-none"
+                  className="lg:hidden relative w-full h-[182px] sm:h-[198px] shrink-0 overflow-hidden flex flex-row cursor-pointer select-none"
                 >
-                  {/* Image Section */}
-                  <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden ${isOpen ? 'w-[40%]' : 'w-full'}`}>
+                  {/* Image Section with explicit absolute inset */}
+                  <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden shrink-0 ${isOpen ? 'w-[42%]' : 'w-full'}`}>
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
+                      priority={idx === 0}
                       sizes="(max-width: 1024px) 100vw, 25vw"
-                      className="object-cover"
+                      className="object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-[1]" />
 
                     {/* Top-Left: Country Badge */}
-                    <span className="absolute top-2 left-2.5 font-suisse text-[8px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white/90">
+                    <span className="absolute top-2.5 left-2.5 z-10 font-suisse text-[8.5px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white/95">
                       {item.country}
                     </span>
 
-                    {/* Closed State: Name placed right at the bottom-right corner */}
+                    {/* Closed State: Ingredient Name at Bottom-Right */}
                     {!isOpen && (
-                      <div className="absolute bottom-2.5 right-3 text-right max-w-[75%] z-10">
-                        <h3 className="font-suisse font-medium text-white tracking-tight text-[11.5px] sm:text-[12.5px] leading-tight drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                      <div className="absolute bottom-2.5 right-3 z-10 text-right max-w-[70%]">
+                        <h3 className="font-suisse font-semibold text-white tracking-tight text-[13px] sm:text-[14px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
                           {item.name}
                         </h3>
                       </div>
                     )}
 
-                    {/* Opened State: Name moves to bottom-left on compressed image */}
+                    {/* Opened State: Ingredient Name at Bottom-Left */}
                     {isOpen && (
-                      <div className="absolute bottom-2 left-2.5 max-w-[90%] text-left">
-                        <h3 className="font-suisse font-medium text-white tracking-tight text-[10px] leading-tight">
+                      <div className="absolute bottom-2 left-2.5 z-10 max-w-[90%] text-left">
+                        <h3 className="font-suisse font-semibold text-white tracking-tight text-[11px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                           {item.name}
                         </h3>
                       </div>
                     )}
 
-                    {/* Right-Edge Floating Arrow '<' when closed (shifted up so it never collides with bottom name) */}
+                    {/* Floating Right Arrow */}
                     {!isOpen && (
-                      <div
-                        className="absolute right-2.5 top-3 w-5 h-5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/85"
-                      >
+                      <div className="absolute right-3 top-2.5 z-10 w-5 h-5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/90">
                         <svg
                           width="9"
                           height="9"
@@ -142,22 +141,20 @@ export default function OriginWhatsIn() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         >
-                          <polyline points="15 18 9 12 15 6" />
+                          <polyline points="9 18 15 12 9 6" />
                         </svg>
                       </div>
                     )}
                   </div>
 
-                  {/* Right Half: Hook & Description both Pure White and same compact font size */}
+                  {/* Right Half: Hook & Description */}
                   {isOpen && (
-                    <div className="w-[60%] h-full flex flex-col justify-center px-3 py-1.5 bg-black/65 backdrop-blur-md border-l border-white/15 overflow-hidden">
-                      <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none] space-y-1">
-                        {/* Hook Line: Pure White & matched size */}
-                        <p className="font-suisse  text-[8px] sm:text-[8.5px] text-white leading-[1.3]">
+                    <div className="w-[58%] h-full flex flex-col justify-center px-3.5 py-2 bg-black/75 backdrop-blur-md border-l border-white/15 overflow-hidden">
+                      <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none] space-y-1.5">
+                        <p className="font-suisse text-[9.5px] text-white font-medium leading-[1.35]">
                           {item.hook}
                         </p>
-                        {/* Detail Description: White/90 & same size */}
-                        <p className="font-suisse text-[8px] sm:text-[8.5px] text-white/90 leading-[1.3]">
+                        <p className="font-suisse text-[9px] text-white/85 leading-[1.35]">
                           {item.detail}
                         </p>
                       </div>
