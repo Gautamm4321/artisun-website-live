@@ -17,8 +17,8 @@ export default function ClimateSkinVsWeather() {
           Why climate-smart
         </div>
 
-        {/* Main Section Heading */}
-        <motion.h2
+        {/* Primary Page H1 */}
+        <motion.h1
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -26,7 +26,7 @@ export default function ClimateSkinVsWeather() {
           className="font-editorial text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal max-w-[18ch]"
         >
           Why we build for weather, <em className="italic">not just skin type.</em>
-        </motion.h2>
+        </motion.h1>
 
         {/* Two-Column Editorial Body */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 pt-2 items-start">

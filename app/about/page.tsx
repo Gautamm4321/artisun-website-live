@@ -141,19 +141,16 @@ export default function AboutPage() {
       {/* 1 — HERO */}
       <AboutHero />
 
-      <section className="relative z-16 w-full max-w-380 px-4 sm:px-6 md:px-16 lg:px-8 py-4 sm:py-6 md:py-10">
-        <div className="w-full max-w-380 space-y-1.5 sm:space-y-2">
-          <p className="font-suisse text-[var(--brand-cream)]/80 text-[15px] sm:text-[16px] md:text-[32px] lg:text-[34px] leading-[1.45] md:leading-[1.3] text-center">
-            Artisun is an Indian sun-care house, built around the sun and the way we live with it.
+      <section className="relative z-16 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-16 lg:px-8 py-6 sm:py-8 md:py-12">
+        <div className="w-full space-y-3 sm:space-y-4 text-center">
+          <h1 className="font-editorial text-[var(--brand-cream)] text-[26px] sm:text-[34px] md:text-[44px] lg:text-[50px] leading-[1.15] tracking-tight">
+            It started with a bottle in a drawer.
+          </h1>
+          <p className="font-suisse text-[var(--brand-cream)]/80 text-[14px] sm:text-[16px] md:text-[22px] lg:text-[24px] leading-[1.45] max-w-3xl mx-auto">
+            Artisun is an Indian sun-care house, built around the sun and the way we live with it. We make Skinwear&trade; — wearable layers that protect, hydrate, and move with the day.
           </p>
-
-          <p className="font-suisse text-[var(--brand-cream)]/80 text-[15px] sm:text-[16px] md:text-[32px] lg:text-[34px] leading-[1.45] md:leading-[1.3] text-center">
-            We make Skinwear&trade; — wearable layers that protect, hydrate, and move with the day.
-          </p>
-
-          {/* 3rd Line: Hidden on small/mobile screens, visible on medium+ screens */}
-          <p className="font-suisse text-[var(--brand-cream)]/80 text-[15px] sm:text-[16px] md:text-[32px] lg:text-[34px] leading-[1.3] text-center hidden md:block">
-            For the Indian skin, for the Indian climate and for the real Indian days.
+          <p className="font-suisse text-[var(--brand-cream)]/60 text-[13px] sm:text-[15px] md:text-[18px] leading-[1.4] max-w-2xl mx-auto hidden md:block">
+            For the Indian skin, for the Indian climate, and for real Indian days.
           </p>
         </div>
       </section>

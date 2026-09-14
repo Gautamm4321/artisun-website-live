@@ -1,14 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import ArtisunMainFAQ from '@/components/faq/artisunmainfaq';
 import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
-import ScrollProgressBar from '@/components/ScrollProgressBar';
-import Footer from '../../components/Footer';
+import PrivacyPolicyContent from '@/components/privacypolicy/pp';
+import Footer from '@/components/Footer';
 
-
-export default function FAQPage() {
+export default function PrivacyPage() {
   const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
 
   useEffect(() => {
@@ -24,10 +22,9 @@ export default function FAQPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
-      <ScrollProgressBar />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      <ArtisunMainFAQ />
+      <PrivacyPolicyContent />
       <Footer />
     </main>
   );

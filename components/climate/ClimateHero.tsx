@@ -243,14 +243,14 @@ export default function ClimateHero() {
       />
 
       {/* 1. Main Heading */}
-      <motion.h1
+      <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="font-editorial whitespace-nowrap text-[clamp(1.15rem,6.2vw,4.5rem)] text-center mb-3 font-normal tracking-wide"
       >
         {heading}
-      </motion.h1>
+      </motion.h2>
 
       {/* 2. Weather Widget Box — hidden entirely if geo failed */}
       {!geoError && (

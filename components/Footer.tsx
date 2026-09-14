@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -9,15 +9,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
 const quickLinks: { label: string; href: string }[] = [
+  { label: 'Shop All', href: '/collection' },
   { label: 'FAQs', href: '/faq' },
   { label: 'Contact', href: '/contact' },
   { label: 'Artifacts by Artisun', href: '/blog' },
 ];
 
 const policyLinks: { label: string; href: string }[] = [
-  { label: 'Privacy Policy', href: '/privacypolicy' },
-  { label: 'Shipping  & Cancellations', href: '/shipping' },
-  { label: 'Shop All', href: '/collection' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Shipping & Returns', href: '/shipping-returns' },
 ];
 
 function InstagramIcon() {
@@ -56,6 +57,11 @@ export default function Footer() {
   const containerRef = useRef<HTMLElement>(null);
   const contentWrapRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLDivElement>(null);
+
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -178,44 +184,105 @@ export default function Footer() {
                 Be the first to experience new launches, exclusive offers and the future of Skinwear.
               </p>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  (e.currentTarget.querySelector('input') as HTMLInputElement | null)?.blur();
-                }}
-                className="w-full sm:w-80 md:w-full lg:w-96"
-              >
-                <input
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="Enter Email"
-                  style={{ fontSize: '16px' }}
-                  onBlur={() => {
-                    // Force iOS Safari to reset any leftover zoom after the
-                    // keyboard closes — font-size 16px prevents the initial
-                    // zoom, but Safari can still leave the page scaled after blur.
-                    const viewport = document.querySelector('meta[name="viewport"]');
-                    if (viewport) {
-                      const original = viewport.getAttribute('content') || '';
-                      viewport.setAttribute('content', `${original}, maximum-scale=1`);
-                      setTimeout(() => {
-                        viewport.setAttribute('content', original);
-                      }, 300);
+              {newsletterStatus === 'success' ? (
+                <div className="w-full sm:w-80 md:w-full lg:w-96 p-4 rounded-xl bg-white/10 border border-white/20 text-[var(--brand-cream)] font-suisse text-sm">
+                  <p className="font-medium text-emerald-300">✓ You are on the Artisun list.</p>
+                  <p className="text-xs text-[var(--brand-cream)]/80 mt-1">Thank you for subscribing. You will be the first to receive updates on new drops & formula launches.</p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+                      setNewsletterStatus('error');
+                      setErrorMessage('Please enter a valid email address.');
+                      return;
                     }
-                    window.scrollTo({ top: window.scrollY, behavior: 'smooth' });
+                    if (!marketingConsent) {
+                      setNewsletterStatus('error');
+                      setErrorMessage('Please check the consent box to receive updates as per privacy regulations.');
+                      return;
+                    }
+                    setNewsletterStatus('success');
+                    setErrorMessage('');
+                    (e.currentTarget.querySelector('input') as HTMLInputElement | null)?.blur();
                   }}
-                  className="w-full bg-[var(--brand-cream)] text-[#C02D19] placeholder:text-[#C02D19] rounded-full px-6 py-3 md:py-3.5 text-base font-suisse outline-none touch-manipulation"
-                />
-              </form>
+                  className="w-full sm:w-80 md:w-full lg:w-96 flex flex-col"
+                >
+                  <div className="relative w-full">
+                    <input
+                      type="email"
+                      name="email"
+                      value={newsletterEmail}
+                      onChange={(e) => {
+                        setNewsletterEmail(e.target.value);
+                        if (newsletterStatus === 'error') setNewsletterStatus('idle');
+                      }}
+                      autoComplete="email"
+                      placeholder="Enter Email"
+                      style={{ fontSize: '16px' }}
+                      onBlur={() => {
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        if (viewport) {
+                          const original = viewport.getAttribute('content') || '';
+                          viewport.setAttribute('content', `${original}, maximum-scale=1`);
+                          setTimeout(() => {
+                            viewport.setAttribute('content', original);
+                          }, 300);
+                        }
+                        window.scrollTo({ top: window.scrollY, behavior: 'smooth' });
+                      }}
+                      className="w-full bg-[var(--brand-cream)] text-[#C02D19] placeholder:text-[#C02D19] rounded-full px-6 py-3 md:py-3.5 text-base font-suisse outline-none touch-manipulation"
+                    />
+                  </div>
+
+                  {/* DPDP Act & GDPR Affirmative Marketing Opt-in Checkbox */}
+                  <label className="flex items-start gap-2 mt-3 text-left cursor-pointer group select-none">
+                    <input
+                      type="checkbox"
+                      id="newsletter-dpdp-optin"
+                      checked={marketingConsent}
+                      onChange={(e) => {
+                        setMarketingConsent(e.target.checked);
+                        if (newsletterStatus === 'error') setNewsletterStatus('idle');
+                      }}
+                      className="mt-0.5 w-4 h-4 rounded border-white/30 bg-black/20 text-[#C02D19] focus:ring-[#C02D19] accent-[#C02D19] cursor-pointer shrink-0"
+                    />
+                    <span className="font-suisse text-[11px] sm:text-xs text-[var(--brand-cream)]/75 leading-tight group-hover:text-[var(--brand-cream)] transition-colors">
+                      I agree to receive news, launches, and promotional emails from Artisun in accordance with the{' '}
+                      <Link href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</Link>.
+                    </span>
+                  </label>
+
+                  {newsletterStatus === 'error' && (
+                    <p className="font-suisse text-xs text-rose-300 mt-2 text-left">
+                      {errorMessage}
+                    </p>
+                  )}
+                </form>
+              )}
             </div>
           </div>
 
-          {/* Bottom Copyright Text */}
-          <div className="pt-10 md:pt-12 pb-1 text-center footer-reveal">
-            <p className="font-suisse text-[11px] md:text-xs text-[var(--brand-cream)]/50 tracking-wider uppercase">
+          {/* Bottom Legal & Grievance Redressal */}
+          <div className="pt-10 md:pt-12 pb-2 border-t border-white/10 mt-10 flex flex-col md:flex-row items-center justify-between gap-4 footer-reveal font-suisse text-[11px] text-[var(--brand-cream)]/60">
+            <p className="tracking-wider uppercase">
               © Artisun Private Limited 2026
             </p>
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-3 gap-y-1 text-center md:text-right">
+              <span>
+                <strong className="text-[var(--brand-cream)]/80 font-medium">Grievance Officer:</strong> Nodal Officer, Artisun Pvt. Ltd.
+              </span>
+              <span>·</span>
+              <a
+                href="mailto:grievance@artisunskin.com"
+                className="underline hover:text-white transition-colors"
+              >
+                grievance@artisunskin.com
+              </a>
+              <span>·</span>
+              <span>Response &lt; 48h</span>
+            </div>
           </div>
         </div>
 

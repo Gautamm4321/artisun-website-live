@@ -18,6 +18,7 @@ import AuraProduct from '@/components/aura/AuraProduct';
 import AuraQuestions from '@/components/aura/AuraQuestions';
 import AuraStickyCartBar from '@/components/aura/AuraStickyCartBar';
 import { asset } from '@/lib/asset';
+import { trackViewItem } from '@/lib/analytics';
 
 const PANELS = 8;
 
@@ -27,6 +28,17 @@ export default function AuraPage() {
   const trackRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
+
+  // E-commerce View Item Analytics Tracking
+  useEffect(() => {
+    trackViewItem({
+      id: 'aura-spf40',
+      name: 'Aura Pearl Sunscreen SPF 40 PA++++',
+      price: 1299,
+      category: 'Sunscreen',
+      variant: '50ml',
+    });
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -133,7 +145,6 @@ export default function AuraPage() {
 
   return (
     <main className="relative w-full min-h-[100svh] overflow-clip">
-      <h1 className="sr-only">Aura — Pearl Sunscreen SPF 40 PA++++</h1>
       <ScrollProgressBar marker={asset('/b1.webp')} markerHeight={13} />
       <div id="global-bg" className="theme-molten-core" />
 

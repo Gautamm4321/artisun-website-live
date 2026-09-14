@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 
 import TagPills from '@/components/pdp/TagPills';
 import PdpGallery from '@/components/pdp/PdpGallery';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePanelEdgeScroll } from '@/hooks/usePanelEdgeScroll';
 import AddToBagButton from '@/components/cart/AddToBagButton';
 
@@ -85,21 +86,30 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
 
           {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP: Info & Compact Navigation Copy ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] lg:max-w-[540px] gap-2 lg:gap-2.5 py-0">
-            {/* Outlined tag pills — matches your reference */}
+            {/* Visual Breadcrumb Navigation */}
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Products', href: '/collection' },
+                { label: 'Origin' },
+              ]}
+            />
+
+            {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />
 
-            {/* Title */}
+            {/* Primary H1 */}
             <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] lg:text-[34px] leading-[1.08] tracking-tight">
-              ORIGIN&nbsp;·&nbsp;4-in-1 Milk Emulsion SPF&nbsp;50+
+              Origin — 4-in-1 Milk Sunscreen SPF 50+
             </h1>
 
-            {/* Description */}
+            {/* Description weaving secondary keywords: sunscreen for oily skin, broad spectrum sunscreen, lightweight sunscreen, sunscreen serum, no white cast */}
             <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] lg:text-[13.5px] leading-[1.4] mt-0.5 space-y-0.5">
               <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px]">
-                Four steps, done in one.
+                Four steps, done in one light layer.
               </p>
               <p className="w-full text-left">
-                Origin is a milk-light layer sunscreen that does four jobs at once — serum, moisturiser, sunscreen and primer. It goes on weightless, absorbs in seconds, and sits invisibly under everything else.
+                Origin is a lightweight broad spectrum sunscreen serum that does four jobs at once — serum, moisturiser, SPF 50+ sunscreen, and primer. An ultra-light milk sunscreen for oily skin and all Indian weather, it absorbs weightlessly with no white cast.
               </p>
             </div>
 

@@ -4,9 +4,24 @@ import { useEffect } from 'react';
 import { useCart } from './CartProvider';
 import { formatPrice, firstVariant } from '@/lib/shopify';
 import { asset } from '@/lib/asset';
+import { trackBeginCheckout } from '@/lib/analytics';
 
 export default function CartDrawer() {
   const { cart, open, setOpen, setQty, remove, checkout, busy, error, configured, products, add } = useCart();
+
+  const handleCheckout = () => {
+    if (lines.length > 0) {
+      const items = lines.map((l) => ({
+        id: l.merchandise.id,
+        name: l.merchandise.product.title,
+        price: parseFloat(l.cost.totalAmount.amount) / l.quantity,
+        quantity: l.quantity,
+      }));
+      const total = parseFloat(cart?.cost?.subtotalAmount?.amount || '0');
+      trackBeginCheckout(items, total);
+    }
+    checkout();
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -299,7 +314,7 @@ export default function CartDrawer() {
             </p>
             <button
               type="button"
-              onClick={checkout}
+              onClick={handleCheckout}
               disabled={busy}
               style={{ backgroundColor: '#edc6a2', color: '#3A0D08' }}
               className="w-full py-3.5 font-suisse text-[13px] font-medium uppercase tracking-wider transition-colors hover:bg-white disabled:opacity-50"

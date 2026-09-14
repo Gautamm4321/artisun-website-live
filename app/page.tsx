@@ -105,6 +105,7 @@ export default function Home() {
 
   return (
     <main ref={mainRef} className="relative w-full min-h-[100svh] overflow-clip">
+      <h1 className="sr-only">Sun care, built for your weather.</h1>
       <ScrollProgressBar />
 
       {/* Global Origin Red-Orange Background */}

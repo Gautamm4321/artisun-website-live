@@ -122,27 +122,37 @@ export default function KeyholeSection() {
         ref={contentRef}
         className="relative z-10 opacity-0 flex flex-col items-center justify-center text-center px-6 w-full"
       >
-        <h2 className="font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] text-[#e8dfc5] leading-[1.2] tracking-wide flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]">
-          {keyholeTitle.split(" ").map((word, i) => (
-            <span
-              key={`kt-${i}`}
-              ref={el => { if (el) titleWordsRef.current.push(el); }}
-              className="opacity-[0.15]"
-            >
-              {word}
-            </span>
-          ))}
+        <h2
+          aria-label={keyholeTitle}
+          className="font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] text-[#e8dfc5] leading-[1.2] tracking-wide flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]"
+        >
+          <span aria-hidden="true" className="contents">
+            {keyholeTitle.split(" ").map((word, i) => (
+              <span
+                key={`kt-${i}`}
+                ref={el => { if (el) titleWordsRef.current.push(el); }}
+                className="opacity-[0.15]"
+              >
+                {word}
+              </span>
+            ))}
+          </span>
         </h2>
-        <p className="font-editorial font-normal text-[#e8dfc5]/90 mt-[0.2em] text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]">
-          {keyholeSubtitle.split(" ").map((word, i) => (
-            <span
-              key={`ks-${i}`}
-              ref={el => { if (el) subWordsRef.current.push(el); }}
-              className="opacity-[0.15]"
-            >
-              {word}
-            </span>
-          ))}
+        <p
+          aria-label={keyholeSubtitle}
+          className="font-editorial font-normal text-[#e8dfc5]/90 mt-[0.2em] text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]"
+        >
+          <span aria-hidden="true" className="contents">
+            {keyholeSubtitle.split(" ").map((word, i) => (
+              <span
+                key={`ks-${i}`}
+                ref={el => { if (el) subWordsRef.current.push(el); }}
+                className="opacity-[0.15]"
+              >
+                {word}
+              </span>
+            ))}
+          </span>
         </p>
       </div>
 

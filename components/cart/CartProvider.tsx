@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { trackAddToCart } from '@/lib/analytics';
 import {
   addLine,
   createCart,
@@ -74,6 +75,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
         setCart(next);
         setOpen(true);
+        const addedLine = next.lines.nodes.find((l) => l.merchandise.id === variantId);
+        if (addedLine) {
+          trackAddToCart({
+            id: variantId,
+            name: addedLine.merchandise.product.title,
+            price: parseFloat(addedLine.cost.totalAmount.amount) / addedLine.quantity,
+            quantity: qty,
+          });
+        }
       } catch (e) {
         setError((e as Error).message);
       } finally {

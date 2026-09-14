@@ -126,10 +126,13 @@ export default function SuncareShiftSection() {
       </div>
 
       {/* Foreground Text */}
-      <div className="relative z-10 w-fit mx-auto text-left font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide text-white">
+      <div
+        aria-label={`${line1} ${line2} ${line3}`}
+        className="relative z-10 w-fit mx-auto text-left font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide text-white"
+      >
 
         {/* Line 1 */}
-        <div className="mb-[0.2em] flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
+        <div aria-hidden="true" className="mb-[0.2em] flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
           {line1.split(" ").map((word, wordIndex) => (
             <span
               key={`l1-${wordIndex}`}
@@ -142,7 +145,7 @@ export default function SuncareShiftSection() {
         </div>
 
         {/* Line 2 */}
-        <div className="mb-[0.2em] flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
+        <div aria-hidden="true" className="mb-[0.2em] flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
           {line2.split(" ").map((word, wordIndex) => (
             <span
               key={`l2-${wordIndex}`}
@@ -155,7 +158,7 @@ export default function SuncareShiftSection() {
         </div>
 
         {/* Line 3 */}
-        <div className="flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
+        <div aria-hidden="true" className="flex flex-wrap justify-start gap-x-[0.25em] gap-y-[0.15em] w-full">
           {line3.split(" ").map((word, wordIndex) => (
             <span
               key={`l3-${wordIndex}`}

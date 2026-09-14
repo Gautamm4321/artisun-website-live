@@ -142,7 +142,13 @@ const FAQS = [
   },
 ];
 
-export default function Collection() {
+export default function Collection({
+  h1Title,
+  subtitle,
+}: {
+  h1Title?: string;
+  subtitle?: string;
+} = {}) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -173,12 +179,20 @@ export default function Collection() {
 
               <div className="relative z-10 w-full max-w-[600px]">
                 <h1 className="font-editorial text-[28px] sm:text-[34px] md:text-[38px] lg:text-[45px] xl:text-[48px] leading-[1.08] tracking-tight text-[#F3ECE0] font-normal">
-                  Your skin type didn&apos;t change this<br />
-                  morning. The weather did.
+                  {h1Title || (
+                    <>
+                      Your skin type didn&apos;t change this<br />
+                      morning. The weather did.
+                    </>
+                  )}
                 </h1>
                 <p className="font-suisse text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] text-[#F3ECE0]/90 leading-snug mt-2.5 sm:mt-3">
-                  So we launched two layers. One wears dewy. One<br className="hidden sm:block" />
-                  wears invisible. Both are built for Indian weather.
+                  {subtitle || (
+                    <>
+                      So we launched two layers. One wears dewy. One<br className="hidden sm:block" />
+                      wears invisible. Both are built for Indian weather.
+                    </>
+                  )}
                 </p>
               </div>
             </div>

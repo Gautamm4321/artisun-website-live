@@ -115,6 +115,29 @@ export default function ContactContent() {
                   </div>
                   <div className="text-[11.5px] opacity-60 mt-1.5 leading-snug">Tracking, cancellations and replacements, all handled here.</div>
                 </a>
+
+                {/* Grievance Redressal Card */}
+                <div className="md:col-span-2 relative bg-gradient-to-br from-white/75 to-[#FFF8EE]/50 border border-[#242623]/10 rounded-xl p-5 mt-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                      <div className="text-[9px] tracking-[0.2em] uppercase font-semibold text-[#A52A2C] mb-1">
+                        Grievance Redressal · IT &amp; Consumer Protection Rules
+                      </div>
+                      <div className="font-editorial text-base font-normal text-[#242623]">
+                        Grievance Officer: Nodal Officer, Artisun Pvt. Ltd.
+                      </div>
+                      <div className="text-[11.5px] opacity-65 mt-1 leading-snug">
+                        Designated contact for formal regulatory complaints. Acknowledged &lt; 48 hours; resolved within 30 days.
+                      </div>
+                    </div>
+                    <a
+                      href="mailto:grievance@artisunskin.com"
+                      className="shrink-0 self-start sm:self-center px-4 py-2 rounded-full bg-[#A52A2C]/10 hover:bg-[#A52A2C]/15 text-[#A52A2C] text-xs font-medium transition-colors"
+                    >
+                      grievance@artisunskin.com
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

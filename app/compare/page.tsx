@@ -9,14 +9,16 @@ import Collection from '@/components/collection/Collection';
 export default function ComparePage() {
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
-      <h1 className="sr-only">Origin or Aura. Find your fit.</h1>
       <ScrollProgressBar />
-      <CustomCursor mouseProxy={{ current: { x: 0, y: 0, px: 0, py: 0 } }} />
+      <CustomCursor mouseProxy={{ current: { px: 0, py: 0 } }} />
       <GlobalHeader />
 
       {/* Comparison & Duo Bundle View */}
       <div className="pt-8">
-        <Collection />
+        <Collection
+          h1Title="Origin or Aura. Find your fit."
+          subtitle="One wears dewy. One wears invisible. Compare Origin and Aura side-by-side to find the right layer for your weather and skin."
+        />
       </div>
 
       <Footer />

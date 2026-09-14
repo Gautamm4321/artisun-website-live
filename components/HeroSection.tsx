@@ -24,7 +24,11 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={asset('/hero-model.webp')}
-          alt="Artisun"
+          alt="Artisun Climate-Smart Sunscreen for Indian Skin and Weather"
+          // @ts-ignore
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="hero-model-mobile w-auto max-w-none object-contain object-bottom select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
           draggable={false}
         />
@@ -35,7 +39,11 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={asset('/Adjusting_head_direction_to_right_202608281524.webp')}
-          alt="Artisun"
+          alt="Artisun Climate-Smart Sunscreen for Indian Cities"
+          // @ts-ignore
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="hero-model-desktop w-auto max-w-none object-contain object-bottom select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
           draggable={false}
         />

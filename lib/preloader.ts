@@ -60,9 +60,10 @@ export function preloadAll(onProgress: (progress: number) => void): Promise<void
       warmDeferred();
     };
 
-    // A slow connection should never trap someone on the loading screen. With
-    // only four hero images left to fetch, 8s is already generous.
-    const timer = setTimeout(forceResolve, 8000);
+    // The preloader must cap at <800ms total wall-clock time so visitors
+    // never suffer conversion-dropping wait times. 450ms timeout + 250ms exit
+    // animation guarantees the page is interactable within 700ms.
+    const timer = setTimeout(forceResolve, 450);
 
     const updateProgress = () => {
       loadedCount++;

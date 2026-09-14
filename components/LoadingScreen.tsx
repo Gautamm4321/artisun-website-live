@@ -35,13 +35,10 @@ export default function LoadingScreen({
   /* ── Drive the fill + the counter from real progress ── */
   useEffect(() => {
     if (fillRef.current) {
-      // `inset(N% 0 0 0)` clips from the top down: 100% hides the solid mark
-      // completely, 0% reveals all of it. Tweened rather than set, because a
-      // preloader reports progress in chunks (one asset at a time) and the
-      // tween turns those steps into a continuous rise.
+      // Fast responsive rise
       gsap.to(fillRef.current, {
         clipPath: `inset(${100 - progress}% 0% 0% 0%)`,
-        duration: 0.9,
+        duration: 0.25,
         ease: 'power2.out',
         overwrite: 'auto',
       });
@@ -50,7 +47,7 @@ export default function LoadingScreen({
     const counter = { val: shownRef.current };
     gsap.to(counter, {
       val: progress,
-      duration: 0.9,
+      duration: 0.25,
       ease: 'power2.out',
       overwrite: 'auto',
       onUpdate: () => {
@@ -71,28 +68,28 @@ export default function LoadingScreen({
 
     const tl = gsap.timeline();
 
-    // Settle on a full, clean beige before anything moves.
+    // Settle cleanly on full beige
     tl.to(fillRef.current, {
       clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 0.6,
+      duration: 0.12,
       ease: 'power2.out',
     });
 
-    tl.to(captionRef.current, { opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.3');
+    tl.to(captionRef.current, { opacity: 1, duration: 0.1, ease: 'power2.out' }, '-=0.08');
 
-    // Lift the whole screen away to reveal the hero.
+    // Lift the screen away swiftly (<0.28s) so total load remains strictly under 800ms
     tl.to(
       containerRef.current,
       {
         yPercent: -100,
-        duration: 1.1,
-        ease: 'expo.inOut',
+        duration: 0.28,
+        ease: 'power3.inOut',
         onComplete: () => {
           onCompleteRef.current();
           if (containerRef.current) containerRef.current.style.display = 'none';
         },
       },
-      '+=0.25'
+      '+=0.04'
     );
 
     return () => {

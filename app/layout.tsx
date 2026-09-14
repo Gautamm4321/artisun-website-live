@@ -2,15 +2,15 @@ import type { Metadata, Viewport } from "next";
 import { ppEditorialNew, suisseIntl } from "./fonts";
 import { CartProvider } from "@/components/cart/CartProvider";
 import CartDrawer from "@/components/cart/CartDrawer";
+import CookieBanner from "@/components/CookieBanner";
+import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
+import JsonLd from "@/components/seo/JsonLd";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://artisunskin.com"),
   title: "Artisun — Climate-Smart Sunscreen for Indian Cities & Weather",
   description: "Sun care built for your weather, not just your skin type. Lightweight, broad-spectrum SPF that's skincare and protection in one. Meet Origin & Aura.",
-  // The App Router already picks up app/icon.svg, app/favicon.ico and
-  // app/apple-icon.png by filename convention. They are declared explicitly as
-  // well so the order is deterministic: SVG first for crisp scaling on modern
-  // browsers, .ico as the fallback for older ones that ignore SVG favicons.
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
@@ -19,6 +19,23 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
   },
   manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Artisun — Climate-Smart Sunscreen for Indian Cities & Weather",
+    description: "Sun care built for your weather, not just your skin type. Lightweight, broad-spectrum SPF that's skincare and protection in one. Meet Origin & Aura.",
+    url: "https://artisunskin.com",
+    siteName: "Artisun",
+    locale: "en_IN",
+    type: "website",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || '',
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -29,6 +46,26 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Artisun",
+  url: "https://artisunskin.com",
+  logo: "https://artisunskin.com/logo.png",
+  sameAs: [
+    "https://instagram.com/artisunskinwear",
+    "https://wa.me/917982605517",
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-7982605517",
+      contactType: "customer service",
+      availableLanguage: ["English", "Hindi"],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,12 +74,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ppEditorialNew.variable} ${suisseIntl.variable}`}>
       <body suppressHydrationWarning>
-        {/* CartProvider wraps everything so both HomeHeader and GlobalHeader can
-            read the cart. CartDrawer is a sibling of the page so it overlays
-            every route without each page having to mount it. */}
+        <JsonLd schema={organizationSchema} />
+        <AnalyticsScripts />
         <CartProvider>
           {children}
           <CartDrawer />
+          <CookieBanner />
         </CartProvider>
       </body>
     </html>

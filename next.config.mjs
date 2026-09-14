@@ -25,7 +25,7 @@ const nextConfig = {
     ...(isExport && { unoptimized: true }),
   },
 
-async redirects() {
+  async redirects() {
     if (isExport) return [];
     return [
       {
@@ -38,6 +38,16 @@ async redirects() {
         destination: '/collection',
         permanent: true,
       },
+      {
+        source: '/privacypolicy',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/shipping',
+        destination: '/shipping-returns',
+        permanent: true,
+      },
     ];
   },
 
@@ -46,12 +56,35 @@ async redirects() {
     // GitHub Pages applies its own caching.
     if (isExport) return [];
 
+    const securityHeaders = [
+      {
+        key: 'Strict-Transport-Security',
+        value: 'max-age=63072000; includeSubDomains; preload',
+      },
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      },
+      {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN',
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin',
+      },
+    ];
+
     // In development the chunk/asset URLs are stable across rebuilds, so an
     // `immutable` cache makes the browser keep stale JS/CSS forever (code edits
     // never show up without a hard refresh). Only apply long-term caching in
     // production, where filenames are content-hashed.
     if (process.env.NODE_ENV !== 'production') {
       return [
+        {
+          source: '/:path*',
+          headers: securityHeaders,
+        },
         {
           source: '/:path*.(js|css)',
           headers: [
@@ -62,6 +95,10 @@ async redirects() {
     }
 
     return [
+      {
+        source: '/:path*',
+        headers: securityHeaders,
+      },
       {
         source: '/:path*.mp4',
         headers: [

@@ -15,6 +15,7 @@ import OriginProduct from '@/components/origin/OriginProduct';
 import OriginQuestions from '@/components/origin/OriginQuestions';
 import StickyCartBar from '@/components/origin/StickyCartBar';
 import { asset } from '@/lib/asset';
+import { trackViewItem } from '@/lib/analytics';
 
 const PANELS = 6;
 const DESKTOP_MIN_WIDTH = 1024; // matches Tailwind `lg`
@@ -26,6 +27,17 @@ export default function OriginPage() {
   const lenisRef = useRef<Lenis | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
   const isDesktopRef = useRef(false);
+
+  // E-commerce View Item Analytics Tracking
+  useEffect(() => {
+    trackViewItem({
+      id: 'origin-spf50',
+      name: 'Origin 4-in-1 Milk Sunscreen SPF 50+ PA++++',
+      price: 1299,
+      category: 'Sunscreen',
+      variant: '50ml',
+    });
+  }, []);
 
   // cursor proxy
   useEffect(() => {
@@ -172,7 +184,6 @@ export default function OriginPage() {
 
   return (
     <main className="relative w-full lg:overflow-clip">
-      <h1 className="sr-only">Origin — 4-in-1 Milk Sunscreen SPF 50+</h1>
       <ScrollProgressBar marker={asset('/b2.webp')} markerHeight={20} />
       <div id="global-bg" className="theme-molten-core" />
 

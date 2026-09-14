@@ -26,7 +26,6 @@ export default function SkinwearPage() {
 
   return (
     <main className="relative w-full min-h-[100svh] overflow-clip">
-      <h1 className="sr-only">Skinwear.</h1>
       {/* Mood: Red Eclipse — fixed so it holds all the way down the page */}
       <div className="artisun-bg" aria-hidden />
       {/* Scroll Progress Bar */}

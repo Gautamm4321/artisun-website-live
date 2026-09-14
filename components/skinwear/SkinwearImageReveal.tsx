@@ -45,7 +45,7 @@ export default function SkinwearImageReveal() {
           <div className="relative w-full h-full overflow-hidden">
             <Image
               src={asset('/skinwear-media/First picture landscape.webp')}
-              alt="Artisun Skinwear Hero"
+              alt="Artisun Skinwear — sun care built for Indian cities and climate"
               fill
               sizes="100vw"
               className="object-cover object-center md:object-[center_30%]"
@@ -72,7 +72,7 @@ export default function SkinwearImageReveal() {
           <div className="relative w-full h-full overflow-hidden rounded-xl shadow-[0_50px_120px_rgba(0,0,0,0.9)] group backdrop-blur-sm">
             <Image
               src={asset('/skinwear-media/Second picture.webp')}
-              alt="Skinwear"
+              alt="Artisun Skinwear formula — breathable daily sunscreen reimagined for Indian weather"
               fill
               sizes="(max-width: 768px) 68vw, 38vw"
               className="object-cover"
@@ -88,9 +88,10 @@ export default function SkinwearImageReveal() {
             style={{ opacity: textOpacity, y: textY }}
             className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center px-4"
           >
-            <h2 className="font-editorial whitespace-nowrap text-[clamp(1.2rem,3.4vw,2.3rem)] text-[var(--brand-cream)] leading-none tracking-[-0.01em] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)] text-center">
-              Our word for a thing that didn’t have one
-            </h2>
+            <h1 className="font-editorial whitespace-nowrap text-[clamp(1.4rem,4.2vw,3rem)] text-[var(--brand-cream)] leading-none tracking-[-0.01em] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)] text-center">
+              Skinwear.
+            </h1>
+            <span className="sr-only">Our word for a thing that didn’t have one.</span>
           </motion.div>
         </motion.div>
       </div>

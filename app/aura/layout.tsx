@@ -1,9 +1,79 @@
 import type { Metadata } from 'next';
+import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Aura Pearl Sunscreen SPF 40 PA++++ | Skinwear by Artisun',
   description:
-    'Pearl sunscreen that adjusts to your weather – broad-spectrum SPF 40 with skincare in every pearl. No white cast, a soft dewy finish. Built for Indian skin.',
+    'Pearl sunscreen that adjusts to your weather — broad-spectrum SPF 40 with skincare in every pearl. No white cast, a soft dewy finish. Built for Indian skin.',
+  alternates: {
+    canonical: '/aura',
+  },
+  openGraph: {
+    title: 'Aura Pearl Sunscreen SPF 40 PA++++ | Skinwear by Artisun',
+    description:
+      'Pearl sunscreen that adjusts to your weather — broad-spectrum SPF 40 with skincare in every pearl. No white cast, a soft dewy finish. Built for Indian skin.',
+    url: 'https://artisunskin.com/aura',
+    siteName: 'Artisun',
+    images: [
+      {
+        url: 'https://artisunskin.com/products/aura-square.webp',
+        width: 800,
+        height: 800,
+        alt: 'Aura Pearl Sunscreen SPF 40 PA++++',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Aura Pearl Sunscreen SPF 40 PA++++',
+  image: ['https://artisunskin.com/products/aura-square.webp'],
+  description:
+    'Pearl sunscreen that adjusts to your weather — broad-spectrum SPF 40 with skincare in every pearl. No white cast, a soft dewy finish. Built for Indian skin.',
+  sku: 'ART-AURA-40',
+  mpn: 'ART-AURA',
+  brand: {
+    '@type': 'Brand',
+    name: 'Artisun',
+  },
+  offers: {
+    '@type': 'Offer',
+    url: 'https://artisunskin.com/aura',
+    priceCurrency: 'INR',
+    price: '1299',
+    priceValidUntil: '2027-12-31',
+    availability: 'https://schema.org/InStock',
+    itemCondition: 'https://schema.org/NewCondition',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://artisunskin.com',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Products',
+      item: 'https://artisunskin.com/collection',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Aura',
+      item: 'https://artisunskin.com/aura',
+    },
+  ],
 };
 
 export default function AuraLayout({
@@ -11,5 +81,11 @@ export default function AuraLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd schema={productSchema} />
+      <JsonLd schema={breadcrumbSchema} />
+      {children}
+    </>
+  );
 }

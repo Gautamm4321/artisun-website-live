@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 
 import TagPills from '@/components/pdp/TagPills';
 import PdpGallery from '@/components/pdp/PdpGallery';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePanelEdgeScroll } from '@/hooks/usePanelEdgeScroll';
 import AddToBagButton from '@/components/cart/AddToBagButton';
 
@@ -84,22 +85,30 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
 
           {/* ── CONTENT: right on desktop / bottom on mobile (scrolls with the image) ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] lg:max-w-[540px] gap-2 lg:gap-2.5 py-0">
+            {/* Visual Breadcrumb Navigation */}
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Products', href: '/collection' },
+                { label: 'Aura' },
+              ]}
+            />
 
             {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />
 
-            {/* Title */}
+            {/* Primary H1 */}
             <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] lg:text-[34px] leading-[1.08] tracking-tight">
-              AURA&nbsp;·&nbsp;Pearl Skinwear SPF&nbsp;40
+              Aura — Pearl Sunscreen SPF 40 PA++++
             </h1>
 
-            {/* Description */}
+            {/* Description weaving secondary keywords: broad spectrum sunscreen, sunscreen for dry skin, climate-smart sunscreen, pearl sunscreen, dewy finish sunscreen */}
             <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] lg:text-[13.5px] leading-[1.4] mt-0.5 space-y-0.5">
               <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px]">
-                Pearls that melt into sun protection.
+                Encapsulated pearls that melt into climate-smart sun protection.
               </p>
               <p className="w-full text-left">
-                Beads that break on your skin and sink in. No white cast. A soft, dewy finish. Every skin tone, every Indian weather. Easiest absorption ever.
+                Aura is an innovative pearl sunscreen with skincare beads that break on contact. A hydrating broad spectrum sunscreen for dry skin and fluctuating weather, delivering broad-spectrum SPF 40 PA++++ with a luminous dewy finish and zero white cast.
               </p>
             </div>
 
