@@ -17,7 +17,7 @@ const STATS: Stat[] = [
 ];
 
 const BG_IMAGE_DESKTOP = '/pdp/origin-why-desktop.webp';
-const BG_IMAGE_MOBILE = '/pdp/origin-why-mobile.webp';
+const BG_IMAGE_MOBILE = '/Origin, second frame.jpeg';
 
 export default function OriginWhy() {
   const statsRef = useRef<HTMLDivElement>(null);
