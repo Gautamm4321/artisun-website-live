@@ -8,7 +8,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePanelEdgeScroll } from '@/hooks/usePanelEdgeScroll';
 import AddToBagButton from '@/components/cart/AddToBagButton';
 
-const BADGES = ['SPF 40', 'PA++++', 'All weathers', 'ALL SKIN TYPES'];
+const BADGES = ['SPF 40', 'PA++++', 'All weathers', '50gm'];
 
 // GALLERY array me video add karein:
 const GALLERY = [
@@ -87,20 +87,20 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
           {/* ── CONTENT: right on desktop / bottom on mobile (scrolls with the image) ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] lg:max-w-[540px] gap-2 lg:gap-2.5 py-0">
             {/* Visual Breadcrumb Navigation */}
-            <Breadcrumbs
+            {/* <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },
                 { label: 'Products', href: '/collection' },
                 { label: 'Aura' },
               ]}
-            />
+            /> */}
 
             {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />
 
             {/* Primary H1 */}
             <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] lg:text-[34px] leading-[1.08] tracking-tight">
-              Aura — Pearl Sunscreen SPF 40 PA++++
+              Aura Pearl Sunscreen SPF 40 PA++++
             </h1>
 
             {/* Description weaving secondary keywords: broad spectrum sunscreen, sunscreen for dry skin, climate-smart sunscreen, pearl sunscreen, dewy finish sunscreen */}

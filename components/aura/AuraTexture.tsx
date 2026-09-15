@@ -47,14 +47,14 @@ export default function AuraTexture() {
         </span>
 
         {/* Exact Center Heading */}
-        <h2 className="font-editorial text-[clamp(24px,4vw,56px)] leading-[1.08] text-white tracking-tight text-center drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] max-w-[900px]">
+        <h2 className="font-editorial text-[clamp(24px,4vw,56px)] leading-[1.08] text-[#E8DCC8] tracking-tight text-center drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] max-w-[900px]">
           Pillows of gel that vanish<br />
           the second they touch skin.
         </h2>
 
         {/* Subtext: Perfectly aligned 3 lines parallel to heading */}
         <div className="w-full max-w-[900px] mt-2 lg:mt-3 flex justify-center px-4">
-          <p className="font-suisse text-[12.5px] sm:text-[14px] lg:text-[17px] leading-[1.4] lg:leading-[1.6] text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-center max-w-[300px] sm:max-w-[360px] lg:max-w-[48ch]">
+          <p className="font-suisse text-[12.5px] sm:text-[14px] lg:text-[17px] leading-[1.4] lg:leading-[1.6] text-[#E8DCC8]/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-center max-w-[300px] sm:max-w-[360px] lg:max-w-[48ch]">
             Our texture shifts from fluid to plush as you<br />
             smooth it on, then disappears into skin. No<br />
             heaviness. No grease. No film sitting on top.

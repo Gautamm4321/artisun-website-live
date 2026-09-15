@@ -31,7 +31,7 @@ export default function AuraDiff() {
           </div>
 
           {/* Headline (Fitted cleanly on desktop) */}
-          <h2 className="font-editorial text-[var(--brand-cream)] text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.08] tracking-tight font-normal mb-1.5 lg:mb-2">
+          <h2 className="font-editorial text-[#E8DCC8] text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.08] tracking-tight font-normal mb-1.5 lg:mb-2">
             Two things in one pearl: protection, and skincare.
           </h2>
 
@@ -61,10 +61,10 @@ export default function AuraDiff() {
 
               <div className="p-4 sm:p-5 lg:p-5 flex flex-col flex-1 justify-between">
                 <div>
-                  <div className="text-[10px] sm:text-[11px] font-serif  mb-0.5">
-                    01 &mdash; The pearl
+                  <div className="text-[12px] sm:text-[13px] font-serif  mb-0.5">
+                    THE PEARL
                   </div>
-                  <h3 className="font-editorial text-xl sm:text-2xl text-[var(--brand-cream)] font-normal mb-1 tracking-tight">
+                  <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal mb-1 tracking-tight">
                     The protection.
                   </h3>
                   <p className="font-sans text-xs sm:text-[12.5px] lg:text-[13px] leading-[1.45] text-[var(--brand-cream)]/85 font-light">
@@ -104,10 +104,10 @@ export default function AuraDiff() {
 
               <div className="p-4 sm:p-5 lg:p-5 flex flex-col flex-1 justify-between">
                 <div>
-                  <div className="text-[10px] sm:text-[11px] font-serif  mb-0.5">
-                    02 &mdash; The gel
+                  <div className="text-[12px] sm:text-[13px] font-serif  mb-0.5">
+                   THE JEL
                   </div>
-                  <h3 className="font-editorial text-xl sm:text-2xl text-[var(--brand-cream)] font-normal mb-1 tracking-tight">
+                  <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal mb-1 tracking-tight">
                     The skincare.
                   </h3>
                   <p className="font-sans text-xs sm:text-[12.5px] lg:text-[13px] leading-[1.45] text-[var(--brand-cream)]/85 font-light">

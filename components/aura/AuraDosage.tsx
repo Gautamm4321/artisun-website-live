@@ -57,7 +57,7 @@ export default function AuraDosage() {
           <span className="font-suisse text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[var(--brand-cream)]/70">
             How to wear
           </span>
-          <h2 className="font-editorial text-[22px] sm:text-[36px] lg:text-[48px] leading-[1.08] tracking-tight mt-1 text-white">
+          <h2 className="font-editorial text-[22px] sm:text-[36px] lg:text-[48px] leading-[1.08] tracking-tight mt-1 text-[#E8DCC8]">
             The first sunscreen that changes with the weather.
           </h2>
           <p className="font-suisse text-[11.5px] sm:text-[13.5px] text-[var(--brand-cream)]/80 mt-1.5 leading-[1.45]">
@@ -83,7 +83,7 @@ export default function AuraDosage() {
 
           {/* Bottom Card Glass Overlay */}
           <div className="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md p-4 border border-white/10 z-20">
-            <span className="font-editorial text-base sm:text-lg block font-semibold text-white">
+            <span className="font-editorial text-[#E8DCC8] text-base sm:text-lg block font-semibold">
               {current.weather}
             </span>
             <span className="font-suisse text-[11px] sm:text-xs text-[var(--brand-cream)]/85 block mt-0.5 leading-snug">

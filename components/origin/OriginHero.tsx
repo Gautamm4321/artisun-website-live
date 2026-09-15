@@ -87,20 +87,20 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
           {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP: Info & Compact Navigation Copy ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] lg:max-w-[540px] gap-2 lg:gap-2.5 py-0">
             {/* Visual Breadcrumb Navigation */}
-            <Breadcrumbs
+            {/* <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },
                 { label: 'Products', href: '/collection' },
                 { label: 'Origin' },
               ]}
-            />
+            /> */}
 
             {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />
 
             {/* Primary H1 */}
             <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] lg:text-[34px] leading-[1.08] tracking-tight">
-              Origin — 4-in-1 Milk Sunscreen SPF 50+
+              Origin 4-in-1 Milk Sunscreen SPF 50+
             </h1>
 
             {/* Description weaving secondary keywords: sunscreen for oily skin, broad spectrum sunscreen, lightweight sunscreen, sunscreen serum, no white cast */}

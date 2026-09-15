@@ -264,7 +264,7 @@ export default function AuraQuestions() {
           FAQS
         </span>
         
-        <h2 className="self-center font-editorial text-white text-[32px] sm:text-[42px] lg:text-[48px] leading-tight mt-2 text-center not-italic">
+        <h2 className="self-center font-editorial text-[#E8DCC8] text-[32px] sm:text-[42px] lg:text-[48px] leading-tight mt-2 text-center not-italic">
           Everything, answered.
         </h2>
 
@@ -329,7 +329,7 @@ export default function AuraQuestions() {
                       aria-expanded={isOpen}
                       className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 text-left text-[var(--brand-cream)] group"
                     >
-                      <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-white transition-colors flex-1">
+                      <span className="font-editorial text-[#E8DCC8] text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors flex-1">
                         {item.q}
                       </span>
                       <Chevron open={isOpen} />
@@ -363,7 +363,7 @@ export default function AuraQuestions() {
                         <span className="block font-suisse text-[9.5px] uppercase tracking-widest text-[var(--brand-cream)]/60 mb-0.5">
                           {res.category}
                         </span>
-                        <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-white transition-colors">
+                        <span className="font-editorial text-[#E8DCC8] text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors">
                           {res.item.q}
                         </span>
                       </div>

@@ -88,8 +88,8 @@ export default function SkinwearImageReveal() {
             style={{ opacity: textOpacity, y: textY }}
             className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center px-4"
           >
-            <h1 className="font-editorial whitespace-nowrap text-[clamp(1.4rem,4.2vw,3rem)] text-[var(--brand-cream)] leading-none tracking-[-0.01em] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)] text-center">
-              Skinwear.
+            <h1 className="font-editorial whitespace-nowrap text-[clamp(1.3rem,4.1vw,2.2rem)] text-[var(--brand-cream)] leading-none tracking-[-0.01em] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)] text-center">
+              Our word for a thing that didn’t have one.
             </h1>
             <span className="sr-only">Our word for a thing that didn’t have one.</span>
           </motion.div>

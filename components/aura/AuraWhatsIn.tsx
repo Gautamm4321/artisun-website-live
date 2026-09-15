@@ -59,10 +59,10 @@ export default function AuraWhatsIn() {
       <div className="relative z-10 h-full w-full max-w-[1440px] mx-auto flex flex-col justify-start lg:justify-between">
         {/* Heading */}
         <div className="shrink-0">
-          <span className="font-suisse text-[11px] sm:text-xs tracking-[0.22em] uppercase text-[var(--brand-cream)]/70">
+          <span className="font-suisse text-[11px] sm:text-xs tracking-[0.22em] uppercase text-[#E8DCC8]/70">
             What&apos;s in it
           </span>
-          <h2 className="font-editorial text-[24px] sm:text-[38px] lg:text-[54px] leading-[1.08] tracking-tight mt-2 max-w-[18ch]">
+        <h2 className="font-editorial text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.03] text-[#E8DCC8] tracking-tight mt-2 max-w-[18ch]">
             Sourced better than they needed to be.
           </h2>
         </div>
