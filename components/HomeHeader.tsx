@@ -82,13 +82,16 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
        • the transform is written as one translate3d + scale string, keeping
          the element on its own compositor layer for the whole flight.
 
-     Mobile-only smoothing fix: mobile frame timing is far less stable than
-     desktop (GPU contention, address-bar animation, momentum-scroll
-     recalcs), so a fixed per-frame lerp factor (0.18) produces visibly
-     inconsistent follow speed frame-to-frame — that's the "wobble." On
-     mobile we instead use a time-normalized exponential follow based on
-     actual elapsed ms, so the ease converges at a consistent RATE regardless
-     of frame timing. Desktop keeps the original per-frame lerp untouched.
+     Mobile wobble fix (v2): ANY trailing filter on mobile — even the
+     time-normalized exponential follow tried before — makes the wordmark
+     move out of phase with the page. Touch scrolling is already smooth
+     (native momentum, or Lenis when it drives the scroll), so smoothing it
+     again means the logo lags the content and then catches up: that
+     rubber-banding is the wobble. On mobile the morph is now a PURE
+     function of scrollY — zero smoothing, locked 1:1 to the page — and the
+     translate is snapped to physical device pixels so the scaled bitmap
+     can't shimmer on sub-pixel positions. Desktop keeps its light lerp,
+     where mouse-wheel steps genuinely need it.
      ───────────────────────────────────────────────────────────────────── */
   useEffect(() => {
     const img = wordmarkRef.current;
@@ -101,9 +104,8 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     let smoothed = 0;        // eased progress actually painted
     let rafId = 0;
     let navOpacity = -1;     // cached so we only touch the DOM on change
-    let lastTime = performance.now();
+    let lastPainted = -1;    // last progress written to the DOM
     const isMobile = window.innerWidth < 768;
-    const MOBILE_TAU = 110;  // ms — smoothing time-constant, tune to taste
 
     img.style.transformOrigin = 'left top';
     img.style.willChange = 'transform';
@@ -130,8 +132,14 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     };
 
     const paint = (p: number) => {
+      lastPainted = p;
       const s = 1 + (geo.scale - 1) * p;
-      img.style.transform = `translate3d(${geo.tx * p}px, ${geo.ty * p}px, 0) scale(${s})`;
+      // Snap the translate to PHYSICAL pixels: a large bitmap being scaled
+      // while sitting on fractional positions shimmers on mobile GPUs.
+      const dpr = window.devicePixelRatio || 1;
+      const x = Math.round(geo.tx * p * dpr) / dpr;
+      const y = Math.round(geo.ty * p * dpr) / dpr;
+      img.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
 
       // Header bar + controls fade in over the back half of the flight.
       const o = p < 0.5 ? 0 : Math.min(1, (p - 0.5) / 0.4);
@@ -143,25 +151,19 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     };
 
     const tick = () => {
-      const now = performance.now();
-      const dt = now - lastTime;
-      lastTime = now;
-
       const target = Math.min(1, Math.max(0, window.scrollY / travel));
 
       if (isMobile) {
-        // Time-normalized exponential follow: same convergence RATE
-        // regardless of frame timing, so uneven mobile frame deltas don't
-        // read as wobble.
-        const alpha = 1 - Math.exp(-dt / MOBILE_TAU);
-        smoothed += (target - smoothed) * alpha;
+        // Locked 1:1 to the page — the scroll source is already smooth on
+        // touch, so any easing here only phases the logo against the content.
+        smoothed = target;
       } else {
         // Original per-frame follow, unchanged for desktop.
         smoothed += (target - smoothed) * 0.18;
+        if (Math.abs(target - smoothed) < 0.0004) smoothed = target;
       }
 
-      if (Math.abs(target - smoothed) < 0.0004) smoothed = target;
-      paint(smoothed);
+      if (smoothed !== lastPainted) paint(smoothed);
       rafId = requestAnimationFrame(tick);
     };
 

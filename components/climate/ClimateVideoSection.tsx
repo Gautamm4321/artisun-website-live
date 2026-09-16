@@ -143,16 +143,37 @@ export default function ClimateVideoSection() {
       ref={sectionRef}
       className="relative w-full z-20"
       style={{
-        // Fallback to the panel's own fill color. If this variable is ever
-        // undefined (or any layout gap exposes it), it now matches the panel
-        // instead of falling through to a black/default background.
-        background: 'var(--bg-eclipse, var(--bg-eclipse-fill))',
+        // The dark, element-relative fill — NOT the viewport-locked eclipse.
+        // This section is ~2.5 viewports tall (pin spacer included), so any
+        // sliver of it that peeks out (iOS Safari's collapsed-URL-bar strip
+        // below the pinned 100svh panel) previously showed a bright slice of
+        // --bg-eclipse that shifted as the page scrolled. The fill variant
+        // stays dark everywhere, so an exposed sliver reads as the panel.
+        background: 'var(--bg-eclipse-fill)',
       }}
     >
       <div
         ref={pinRef}
-        className="relative w-full h-[100svh] min-h-[620px] overflow-hidden flex flex-col lg:flex-row"
+        className="relative w-full h-[100svh] min-h-[620px] flex flex-col lg:flex-row"
       >
+        {/* ── iOS Safari viewport bleed ──
+            While the URL bar is collapsed mid-scroll the visible viewport is
+            TALLER than 100svh, so a strip opens up under this pinned panel
+            (right above the progress bar / browser chrome). This bleed hangs
+            off the pinned element itself — it rides along while pinned — and
+            continues the right panel's bottom-anchored ellipse downward with
+            the same stops, so the strip is the same surface, not a different
+            gradient. The next section (z-20, later in DOM) paints over it
+            once the pin releases. NOTE: the wrapper above must NOT clip
+            (`overflow-hidden` removed); the image stack clips itself. */}
+        <div
+          aria-hidden
+          className="lg:hidden absolute top-full left-0 right-0 h-[30vh] pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 0%, #3D0407 0%, #260306 40%, #180305 70%, #0E0203 100%)',
+          }}
+        />
         {/* ── TOP (80%) on Mobile & Tablets / LEFT (66%) on Laptop ──
             `shrink-0` pins this to exactly 80svh regardless of what the
             sibling panel needs — without it, the flex-1 panel below could

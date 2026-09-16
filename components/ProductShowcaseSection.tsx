@@ -193,8 +193,13 @@ export default function ProductShowcaseSection() {
       }
 
       if (revolveRef.current) {
+        // Vertical roll: 0 → -50% of the drum's own (200%) height, i.e. from
+        // Origin's sky to Aura's. Smoothstepped so it lingers at either end
+        // and moves fastest right at the product swap — the horizon sweep
+        // lands together with the bottle handoff.
+        const roll = t * t * (3 - 2 * t);
         revolveRef.current.style.transform =
-          `rotate(${(t * 210).toFixed(2)}deg) scale(1.9)`;
+          `translate3d(0, ${(-roll * 50).toFixed(3)}%, 0)`;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -217,19 +222,39 @@ export default function ProductShowcaseSection() {
           'var(--bg-eclipse)',
       }}
     >
-      {/* ── Revolving gradient. Rotated by scroll in the ScrollTrigger above, so
-          the whole field appears to turn with the bottle. Kept at partial opacity
-          and oversized (scale 1.9) so its edges never enter frame while turning. ── */}
+      {/* ── Rolling environment. Was a conic-gradient spun in-plane, which read
+          as a flat 180° turn. Now a 200%-tall "drum" of two skies: Origin's
+          sky glows from the FLOOR, Aura's glows from the CEILING, and both
+          share the same #FF2A17 horizon color where they meet. Scroll
+          translates the drum VERTICALLY (see the rAF below), so through the
+          product swap a bright horizon line sweeps up the screen and the
+          whole sky arrives flipped — the environment turning over, rather
+          than a gradient sliding sideways. ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
           ref={revolveRef}
-          className="absolute inset-0 opacity-[0.38] will-change-transform"
-          style={{
-            transform: 'rotate(0deg) scale(1.9)',
-            background:
-              'conic-gradient(from 0deg at 50% 50%, #FF2A17 0deg, #4D0007 78deg, #A4000F 150deg, #220003 232deg, #A4000F 310deg, #FF2A17 360deg)',
-          }}
-        />
+          className="absolute left-0 right-0 top-0 h-[200%] opacity-[0.8] will-change-transform"
+          style={{ transform: 'translate3d(0, 0%, 0)' }}
+        >
+          {/* Origin's sky — ember glow rising from the floor (matches the
+              page's resting eclipse, so the section opens looking unchanged) */}
+          <div
+            className="absolute left-0 right-0 top-0 h-1/2"
+            style={{
+              background:
+                'radial-gradient(120% 85% at 50% 100%, #FF2A17 0%, #A4000F 34%, #4D0007 62%, #220003 100%)',
+            }}
+          />
+          {/* Aura's sky — the same horizon color overhead, falling away into
+              a deeper, moodier crimson night */}
+          <div
+            className="absolute left-0 right-0 bottom-0 h-1/2"
+            style={{
+              background:
+                'radial-gradient(120% 85% at 50% 0%, #FF2A17 0%, #7E0110 30%, #33020C 62%, #140209 100%)',
+            }}
+          />
+        </div>
         {/* Softens the conic's hard colour seams into the page gradient. */}
         <div
           className="absolute inset-0"
