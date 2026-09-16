@@ -80,6 +80,30 @@ export default function ClimateVideoSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // ── Fit the pinned panel to the REAL visible viewport (mobile) ──
+    // iOS Safari's URL bar collapses while scrolling, making the visible
+    // viewport TALLER than 100svh — which opened a strip of foreign
+    // background under this panel, right above the browser chrome. CSS
+    // 100dvh can't fix it: ScrollTrigger locks a pinned element's measured
+    // pixel height at refresh time. window.innerHeight, however, tracks the
+    // dynamic viewport live — so the panel's inline height is glued to it on
+    // every viewport resize (the bar collapsing/expanding fires these).
+    // That out-writes the pin lock, so the panel's bottom edge — progress
+    // bars included — sits on the true bottom of the screen in BOTH toolbar
+    // states, and only the section is ever visible.
+    const pinEl = pinRef.current;
+    const fitToViewport =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 1023px)').matches;
+    const fit = () => {
+      if (pinEl) pinEl.style.height = `${window.innerHeight}px`;
+    };
+    if (fitToViewport) {
+      fit();
+      window.addEventListener('resize', fit);
+      window.visualViewport?.addEventListener('resize', fit);
+    }
+
     const ctx = gsap.context(() => {
       // Initial state setup
       imageRefs.current.forEach((el, i) => el && gsap.set(el, { opacity: i === 0 ? 1 : 0 }));
@@ -120,7 +144,14 @@ export default function ClimateVideoSection() {
       render(0);
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      if (fitToViewport) {
+        window.removeEventListener('resize', fit);
+        window.visualViewport?.removeEventListener('resize', fit);
+        if (pinEl) pinEl.style.height = '';
+      }
+      ctx.revert();
+    };
   }, []);
 
   // ── The swap itself (climate-transition.html mechanic) ──

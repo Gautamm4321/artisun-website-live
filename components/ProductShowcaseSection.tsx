@@ -193,13 +193,13 @@ export default function ProductShowcaseSection() {
       }
 
       if (revolveRef.current) {
-        // Vertical roll: 0 → -50% of the drum's own (200%) height, i.e. from
-        // Origin's sky to Aura's. Smoothstepped so it lingers at either end
-        // and moves fastest right at the product swap — the horizon sweep
-        // lands together with the bottle handoff.
+        // Half-orbit: 0° (glow at the floor) → 180° (glow overhead),
+        // swinging past the RIGHT edge — the same side Aura enters from.
+        // Smoothstepped so it lingers at either pole and sweeps fastest
+        // exactly at the product handoff.
         const roll = t * t * (3 - 2 * t);
         revolveRef.current.style.transform =
-          `translate3d(0, ${(-roll * 50).toFixed(3)}%, 0)`;
+          `rotate(${(-roll * 180).toFixed(2)}deg) scale(1.9)`;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -222,39 +222,27 @@ export default function ProductShowcaseSection() {
           'var(--bg-eclipse)',
       }}
     >
-      {/* ── Rolling environment. Was a conic-gradient spun in-plane, which read
-          as a flat 180° turn. Now a 200%-tall "drum" of two skies: Origin's
-          sky glows from the FLOOR, Aura's glows from the CEILING, and both
-          share the same #FF2A17 horizon color where they meet. Scroll
-          translates the drum VERTICALLY (see the rAF below), so through the
-          product swap a bright horizon line sweeps up the screen and the
-          whole sky arrives flipped — the environment turning over, rather
-          than a gradient sliding sideways. ── */}
+      {/* ── Orbiting-sun environment. One huge glow field pivoted around the
+          screen centre: the ember core starts at the FLOOR (matching the
+          page's resting eclipse) and scroll swings it around the RIGHT edge
+          up to the CEILING — a half-orbit, driven in the rAF below. A radial
+          gradient's iso-colour rings are circles, so the falloff bands ARC
+          across the frame as it turns — that curvature is what reads as the
+          background being a rotating 3D sphere, which neither a flat
+          translate nor an in-plane conic spin can produce. The glow sits at
+          50% 76% of the layer: with scale(1.9) about the centre, that lands
+          the core exactly on the frame's edge, so it rides the rim for the
+          whole orbit while the layer's own edges stay out of view. ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
           ref={revolveRef}
-          className="absolute left-0 right-0 top-0 h-[200%] opacity-[0.8] will-change-transform"
-          style={{ transform: 'translate3d(0, 0%, 0)' }}
-        >
-          {/* Origin's sky — ember glow rising from the floor (matches the
-              page's resting eclipse, so the section opens looking unchanged) */}
-          <div
-            className="absolute left-0 right-0 top-0 h-1/2"
-            style={{
-              background:
-                'radial-gradient(120% 85% at 50% 100%, #FF2A17 0%, #A4000F 34%, #4D0007 62%, #220003 100%)',
-            }}
-          />
-          {/* Aura's sky — the same horizon color overhead, falling away into
-              a deeper, moodier crimson night */}
-          <div
-            className="absolute left-0 right-0 bottom-0 h-1/2"
-            style={{
-              background:
-                'radial-gradient(120% 85% at 50% 0%, #FF2A17 0%, #7E0110 30%, #33020C 62%, #140209 100%)',
-            }}
-          />
-        </div>
+          className="absolute inset-0 opacity-[0.85] will-change-transform"
+          style={{
+            transform: 'rotate(0deg) scale(1.9)',
+            background:
+              'radial-gradient(circle at 50% 76%, #FF2A17 0%, #A4000F 13%, #4D0007 30%, #220003 47%, #120205 66%, #0A0306 100%)',
+          }}
+        />
         {/* Softens the conic's hard colour seams into the page gradient. */}
         <div
           className="absolute inset-0"
