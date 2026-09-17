@@ -283,7 +283,7 @@ export default function EarthSection() {
 
       {/* Text block */}
       <div className="absolute bottom-[10%] left-0 w-full px-4 md:px-6 z-20 flex flex-col items-center text-center pointer-events-none">
-        <div className="w-full max-w-[95vw] xl:max-w-[1400px] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em] font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-tight text-white">
+        <div className="w-full max-w-[95vw] xl:max-w-[1400px] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em] font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-tight text-[#E8DCC8]">
           {earthTitle.split(" ").map((word, i) => (
             <span
               key={`et-${i}`}
@@ -294,7 +294,7 @@ export default function EarthSection() {
             </span>
           ))}
         </div>
-        <div className="w-full max-w-[95vw] xl:max-w-[1400px] mt-1 md:mt-2 flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em] font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-tight text-white/70">
+        <div className="w-full max-w-[95vw] xl:max-w-[1400px] mt-1 md:mt-2 flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em] font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-tight text-[#E8DCC8]/70">
           {earthSubtitle.split(" ").map((word, i) => (
             <span
               key={`es-${i}`}

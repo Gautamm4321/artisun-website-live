@@ -54,7 +54,7 @@ export default function AuraDiff() {
                   className="object-cover opacity-90"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-white/60">
+                <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-[#E8DCC8]/60">
                   Image &mdash; The Pearls, Macro
                 </span>
               </div>
@@ -97,7 +97,7 @@ export default function AuraDiff() {
                   className="object-cover opacity-90"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-white/60">
+                <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-[#E8DCC8]/60">
                   Image &mdash; The Gel, Macro
                 </span>
               </div>

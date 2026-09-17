@@ -379,7 +379,7 @@ export default function ClimateHero() {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="text-center text-xs md:text-sm opacity-80 mt-6 font-sans font-light tracking-wide bg-black/20 px-4 py-2 border border-white/5 rounded-full"
       >
-        <span className="font-medium text-white">Reapply:</span> {activeConfig.reapplyLine}
+        <span className="font-medium text-[#E8DCC8]">Reapply:</span> {activeConfig.reapplyLine}
       </motion.p>
     </section>
   );

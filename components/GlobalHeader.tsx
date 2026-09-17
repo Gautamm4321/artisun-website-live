@@ -188,7 +188,7 @@ export default function GlobalHeader() {
             type="button"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
-            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#E8DCC8] hover:bg-white/20 transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -301,7 +301,7 @@ export default function GlobalHeader() {
           </Link>
         </nav>
 
-        <div className="pt-4 border-t border-white/10 text-white/40 text-xs font-suisse tracking-wider uppercase">
+        <div className="pt-4 border-t border-white/10 text-[#E8DCC8]/40 text-xs font-suisse tracking-wider uppercase">
           Artisun Skinwear · 2026
         </div>
       </div>

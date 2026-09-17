@@ -25,7 +25,7 @@ export default function NotFound() {
         Out of range.
       </h1>
 
-      <p className="font-suisse text-[13px] sm:text-[15px] max-w-[380px] text-white/70 leading-relaxed mb-8">
+      <p className="font-suisse text-[13px] sm:text-[15px] max-w-[380px] text-[#E8DCC8]/70 leading-relaxed mb-8">
         The page or address you entered isn&rsquo;t here. Let&rsquo;s get you back to the collection.
       </p>
 

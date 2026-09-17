@@ -391,7 +391,7 @@ export default function ProductShowcaseSection() {
               <h2 className="font-editorial text-[clamp(44px,7.2vw,118px)] leading-[0.88] tracking-[-0.02em] whitespace-pre-line drop-shadow-md">
                 {product.leftTitle}
               </h2>
-              <p className="font-suisse text-[24px] leading-snug text-white/90 mt-5 tracking-wide">
+              <p className="font-suisse text-[24px] leading-snug text-[#E8DCC8]/90 mt-5 tracking-wide">
                 {product.leftSub}
               </p>
             </motion.div>
@@ -410,7 +410,7 @@ export default function ProductShowcaseSection() {
               <h2 className="font-editorial text-[clamp(44px,7.2vw,118px)] leading-[0.88] tracking-[-0.02em] whitespace-pre-line drop-shadow-md">
                 {product.rightTitle}
               </h2>
-              <p className="font-suisse text-[24px] leading-snug text-white/90 mt-5 tracking-wide">
+              <p className="font-suisse text-[24px] leading-snug text-[#E8DCC8]/90 mt-5 tracking-wide">
                 {product.rightSub}
               </p>
             </motion.div>
@@ -463,7 +463,7 @@ export default function ProductShowcaseSection() {
                   <p>Best for all weathers and cities.</p>
                 ) : (
                   <p>
-                    <span className="font-medium text-white">Best for:</span> When you need something to adjust to changing weathers.
+                    <span className="font-medium text-[#E8DCC8]">Best for:</span> When you need something to adjust to changing weathers.
                   </p>
                 )}
               </div>

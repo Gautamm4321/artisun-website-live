@@ -39,7 +39,7 @@ export default function ClimateSkinVsWeather() {
             className="font-sans text-[15px] sm:text-[17px] md:text-[18.5px] leading-[1.65] font-light opacity-90 text-[var(--brand-cream)]"
           >
             Every sunscreen asks the same question: oily or dry? But your skin isn&apos;t oily or dry in a fixed way.{' '}
-            <strong className="text-white font-medium">It changes the second the weather does</strong> — tight in a Delhi December, greasy in a Bombay July, dull in the September smog.
+            <strong className="text-[#E8DCC8] font-medium">It changes the second the weather does</strong> — tight in a Delhi December, greasy in a Bombay July, dull in the September smog.
           </motion.p>
 
           {/* Right Column (Turn) with spelling fix: "around climate" */}
@@ -50,7 +50,7 @@ export default function ClimateSkinVsWeather() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="space-y-4"
           >
-            <p className="font-editorial text-[20px] sm:text-[23px] md:text-[26px] leading-[1.25] tracking-tight text-white">
+            <p className="font-editorial text-[20px] sm:text-[23px] md:text-[26px] leading-[1.25] tracking-tight text-[#E8DCC8]">
               Skin type tells you a little. The weather tells you <em className="italic text-[#FF9B45]">everything.</em>
             </p>
             <p className="font-sans text-[14px] sm:text-[15.5px] leading-[1.65] font-light opacity-80 text-[var(--brand-cream)]">

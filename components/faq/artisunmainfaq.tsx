@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import GlobalHeader from '@/components/GlobalHeader';
 
 type QA = { q: string; a: string };
 type Category = { id: string; label: string; items: QA[] };
@@ -240,10 +239,10 @@ export default function ArtisunMainFAQ() {
     return (
         <div className="relative w-full min-h-screen text-[var(--brand-cream)] flex flex-col items-center">
             
-            {/* ── Site-wide Standard Red Eclipse Background from globals.css ── */}
-            <div className="artisun-bg" />
 
-            <GlobalHeader />
+            {/* GlobalHeader is rendered once by app/faq/page.tsx — a second
+                copy here stacked two fixed headers (and two mobile drawers)
+                on top of each other. */}
 
             <div className="relative z-10 w-full max-w-[920px] mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 pb-28 flex flex-col">
                 {/* Header Section */}
@@ -305,7 +304,7 @@ export default function ArtisunMainFAQ() {
                                         onClick={() => setOpenIndex(isOpen ? null : i)}
                                         className="w-full flex items-center justify-between gap-4 py-5 text-left group"
                                     >
-                                        <span className="font-editorial text-[18px] sm:text-[22px] lg:text-[24px] text-[var(--brand-cream)] leading-snug font-normal flex-1 tracking-tight group-hover:text-white transition-colors">
+                                        <span className="font-editorial text-[18px] sm:text-[22px] lg:text-[24px] text-[var(--brand-cream)] leading-snug font-normal flex-1 tracking-tight group-hover:text-[#E8DCC8] transition-colors">
                                             {item.q}
                                         </span>
 
@@ -346,14 +345,14 @@ export default function ArtisunMainFAQ() {
                             href="https://instagram.com/artisunskinwear"
                             target="_blank"
                             rel="noreferrer"
-                            className="text-[var(--brand-cream)] font-medium underline underline-offset-4 hover:text-white"
+                            className="text-[var(--brand-cream)] font-medium underline underline-offset-4 hover:text-[#E8DCC8]"
                         >
                             @artisunskinwear
                         </a>{' '}
                         or write to{' '}
                         <a
                             href="mailto:support@artisunskin.com"
-                            className="text-[var(--brand-cream)] font-medium underline underline-offset-4 hover:text-white"
+                            className="text-[var(--brand-cream)] font-medium underline underline-offset-4 hover:text-[#E8DCC8]"
                         >
                             support@artisunskin.com
                         </a>

@@ -153,8 +153,6 @@ export default function Collection({
 
   return (
     <div className="relative w-full min-h-screen pt-14 md:pt-16 pb-20 font-suisse antialiased text-[#242623]">
-      {/* Site-wide Red Eclipse Gradient Background */}
-      <div className="artisun-bg pointer-events-none" />
 
       <div className="relative z-10 w-full space-y-16 sm:space-y-24">
 
@@ -227,7 +225,7 @@ export default function Collection({
                 className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 transition-colors hover:bg-white/[0.12]"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FF9B45] shadow-[0_0_8px_#FF9B45] shrink-0" />
-                <span className="font-suisse text-[10px] sm:text-[11px] lg:text-[11.5px] tracking-[0.18em] uppercase font-medium text-white/90 whitespace-nowrap">
+                <span className="font-suisse text-[10px] sm:text-[11px] lg:text-[11.5px] tracking-[0.18em] uppercase font-medium text-[#E8DCC8]/90 whitespace-nowrap">
                   {badge}
                 </span>
               </div>
@@ -243,11 +241,11 @@ export default function Collection({
           <section id="products" className="w-full space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h2 className="font-editorial text-[32px] sm:text-[44px] leading-tight text-white mt-1">
+                <h2 className="font-editorial text-[32px] sm:text-[44px] leading-tight text-[#E8DCC8] mt-1">
                   Choose your layer.
                 </h2>
               </div>
-              <p className="font-suisse text-xs sm:text-sm text-white/80 max-w-[34ch]">
+              <p className="font-suisse text-xs sm:text-sm text-[#E8DCC8]/80 max-w-[34ch]">
                 Every formulation is certified broad spectrum SPF, photostable, and cast-free.
               </p>
             </div>
@@ -317,7 +315,7 @@ export default function Collection({
           ══════════════════════════════════════════════════ */}
           <section className="w-full space-y-6">
             <div className="text-center max-w-2xl mx-auto">
-              <h2 className="font-editorial text-[30px] sm:text-[40px] leading-tight text-white mt-1">
+              <h2 className="font-editorial text-[30px] sm:text-[40px] leading-tight text-[#E8DCC8] mt-1">
                 Tested by 30°C humidity, cold <br /> snaps, and real commutes.
               </h2>
             </div>
@@ -351,10 +349,10 @@ export default function Collection({
           ══════════════════════════════════════════════════ */}
           <section className="w-full max-w-[960px] mx-auto space-y-8">
             <div className="text-center">
-              <span className="text-[10px] sm:text-xs tracking-[0.24em] uppercase font-semibold text-white/70">
+              <span className="text-[10px] sm:text-xs tracking-[0.24em] uppercase font-semibold text-[#E8DCC8]/70">
                 Answers
               </span>
-              <h2 className="font-editorial text-[32px] sm:text-[42px] leading-tight text-white mt-1">
+              <h2 className="font-editorial text-[32px] sm:text-[42px] leading-tight text-[#E8DCC8] mt-1">
                 Questions people actually ask.
               </h2>
             </div>
@@ -368,10 +366,10 @@ export default function Collection({
                       onClick={() => setOpenFaq(isOpen ? null : index)}
                       className="w-full flex items-center justify-between text-left gap-4 group"
                     >
-                      <span className="font-editorial text-lg sm:text-xl text-white group-hover:text-white/80 transition-colors">
+                      <span className="font-editorial text-lg sm:text-xl text-[#E8DCC8] group-hover:text-[#E8DCC8]/80 transition-colors">
                         {faq.q}
                       </span>
-                      <span className="text-xl font-light text-white/75 shrink-0">
+                      <span className="text-xl font-light text-[#E8DCC8]/75 shrink-0">
                         {isOpen ? '−' : '+'}
                       </span>
                     </button>
@@ -381,7 +379,7 @@ export default function Collection({
                         }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="font-suisse text-xs sm:text-sm leading-relaxed text-white/85 pt-3">
+                        <p className="font-suisse text-xs sm:text-sm leading-relaxed text-[#E8DCC8]/85 pt-3">
                           {faq.a}
                         </p>
                       </div>

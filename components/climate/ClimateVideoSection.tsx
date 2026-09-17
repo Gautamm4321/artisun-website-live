@@ -251,7 +251,11 @@ export default function ClimateVideoSection() {
             {/* One panel. The copy is swapped underneath a fade rather than
                 cross-dissolving four stacked absolute layers — that is what the
                 source HTML does, and it reads as a deliberate replacement. */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-4 sm:px-8 lg:px-12 xl:px-16 pt-0.5 lg:pt-0 pb-6 sm:pb-8 lg:pb-20">
+            {/* Mobile: bottom-8/10 subtracts the segmented progress-bar zone
+                from the box before justify-center runs, so the heading+body
+                block sits dead-centre between the image's bottom edge and
+                the progress bar, centre-aligned. Desktop keeps inset-0. */}
+            <div className="absolute left-0 right-0 top-0 bottom-8 sm:bottom-10 lg:inset-0 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-4 sm:px-8 lg:px-12 xl:px-16 lg:pt-0 lg:pb-20">
               {/* Heading — fades over CITY_MS */}
               <h3
                 className="w-full font-editorial text-[var(--brand-cream)] text-[24px] xs:text-[27px] sm:text-[32px] lg:text-[42px] xl:text-[46px] leading-[1.04] tracking-tight mb-1 lg:mb-4 drop-shadow-sm will-change-[opacity]"

@@ -105,7 +105,7 @@ export default function CartDrawer() {
 
             {configured && lines.length === 0 && !error && (
               <div className="flex h-full min-h-[50vh] flex-col items-center justify-center gap-4 text-center">
-                <p className="font-suisse text-[15px] text-white/60">Your bag is empty.</p>
+                <p className="font-suisse text-[15px] text-[#E8DCC8]/60">Your bag is empty.</p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
@@ -172,7 +172,7 @@ export default function CartDrawer() {
                           type="button"
                           disabled={busy}
                           onClick={() => remove(l.id)}
-                          className="font-suisse text-[12px] text-white/50 underline underline-offset-2"
+                          className="font-suisse text-[12px] text-[#E8DCC8]/50 underline underline-offset-2"
                         >
                           Remove
                         </button>
@@ -202,7 +202,7 @@ export default function CartDrawer() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                    <span className="font-suisse text-[8.5px] text-[#E8DCC8]/80 leading-tight">
                       clean
                     </span>
                   </div>
@@ -217,7 +217,7 @@ export default function CartDrawer() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                    <span className="font-suisse text-[8.5px] text-[#E8DCC8]/80 leading-tight">
                       cruelty free
                     </span>
                   </div>
@@ -232,7 +232,7 @@ export default function CartDrawer() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                    <span className="font-suisse text-[8.5px] text-[#E8DCC8]/80 leading-tight">
                       paraben<br />free
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export default function CartDrawer() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-suisse text-[8.5px] text-white/80 leading-tight">
+                    <span className="font-suisse text-[8.5px] text-[#E8DCC8]/80 leading-tight">
                       vegan
                     </span>
                   </div>
@@ -270,7 +270,7 @@ export default function CartDrawer() {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-editorial text-[15px] text-white leading-tight truncate">
+                      <p className="font-editorial text-[15px] text-[#E8DCC8] leading-tight truncate">
                         {crossSellProduct.title}
                       </p>
                       <p className="font-suisse text-[11px] italic text-[#E8DAC7]/70 truncate mt-0.5">
@@ -278,7 +278,7 @@ export default function CartDrawer() {
                           ? 'Deep hydration · Pollution defence'
                           : 'Climate defence · Barrier repairing'}
                       </p>
-                      <p className="font-suisse text-[12.5px] font-medium text-white/90 mt-1">
+                      <p className="font-suisse text-[12.5px] font-medium text-[#E8DCC8]/90 mt-1">
                         {formatPrice(crossSellVariant.price)}
                       </p>
                     </div>
@@ -306,10 +306,10 @@ export default function CartDrawer() {
             </div>
 
             <div className="mb-1.5 flex justify-between font-suisse text-[14px]">
-              <span className="text-white/65">Subtotal</span>
+              <span className="text-[#E8DCC8]/65">Subtotal</span>
               <span>{formatPrice(cart.cost.subtotalAmount)}</span>
             </div>
-            <p className="mb-3 font-suisse text-[11px] text-white/55">
+            <p className="mb-3 font-suisse text-[11px] text-[#E8DCC8]/55">
               MRP incl. of all taxes
             </p>
             <button

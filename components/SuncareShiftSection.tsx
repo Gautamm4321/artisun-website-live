@@ -128,7 +128,7 @@ export default function SuncareShiftSection() {
       {/* Foreground Text */}
       <div
         aria-label={`${line1} ${line2} ${line3}`}
-        className="relative z-10 w-fit mx-auto text-left font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide text-white"
+        className="relative z-10 w-fit mx-auto text-left font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.2] tracking-wide text-[#E8DCC8]"
       >
 
         {/* Line 1 */}

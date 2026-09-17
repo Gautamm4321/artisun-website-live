@@ -13,6 +13,7 @@ import Footer from '../../components/Footer';
 import AboutHero from '../../components/about/AboutHero';
 import ProductScrollStory, { type StoryParagraph } from '../../components/about/ProductScrollStory';
 import FutureShowcase from '../../components/about/FutureShowcase';
+import MobileScrollFrame from '../../components/MobileScrollFrame';
 
 /* ── The Artisun perspective, split across the two products ─────────────── */
 const ORIGIN_PARAS: StoryParagraph[] = [
@@ -138,89 +139,94 @@ export default function AboutPage() {
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
 
-      {/* 1 — HERO */}
-      <AboutHero />
+      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
+          so nothing slides behind Safari's translucent status bar / bottom
+          controls (same mechanic as the Origin page). Desktop unaffected. */}
+      <MobileScrollFrame>
+        {/* 1 — HERO */}
+        <AboutHero />
 
-      <section className="relative z-16 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-16 lg:px-8 py-6 sm:py-8 md:py-12">
-        <div className="w-full space-y-3 sm:space-y-4 text-center">
-          <p className="font-suisse text-[var(--brand-cream)]/80 text-[14px] sm:text-[16px] md:text-[22px] lg:text-[24px] leading-[1.45] max-w-3xl mx-auto">
-            Artisun is an Indian sun-care house, built around the sun and the way we live with it. We make Skinwear&trade; — wearable layers that protect, hydrate, and move with the day.
-          </p>
-          <p className="font-suisse text-[var(--brand-cream)]/60 text-[13px] sm:text-[15px] md:text-[18px] leading-[1.4] max-w-2xl mx-auto hidden md:block">
-            For the Indian skin, for the Indian climate, and for real Indian days.
-          </p>
-        </div>
-      </section>
+        <section className="relative z-16 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-16 lg:px-8 py-6 sm:py-8 md:py-12">
+          <div className="w-full space-y-3 sm:space-y-4 text-center">
+            <p className="font-suisse text-[var(--brand-cream)]/80 text-[14px] sm:text-[16px] md:text-[22px] lg:text-[24px] leading-[1.45] max-w-3xl mx-auto">
+              Artisun is an Indian sun-care house, built around the sun and the way we live with it. We make Skinwear&trade; — wearable layers that protect, hydrate, and move with the day.
+            </p>
+            <p className="font-suisse text-[var(--brand-cream)]/60 text-[13px] sm:text-[15px] md:text-[18px] leading-[1.4] max-w-2xl mx-auto hidden md:block">
+              For the Indian skin, for the Indian climate, and for real Indian days.
+            </p>
+          </div>
+        </section>
 
-      {/* 1st — RIGHT */}
-      <ProductScrollStory
-        productLabel="Origin"
-        productSub=""
-        paragraphs={ORIGIN_PARAS}
-        images={['/about-story/beginning/1.webp', '/about-story/beginning/2.webp', '/about-story/beginning/3.webp']}
-        eyebrow="The Beginning"
-        heading={['It started with a', 'bottle in a drawer']}
-      />
+        {/* 1st — RIGHT */}
+        <ProductScrollStory
+          productLabel="Origin"
+          productSub=""
+          paragraphs={ORIGIN_PARAS}
+          images={['/about-story/beginning/1.webp', '/about-story/beginning/2.webp', '/about-story/beginning/3.webp']}
+          eyebrow="The Beginning"
+          heading={['It started with a', 'bottle in a drawer']}
+        />
 
-      {/* 2nd — LEFT */}
-      <ProductScrollStory
-        productLabel="Aura"
-        productSub="Pearl Skinwear"
-        paragraphs={AURA_PARAS}
-        images={['/about-story/problem/1.webp', '/about-story/problem/2.webp', '/about-story/problem/3.webp']}
-        flip
-        eyebrow="The Problem"
-        heading={['It was made for a lab.', "You don't live in one."]}
-      />
+        {/* 2nd — LEFT */}
+        <ProductScrollStory
+          productLabel="Aura"
+          productSub="Pearl Skinwear"
+          paragraphs={AURA_PARAS}
+          images={['/about-story/problem/1.webp', '/about-story/problem/2.webp', '/about-story/problem/3.webp']}
+          flip
+          eyebrow="The Problem"
+          heading={['It was made for a lab.', "You don't live in one."]}
+        />
 
-      {/* 3rd — RIGHT */}
-      <ProductScrollStory
-        productLabel="Origin"
-        productSub=""
-        paragraphs={ORIGIN_PARAS_2}
-        images={['/about-story/feeling/1.webp', '/about-story/feeling/2.webp', '/about-story/feeling/3.webp']}
-        eyebrow="The Feeling"
-        heading={['Fashion gets the world.', 'Skin gets a shelf.']}
-      />
+        {/* 3rd — RIGHT */}
+        <ProductScrollStory
+          productLabel="Origin"
+          productSub=""
+          paragraphs={ORIGIN_PARAS_2}
+          images={['/about-story/feeling/1.webp', '/about-story/feeling/2.webp', '/about-story/feeling/3.webp']}
+          eyebrow="The Feeling"
+          heading={['Fashion gets the world.', 'Skin gets a shelf.']}
+        />
 
-      {/* 4th — LEFT */}
-      <ProductScrollStory
-        productLabel="Aura"
-        productSub="Pearl Skinwear"
-        paragraphs={AURA_PARAS_2}
-        images={['/about-story/what-we-made/1.webp', '/about-story/what-we-made/2.webp', '/about-story/what-we-made/3.webp']}
-        flip
-        eyebrow="What We Made"
-        heading={['Sun care you', 'will want to wear.']}
-      />
+        {/* 4th — LEFT */}
+        <ProductScrollStory
+          productLabel="Aura"
+          productSub="Pearl Skinwear"
+          paragraphs={AURA_PARAS_2}
+          images={['/about-story/what-we-made/1.webp', '/about-story/what-we-made/2.webp', '/about-story/what-we-made/3.webp']}
+          flip
+          eyebrow="What We Made"
+          heading={['Sun care you', 'will want to wear.']}
+        />
 
-      {/* 5th — RIGHT */}
-      <ProductScrollStory
-        productLabel="Origin"
-        productSub=""
-        paragraphs={ORIGIN_PARAS_3}
-        images={['/about-story/what-we-call-it/1.webp', '/about-story/what-we-call-it/2.webp', '/about-story/what-we-call-it/3.webp']}
-        eyebrow="What We Call It"
-        heading={['Artisun Skinwear™']}
-      />
+        {/* 5th — RIGHT */}
+        <ProductScrollStory
+          productLabel="Origin"
+          productSub=""
+          paragraphs={ORIGIN_PARAS_3}
+          images={['/about-story/what-we-call-it/1.webp', '/about-story/what-we-call-it/2.webp', '/about-story/what-we-call-it/3.webp']}
+          eyebrow="What We Call It"
+          heading={['Artisun Skinwear™']}
+        />
 
-      {/* ── Breaker Image Section ── */}
-      <section className="relative z-16 w-full px-6 md:px-16 lg:px-24 py-8 md:py-12 mx-auto overflow-hidden flex flex-col items-center justify-center">
-        <div className="relative w-full h-[220px] md:h-[320px] lg:h-[440px] rounded-[10px] overflow-hidden">
-          <Image
-            src={asset('/Artisun about us last.webp')}
-            alt="Artisun sun care"
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-      </section>
+        {/* ── Breaker Image Section ── */}
+        <section className="relative z-16 w-full px-6 md:px-16 lg:px-24 py-8 md:py-12 mx-auto overflow-hidden flex flex-col items-center justify-center">
+          <div className="relative w-full h-[220px] md:h-[320px] lg:h-[440px] rounded-[10px] overflow-hidden">
+            <Image
+              src={asset('/Artisun about us last.webp')}
+              alt="Artisun sun care"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        </section>
 
-      {/* 3 — IN YEARS TO COME */}
-      <FutureShowcase />
+        {/* 3 — IN YEARS TO COME */}
+        <FutureShowcase />
 
-      <Footer />
+        <Footer />
+      </MobileScrollFrame>
     </main>
   );
 }

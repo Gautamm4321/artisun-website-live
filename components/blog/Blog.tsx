@@ -19,7 +19,7 @@ const TOC_ITEMS = [
 
 export default function Blog() {
   return (
-    <div className="relative w-full min-h-screen pt-32 sm:pt-40 md:pt-48 pb-24 px-6 sm:px-12 md:px-16 font-suisse antialiased text-white selection:bg-[#A52A2C] selection:text-white">
+    <div className="relative w-full min-h-screen pt-32 sm:pt-40 md:pt-48 pb-24 px-6 sm:px-12 md:px-16 font-suisse antialiased text-[#E8DCC8] selection:bg-[#A52A2C] selection:text-[#E8DCC8]">
       {/* Site-wide Eclipse Background */}
       <div className="artisun-bg fixed inset-0 -z-10" />
 
@@ -28,17 +28,17 @@ export default function Blog() {
         {/* Hero / Header Section */}
         <header className="space-y-6">
           {/* Eyebrow */}
-          <div className="text-[12px] tracking-[0.28em] uppercase font-semibold text-white/80">
+          <div className="text-[12px] tracking-[0.28em] uppercase font-semibold text-[#E8DCC8]/80">
             ISO 24442
           </div>
 
           {/* Main Title */}
-          <h1 className="font-editorial text-4xl sm:text-6xl md:text-[68px] lg:text-[76px] font-light leading-[1.04] tracking-tight text-white">
+          <h1 className="font-editorial text-4xl sm:text-6xl md:text-[68px] lg:text-[76px] font-light leading-[1.04] tracking-tight text-[#E8DCC8]">
             What Is PA in Sunscreen? PA+ to PA++++, Explained
           </h1>
 
           {/* Article Meta */}
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-3 text-[14px] tracking-wide font-light text-white/80">
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-3 text-[14px] tracking-wide font-light text-[#E8DCC8]/80">
             <span>Artisun Skinwear</span>
             <span>August 15, 2026</span>
             <span>10 min read</span>
@@ -47,7 +47,7 @@ export default function Blog() {
 
         {/* ── Table of Contents (Transparent Box) ── */}
         <section className="w-full rounded-2xl p-6 sm:p-10 bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
-          <div className="text-[12px] tracking-[0.26em] uppercase font-semibold text-white/60 mb-6">
+          <div className="text-[12px] tracking-[0.26em] uppercase font-semibold text-[#E8DCC8]/60 mb-6">
             In this article
           </div>
 
@@ -58,10 +58,10 @@ export default function Blog() {
                 href={`#${item.id}`}
                 className="group flex items-center justify-between py-3.5 text-[14.5px] sm:text-[15.5px] font-light transition-all duration-150"
               >
-                <span className="text-white underline underline-offset-4 decoration-white/40 group-hover:decoration-white transition-colors">
+                <span className="text-[#E8DCC8] underline underline-offset-4 decoration-white/40 group-hover:decoration-white transition-colors">
                   {item.label}
                 </span>
-                <span className="text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all text-base pl-4">
+                <span className="text-[#E8DCC8]/70 group-hover:text-[#E8DCC8] group-hover:translate-x-1 transition-all text-base pl-4">
                   &rarr;
                 </span>
               </a>
@@ -70,7 +70,7 @@ export default function Blog() {
         </section>
 
         {/* ── Lead Paragraph ── */}
-        <div className="text-[15px] sm:text-[16px] leading-[1.75] font-light text-white pt-4">
+        <div className="text-[15px] sm:text-[16px] leading-[1.75] font-light text-[#E8DCC8] pt-4">
           <p>
             PA is a sunscreen&apos;s UVA rating, set by the Japanese grading system and measured by the persistent
             pigment darkening test in ISO 24442. PA+ means a UVA protection factor of 2 to under 4, PA++ is 4 to
@@ -79,12 +79,12 @@ export default function Blog() {
         </div>
 
         {/* ── Article Sections ── */}
-        <div className="space-y-14 sm:space-y-16 text-[14.5px] sm:text-[16px] leading-[1.75] font-light text-white">
+        <div className="space-y-14 sm:space-y-16 text-[14.5px] sm:text-[16px] leading-[1.75] font-light text-[#E8DCC8]">
 
           {/* Section 1 */}
           <section id="what-pa-measures-and-what-spf-leaves-out" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 What PA measures, and what SPF leaves out
               </h2>
             </div>
@@ -102,7 +102,7 @@ export default function Blog() {
           {/* Section 2 */}
           <section id="the-four-bands-and-the-numbers-underneath-them" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 The four bands, and the numbers underneath them
               </h2>
             </div>
@@ -114,7 +114,7 @@ export default function Blog() {
             <div className="overflow-x-auto my-6 border-y border-white/15 py-3">
               <table className="w-full text-left border-collapse text-[14px] sm:text-[15px]">
                 <thead>
-                  <tr className="border-b border-white/15 font-medium text-white/70">
+                  <tr className="border-b border-white/15 font-medium text-[#E8DCC8]/70">
                     <th className="py-3 pr-6 font-normal">Rating</th>
                     <th className="py-3 px-6 font-normal">UVA protection factor</th>
                     <th className="py-3 pl-6 font-normal">What that means in practice</th>
@@ -122,24 +122,24 @@ export default function Blog() {
                 </thead>
                 <tbody className="divide-y divide-white/10">
                   <tr>
-                    <td className="py-3.5 pr-6 font-medium text-white">PA+</td>
-                    <td className="py-3.5 px-6 text-white">2 to under 4</td>
-                    <td className="py-3.5 pl-6 text-white/90">Some UVA protection. Low by any current standard</td>
+                    <td className="py-3.5 pr-6 font-medium text-[#E8DCC8]">PA+</td>
+                    <td className="py-3.5 px-6 text-[#E8DCC8]">2 to under 4</td>
+                    <td className="py-3.5 pl-6 text-[#E8DCC8]/90">Some UVA protection. Low by any current standard</td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 pr-6 font-medium text-white">PA++</td>
-                    <td className="py-3.5 px-6 text-white">4 to under 8</td>
-                    <td className="py-3.5 pl-6 text-white/90">Moderate</td>
+                    <td className="py-3.5 pr-6 font-medium text-[#E8DCC8]">PA++</td>
+                    <td className="py-3.5 px-6 text-[#E8DCC8]">4 to under 8</td>
+                    <td className="py-3.5 pl-6 text-[#E8DCC8]/90">Moderate</td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 pr-6 font-medium text-white">PA+++</td>
-                    <td className="py-3.5 px-6 text-white">8 to under 16</td>
-                    <td className="py-3.5 pl-6 text-white/90">High</td>
+                    <td className="py-3.5 pr-6 font-medium text-[#E8DCC8]">PA+++</td>
+                    <td className="py-3.5 px-6 text-[#E8DCC8]">8 to under 16</td>
+                    <td className="py-3.5 pl-6 text-[#E8DCC8]/90">High</td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 pr-6 font-medium text-white">PA++++</td>
-                    <td className="py-3.5 px-6 text-white">16 or above</td>
-                    <td className="py-3.5 pl-6 text-white/90">Very high, with no stated ceiling</td>
+                    <td className="py-3.5 pr-6 font-medium text-[#E8DCC8]">PA++++</td>
+                    <td className="py-3.5 px-6 text-[#E8DCC8]">16 or above</td>
+                    <td className="py-3.5 pl-6 text-[#E8DCC8]/90">Very high, with no stated ceiling</td>
                   </tr>
                 </tbody>
               </table>
@@ -156,7 +156,7 @@ export default function Blog() {
           {/* Section 3 */}
           <section id="pa-has-no-upper-limit-and-that-changes-how-you-read-it" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 PA++++ has no upper limit, and that changes how you read it
               </h2>
             </div>
@@ -175,7 +175,7 @@ export default function Blog() {
           {/* Section 4 */}
           <section id="how-the-rating-is-actually-measured" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 How the rating is actually measured
               </h2>
             </div>
@@ -197,7 +197,7 @@ export default function Blog() {
           {/* Section 5 */}
           <section id="the-dose-problem-which-no-rating-on-the-bottle-can-fix" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 The dose problem, which no rating on the bottle can fix
               </h2>
             </div>
@@ -205,7 +205,7 @@ export default function Blog() {
               Two milligrams per square centimetre is roughly a quarter teaspoon for a face and neck, or what the two-finger method is trying to get you to. It is considerably more than most people wear, and that gap is not a personal failing. It is the normal finding, repeated across decades of measurement in many countries, and we went through the evidence for it in{' '}
               <a
                 href="https://artisunskin.com/blogs/artifacts/lightweight-sunscreen-what-makes-one-feel-light"
-                className="text-white underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                className="text-[#E8DCC8] underline underline-offset-4 decoration-white/60 hover:decoration-white"
               >
                 our piece on what makes a sunscreen feel light
               </a>.
@@ -221,7 +221,7 @@ export default function Blog() {
           {/* Section 6 */}
           <section id="why-the-uva-half-matters-more-in-india-than-the-label-suggests" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 Why the UVA half matters more in India than the label suggests
               </h2>
             </div>
@@ -238,7 +238,7 @@ export default function Blog() {
               How much of any of it you need on a given week is a weather question more than a skin type question, and that is the subject of{' '}
               <a
                 href="https://artisunskin.com/blogs/artifacts/sun-care-by-weather-not-skin-type"
-                className="text-white underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                className="text-[#E8DCC8] underline underline-offset-4 decoration-white/60 hover:decoration-white"
               >
                 our month-by-month guide to sun care in Indian weather
               </a>.
@@ -248,12 +248,12 @@ export default function Blog() {
           {/* Section 7 */}
           <section id="what-pa-does-not-tell-you" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 What PA does not tell you
               </h2>
             </div>
             <p>A rating is a summary, and summaries drop things. Four of the things it drops are worth knowing about.</p>
-            <ol className="list-decimal pl-6 space-y-3 marker:text-white/60">
+            <ol className="list-decimal pl-6 space-y-3 marker:text-[#E8DCC8]/60">
               <li>
                 <strong>Which filters did the work.</strong> Two products can reach the same band through very different chemistry, and the chemistry decides how the layer feels and whether it leaves a cast on deeper skin.
               </li>
@@ -275,12 +275,12 @@ export default function Blog() {
           {/* Section 8 */}
           <section id="reading-a-label-in-practice" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 Reading a label in practice
               </h2>
             </div>
             <p>What this adds up to, standing in front of a shelf or a product page.</p>
-            <ol className="list-decimal pl-6 space-y-3 marker:text-white/60">
+            <ol className="list-decimal pl-6 space-y-3 marker:text-[#E8DCC8]/60">
               <li>Look for a PA rating at all. A sunscreen with an SPF number and nothing about UVA has not made a claim you can check.</li>
               <li>Treat PA+++ as the sensible floor for daily wear in Indian conditions, and PA++++ as better where you can get it.</li>
               <li>Do not try to separate two PA++++ products on the rating. Compare the filter system and the finish instead.</li>
@@ -292,14 +292,14 @@ export default function Blog() {
           {/* Section 9 */}
           <section id="where-origin-sits" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 Where Origin sits
               </h2>
             </div>
             <p>
               <Link
                 href="/origin"
-                className="text-white underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                className="text-[#E8DCC8] underline underline-offset-4 decoration-white/60 hover:decoration-white"
               >
                 Origin
               </Link>{' '}
@@ -308,7 +308,7 @@ export default function Blog() {
             <p>
               <Link
                 href="/aura"
-                className="text-white underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                className="text-[#E8DCC8] underline underline-offset-4 decoration-white/60 hover:decoration-white"
               >
                 Aura
               </Link>{' '}
@@ -322,61 +322,61 @@ export default function Blog() {
           {/* ── Common Questions Section ── */}
           <section id="common-questions" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 Common questions
               </h2>
             </div>
             <div className="space-y-6 pt-2">
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   What is PA+++ in sunscreen?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   PA+++ means the sunscreen measured a UVA protection factor between 8 and just under 16 in laboratory testing. It is a high level of UVA protection and a reasonable floor for daily wear.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   What is PA++++ in sunscreen?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   PA++++ means a measured UVA protection factor of 16 or above. It is the top band and it has no upper limit, so a product measured at 16 and one measured at 40 both carry it.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   Is PA++++ better than PA+++?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   Yes, on the rating. PA++++ starts where PA+++ ends. The difference in practice is smaller than the difference between wearing a proper dose and wearing half of one, so it is not the thing to optimise first.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   Does SPF cover UVA protection?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   No. SPF is measured against sunburn, which is almost entirely UVB. A sunscreen can carry a high SPF and offer weak UVA protection, which is exactly why a separate UVA rating exists.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   Do I need PA++++ in India?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   PA+++ is adequate for most daily wear and PA++++ is better where it is available at a texture you will wear generously. Indian UVA levels are high year round and change less with season than UVB does, so the UVA rating is worth checking every month of the year.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-editorial text-xl sm:text-2xl text-white font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal">
                   Does the PA rating matter indoors?
                 </h3>
-                <p className="text-white">
+                <p className="text-[#E8DCC8]">
                   Yes, more than SPF does. UVA passes through window glass while most UVB is filtered out by it, so a day spent beside a window is largely a UVA exposure. Screens themselves emit a negligible amount of UV.
                 </p>
               </div>
@@ -386,11 +386,11 @@ export default function Blog() {
           {/* ── Sources Section ── */}
           <section id="sources" className="space-y-6 pt-6">
             <div className="border-b border-white/15 pb-3">
-              <h2 className="font-editorial text-3xl sm:text-4xl text-white font-normal tracking-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-[#E8DCC8] font-normal tracking-tight">
                 Sources
               </h2>
             </div>
-            <ul className="list-disc pl-6 space-y-4 text-white marker:text-white/60">
+            <ul className="list-disc pl-6 space-y-4 text-[#E8DCC8] marker:text-[#E8DCC8]/60">
               <li>
                 ISO 24442:2022, <em>Cosmetics — Sun protection test methods — In vivo determination of sunscreen UVA protection</em>. 2nd edition, ISO/TC 217. Specifies the persistent pigment darkening endpoint, the 2 mg/cm² application dose and the minimum panel size.
               </li>
@@ -406,7 +406,7 @@ export default function Blog() {
           {/* ── Author attribution card ── */}
           <div className="pt-4">
             <div className="w-full rounded-2xl p-6 sm:p-8 bg-white/[0.04] border border-white/10 backdrop-blur-md">
-              <span className="font-editorial text-xl sm:text-2xl text-white">
+              <span className="font-editorial text-xl sm:text-2xl text-[#E8DCC8]">
                 Artisun Skinwear
               </span>
             </div>
@@ -417,10 +417,10 @@ export default function Blog() {
         {/* ── More Like This (3 Terracotta Cards) ── */}
         <section className="space-y-6 pt-10 border-t border-white/10">
           <div>
-            <div className="text-[12px] tracking-[0.26em] uppercase font-semibold text-white/80 mb-2">
+            <div className="text-[12px] tracking-[0.26em] uppercase font-semibold text-[#E8DCC8]/80 mb-2">
               More Like This
             </div>
-            <h2 className="font-editorial text-3xl sm:text-5xl text-white font-light">
+            <h2 className="font-editorial text-3xl sm:text-5xl text-[#E8DCC8] font-light">
               Keep exploring Artifacts
             </h2>
           </div>
@@ -432,14 +432,14 @@ export default function Blog() {
               className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#982b26] hover:bg-[#85231f] border border-white/10 transition-all duration-200 min-h-[260px]"
             >
               <div className="space-y-3">
-                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-white/80 block">
+                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-[#E8DCC8]/80 block">
                   dry-down
                 </span>
-                <h3 className="font-editorial text-xl sm:text-2xl text-white leading-snug font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] leading-snug font-normal">
                   How Sunscreen Should Feel: A Guide to Texture and Finish
                 </h3>
               </div>
-              <div className="text-[13px] text-white/80 pt-4">
+              <div className="text-[13px] text-[#E8DCC8]/80 pt-4">
                 Aug 18, 2026 · 11 min
               </div>
             </a>
@@ -450,17 +450,17 @@ export default function Blog() {
               className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#982b26] hover:bg-[#85231f] border border-white/10 transition-all duration-200 min-h-[260px]"
             >
               <div className="space-y-3">
-                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-white/80 block">
+                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-[#E8DCC8]/80 block">
                   dose
                 </span>
-                <h3 className="font-editorial text-xl sm:text-2xl text-white leading-snug font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] leading-snug font-normal">
                   Lightweight Sunscreen: What Makes One Feel Light, and Why It Matters
                 </h3>
-                <p className="text-[13.5px] text-white/90 line-clamp-2">
+                <p className="text-[13.5px] text-[#E8DCC8]/90 line-clamp-2">
                   Lightweight describes how a sunscreen dries down, not how well it protects. What emolli...
                 </p>
               </div>
-              <div className="text-[13px] text-white/80 pt-4">
+              <div className="text-[13px] text-[#E8DCC8]/80 pt-4">
                 Aug 14, 2026 · 11 min
               </div>
             </a>
@@ -471,17 +471,17 @@ export default function Blog() {
               className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#982b26] hover:bg-[#85231f] border border-white/10 transition-all duration-200 min-h-[260px]"
             >
               <div className="space-y-3">
-                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-white/80 block">
+                <span className="text-[11px] tracking-[0.2em] uppercase font-semibold text-[#E8DCC8]/80 block">
                   humidity
                 </span>
-                <h3 className="font-editorial text-xl sm:text-2xl text-white leading-snug font-normal">
+                <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] leading-snug font-normal">
                   Sunscreen in Indian Weather: A Month-by-Month Guide
                 </h3>
-                <p className="text-[13.5px] text-white/90 line-clamp-2">
+                <p className="text-[13.5px] text-[#E8DCC8]/90 line-clamp-2">
                   A month-by-month guide to what India&apos;s weather does to a sunscreen film, and how to adj...
                 </p>
               </div>
-              <div className="text-[13px] text-white/80 pt-4">
+              <div className="text-[13px] text-[#E8DCC8]/80 pt-4">
                 Aug 13, 2026 · 14 min
               </div>
             </a>
@@ -491,10 +491,10 @@ export default function Blog() {
         {/* ── Newsletter Section ── */}
         <section className="pt-12 border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-1.5 max-w-[420px]">
-            <h2 className="font-editorial text-2xl sm:text-3xl text-white font-normal tracking-tight">
+            <h2 className="font-editorial text-2xl sm:text-3xl text-[#E8DCC8] font-normal tracking-tight">
               Get Artifacts in Your Inbox
             </h2>
-            <p className="text-[14px] sm:text-[15px] text-white/80 font-light">
+            <p className="text-[14px] sm:text-[15px] text-[#E8DCC8]/80 font-light">
               New weather-smart skincare notes from the Journal, sent straight to you. No spam, ever.
             </p>
           </div>
@@ -506,13 +506,13 @@ export default function Blog() {
             <input
               type="email"
               placeholder="Email address"
-              className="w-full bg-transparent text-white placeholder:text-white placeholder:opacity-100 text-base outline-none px-2"
+              className="w-full bg-transparent text-[#E8DCC8] placeholder:text-[#E8DCC8] placeholder:opacity-100 text-base outline-none px-2"
               required
             />
             <button
               type="submit"
               aria-label="Subscribe"
-              className="text-white hover:translate-x-0.5 transition-all text-lg px-2"
+              className="text-[#E8DCC8] hover:translate-x-0.5 transition-all text-lg px-2"
             >
               &rarr;
             </button>

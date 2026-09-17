@@ -266,11 +266,11 @@ export default function OriginQuestions() {
       />
       <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-11 sm:pt-16 lg:pt-0 lg:my-auto flex flex-col justify-center lg:max-h-[84vh]">
         {/* Eyebrow + Heading */}
-        <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-white/70 font-medium">
+        <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
           FAQS
         </span>
 
-        <h2 className="self-center font-editorial text-white text-[32px] sm:text-[42px] lg:text-[48px] leading-tight mt-2 text-center not-italic">
+        <h2 className="self-center font-editorial text-[#E8DCC8] text-[32px] sm:text-[42px] lg:text-[48px] leading-tight mt-2 text-center not-italic">
           Everything, answered.
         </h2>
 
@@ -332,7 +332,7 @@ export default function OriginQuestions() {
                       aria-expanded={isOpen}
                       className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 text-left text-[var(--brand-cream)] group"
                     >
-                      <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-white transition-colors flex-1">
+                      <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors flex-1">
                         {item.q}
                       </span>
                       <Chevron open={isOpen} />
@@ -342,7 +342,7 @@ export default function OriginQuestions() {
                         }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-white/80 pb-4 pr-2 whitespace-pre-line w-full">
+                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-[#E8DCC8]/80 pb-4 pr-2 whitespace-pre-line w-full">
                           {item.a}
                         </div>
                       </div>
@@ -366,7 +366,7 @@ export default function OriginQuestions() {
                         <span className="block font-suisse text-[9.5px] uppercase tracking-widest text-[var(--brand-cream)]/60 mb-0.5">
                           {res.category}
                         </span>
-                        <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-white transition-colors">
+                        <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors">
                           {res.item.q}
                         </span>
                       </div>

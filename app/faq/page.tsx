@@ -6,6 +6,7 @@ import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import Footer from '../../components/Footer';
+import MobileScrollFrame from '@/components/MobileScrollFrame';
 
 
 export default function FAQPage() {
@@ -25,10 +26,19 @@ export default function FAQPage() {
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
       <ScrollProgressBar />
+      {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
+          iOS treats position:fixed elements inside a touch scroll container
+          as absolute, so inside the frame it would scroll away. */}
+      <div className="artisun-bg" aria-hidden />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      <ArtisunMainFAQ />
-      <Footer />
+      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
+          so nothing slides behind Safari's translucent status bar / bottom
+          controls (same mechanic as the Origin page). Desktop unaffected. */}
+      <MobileScrollFrame>
+        <ArtisunMainFAQ />
+        <Footer />
+      </MobileScrollFrame>
     </main>
   );
 }

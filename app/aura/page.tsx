@@ -59,18 +59,33 @@ export default function AuraPage() {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
+    // ── Mobile (<1024px): same iOS-26 chrome fix as the Origin page. ──
+    // html/body are locked and the wrapper div ([data-scroll-frame], see
+    // globals.css) becomes the page's fixed 100svh scroll container, so no
+    // content ever scrolls past the viewport into Safari's translucent
+    // status bar / tab bar zones — they stay clean and dark. Lenis is only
+    // created on desktop, exactly like Origin: on mobile the container
+    // scrolls natively and Lenis would just fight it.
+    const isMobile = window.innerWidth < 1024;
+    document.documentElement.classList.add('has-scroll-frame');
 
-    lenisRef.current = lenis;
-    (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__ = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    let lenis: Lenis | null = null;
+    let raf: ((time: number) => void) | null = null;
+
+    if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.15,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      lenisRef.current = lenis;
+      (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__ = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+      raf = (time: number) => lenis!.raf(time * 1000);
+      gsap.ticker.add(raf);
+      gsap.ticker.lagSmoothing(0);
+    }
 
     const mm = gsap.matchMedia();
 
@@ -107,7 +122,8 @@ export default function AuraPage() {
 
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
+      lenis?.scrollTo(0, { immediate: true });
+      if (wrapperRef.current) wrapperRef.current.scrollTop = 0;
       ScrollTrigger.refresh();
     });
 
@@ -117,28 +133,32 @@ export default function AuraPage() {
 
     return () => {
       if ('scrollRestoration' in history) history.scrollRestoration = prevRestoration;
+      document.documentElement.classList.remove('has-scroll-frame');
       mm.revert();
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-      lenisRef.current = null;
-      delete (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__;
+      if (raf) gsap.ticker.remove(raf);
+      if (lenis) {
+        lenis.destroy();
+        lenisRef.current = null;
+        delete (window as unknown as { __ARTISUN_LENIS__?: Lenis }).__ARTISUN_LENIS__;
+      }
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
   const goToPanel = (i: number) => {
-    const lenis = lenisRef.current;
-    if (!lenis) return;
-
     if (window.innerWidth >= 1024) {
+      const lenis = lenisRef.current;
       const st = stRef.current;
-      if (!st) return;
+      if (!lenis || !st) return;
       const target = st.start + (i / (PANELS - 1)) * (st.end - st.start);
       lenis.scrollTo(target, { duration: 1.3 });
     } else {
+      // Mobile: the wrapper ([data-scroll-frame]) is the scroll container —
+      // scroll it directly, same as Origin's snap container.
+      const wrapper = wrapperRef.current;
       const panels = document.querySelectorAll<HTMLElement>('.aura-panel');
-      if (panels[i]) {
-        lenis.scrollTo(panels[i], { duration: 1.2, offset: 0 });
+      if (wrapper && panels[i]) {
+        wrapper.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
       }
     }
   };
@@ -151,7 +171,7 @@ export default function AuraPage() {
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
 
-    <div ref={wrapperRef} className="relative w-full w-full lg:h-[100svh] lg:overflow-hidden">
+    <div ref={wrapperRef} data-scroll-frame="" className="relative w-full lg:h-[100svh] lg:overflow-hidden">
         <div
           ref={trackRef}
           className="flex flex-col lg:flex-row flex-nowrap w-full lg:h-full will-change-transform"

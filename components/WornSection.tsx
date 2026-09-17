@@ -55,19 +55,19 @@ function GlassCard({ card }: { card: ProductCard }) {
 
       {/* Compact Info Layout with Bigger Features Text */}
       <span className="flex-1 min-w-0 pr-1">
-        <span className="block font-editorial text-white text-[17px] sm:text-[18.5px] md:text-[20px] leading-tight font-normal">
+        <span className="block font-editorial text-[#E8DCC8] text-[17px] sm:text-[18.5px] md:text-[20px] leading-tight font-normal">
           {card.name}
         </span>
-        <span className="mt-1 block font-suisse text-[12.5px] sm:text-[13.5px] md:text-[14.5px] text-white/95 truncate font-normal">
+        <span className="mt-1 block font-suisse text-[12.5px] sm:text-[13.5px] md:text-[14.5px] text-[#E8DCC8]/95 truncate font-normal">
           {card.sub}
         </span>
-        <span className="mt-0.5 block font-suisse text-[10px] sm:text-[11px] md:text-[11.5px] tracking-[0.06em] uppercase text-white/80 font-medium">
+        <span className="mt-0.5 block font-suisse text-[10px] sm:text-[11px] md:text-[11.5px] tracking-[0.06em] uppercase text-[#E8DCC8]/80 font-medium">
           {card.spec}
         </span>
       </span>
 
       {/* Clean Right Arrow */}
-      <span className="shrink-0 text-white opacity-75 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+      <span className="shrink-0 text-[#E8DCC8] opacity-75 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100">
         <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>

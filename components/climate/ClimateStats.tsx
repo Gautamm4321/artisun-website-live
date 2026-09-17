@@ -39,7 +39,7 @@ export default function ClimateStats() {
               more sebum production takes place for every 1°C rise in the skin temperature.
             </p>
           </div>
-          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-white/90 text-right mt-4 sm:mt-6 font-normal">
+          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-[#E8DCC8]/90 text-right mt-4 sm:mt-6 font-normal">
             British Journal of Dermatology, 1970
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function ClimateStats() {
               at 32°C is enough to measurably raise both sebum and inflammation markers in the skin.
             </p>
           </div>
-          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-white/90 text-right mt-4 sm:mt-6 font-normal">
+          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-[#E8DCC8]/90 text-right mt-4 sm:mt-6 font-normal">
             Fudan University, Shanghai<br />
             Environmental Research, 2025
           </p>
@@ -70,7 +70,7 @@ export default function ClimateStats() {
               more pigment spots on the forehead and cheeks, in skin exposed to more traffic particles.
             </p>
           </div>
-          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-white/90 text-right mt-4 sm:mt-6 font-normal">
+          <p className="text-[11px] sm:text-xs md:text-sm font-sans text-[#E8DCC8]/90 text-right mt-4 sm:mt-6 font-normal">
             Journal of Investigative<br />
             Dermatology, 2010
           </p>

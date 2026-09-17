@@ -125,7 +125,7 @@ export default function EvolutionSection() {
       </div>
 
       {/* Foreground Text */}
-      <div className="relative z-10 w-full max-w-[90vw] md:max-w-[800px] lg:max-w-[1200px] mx-auto text-center font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.1] tracking-[-0.02em] text-white">
+      <div className="relative z-10 w-full max-w-[90vw] md:max-w-[800px] lg:max-w-[1200px] mx-auto text-center font-editorial font-normal text-[26px] md:text-[38px] lg:text-[50px] leading-[1.1] tracking-[-0.02em] text-[#E8DCC8]">
 
         {/* Line 1 */}
         <div

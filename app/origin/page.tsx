@@ -237,6 +237,7 @@ export default function OriginPage() {
       <div
         ref={wrapperRef}
         id="origin-snap-container"
+        data-scroll-frame=""
         className="relative w-full lg:h-[100svh] lg:overflow-hidden lg:position-static"
       >
         <div

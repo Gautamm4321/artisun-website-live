@@ -88,7 +88,7 @@ export default function OriginWhy() {
                   </div>
                 </div>
 
-                <p className="font-suisse text-[11px] sm:text-[9.5px] lg:text-[13.5px] leading-[1.2] lg:leading-[1.45] text-[var(--brand-cream)]/90 lg:text-white mt-1 lg:mt-2 line-clamp-2 lg:line-clamp-none drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                <p className="font-suisse text-[11px] sm:text-[9.5px] lg:text-[13.5px] leading-[1.2] lg:leading-[1.45] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-1 lg:mt-2 line-clamp-2 lg:line-clamp-none drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                   <span className="lg:hidden">{s.mobileCopy}</span>
                   <span className="hidden lg:inline">{s.copy}</span>
                 </p>

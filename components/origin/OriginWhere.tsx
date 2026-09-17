@@ -48,7 +48,7 @@ export default function OriginWhere() {
       />
 
       {/* Heading block */}
-      <div className="px-5 sm:px-8 lg:px-14 pt-24 sm:pt-28 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto relative z-10">
+      <div className="px-5 sm:px-8 lg:px-14 pt-16 sm:pt-28 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto relative z-10">
         <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.03] tracking-tight not-italic">
           One sunscreen. Every Indian weather.
         </h2>

@@ -776,6 +776,83 @@ html.lenis, html.lenis body {
 }
 .pdp-thumbs::-webkit-scrollbar { display: none; }
 
+/* ─────────────────────────────────────────────────────────────
+   iOS 26 CHROME FIX — mobile scroll frame
+
+   iOS 26 Safari draws any document content that scrolls past the
+   viewport edges behind its translucent status bar (top) and floating
+   tab bar (bottom), while position:fixed elements are CLIPPED to the
+   viewport and can never paint into those zones. The only reliable way
+   to keep those zones clean (showing the dark <html> canvas, like the
+   home page) is to stop the DOCUMENT from scrolling and scroll a fixed,
+   viewport-sized child container instead — the exact mechanic the
+   Origin page already uses for its mobile snap container.
+
+   Any page can opt in by rendering <MobileScrollFrame> around its
+   scrollable content (the component toggles .has-scroll-frame on <html>
+   and carries [data-scroll-frame]). Desktop (≥1024px) is untouched:
+   the frame renders as a plain in-flow div and the window keeps
+   scrolling, so Lenis / ScrollTrigger behave exactly as before.
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  html.has-scroll-frame,
+  html.has-scroll-frame body {
+    overflow: hidden !important;
+    height: 100%;
+  }
+
+  [data-scroll-frame] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HOME — wordmark → header morph, compositor-driven
+
+   Safari 26 / Chrome 115+ support CSS scroll-driven animations, which
+   run on the compositor thread — the transform is locked 1:1 to the
+   scroll position with zero JS in the loop, eliminating the mobile
+   wobble a rAF loop reading window.scrollY can never fully avoid
+   (iOS scrolls off-main-thread, so JS always trails by a beat).
+
+   HomeHeader measures the flight once and writes it into the custom
+   properties below, then adds .wm-scroll-anim only when the browser
+   supports scroll timelines; everywhere else its rAF fallback keeps
+   driving the transform exactly as before.
+   ───────────────────────────────────────────────────────────── */
+@supports (animation-timeline: scroll()) {
+  .wm-scroll-anim {
+    animation: wmMorph linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0px var(--wm-travel, 600px);
+  }
+}
+@keyframes wmMorph {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(var(--wm-tx, 0px), var(--wm-ty, 0px), 0)
+      scale(var(--wm-scale, 1));
+  }
+}
+
+/* ── About hero: the R3F <Canvas> sets touch-action:none on its canvas,
+   which swallows vertical pan gestures — touching the hero couldn't
+   scroll the page. pan-y hands vertical scrolling back to the page
+   while pointer events keep working for the 3D scene. ── */
+.about-hero-scene canvas {
+  touch-action: pan-y !important;
+}
+
 /* Prevent iOS Safari / mobile browsers from auto-zooming on input focus */
 html, body {
   touch-action: manipulation;

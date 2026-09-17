@@ -260,7 +260,7 @@ export default function AuraQuestions() {
 
       <div className="w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 my-auto flex flex-col justify-center max-h-[calc(100svh-140px)] lg:max-h-[84vh]">
         {/* Eyebrow + Heading */}
-        <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-white/70 font-medium">
+        <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
           FAQS
         </span>
         
@@ -340,7 +340,7 @@ export default function AuraQuestions() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-white/80 pb-4 pr-2 whitespace-pre-line w-full">
+                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-[#E8DCC8]/80 pb-4 pr-2 whitespace-pre-line w-full">
                           {item.a}
                         </div>
                       </div>

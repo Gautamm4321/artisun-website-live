@@ -35,7 +35,7 @@ export default function SkinwearImageReveal() {
 
   return (
     <section ref={sectionRef} className="relative z-[15] w-full h-[250vh]">
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-[100svh] supports-[height:100dvh]:h-[100dvh] w-full overflow-hidden flex items-center justify-center">
 
         {/* 1st Image (Fixed Background Image - stays full page until 2nd image scrolls up over it) */}
         <motion.div

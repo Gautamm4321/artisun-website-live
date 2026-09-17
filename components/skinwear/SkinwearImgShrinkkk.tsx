@@ -50,10 +50,10 @@ export default function SkinwearImgShrink2() {
       ref={containerRef}
       className="relative w-full h-[150vh] sm:h-[160vh] md:h-[180vh] z-[16]"
     >
-      <div className="sticky top-0 h-[100svh] w-full flex items-center justify-center px-5 sm:px-8 md:px-16 lg:px-24">
+      <div className="sticky top-0 h-[100svh] supports-[height:100dvh]:h-[100dvh] w-full flex items-center justify-center px-5 sm:px-8 md:px-16 lg:px-24">
 
         {/* ── MOBILE LAYOUT (< md) ── */}
-        <div className="md:hidden w-full h-[100svh] flex flex-col items-center justify-center overflow-hidden">
+        <div className="md:hidden w-full h-full flex flex-col items-center justify-center overflow-hidden">
 
           {/* Image — shrinks from full height to a smaller centered block */}
           <motion.div

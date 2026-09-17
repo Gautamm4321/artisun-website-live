@@ -66,34 +66,40 @@ export default function Footer() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (!containerRef.current) return;
+    const el = containerRef.current;
 
+    // ── ENTRY: reveal driven by IntersectionObserver instead of a
+    // window-scroller ScrollTrigger. Several pages now scroll inside a
+    // fixed mobile container ([data-scroll-frame] / Origin's snap
+    // container) where the window never scrolls, so a window-based
+    // trigger would never fire and the footer would stay invisible.
+    // IO measures against the visual viewport regardless of which
+    // element does the scrolling, so the same animation works
+    // everywhere — same 'top bottom', once-only behavior as before. ──
     const ctx = gsap.context(() => {
-      // ── ENTRY: Diagonal Wipe — applied to the content wrapper only, never
-      // the footer element itself, so the background gradient stays fully
-      // painted and flows continuously from CTASection above instead of
-      // clipping away to reveal the page's raw background underneath. ──
+      gsap.set('.footer-reveal', { y: 24, opacity: 0 });
+    }, containerRef);
 
-
-      // REMOVED clipPath wipe - ye hi footer kaat raha tha
-
-
-      gsap.fromTo(
-        '.footer-reveal',
-        { y: 24, opacity: 0 },
-        {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        gsap.to(el.querySelectorAll('.footer-reveal'), {
           y: 0,
           opacity: 1,
           duration: 1,
           stagger: 0.1,
           ease: 'power3.out',
-          scrollTrigger: { trigger: containerRef.current, start: 'top bottom', once: true },
-        }
-      );
+        });
+      },
+      { threshold: 0 }
+    );
+    io.observe(el);
 
-
-    }, containerRef);
-
-    return () => ctx.revert();
+    return () => {
+      io.disconnect();
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -134,7 +140,7 @@ export default function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="font-suisse text-sm md:text-base lg:text-lg text-[var(--brand-cream)]/90 hover:text-white transition-colors duration-300 w-fit"
+                    className="font-suisse text-sm md:text-base lg:text-lg text-[var(--brand-cream)]/90 hover:text-[#E8DCC8] transition-colors duration-300 w-fit"
                   >
                     {link.label}
                   </Link>
@@ -149,7 +155,7 @@ export default function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="font-suisse text-sm md:text-base lg:text-lg text-[var(--brand-cream)]/90 hover:text-white transition-colors duration-300 w-fit"
+                    className="font-suisse text-sm md:text-base lg:text-lg text-[var(--brand-cream)]/90 hover:text-[#E8DCC8] transition-colors duration-300 w-fit"
                   >
                     {link.label}
                   </Link>
@@ -165,7 +171,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="shrink-0 w-8 h-8 md:w-9 md:h-9 text-[var(--brand-cream)] hover:text-white transition-colors duration-300"
+                  className="shrink-0 w-8 h-8 md:w-9 md:h-9 text-[var(--brand-cream)] hover:text-[#E8DCC8] transition-colors duration-300"
                 >
                   <InstagramIcon />
                 </a>
@@ -250,7 +256,7 @@ export default function Footer() {
                     />
                     <span className="font-suisse text-[11px] sm:text-xs text-[var(--brand-cream)]/75 leading-tight group-hover:text-[var(--brand-cream)] transition-colors">
                       I agree to receive news, launches, and promotional emails from Artisun in accordance with the{' '}
-                      <Link href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</Link>.
+                      <Link href="/privacy" className="underline hover:text-[#E8DCC8] transition-colors">Privacy Policy</Link>.
                     </span>
                   </label>
 
@@ -276,7 +282,7 @@ export default function Footer() {
               <span>·</span>
               <a
                 href="mailto:grievance@artisunskin.com"
-                className="underline hover:text-white transition-colors"
+                className="underline hover:text-[#E8DCC8] transition-colors"
               >
                 support@artisunskin.com
               </a>

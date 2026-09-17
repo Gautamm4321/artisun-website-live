@@ -107,12 +107,30 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
     let lastPainted = -1;    // last progress written to the DOM
     const isMobile = window.innerWidth < 768;
 
+    /* ── Mobile wobble fix (v3): CSS scroll-driven animation. ──
+       Even a pure 1:1 rAF mapping of scrollY can't be wobble-free on iOS:
+       the page scrolls on the compositor thread while JS only sees scroll
+       positions a beat later, so a JS-written transform is always slightly
+       out of phase with the content moving underneath it — that phase error
+       IS the wobble. Safari 26 / Chrome 115+ support scroll timelines
+       (`animation-timeline: scroll()`), which run the very same transform
+       on the compositor, locked to the scroll with no JS in the loop.
+       Geometry is still measured here and handed over via CSS custom
+       properties; browsers without support keep the rAF path unchanged. */
+    const useCssTimeline =
+      isMobile &&
+      typeof CSS !== 'undefined' &&
+      CSS.supports('animation-timeline: scroll()');
+
     img.style.transformOrigin = 'left top';
     img.style.willChange = 'transform';
 
     const measure = () => {
       // Read the resting box with the transform neutralised, then restore it in
-      // the same frame so nothing is ever painted mid-measure.
+      // the same frame so nothing is ever painted mid-measure. On the CSS
+      // timeline path the animated transform would win over the inline
+      // 'none', so the class is stripped for the measurement instead.
+      if (useCssTimeline) img.classList.remove('wm-scroll-anim');
       img.style.transform = 'none';
       const r = img.getBoundingClientRect();
 
@@ -128,18 +146,34 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
 
       travel = Math.max(1, window.innerHeight * 0.85);
       lastWidth = window.innerWidth;
+
+      if (useCssTimeline) {
+        img.style.transform = '';
+        img.style.setProperty('--wm-tx', `${geo.tx}px`);
+        img.style.setProperty('--wm-ty', `${geo.ty}px`);
+        img.style.setProperty('--wm-scale', String(geo.scale));
+        img.style.setProperty('--wm-travel', `${travel}px`);
+        img.classList.add('wm-scroll-anim');
+        return;
+      }
+
       paint(smoothed);
     };
 
     const paint = (p: number) => {
       lastPainted = p;
-      const s = 1 + (geo.scale - 1) * p;
-      // Snap the translate to PHYSICAL pixels: a large bitmap being scaled
-      // while sitting on fractional positions shimmers on mobile GPUs.
-      const dpr = window.devicePixelRatio || 1;
-      const x = Math.round(geo.tx * p * dpr) / dpr;
-      const y = Math.round(geo.ty * p * dpr) / dpr;
-      img.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
+
+      // On the CSS timeline path the compositor owns the transform — JS only
+      // keeps driving the header bar fade below.
+      if (!useCssTimeline) {
+        const s = 1 + (geo.scale - 1) * p;
+        // Snap the translate to PHYSICAL pixels: a large bitmap being scaled
+        // while sitting on fractional positions shimmers on mobile GPUs.
+        const dpr = window.devicePixelRatio || 1;
+        const x = Math.round(geo.tx * p * dpr) / dpr;
+        const y = Math.round(geo.ty * p * dpr) / dpr;
+        img.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
+      }
 
       // Header bar + controls fade in over the back half of the flight.
       const o = p < 0.5 ? 0 : Math.min(1, (p - 0.5) / 0.4);
@@ -421,7 +455,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
             type="button"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
-            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#E8DCC8] hover:bg-white/20 transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -534,7 +568,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           </Link>
         </nav>
 
-        <div className="pt-4 border-t border-white/10 text-white/40 text-xs font-suisse tracking-wider uppercase">
+        <div className="pt-4 border-t border-white/10 text-[#E8DCC8]/40 text-xs font-suisse tracking-wider uppercase">
           Artisun Skinwear · 2026
         </div>
       </div>

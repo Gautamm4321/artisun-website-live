@@ -343,7 +343,7 @@ export default function ProductsSection() {
         ref={introTextRef}
         className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none"
       >
-        <h2 className="text-[26px] md:text-[38px] lg:text-[50px] font-thin text-white tracking-[0.05em] text-center px-4 max-w-5xl leading-tight drop-shadow-2xl font-editorial flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]">
+        <h2 className="text-[26px] md:text-[38px] lg:text-[50px] font-thin text-[#E8DCC8] tracking-[0.05em] text-center px-4 max-w-5xl leading-tight drop-shadow-2xl font-editorial flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.15em]">
           {introString.split(" ").map((word, wordIndex) => (
             <span 
               key={`intro-${wordIndex}`} 
@@ -404,7 +404,7 @@ export default function ProductsSection() {
               
               {/* Left Side (Desktop) / Top (Mobile): Support Copy */}
               <div className="absolute top-[12vh] md:top-1/2 md:-translate-y-1/2 left-1/2 md:left-[8%] lg:left-[12%] -translate-x-1/2 md:translate-x-0 w-[90%] md:w-[40%] max-w-[360px] md:max-w-[320px] text-center md:text-left">
-                <div className="font-editorial text-white text-[16px] md:text-[clamp(16px,2vw,24px)] leading-[1.35] drop-shadow-md space-y-1">
+                <div className="font-editorial text-[#E8DCC8] text-[16px] md:text-[clamp(16px,2vw,24px)] leading-[1.35] drop-shadow-md space-y-1">
                   {p.supportCopy.split('\n').map((line, idx) => (
                     <p key={idx}>{line}</p>
                   ))}
@@ -413,7 +413,7 @@ export default function ProductsSection() {
 
               {/* Right Side (Desktop) / Bottom above Title (Mobile): Ingredients */}
               <div className="absolute bottom-[20vh] md:bottom-auto md:top-1/2 md:-translate-y-1/2 left-1/2 md:left-auto md:right-[8%] lg:right-[12%] -translate-x-1/2 md:translate-x-0 w-[90%] md:w-[40%] max-w-[360px] md:max-w-[320px] text-center md:text-right">
-                <div className="font-editorial text-white text-[16px] md:text-[clamp(16px,2vw,24px)] leading-[1.35] drop-shadow-md space-y-1">
+                <div className="font-editorial text-[#E8DCC8] text-[16px] md:text-[clamp(16px,2vw,24px)] leading-[1.35] drop-shadow-md space-y-1">
                   {p.ingredientsLabel.split('\n').map((line, idx) => (
                     <p key={`label-${idx}`}>{line}</p>
                   ))}
@@ -425,11 +425,11 @@ export default function ProductsSection() {
 
               {/* Bottom Center: Title and Explore Button */}
               <div className="absolute bottom-[8vh] md:bottom-[10vh] left-1/2 -translate-x-1/2 text-center w-full flex flex-col items-center">
-                <h1 className="font-editorial text-white text-[clamp(32px,5vw,56px)] leading-none drop-shadow-xl mb-6 whitespace-nowrap">
+                <h1 className="font-editorial text-[#E8DCC8] text-[clamp(32px,5vw,56px)] leading-none drop-shadow-xl mb-6 whitespace-nowrap">
                   {p.title}
                 </h1>
                 
-                <button className="px-6 py-2.5 md:px-8 md:py-3 rounded-full border border-white/30 text-white text-[clamp(10px,1.2vw,12px)] uppercase tracking-[0.2em] font-suisse hover:bg-white hover:text-black hover:scale-105 transition-all duration-300">
+                <button className="px-6 py-2.5 md:px-8 md:py-3 rounded-full border border-white/30 text-[#E8DCC8] text-[clamp(10px,1.2vw,12px)] uppercase tracking-[0.2em] font-suisse hover:bg-white hover:text-black hover:scale-105 transition-all duration-300">
                   {p.buttonText}
                 </button>
               </div>

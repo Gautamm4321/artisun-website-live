@@ -5,8 +5,6 @@ import React from 'react';
 export default function ContactContent() {
   return (
     <div className="relative w-full min-h-screen pt-28 sm:pt-36 md:pt-44 pb-24 px-4 md:px-8 font-suisse antialiased text-[#242623] selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
-      {/* Site-wide Red Eclipse Background */}
-      <div className="artisun-bg" />
 
       <div className="relative z-10 max-w-[1040px] mx-auto">
         <section className="w-full rounded-[18px] overflow-hidden relative shadow-[0_40px_80px_rgba(80,20,15,0.22)] grid grid-cols-1 md:grid-cols-[340px_1fr]">

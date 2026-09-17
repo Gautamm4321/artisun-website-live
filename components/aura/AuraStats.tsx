@@ -54,20 +54,20 @@ export default function AuraStats() {
             <span className="font-suisse text-[10px] sm:text-xs tracking-[0.22em] uppercase text-[var(--brand-cream)]/70 font-medium">
               The Specifics
             </span>
-            <h2 className="font-editorial text-[22px] sm:text-[34px] lg:text-[56px] leading-[1.08] tracking-tight mt-1 text-white">
+            <h2 className="font-editorial text-[22px] sm:text-[34px] lg:text-[56px] leading-[1.08] tracking-tight mt-1 text-[#E8DCC8]">
               Backed by real numbers. Designed for real skin.
             </h2>
           </div>
 
           {/* 3 Badges under heading */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 sm:gap-2.5 pt-0.5 sm:pt-2">
-            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-white/90 shadow-sm">
+            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-[#E8DCC8]/90 shadow-sm">
               Broad spectrum
             </span>
-            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-white/90 shadow-sm">
+            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-[#E8DCC8]/90 shadow-sm">
               All skin types
             </span>
-            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-white/90 shadow-sm">
+            <span className="font-suisse text-[9px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md text-[#E8DCC8]/90 shadow-sm">
               Made in India
             </span>
           </div>
@@ -85,12 +85,12 @@ export default function AuraStats() {
                 className="group flex flex-col lg:flex-row items-center justify-center lg:justify-start text-center lg:text-left gap-1 sm:gap-1.5 lg:gap-3.5 w-[calc(33.33%-6px)] min-w-[95px] max-w-[115px] h-[78px] sm:h-[84px] lg:w-full lg:max-w-none lg:h-auto p-2 sm:p-2.5 lg:px-4 lg:py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] border border-white/15 backdrop-blur-lg shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 shrink-0"
               >
                 {/* Stat Value */}
-                <div className="font-editorial text-white text-[16px] sm:text-[18px] lg:text-[24px] leading-none tabular-nums font-medium shrink-0">
+                <div className="font-editorial text-[#E8DCC8] text-[16px] sm:text-[18px] lg:text-[24px] leading-none tabular-nums font-medium shrink-0">
                   <CountUp end={s.value} suffix={s.suffix} play={inView} duration={1.8} />
                 </div>
 
                 {/* Stat Copy */}
-                <p className="font-suisse text-[8.5px] sm:text-[9.5px] lg:text-[12px] leading-tight text-white/85 flex-1 line-clamp-2">
+                <p className="font-suisse text-[8.5px] sm:text-[9.5px] lg:text-[12px] leading-tight text-[#E8DCC8]/85 flex-1 line-clamp-2">
                   {s.copy}
                 </p>
               </div>

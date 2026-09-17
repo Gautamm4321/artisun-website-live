@@ -55,19 +55,19 @@ function GlassCard({ card }: { card: ProductCard }) {
 
       {/* Info Layout */}
       <span className="flex-1 min-w-0 pr-0.5">
-        <span className="block font-editorial text-white text-[15px] xs:text-[17px] sm:text-[18.5px] md:text-[20px] leading-tight font-normal">
+        <span className="block font-editorial text-[#E8DCC8] text-[15px] xs:text-[17px] sm:text-[18.5px] md:text-[20px] leading-tight font-normal">
           {card.name}
         </span>
-        <span className="mt-0.5 sm:mt-1 block font-suisse text-[11px] xs:text-[12px] sm:text-[13.5px] md:text-[14.5px] text-white/95 truncate font-normal">
+        <span className="mt-0.5 sm:mt-1 block font-suisse text-[11px] xs:text-[12px] sm:text-[13.5px] md:text-[14.5px] text-[#E8DCC8]/95 truncate font-normal">
           {card.sub}
         </span>
-        <span className="mt-0.5 block font-suisse text-[9px] xs:text-[10px] sm:text-[11px] md:text-[11.5px] tracking-[0.06em] uppercase text-white/80 font-medium">
+        <span className="mt-0.5 block font-suisse text-[9px] xs:text-[10px] sm:text-[11px] md:text-[11.5px] tracking-[0.06em] uppercase text-[#E8DCC8]/80 font-medium">
           {card.spec}
         </span>
       </span>
 
       {/* Right Arrow */}
-      <span className="shrink-0 text-white opacity-70 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100 hidden xs:block">
+      <span className="shrink-0 text-[#E8DCC8] opacity-70 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100 hidden xs:block">
         <svg className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>

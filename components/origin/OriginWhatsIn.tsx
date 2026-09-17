@@ -70,7 +70,7 @@ export default function OriginWhatsIn() {
       <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col justify-start lg:justify-center h-full overflow-y-auto lg:overflow-visible pb-0 [scrollbar-width:none]">
         {/* ── Heading (With Top Breathing Room) ── */}
         <div className="mb-3 sm:mb-5 lg:mb-10 shrink-0 mt-1 sm:mt-2 lg:mt-0">
-          <h2 className="font-editorial text-[var(--brand-cream)] text-[22px] sm:text-[32px] lg:text-[50px] leading-[1.08] tracking-tight">
+          <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[50px] leading-[1.08] tracking-tight">
             The good version of everything.
           </h2>
         </div>
@@ -106,14 +106,14 @@ export default function OriginWhatsIn() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-[1]" />
 
                     {/* Top-Left: Country Badge */}
-                    <span className="absolute top-2.5 left-2.5 z-10 font-suisse text-[8.5px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white/95">
+                    <span className="absolute top-2.5 left-2.5 z-10 font-suisse text-[8.5px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[#E8DCC8]/95">
                       {item.country}
                     </span>
 
                     {/* Closed State: Ingredient Name at Bottom-Right */}
                     {!isOpen && (
                       <div className="absolute bottom-2.5 right-3 z-10 text-right max-w-[70%]">
-                        <h3 className="font-suisse font-semibold text-white tracking-tight text-[13px] sm:text-[14px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
+                        <h3 className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[13px] sm:text-[14px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
                           {item.name}
                         </h3>
                       </div>
@@ -122,7 +122,7 @@ export default function OriginWhatsIn() {
                     {/* Opened State: Ingredient Name at Bottom-Left */}
                     {isOpen && (
                       <div className="absolute bottom-2 left-2.5 z-10 max-w-[90%] text-left">
-                        <h3 className="font-suisse font-semibold text-white tracking-tight text-[11px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                        <h3 className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[11px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                           {item.name}
                         </h3>
                       </div>
@@ -130,7 +130,7 @@ export default function OriginWhatsIn() {
 
                     {/* Floating Right Arrow */}
                     {!isOpen && (
-                      <div className="absolute right-3 top-2.5 z-10 w-5 h-5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/90">
+                      <div className="absolute right-3 top-2.5 z-10 w-5 h-5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-[#E8DCC8]/90">
                         <svg
                           width="9"
                           height="9"
@@ -151,10 +151,10 @@ export default function OriginWhatsIn() {
                   {isOpen && (
                     <div className="w-[58%] h-full flex flex-col justify-center px-3.5 py-2 bg-black/75 backdrop-blur-md border-l border-white/15 overflow-hidden">
                       <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none] space-y-1.5">
-                        <p className="font-suisse text-[9.5px] text-white font-medium leading-[1.35]">
+                        <p className="font-suisse text-[9.5px] text-[#E8DCC8] font-medium leading-[1.35]">
                           {item.hook}
                         </p>
-                        <p className="font-suisse text-[9px] text-white/85 leading-[1.35]">
+                        <p className="font-suisse text-[9px] text-[#E8DCC8]/85 leading-[1.35]">
                           {item.detail}
                         </p>
                       </div>
@@ -174,7 +174,7 @@ export default function OriginWhatsIn() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-                    <span className="absolute top-3.5 left-3.5 font-suisse text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90">
+                    <span className="absolute top-3.5 left-3.5 font-suisse text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#E8DCC8]/90">
                       {item.country}
                     </span>
                   </div>
@@ -199,7 +199,7 @@ export default function OriginWhatsIn() {
                       <button
                         type="button"
                         aria-label="Toggle details"
-                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white/25 transition-all duration-300 shrink-0"
+                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-[#E8DCC8] hover:bg-white/25 transition-all duration-300 shrink-0"
                       >
                         <svg
                           className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}

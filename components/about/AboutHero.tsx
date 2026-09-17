@@ -21,12 +21,21 @@ export default function AboutHero() {
   const [scale, setScale] = useState(0.5);
 
   useEffect(() => {
+    // On mobile the page scrolls inside the fixed [data-scroll-frame]
+    // container (iOS 26 chrome fix) instead of the window — read whichever
+    // scroller is actually moving so the 3D parallax keeps tracking.
+    const frame = document.querySelector<HTMLElement>('[data-scroll-frame]');
     const onScroll = () => {
-      scrollRef.current = window.scrollY / Math.max(1, window.innerHeight);
+      const top = frame && frame.scrollTop > 0 ? frame.scrollTop : window.scrollY;
+      scrollRef.current = top / Math.max(1, window.innerHeight);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    frame?.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      frame?.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -81,7 +90,7 @@ export default function AboutHero() {
       </div>
 
       {/* Revolving 3D product */}
-      <div className="absolute inset-0 z-[3] pointer-events-none">
+      <div className="absolute inset-0 z-[3] pointer-events-none about-hero-scene">
         <AboutHeroScene scrollRef={scrollRef} scale={scale} />
       </div>
 

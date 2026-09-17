@@ -5,6 +5,7 @@ import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
 import TermsContent from '@/components/terms/termscontent';
 import Footer from '@/components/Footer';
+import MobileScrollFrame from '@/components/MobileScrollFrame';
 
 export default function TermsPage() {
   const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
@@ -23,10 +24,19 @@ export default function TermsPage() {
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
       <h1 className="sr-only">Terms of Service</h1>
+      {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
+          iOS treats position:fixed elements inside a touch scroll container
+          as absolute, so inside the frame it would scroll away. */}
+      <div className="artisun-bg" aria-hidden />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      <TermsContent />
-      <Footer />
+      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
+          so nothing slides behind Safari's translucent status bar / bottom
+          controls (same mechanic as the Origin page). Desktop unaffected. */}
+      <MobileScrollFrame>
+        <TermsContent />
+        <Footer />
+      </MobileScrollFrame>
     </main>
   );
 }

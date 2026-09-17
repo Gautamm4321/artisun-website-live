@@ -152,7 +152,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
                         <div className="bg-[#120403]/95 backdrop-blur-xl border border-white/20 shadow-2xl rounded-lg p-3.5">
                           <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/10">
                             <span className="font-suisse text-[11px] uppercase tracking-wider text-[var(--brand-cream)] font-medium">Full Ingredients</span>
-                            <button onClick={() => setIngredientsOpen(false)} className="text-white/60 hover:text-white text-xs">✕</button>
+                            <button onClick={() => setIngredientsOpen(false)} className="text-[#E8DCC8]/60 hover:text-[#E8DCC8] text-xs">✕</button>
                           </div>
                           <p className="font-suisse text-[10.5px] sm:text-[11.5px] leading-[1.5] text-[var(--brand-cream)]/85 max-h-[26vh] overflow-y-auto pr-1">
                             {FULL_INGREDIENTS}
@@ -172,7 +172,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
                       <span className="font-suisse text-[11.5px] sm:text-[13px] lg:text-[14px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
                         {item.label}
                       </span>
-                      <span className="ml-auto text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 flex items-center justify-center">
+                      <span className="ml-auto text-[#E8DCC8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 flex items-center justify-center">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7" />
                           <polyline points="7 7 17 7 17 17" />
