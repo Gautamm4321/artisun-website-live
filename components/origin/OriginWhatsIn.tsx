@@ -69,7 +69,7 @@ export default function OriginWhatsIn() {
       />
       <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col justify-start lg:justify-center h-full overflow-y-auto lg:overflow-visible pb-0 [scrollbar-width:none]">
         {/* ── Heading (With Top Breathing Room) ── */}
-        <div className="mb-3 sm:mb-5 lg:mb-10 shrink-0 mt-1 sm:mt-2 lg:mt-0">
+        <div className="mb-2 sm:mb-4 lg:mb-10 shrink-0 mt-0 lg:mt-0">
           <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[50px] leading-[1.08] tracking-tight">
             The good version of everything.
           </h2>
@@ -91,7 +91,7 @@ export default function OriginWhatsIn() {
                 {/* ── MOBILE VIEW: Country Left-Top | Name Bottom-Right | Proper Responsive Height ── */}
                 <div 
                   onClick={() => toggleAccordion(idx)}
-                  className="lg:hidden relative w-full h-[182px] sm:h-[198px] shrink-0 overflow-hidden flex flex-row cursor-pointer select-none"
+                  className="lg:hidden relative w-full h-[190px] sm:h-[205px] shrink-0 overflow-hidden flex flex-row cursor-pointer select-none"
                 >
                   {/* Image Section with explicit absolute inset */}
                   <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden shrink-0 ${isOpen ? 'w-[42%]' : 'w-full'}`}>

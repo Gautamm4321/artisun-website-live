@@ -247,7 +247,7 @@ export default function AuraQuestions() {
   return (
     <div
       id="aura-questions"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] flex flex-col items-center justify-center pt-[76px] pb-24 sm:pt-24 sm:pb-24 lg:py-0 overflow-hidden pointer-events-auto"
+      className="aura-panel relative w-screen shrink-0 h-screen flex flex-col items-center justify-start lg:justify-center pt-14 pb-14 sm:pt-16 sm:pb-16 lg:py-0 overflow-hidden pointer-events-auto"
     >
       {/* Background Radial Gradient */}
       <div
@@ -258,7 +258,8 @@ export default function AuraQuestions() {
         }}
       />
 
-      <div className="w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 my-auto flex flex-col justify-center max-h-[calc(100svh-140px)] lg:max-h-[84vh]">
+      <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 sm:pt-8 lg:pt-0 lg:my-auto flex flex-col justify-start lg:justify-center lg:max-h-[84vh]">
+
         {/* Eyebrow + Heading */}
         <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
           FAQS
@@ -285,7 +286,7 @@ export default function AuraQuestions() {
 
 {/* Category Tabs: Centered and smooth scrolling */}
         {!isSearching && (
-          <div className="mt-4 sm:mt-6 lg:mt-7 border-t border-b border-[var(--brand-cream)]/15 shrink-0">
+          <div className="mt-4 sm:mt-6 lg:mt-7 border-t border-b border-t border-b border-[#E8DCC8]/70 shrink-0">
             <div className="flex items-center justify-start sm:justify-center gap-x-3.5 sm:gap-x-6 lg:gap-x-7 py-2.5 sm:py-3 overflow-x-auto [scrollbar-width:none] flex-nowrap">
               {CATEGORIES.map((c, i) => {
                 const active = i === tab;
@@ -318,7 +319,7 @@ export default function AuraQuestions() {
         >
 
 
-          <div className="divide-y divide-[var(--brand-cream)]/12">
+          <div className="divide-y divide-[#E8DCC8]/90">
             {!isSearching &&
               visibleItems.map((item, i) => {
                 const isOpen = open === i;

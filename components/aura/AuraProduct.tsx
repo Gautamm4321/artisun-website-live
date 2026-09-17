@@ -78,7 +78,7 @@ export default function AuraProduct() {
                   className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wider px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[var(--brand-cream)] text-[var(--brand-dark,#1a1a1a)] font-medium hover:bg-white transition-colors"
                 />
               </div>
-              <p className="font-suisse text-[10.5px] sm:text-[11px] text-left text-[var(--brand-cream)]/50 pt-1 border-t border-white/10">
+              <p className="font-suisse text-[10.5px] sm:text-[11px] text-left text-[var(--brand-cream)]/50 pt-1 border-t border-[#E8DCC8]/20">
                 Free shipping · Delivered in 3–5 days
               </p>
             </div>

@@ -58,10 +58,10 @@ export default function OriginProduct() {
         <div className="w-full max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-14 grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-6 lg:gap-14 items-center lg:my-auto">
 
           {/* ── COPY — left on desktop, second on mobile ── */}
-          <div className="order-2 lg:order-1 w-full max-w-[520px] lg:max-w-none mx-auto flex flex-col items-center lg:items-start text-center lg:text-left gap-3 sm:gap-4">
+          <div className="order-2 lg:order-1 w-full max-w-[520px] lg:max-w-none mx-auto flex flex-col items-center lg:items-start text-center lg:text-left gap-4 sm:gap-5 lg:gap-3 flex-1 justify-between lg:justify-start">
 
             <div className="flex flex-col items-center lg:items-start w-full">
-              <h2 className="font-editorial tracking-tight leading-[1.05] text-[var(--brand-cream)] text-[clamp(19px,4.9vw,48px)] whitespace-nowrap lg:whitespace-normal">
+              <h2 className="font-editorial tracking-tighter leading-[1.05] text-[var(--brand-cream)] text-[clamp(21.5px,5.7vw,48px)] whitespace-nowrap lg:whitespace-normal w-full text-center lg:text-left">
             {FULL_NAME}
           </h2>
               <TagPills tags={BADGES} align="start" className="mt-3 sm:mt-4 justify-center lg:justify-start" />
@@ -77,7 +77,7 @@ export default function OriginProduct() {
                   className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wider px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[var(--brand-cream)] text-[var(--brand-dark,#1a1a1a)] font-medium hover:bg-white transition-colors"
                 />
               </div>
-              <p className="font-suisse text-[10.5px] sm:text-[11px] text-left text-[var(--brand-cream)]/50 pt-1 border-t border-white/10">
+              <p className="font-suisse text-[10.5px] sm:text-[11px] text-left text-[var(--brand-cream)]/50 pt-1 border-t border-[#E8DCC8]/20">
                 Free shipping · Delivered in 3–5 days
               </p>
             </div>
@@ -95,7 +95,7 @@ export default function OriginProduct() {
               ))}
             </div>
 
-            <p className="font-editorial not-italic text-[var(--brand-cream)]/75 text-[16px] sm:text-[20px] tracking-tight pt-0.5">
+            <p className="font-editorial not-italic text-[var(--brand-cream)]/75 text-[17px] sm:text-[20px] tracking-tight pt-2 pb-3 lg:pb-0 lg:pt-0.5">
               What&apos;s your skin wearing today?
             </p>
           </div>
