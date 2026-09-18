@@ -258,7 +258,7 @@ export default function AuraQuestions() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 sm:pt-8 lg:pt-0 lg:my-auto flex flex-col justify-start lg:justify-center lg:max-h-[84vh]">
+<div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-4 sm:pt-6 lg:pt-0 lg:my-auto flex flex-col justify-start lg:justify-center h-full max-h-full lg:max-h-[84vh]">
 
         {/* Eyebrow + Heading */}
         <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
@@ -315,7 +315,7 @@ export default function AuraQuestions() {
         {/* Accordion Questions List */}
         <div
           ref={scrollerRef}
-          className="overflow-y-auto mt-2 flex-1 flex flex-col min-h-0 pr-1.5 sm:pr-2 pb-6 [overscroll-behavior:contain]"
+          className="panel-scroll overflow-y-auto mt-2 flex-1 min-h-0 flex flex-col pr-1.5 sm:pr-2 pb-10 touch-pan-y"
         >
 
 
