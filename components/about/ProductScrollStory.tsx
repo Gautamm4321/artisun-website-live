@@ -16,6 +16,7 @@ function DesktopImageSlot({
   active,
   setRef,
   flip,
+  isDesktop,
 }: {
   src: string;
   i: number;
@@ -24,6 +25,7 @@ function DesktopImageSlot({
   active: boolean;
   setRef: (el: HTMLDivElement | null) => void;
   flip?: boolean;
+  isDesktop: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -48,13 +50,15 @@ function DesktopImageSlot({
           style={{ scale }}
           className="relative w-full max-w-[440px] h-[45vh] md:h-[65vh] rounded-[24px] overflow-hidden shadow-[0_40px_90px_-30px_rgba(0,0,0,0.7)] ring-1 ring-white/5"
         >
-          <Image
-            src={asset(src)}
-            alt={`${productLabel} ${i + 1}`}
-            fill
-            sizes="(max-width: 768px) 90vw, 45vw"
-            className="object-cover"
-          />
+          {isDesktop && (
+            <Image
+              src={asset(src)}
+              alt={`${productLabel} ${i + 1}`}
+              fill
+              sizes="(max-width: 768px) 90vw, 45vw"
+              className="object-cover"
+            />
+          )}
         </motion.div>
 
         <div className="mt-4 md:mt-8 w-full max-w-[440px]">
@@ -99,7 +103,27 @@ export default function ProductScrollStory({
 }) {
   const [active, setActive] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  // Pre-warm remaining carousel images in browser cache so mobile swipes are instant
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      images.forEach((src) => {
+        const img = new window.Image();
+        img.src = asset(src);
+      });
+    }
+  }, [images]);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -157,7 +181,7 @@ export default function ProductScrollStory({
           ))}
         </h2>
 
-        {/* Draggable/Swipable Image Container with Smooth Slide */}
+        {/* Draggable/Swipable Image Container with Instant Smooth Transition */}
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -165,47 +189,55 @@ export default function ProductScrollStory({
           onDragEnd={handleDragEnd}
           className="relative w-full h-[280px] sm:h-[340px] rounded-[18px] overflow-hidden shadow-2xl mb-5 border border-white/10 bg-[#8B3A32] cursor-grab active:cursor-grabbing touch-pan-y"
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={mobileIndex}
-              initial={{ opacity: 0, x: 40, scale: 0.98 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -40, scale: 0.98 }}
-              transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <Image
-                src={asset(images[mobileIndex])}
-                alt={`${productLabel} ${mobileIndex + 1}`}
-                fill
-                sizes="90vw"
-                priority={mobileIndex === 0}
-                loading="eager"
-                className="object-cover pointer-events-none"
-              />
-            </motion.div>
-          </AnimatePresence>
+          {images.map((src, idx) => {
+            const isCurrent = mobileIndex === idx;
+            const isPrev = idx < mobileIndex;
+            return (
+              <div
+                key={src}
+                className={`absolute inset-0 w-full h-full transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
+                  isCurrent
+                    ? 'opacity-100 translate-x-0 scale-100 z-10 pointer-events-auto'
+                    : isPrev
+                    ? 'opacity-0 -translate-x-10 scale-[0.98] z-0 pointer-events-none'
+                    : 'opacity-0 translate-x-10 scale-[0.98] z-0 pointer-events-none'
+                }`}
+              >
+                <Image
+                  src={asset(src)}
+                  alt={`${productLabel} ${idx + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 90vw, 440px"
+                  loading="eager"
+                  className="object-cover pointer-events-none"
+                />
+              </div>
+            );
+          })}
         </motion.div>
 
-        {/* Dynamic Paragraph Text with Swipable Slide Effect */}
-        <div className="min-h-[75px] max-w-[420px] mx-auto flex flex-col justify-center mb-5 overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={mobileIndex}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] opacity-95">
-                {paragraphs[mobileIndex]?.text}{paragraphs[mobileIndex]?.em ? ` ${paragraphs[mobileIndex].em}` : ''}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+        {/* Dynamic Paragraph Text with Instant Transition */}
+        <div className="relative min-h-[75px] max-w-[420px] mx-auto flex flex-col justify-center mb-5 overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
+          {paragraphs.map((p, idx) => {
+            const isCurrent = mobileIndex === idx;
+            const isPrev = idx < mobileIndex;
+            return (
+              <div
+                key={idx}
+                className={`transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  isCurrent
+                    ? 'opacity-100 translate-x-0 pointer-events-auto relative z-10'
+                    : isPrev
+                    ? 'opacity-0 -translate-x-8 pointer-events-none absolute inset-x-0 top-0 z-0'
+                    : 'opacity-0 translate-x-8 pointer-events-none absolute inset-x-0 top-0 z-0'
+                }`}
+              >
+                <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] opacity-95">
+                  {p?.text}{p?.em ? ` ${p.em}` : ''}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         {/* 3 Pagination Dots */}
@@ -260,6 +292,7 @@ export default function ProductScrollStory({
               paragraph={paragraphs[i]}
               active={active === i}
               flip={flip}
+              isDesktop={isDesktop}
               setRef={(el) => {
                 slotRefs.current[i] = el;
               }}

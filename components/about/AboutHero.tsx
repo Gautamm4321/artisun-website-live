@@ -19,23 +19,31 @@ const HERO_SUB =
 export default function AboutHero() {
   const scrollRef = useRef(0);
   const [scale, setScale] = useState(0.5);
+  const [readyScene, setReadyScene] = useState(false);
 
   useEffect(() => {
-    // On mobile the page scrolls inside the fixed [data-scroll-frame]
-    // container (iOS 26 chrome fix) instead of the window — read whichever
-    // scroller is actually moving so the 3D parallax keeps tracking.
-    const frame = document.querySelector<HTMLElement>('[data-scroll-frame]');
+    // On desktop, load 3D scene immediately.
+    // On mobile (<768px), defer by requestIdleCallback / brief timeout so mobile
+    // network and main thread are not blocked during initial page paint.
+    if (window.innerWidth < 768) {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => setReadyScene(true));
+      } else {
+        const timer = setTimeout(() => setReadyScene(true), 350);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      setReadyScene(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
-      const top = frame && frame.scrollTop > 0 ? frame.scrollTop : window.scrollY;
-      scrollRef.current = top / Math.max(1, window.innerHeight);
+      scrollRef.current = window.scrollY / Math.max(1, window.innerHeight);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    frame?.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      frame?.removeEventListener('scroll', onScroll);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -91,7 +99,7 @@ export default function AboutHero() {
 
       {/* Revolving 3D product */}
       <div className="absolute inset-0 z-[3] pointer-events-none about-hero-scene">
-        <AboutHeroScene scrollRef={scrollRef} scale={scale} />
+        {readyScene && <AboutHeroScene scrollRef={scrollRef} scale={scale} />}
       </div>
 
       {/* Top-left kicker (GAZU's "fashion that moves with you") */}
