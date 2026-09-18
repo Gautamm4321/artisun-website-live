@@ -123,23 +123,23 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
               />
             </div>
 
-            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" />
+            <div className="h-px w-full bg-[#E8DCC8] my-0.5" />
 
             {/* Sidebar Navigation */}
             <ul className="flex flex-col">
               {NAV_ITEMS.map((item) => {
                 if (item.kind === 'accordion') {
                   return (
-                    <li key={item.n} className="relative border-b border-[var(--brand-cream)]/10">
+                    <li key={item.n} className="relative border-b border-[#E8DCC8]">
                       <button
                         onClick={() => setIngredientsOpen((v) => !v)}
                         aria-expanded={ingredientsOpen}
                         className="pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 text-left group"
                       >
-                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] lg:text-[13.5px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
+                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] lg:text-[13.5px] text-[#E8DCC8] group-hover:text-[#E8DCC8] transition-colors">
                           {item.label}
                         </span>
-                        <span className={`ml-auto text-sm text-[var(--brand-cream)]/60 transition-transform duration-300 ${ingredientsOpen ? 'rotate-45' : ''}`}>+</span>
+                        <span className={`ml-auto text-sm text-[#E8DCC8] transition-transform duration-300 ${ingredientsOpen ? 'rotate-45' : ''}`}>+</span>
                       </button>
 
                       {/* Bottom-anchored popover to prevent clipping at screen edge */}

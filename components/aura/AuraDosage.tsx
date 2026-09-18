@@ -108,16 +108,13 @@ export default function AuraDosage() {
                   onClick={() => setActiveTab(idx)}
                   className={`w-full py-3.5 px-5 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${
                     isActive
-                      ? 'bg-white text-black border-white shadow-xl'
+                      ? 'bg-[#E8DCC8] text-[#2A0805] border-[#E8DCC8] shadow-xl'
                       : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-white/15 hover:border-white/40 hover:bg-white/[0.1]'
                   }`}
                 >
                   <div className="text-left">
                     <span className="font-suisse text-xs sm:text-sm uppercase tracking-wider font-semibold block">
                       {tab.label}
-                    </span>
-                    <span className="font-suisse text-[11px] opacity-70 block mt-0.5">
-                      {tab.weather}
                     </span>
                   </div>
                   <span className="font-editorial text-2xl sm:text-3xl leading-none font-medium">

@@ -35,7 +35,7 @@ export default function OriginWhy() {
         fill
         sizes="100vw"
         priority
-        className="object-cover object-center lg:hidden"
+        className="object-cover object-center -scale-x-100 lg:hidden"
       />
       <Image
         src={asset(BG_IMAGE_DESKTOP)}
@@ -77,22 +77,22 @@ export default function OriginWhy() {
             return (
               <div
                 key={s.index}
-                className={`${isLastOne ? 'col-span-2 justify-self-center w-[52%] lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] lg:h-[185px] p-2.5 sm:p-3 lg:p-4 rounded-none lg:rounded-xl bg-[#8B1E13] lg:bg-gradient-to-b lg:from-[#6e140d]/75 lg:to-[#380805]/90 border border-[#b32b1f] lg:border-white/15 flex flex-col justify-between shadow-xl hover:border-white/30 transition-all`}
+                className={`${isLastOne ? 'col-span-2 justify-self-center w-[52%] lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] lg:h-[185px] p-2.5 sm:p-3 lg:p-4 rounded-none lg:rounded-xl bg-[#8B1E13] lg:bg-gradient-to-b lg:from-[#6e140d]/75 lg:to-[#380805]/90 border-0 lg:border lg:border-white/15 flex flex-col justify-between shadow-xl hover:border-white/30 transition-all`}
               >
-                {/* Top: Category Label with clean visual isolation */}
-                <div className="font-suisse text-[8.5px] sm:text-[9.5px] lg:text-[11px] tracking-[0.12em] uppercase text-[var(--brand-cream)]/60">
+                {/* Top: Category Label (smaller on mobile) */}
+                <div className="font-suisse text-[7.5px] sm:text-[8.5px] lg:text-[11px] tracking-[0.14em] uppercase text-[var(--brand-cream)]/70">
                   {s.index} · {s.label}
                 </div>
 
                 {/* Content Section: Number + Attached Copy */}
                 <div className="flex flex-col mt-auto pt-1 sm:pt-2 lg:pt-0">
-                  {/* Number row: fixed line-height ensuring perfect horizontal level */}
-                  <div className="font-editorial text-[var(--brand-cream)] text-[25px] sm:text-[28px] lg:text-[54px] xl:text-[58px] leading-none tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] flex items-end">
+                  {/* Number row: larger on mobile (30px) */}
+                  <div className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[34px] lg:text-[54px] xl:text-[58px] leading-none tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] flex items-end">
                     <CountUp end={s.value} suffix={s.suffix} play={inView} duration={2} />
                   </div>
 
-                  {/* Attached Sub-text: tightly paired to the number, uniform height on desktop */}
-                  <p className="font-suisse text-[11px] sm:text-[9.5px] lg:text-[13px] xl:text-[13.5px] leading-[1.25] lg:leading-[1.4] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-1 lg:mt-2 line-clamp-2 lg:line-clamp-none lg:min-h-[48px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                  {/* Attached Sub-text: smaller font size on mobile (9.5px) */}
+                  <p className="font-suisse text-[9.5px] sm:text-[10.5px] lg:text-[13px] xl:text-[13.5px] leading-[1.25] lg:leading-[1.4] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-0.5 lg:mt-2 line-clamp-2 lg:line-clamp-none lg:min-h-[48px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                     <span className="lg:hidden">{s.mobileCopy}</span>
                     <span className="hidden lg:inline">{s.copy}</span>
                   </p>
