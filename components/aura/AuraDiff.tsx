@@ -10,7 +10,7 @@ export default function AuraDiff() {
   // usePanelEdgeScroll removed
 
   return (
-    <div className="aura-panel relative w-screen shrink-0 h-auto lg:h-[100svh] overflow-visible lg:overflow-hidden">
+    <div id="aura-diff" className="aura-panel relative w-screen shrink-0 h-auto lg:h-[100svh] scroll-mt-[72px] lg:scroll-mt-0 overflow-visible lg:overflow-hidden">
       {/* Red Eclipse Background */}
       <div
         className="absolute inset-0 -z-10 pointer-events-none"

@@ -17,7 +17,7 @@ const STATS: Stat[] = [
 ];
 
 const BG_IMAGE_DESKTOP = '/pdp/origin-why-desktop.webp';
-const BG_IMAGE_MOBILE = '/Origin, second frame.jpeg';
+const BG_IMAGE_MOBILE = '/Origin, second frame-image.jpeg';
 
 export default function OriginWhy() {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export default function OriginWhy() {
         fill
         sizes="100vw"
         priority
-        className="object-cover object-center -scale-x-100 lg:hidden"
+        className="object-cover object-center lg:hidden"
       />
       <Image
         src={asset(BG_IMAGE_DESKTOP)}

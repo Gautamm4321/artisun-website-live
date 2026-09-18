@@ -48,7 +48,7 @@ export default function AuraDosage() {
     <div
       id="aura-dosage"
       ref={scrollerRef}
-      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-8 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] scroll-mt-[72px] lg:scroll-mt-0 overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-8 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Top Heading */}

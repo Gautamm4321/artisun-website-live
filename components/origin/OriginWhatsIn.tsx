@@ -57,7 +57,7 @@ export default function OriginWhatsIn() {
   return (
     <div
       id="origin-whatsin"
-      className="origin-panel relative w-screen shrink-0 h-screen overflow-hidden flex flex-col justify-start lg:justify-center pt-20 pb-16 sm:pt-24 sm:pb-20"
+      className="origin-panel relative w-screen shrink-0 h-screen scroll-mt-[72px] lg:scroll-mt-0 overflow-hidden flex flex-col justify-start lg:justify-center pt-20 pb-16 sm:pt-24 sm:pb-20"
     >
       {/* Background Radial Gradient */}
       <div

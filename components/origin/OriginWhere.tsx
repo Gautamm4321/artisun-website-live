@@ -26,7 +26,7 @@ export default function OriginWhere() {
   return (
     <div
       id="origin-where"
-      className="origin-panel relative w-screen shrink-0 h-[100svh] flex flex-col"
+      className="origin-panel relative w-screen shrink-0 h-[100svh] scroll-mt-[72px] lg:scroll-mt-0 flex flex-col"
     >
       {/* Background Radial Gradient */}
       <div
