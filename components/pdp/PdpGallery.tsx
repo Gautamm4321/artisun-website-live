@@ -111,6 +111,12 @@ export default function PdpGallery({
       >
         {isVideo(activeImg) ? (
           <video
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.play().catch(() => {});
+              }
+            }}
             key={activeImg + index}
             src={asset(activeImg)}
             poster={videoPoster ? asset(videoPoster) : undefined}
@@ -118,6 +124,8 @@ export default function PdpGallery({
             muted
             loop
             playsInline
+            controls={false}
+            disablePictureInPicture
             aria-label={alt}
             className={`absolute inset-0 h-full w-full object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
           />
@@ -174,40 +182,13 @@ export default function PdpGallery({
                 : 'opacity-50 border-white/20 hover:opacity-80'
             }`}
           >
-            {isVideo(src) ? (
-              <>
-                {videoPoster ? (
-                  <Image
-                    src={asset(videoPoster)}
-                    alt={`${alt} video preview`}
-                    fill
-                    sizes="52px"
-                    className="object-cover"
-                  />
-                ) : (
-                  <video
-                    src={asset(src)}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    aria-label={`${alt} video preview`}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                )}
-                {/* Subtle Play Badge */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/25">
-                  <svg
-                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white drop-shadow"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </>
-            ) : (
-              <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
-            )}
+            <Image
+              src={asset(isVideo(src) && videoPoster ? videoPoster : src)}
+              alt=""
+              fill
+              sizes="52px"
+              className="object-cover"
+            />
           </button>
         ))}
       </div>
