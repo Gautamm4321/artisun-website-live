@@ -47,7 +47,7 @@ export default function AuraTexture() {
         </span>
 
         {/* Exact Center Heading */}
-        <h2 className="font-editorial text-[clamp(24px,4vw,56px)] leading-[1.08] text-[#E8DCC8] tracking-tight text-center drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] max-w-[900px]">
+        <h2 className="font-editorial text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic text-[#E8DCC8] text-center drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] max-w-[960px]">
           Pillows of gel that vanish<br />
           the second they touch skin.
         </h2>

@@ -62,10 +62,10 @@ export default function AuraProduct() {
           <div className="order-2 lg:order-1 w-full max-w-[520px] lg:max-w-none mx-auto flex flex-col items-center lg:items-start text-center lg:text-left gap-3 sm:gap-4">
 
             <div className="flex flex-col items-center lg:items-start w-full">
-              <h2 className="font-editorial tracking-tight leading-[1.05] text-[#E8DCC8] text-[clamp(17px,7vw,45px)] whitespace-nowrap lg:whitespace-normal">
-            {FULL_NAME}
-          </h2>
-              <TagPills tags={BADGES} align="start" className="mt-3 sm:mt-4 justify-center lg:justify-start" />
+              <h2 className="font-editorial text-[#E8DCC8] text-[24px] sm:text-[34px] lg:text-[40px] xl:text-[44px] leading-[1.08] tracking-tight not-italic break-words w-full text-center lg:text-left">
+                {FULL_NAME}
+              </h2>
+              <TagPills tags={BADGES} align="start" className="mt-2.5 sm:mt-3.5 justify-center lg:justify-start" />
             </div>
 
             <div className="w-full max-w-[360px] lg:max-w-[420px] p-3 sm:p-4 rounded-xl bg-white/[0.06] border border-white/15 backdrop-blur-md shadow-lg space-y-2 sm:space-y-2.5">

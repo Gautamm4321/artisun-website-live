@@ -49,8 +49,9 @@ export default function OriginWhere() {
 
       {/* Heading block */}
       <div className="px-5 sm:px-8 lg:px-14 pt-16 sm:pt-28 lg:pt-[112px] pb-6 lg:pb-8 max-w-[1500px] w-full mx-auto relative z-10">
-        <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.03] tracking-tight not-italic">
-          One sunscreen. Every Indian weather.
+        <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic lg:whitespace-nowrap">
+          <span className="block lg:inline">One sunscreen.</span>{' '}
+          <span className="block lg:inline">Every Indian weather.</span>
         </h2>
         <p className="font-suisse text-[var(--brand-cream)]/60 text-[15px] sm:text-[18px] mt-3">
           Built for your weather, not just your skin type.

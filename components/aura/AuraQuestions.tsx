@@ -265,7 +265,7 @@ export default function AuraQuestions() {
           FAQS
         </span>
         
-        <h2 className="self-center font-editorial text-[#E8DCC8] text-[32px] sm:text-[42px] lg:text-[48px] leading-tight mt-2 text-center not-italic">
+        <h2 className="self-center font-editorial text-[#E8DCC8] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight mt-2 text-center not-italic">
           Everything, answered.
         </h2>
 
@@ -279,7 +279,7 @@ export default function AuraQuestions() {
               setOpen(null);
             }}
             placeholder="Search a question — pearls, glow, fragrance, Origin vs Aura…"
-            className="w-full font-suisse text-[16px] sm:text-[13px] px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.07] border border-[var(--brand-cream)]/20 text-[var(--brand-cream)] placeholder-[var(--brand-cream)]/40 focus:outline-none focus:border-[var(--brand-red)] focus:bg-white/[0.12] transition-all text-center focus:text-left shadow-inner"
+            className="w-full font-suisse text-[16px] sm:text-[13px] px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-[#E8DCC8]/30 text-[var(--brand-cream)] placeholder-[#E8DCC8]/50 focus:outline-none focus:border-[#E8DCC8]/70 focus:bg-white/[0.14] transition-all text-center focus:text-left shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
           />
         </div>
 

@@ -48,16 +48,16 @@ export default function AuraDosage() {
     <div
       id="aura-dosage"
       ref={scrollerRef}
-      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden flex flex-col justify-between pt-20 pb-16 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-8 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Top Heading */}
-      <div className="relative z-10 max-w-[1500px] w-full mx-auto pt-2 lg:pt-10">
+      <div className="relative z-10 max-w-[1500px] w-full mx-auto pt-0 lg:pt-10">
         <div className="w-full max-w-[540px]">
           <span className="font-suisse text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[var(--brand-cream)]/70">
             How to wear
           </span>
-          <h2 className="font-editorial text-[22px] sm:text-[36px] lg:text-[48px] leading-[1.08] tracking-tight mt-1 text-[#E8DCC8]">
+          <h2 className="font-editorial text-[26px] sm:text-[40px] lg:text-[52px] leading-[1.08] tracking-tight mt-1 text-[#E8DCC8]">
             The first sunscreen that changes with the weather.
           </h2>
           <p className="font-suisse text-[11.5px] sm:text-[13.5px] text-[var(--brand-cream)]/80 mt-1.5 leading-[1.45]">
@@ -67,10 +67,10 @@ export default function AuraDosage() {
       </div>
 
       {/* Center Grid: Vertical Stack on Right & Sharp Image on Left */}
-      <div className="relative z-10 max-w-[1500px] w-full mx-auto my-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-stretch pt-4">
+      <div className="relative z-10 max-w-[1500px] w-full mx-auto my-2 lg:my-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-14 items-stretch pt-2 lg:pt-4">
         
         {/* Left: Image Card (Sharp Corners) */}
-        <div className="relative w-full h-full min-h-[280px] sm:min-h-[340px] lg:min-h-0 overflow-hidden shadow-2xl bg-black/20 flex items-center justify-center transition-all duration-500">
+        <div className="relative w-full h-[220px] sm:h-[260px] lg:h-full min-h-0 overflow-hidden shadow-2xl bg-black/20 flex items-center justify-center transition-all duration-500">
           <Image
             key={current.image}
             src={asset(current.image)}
@@ -141,7 +141,7 @@ export default function AuraDosage() {
 
       </div>
 
-      <div className="relative z-10 max-w-[1500px] w-full mx-auto pt-2" />
+<div className="hidden lg:block relative z-10 max-w-[1500px] w-full mx-auto pt-2" />
     </div>
   );
 }

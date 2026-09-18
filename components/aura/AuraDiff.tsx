@@ -26,19 +26,15 @@ export default function AuraDiff() {
           
           {/* Section Kicker */}
           <div className="flex items-center gap-2 text-[10px] sm:text-xs tracking-[0.24em] uppercase font-medium text-[var(--brand-cream)]/70 mb-1 lg:mb-1.5">
-            <span className="w-5 h-[1px] bg-current opacity-60" />
             What makes aura different
           </div>
 
           {/* Headline (Fitted cleanly on desktop) */}
-          <h2 className="font-editorial text-[#E8DCC8] text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.08] tracking-tight font-normal mb-1.5 lg:mb-2">
+          <h2 className="font-editorial text-[#E8DCC8] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic font-normal mb-2 lg:mb-3">
             Two things in one pearl: protection, and skincare.
           </h2>
 
-          {/* Subline */}
-          <p className="font-sans text-[var(--brand-cream)]/85 text-[12.5px] sm:text-[13.5px] lg:text-[14px] leading-[1.45] max-w-[820px] font-light mb-4 lg:mb-5">
-            Aura is built as pearls suspended in a gel. The dual formula from the pearl protects your skin from UV rays. And the gel looks after your skin from environmental stressors. Here&rsquo;s what&rsquo;s inside each.
-          </p>
+          
 
           {/* Two-Card Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-stretch">
@@ -47,7 +43,7 @@ export default function AuraDiff() {
             <div className="bg-black/30 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden flex flex-col justify-between">
               <div className="relative w-full h-[130px] sm:h-[180px] lg:h-[185px] xl:h-[210px] bg-[#613622] overflow-hidden">
                 <Image
-                  src={asset('/pdp/aura-1.webp')}
+                  src={asset('/pdp/The pearl, Aura new frame.jpeg')}
                   alt="The Pearl Macro"
                   fill
                   sizes="(max-width: 1024px) 100vw, 560px"
@@ -55,7 +51,6 @@ export default function AuraDiff() {
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                 <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-[#E8DCC8]/60">
-                  Image &mdash; The Pearls, Macro
                 </span>
               </div>
 
@@ -90,7 +85,7 @@ export default function AuraDiff() {
             <div className="bg-black/30 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden flex flex-col justify-between">
               <div className="relative w-full h-[130px] sm:h-[180px] lg:h-[185px] xl:h-[210px] bg-[#4a3e2a] overflow-hidden">
                 <Image
-                  src={asset('/pdp/aura-2.webp')}
+                  src={asset('/pdp/The gel, Aura new frame.jpeg')}
                   alt="The Gel Macro"
                   fill
                   sizes="(max-width: 1024px) 100vw, 560px"
@@ -98,14 +93,13 @@ export default function AuraDiff() {
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                 <span className="absolute bottom-2.5 left-3 text-[9px] uppercase tracking-[0.2em] font-medium text-[#E8DCC8]/60">
-                  Image &mdash; The Gel, Macro
                 </span>
               </div>
 
               <div className="p-4 sm:p-5 lg:p-5 flex flex-col flex-1 justify-between">
                 <div>
                   <div className="text-[12px] sm:text-[13px] font-serif  mb-0.5">
-                   THE JEL
+                   THE GEL
                   </div>
                   <h3 className="font-editorial text-xl sm:text-2xl text-[#E8DCC8] font-normal mb-1 tracking-tight">
                     The skincare.

@@ -44,7 +44,7 @@ export default function AuraWhatsIn() {
   return (
     <div
       id="aura-whatsin"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start lg:justify-between pt-24 sm:pt-24 lg:pt-24 pb-16 lg:pb-14 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-6 sm:py-16 lg:pt-24 lg:pb-14 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Background Glow */}
@@ -62,7 +62,7 @@ export default function AuraWhatsIn() {
           <span className="font-suisse text-[11px] sm:text-xs tracking-[0.22em] uppercase text-[#E8DCC8]/70">
             What&apos;s in it
           </span>
-        <h2 className="font-editorial text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.03] text-[#E8DCC8] tracking-tight mt-2 max-w-[18ch]">
+         <h2 className="font-editorial text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] text-[#E8DCC8] tracking-tight not-italic mt-2 max-w-[18ch]">
             Sourced better than they needed to be.
           </h2>
         </div>
@@ -71,7 +71,7 @@ export default function AuraWhatsIn() {
         <div className="w-full flex flex-col lg:grid lg:grid-cols-[1fr_1.1fr] gap-3 sm:gap-4 lg:gap-12 items-stretch justify-center min-h-0 mt-3 sm:mt-4 lg:my-auto">
           
           {/* Left Visual Image: Perfectly fills tablet/mobile without excessive blank space */}
-          <div className="relative w-full h-[24vh] sm:h-[28vh] lg:h-[50vh] xl:h-[54vh] max-h-[480px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 shrink-0">
+          <div className="relative w-full h-[27vh] sm:h-[30vh] lg:h-[50vh] xl:h-[54vh] max-h-[480px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 shrink-0">
             <Image
               src={asset('/pdp/aura-whatsin.webp')}
               alt="Aura Ingredients"
