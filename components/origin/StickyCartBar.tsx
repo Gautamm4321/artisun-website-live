@@ -6,8 +6,12 @@ import AddToBagButton from '@/components/cart/AddToBagButton';
 
 export default function StickyCartBar() {
   return (
-    <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] bg-black/20 backdrop-blur-md border-t border-white/10 pointer-events-auto transition-all">
-      <div className="h-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
+    <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] pointer-events-auto">
+      {/* Glass lives on an absolute child, not the fixed bar itself: iOS 26
+          Safari tints its bottom toolbar from any fixed element's own
+          background/backdrop-filter, which would turn it into a dark strip. */}
+      <div aria-hidden className="absolute inset-0 bg-black/20 backdrop-blur-md border-t border-white/10" />
+      <div className="relative h-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
         {/* Left: Compact Thumb + Title */}
         <div className="flex items-center gap-3">
           <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden shrink-0 border border-white/15">

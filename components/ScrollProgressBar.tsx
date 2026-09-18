@@ -20,34 +20,17 @@ export default function ScrollProgressBar({
   const bottomPositionClass = isProductPage ? 'bottom-11 sm:bottom-12' : 'bottom-0';
 
   useEffect(() => {
-    /* On mobile, pages that use the iOS-26 chrome fix scroll inside a fixed
-       [data-scroll-frame] container (Origin's snap container works the same
-       way) instead of the window. Read progress from whichever is actually
-       the scroller — the frame only ever has overflow-y:auto below 1024px,
-       so on desktop this automatically falls back to the window. */
-    const frame = document.querySelector<HTMLElement>('[data-scroll-frame]');
-
     const update = () => {
-      let progress = 0;
-      if (frame && getComputedStyle(frame).overflowY === 'auto') {
-        const total = frame.scrollHeight - frame.clientHeight;
-        progress = total > 0 ? frame.scrollTop / total : 0;
-      } else {
-        const scrollTop = window.scrollY;
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        progress = total > 0 ? scrollTop / total : 0;
-      }
+      const scrollTop = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? Math.min(1, scrollTop / total) : 0;
       if (barRef.current) barRef.current.style.transform = `scaleX(${progress})`;
       if (markerRef.current) markerRef.current.style.left = `${progress * 100}%`;
     };
 
     window.addEventListener('scroll', update, { passive: true });
-    frame?.addEventListener('scroll', update, { passive: true });
     update();
-    return () => {
-      window.removeEventListener('scroll', update);
-      frame?.removeEventListener('scroll', update);
-    };
+    return () => window.removeEventListener('scroll', update);
   }, []);
 
   /* ── Footer Observer ── */

@@ -5,7 +5,6 @@ import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
 import ContactContent from '@/components/contact/contactcontent';
 import Footer from '../../components/Footer';
-import MobileScrollFrame from '@/components/MobileScrollFrame';
 
 
 export default function ContactPage() {
@@ -25,19 +24,12 @@ export default function ContactPage() {
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
       <h1 className="sr-only">We're right here.</h1>
-      {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
-          iOS treats position:fixed elements inside a touch scroll container
-          as absolute, so inside the frame it would scroll away. */}
+      {/* Red Eclipse background */}
       <div className="artisun-bg" aria-hidden />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
-          so nothing slides behind Safari's translucent status bar / bottom
-          controls (same mechanic as the Origin page). Desktop unaffected. */}
-      <MobileScrollFrame>
-        <ContactContent />
-        <Footer />
-      </MobileScrollFrame>
+      <ContactContent />
+      <Footer />
     </main>
   );
 }

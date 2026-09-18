@@ -68,14 +68,9 @@ export default function Footer() {
     if (!containerRef.current) return;
     const el = containerRef.current;
 
-    // ── ENTRY: reveal driven by IntersectionObserver instead of a
-    // window-scroller ScrollTrigger. Several pages now scroll inside a
-    // fixed mobile container ([data-scroll-frame] / Origin's snap
-    // container) where the window never scrolls, so a window-based
-    // trigger would never fire and the footer would stay invisible.
-    // IO measures against the visual viewport regardless of which
-    // element does the scrolling, so the same animation works
-    // everywhere — same 'top bottom', once-only behavior as before. ──
+    // ── ENTRY: reveal driven by IntersectionObserver ('top bottom',
+    // once-only). IO measures against the viewport regardless of which
+    // element scrolls, so it works on every page. ──
     const ctx = gsap.context(() => {
       gsap.set('.footer-reveal', { y: 24, opacity: 0 });
     }, containerRef);

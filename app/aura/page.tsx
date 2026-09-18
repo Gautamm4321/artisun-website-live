@@ -59,15 +59,10 @@ export default function AuraPage() {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    // ── Mobile (<1024px): same iOS-26 chrome fix as the Origin page. ──
-    // html/body are locked and the wrapper div ([data-scroll-frame], see
-    // globals.css) becomes the page's fixed 100svh scroll container, so no
-    // content ever scrolls past the viewport into Safari's translucent
-    // status bar / tab bar zones — they stay clean and dark. Lenis is only
-    // created on desktop, exactly like Origin: on mobile the container
-    // scrolls natively and Lenis would just fight it.
+    // ── Mobile (<1024px): the window scrolls natively, like the home page,
+    // so content shows through iOS 26 Safari's floating bottom bar. Lenis is
+    // only created on desktop, where it drives the horizontal pin track.
     const isMobile = window.innerWidth < 1024;
-    document.documentElement.classList.add('has-scroll-frame');
 
     let lenis: Lenis | null = null;
     let raf: ((time: number) => void) | null = null;
@@ -123,7 +118,6 @@ export default function AuraPage() {
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
       lenis?.scrollTo(0, { immediate: true });
-      if (wrapperRef.current) wrapperRef.current.scrollTop = 0;
       ScrollTrigger.refresh();
     });
 
@@ -133,7 +127,6 @@ export default function AuraPage() {
 
     return () => {
       if ('scrollRestoration' in history) history.scrollRestoration = prevRestoration;
-      document.documentElement.classList.remove('has-scroll-frame');
       mm.revert();
       if (raf) gsap.ticker.remove(raf);
       if (lenis) {
@@ -153,12 +146,10 @@ export default function AuraPage() {
       const target = st.start + (i / (PANELS - 1)) * (st.end - st.start);
       lenis.scrollTo(target, { duration: 1.3 });
     } else {
-      // Mobile: the wrapper ([data-scroll-frame]) is the scroll container —
-      // scroll it directly, same as Origin's snap container.
-      const wrapper = wrapperRef.current;
+      // Mobile: the window is the scroller.
       const panels = document.querySelectorAll<HTMLElement>('.aura-panel');
-      if (wrapper && panels[i]) {
-        wrapper.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
+      if (panels[i]) {
+        window.scrollTo({ top: panels[i].getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
       }
     }
   };
@@ -171,7 +162,7 @@ export default function AuraPage() {
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
 
-    <div ref={wrapperRef} data-scroll-frame="" className="relative w-full lg:h-[100svh] lg:overflow-hidden">
+      <div ref={wrapperRef} className="relative w-full lg:h-[100svh] lg:overflow-hidden">
         <div
           ref={trackRef}
           className="flex flex-col lg:flex-row flex-nowrap w-full lg:h-full will-change-transform"

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import GlobalHeader from '../../components/GlobalHeader';
 import Footer from '../../components/Footer';
-import MobileScrollFrame from '../../components/MobileScrollFrame';
 import CustomCursor from '../../components/CustomCursor';
 import ScrollProgressBar from '../../components/ScrollProgressBar';
 
@@ -41,33 +40,26 @@ export default function ClimatePage() {
             <CustomCursor mouseProxy={mouseProxy} />
             <GlobalHeader />
 
-            {/* iOS 26 chrome fix: on mobile every scrollable section lives
-                inside this fixed 100svh frame (see MobileScrollFrame), so no
-                content ever slides behind Safari's translucent status bar or
-                bottom controls — same mechanic as the Origin page. Desktop
-                renders it as a plain div and is unaffected. */}
-            <MobileScrollFrame>
-                {/* SECTION 1: Climate Hero Widget */}
-                <ClimateHero />
+            {/* SECTION 1: Climate Hero Widget */}
+            <ClimateHero />
 
-                {/* SECTION 2 */}
-                <ClimateBuildForWeather />
+            {/* SECTION 2 */}
+            <ClimateBuildForWeather />
 
-                {/* SECTION 4 */}
-                <ClimatePartOfSkincare />
+            {/* SECTION 4 */}
+            <ClimatePartOfSkincare />
 
-                {/* SECTION 5 */}
-                <ClimateStats />
+            {/* SECTION 5 */}
+            <ClimateStats />
 
-                {/* SECTION 6 */}
-                <ClimateRoutineGallery />
+            {/* SECTION 6 */}
+            <ClimateRoutineGallery />
 
-                {/* SECTION 7 */}
-                <ClimateCTA />
+            {/* SECTION 7 */}
+            <ClimateCTA />
 
-                {/* Footer */}
-                <Footer />
-            </MobileScrollFrame>
+            {/* Footer */}
+            <Footer />
         </main>
     );
 }
