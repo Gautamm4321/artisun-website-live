@@ -14,7 +14,7 @@ const BADGES = ['SPF 50+', 'PA++++', 'All Weathers', '50ml'];
 const GALLERY = [
   '/pdp/origin-1.webp',
   '/pdp/origin-2.webp',
-  '/pdp/First page, third image.webp',
+  '/Origion web imge.png',
   '/pdp/origin-3.webp',
   '/pdp/origin-4.webp',
   '/pdp/First page, fifth picture (1).webp',
