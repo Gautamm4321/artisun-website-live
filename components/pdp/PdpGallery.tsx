@@ -25,11 +25,13 @@ export default function PdpGallery({
   images,
   alt,
   frameClassName = 'aspect-square',
+  videoPoster = '/pdp/aura-video-poster.webp',
 }: {
   images: string[];
   alt: string;
   /** Aspect/height classes for the main frame — the two PDPs differ slightly. */
   frameClassName?: string;
+  videoPoster?: string;
 }) {
   const count = images.length;
   const [index, setIndex] = useState(0);
@@ -109,12 +111,21 @@ export default function PdpGallery({
       >
         {isVideo(activeImg) ? (
           <video
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.play().catch(() => {});
+              }
+            }}
             key={activeImg + index}
             src={asset(activeImg)}
+            poster={videoPoster ? asset(videoPoster) : undefined}
             autoPlay
             muted
             loop
             playsInline
+            controls={false}
+            disablePictureInPicture
             aria-label={alt}
             className={`absolute inset-0 h-full w-full object-cover object-center ${dir > 0 ? 'pdp-slide-r' : 'pdp-slide-l'}`}
           />
@@ -171,18 +182,13 @@ export default function PdpGallery({
                 : 'opacity-50 border-white/20 hover:opacity-80'
             }`}
           >
-            {isVideo(src) ? (
-              <video
-                src={asset(src)}
-                muted
-                playsInline
-                preload="metadata"
-                aria-label={`${alt} video preview`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            ) : (
-              <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
-            )}
+            <Image
+              src={asset(isVideo(src) && videoPoster ? videoPoster : src)}
+              alt=""
+              fill
+              sizes="52px"
+              className="object-cover"
+            />
           </button>
         ))}
       </div>
