@@ -49,13 +49,6 @@
   z-index: -2;
   pointer-events: none;
   background: var(--bg-eclipse);
-  /* Reach under iOS 26 Safari's floating bottom bar (see note near the end of
-     this file): full large-viewport height + a hair of transparency, because
-     Safari clips fully opaque fixed layers at the bar's top edge. */
-  bottom: auto;
-  height: 100vh;
-  height: 100lvh;
-  opacity: 0.99;
 }
 .artisun-bg::after {
   content: '';
@@ -185,8 +178,6 @@ html.lenis, html.lenis body {
     left: 0;
     width: 100vw;
     height: 100vh; /* Fills screen perfectly, gradient animates internally */
-    height: 100lvh; /* incl. the zone under iOS 26 Safari's floating bar */
-    opacity: 0.99;  /* opaque fixed layers get clipped at that bar — see .artisun-bg */
     z-index: -2;
     will-change: background;
 }
@@ -786,26 +777,42 @@ html.lenis, html.lenis body {
 .pdp-thumbs::-webkit-scrollbar { display: none; }
 
 /* ─────────────────────────────────────────────────────────────
-   iOS 26 SAFARI — keep the bottom bar see-through
+   iOS 26 CHROME FIX — mobile scroll frame
 
-   Safari 26 floats its URL/tab bar over the page and lets content
-   show through it — but only content from the DOCUMENT scroll. Two
-   things turn that zone into a solid strip instead:
+   iOS 26 Safari draws any document content that scrolls past the
+   viewport edges behind its translucent status bar (top) and floating
+   tab bar (bottom), while position:fixed elements are CLIPPED to the
+   viewport and can never paint into those zones. The only reliable way
+   to keep those zones clean (showing the dark <html> canvas, like the
+   home page) is to stop the DOCUMENT from scrolling and scroll a fixed,
+   viewport-sized child container instead — the exact mechanic the
+   Origin page already uses for its mobile snap container.
 
-   1. Locking html/body and scrolling a fixed 100svh container.
-      svh stops above the toolbar, so the area behind it can only
-      show the <html> background colour → a dark band.
-   2. A position:fixed element touching the bottom edge with a
-      background-color or backdrop-filter ON ITSELF. Safari samples
-      it and tints the bar. Put the visual on an absolute child
-      (see StickyCartBar / GlobalHeader).
-   3. Fully opaque fixed layers are clipped at the bar's top edge,
-      so the page's glow (.artisun-bg / #global-bg) would stop there
-      and leave a dark band. Those layers are 100lvh tall with
-      opacity .99 so they carry on underneath the bar.
-
-   So every page scrolls the window on mobile, like the home page.
+   Any page can opt in by rendering <MobileScrollFrame> around its
+   scrollable content (the component toggles .has-scroll-frame on <html>
+   and carries [data-scroll-frame]). Desktop (≥1024px) is untouched:
+   the frame renders as a plain in-flow div and the window keeps
+   scrolling, so Lenis / ScrollTrigger behave exactly as before.
    ───────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  html.has-scroll-frame,
+  html.has-scroll-frame body {
+    overflow: hidden !important;
+    height: 100%;
+  }
+
+  [data-scroll-frame] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 /* ─────────────────────────────────────────────────────────────
    HOME — wordmark → header morph, compositor-driven

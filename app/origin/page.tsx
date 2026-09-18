@@ -131,16 +131,18 @@ export default function OriginPage() {
       };
     });
 
-    // ── Mobile: panels stack vertically and the WINDOW scrolls ──
-    // Same as the home page. Scrolling the document (instead of a fixed
-    // inner container) is what lets content show through iOS 26 Safari's
-    // floating bottom bar rather than leaving a dark strip behind it.
+    // ── Mobile: CSS scroll-snap on the wrapper div itself ──
+    // The wrapper (#origin-snap-container) is made height:100svh + overflow-y:auto
+    // + scroll-snap-type:y mandatory via inline CSS. This avoids the body
+    // overflow-x:clip interference that breaks html-level snap.
     mm.add(`(max-width: ${DESKTOP_MIN_WIDTH - 1}px)`, () => {
       isDesktopRef.current = false;
       stRef.current = null;
 
       requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
+        // Snap back to top on load
+        const wrapper = wrapperRef.current;
+        if (wrapper) wrapper.scrollTop = 0;
         ScrollTrigger.refresh();
       });
 
@@ -172,11 +174,12 @@ export default function OriginPage() {
       return;
     }
 
-    // Mobile: the window is the scroller.
+    // Mobile: scroll the wrapper container (the snap container) to the panel.
+    const wrapper = wrapperRef.current;
     const panels = trackRef.current?.querySelectorAll<HTMLElement>('.origin-panel');
     const el = panels?.[i];
-    if (!el) return;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+    if (!el || !wrapper) return;
+    wrapper.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
   };
 
   return (
@@ -188,8 +191,27 @@ export default function OriginPage() {
       <GlobalHeader />
 
       <style jsx global>{`
-  /* ── Mobile: panels stack and the page scrolls normally ── */
+  /* ── Mobile snap: wrapper div as the scroll container ──
+     html/body are locked; #origin-snap-container (position:fixed,
+     height:100svh, overflow-y:auto) is the ONLY scroll container.
+     This completely bypasses the body{overflow-x:clip} interference. */
   @media (max-width: 1023px) {
+    html, body {
+      overflow: hidden !important;
+    }
+
+    #origin-snap-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100svh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
     /* Each panel is at least one full viewport — zero gap between sections.
        height:auto lets tall content EXPAND the panel instead of being clipped.
        overflow:visible ensures nothing is hidden on small screens. */
@@ -209,10 +231,13 @@ export default function OriginPage() {
 
       {/* ── 6 PANELS ──
           Desktop: fixed-height pinned wrapper, GSAP drives horizontal track.
-          Mobile:  panels stack vertically in normal document flow. */}
+          Mobile:  #origin-snap-container is height:100svh overflow-y:auto
+                   scroll-snap-type:y mandatory — each .origin-panel snaps to
+                   the top of this container one at a time. */}
       <div
         ref={wrapperRef}
         id="origin-snap-container"
+        data-scroll-frame=""
         className="relative w-full lg:h-[100svh] lg:overflow-hidden lg:position-static"
       >
         <div

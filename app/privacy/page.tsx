@@ -5,6 +5,7 @@ import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
 import PrivacyPolicyContent from '@/components/privacypolicy/pp';
 import Footer from '@/components/Footer';
+import MobileScrollFrame from '@/components/MobileScrollFrame';
 
 export default function PrivacyPage() {
   const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
@@ -22,12 +23,19 @@ export default function PrivacyPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden">
-      {/* Red Eclipse background */}
+      {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
+          iOS treats position:fixed elements inside a touch scroll container
+          as absolute, so inside the frame it would scroll away. */}
       <div className="artisun-bg" aria-hidden />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      <PrivacyPolicyContent />
-      <Footer />
+      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
+          so nothing slides behind Safari's translucent status bar / bottom
+          controls (same mechanic as the Origin page). Desktop unaffected. */}
+      <MobileScrollFrame>
+        <PrivacyPolicyContent />
+        <Footer />
+      </MobileScrollFrame>
     </main>
   );
 }

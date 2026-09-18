@@ -5,6 +5,7 @@ import GlobalHeader from '@/components/GlobalHeader';
 import CustomCursor from '@/components/CustomCursor';
 import Footer from '@/components/Footer';
 import Collection from '@/components/collection/Collection';
+import MobileScrollFrame from '@/components/MobileScrollFrame';
 
 export default function CollectionPage() {
   const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
@@ -22,15 +23,22 @@ export default function CollectionPage() {
 
   return (
     <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
-      {/* Red Eclipse background */}
+      {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
+          iOS treats position:fixed elements inside a touch scroll container
+          as absolute, so inside the frame it would scroll away. */}
       <div className="artisun-bg" aria-hidden />
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
-      <Collection
-        h1Title="Sun care, made properly."
-        subtitle="Two layers built for Indian weather. One wears dewy. One wears invisible. Explore the Artisun collection."
-      />
-      <Footer />
+      {/* iOS 26 chrome fix: mobile content scrolls inside this fixed frame
+          so nothing slides behind Safari's translucent status bar / bottom
+          controls (same mechanic as the Origin page). Desktop unaffected. */}
+      <MobileScrollFrame>
+        <Collection
+          h1Title="Sun care, made properly."
+          subtitle="Two layers built for Indian weather. One wears dewy. One wears invisible. Explore the Artisun collection."
+        />
+        <Footer />
+      </MobileScrollFrame>
     </main>
   );
 }

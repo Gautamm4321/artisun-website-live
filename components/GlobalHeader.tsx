@@ -18,161 +18,156 @@ export default function GlobalHeader() {
 
   return (
     <>
-      {/* Transparent fixed shell with the gradient bar as a child — the same
-          structure HomeHeader uses, so iOS 26 Safari treats the top bar the
-          same way on every page. */}
-      <header className="fixed top-0 left-0 w-full z-[100] pointer-events-none">
-        <div className="w-full flex items-center justify-between px-4 md:px-10 py-2.5 md:py-6 pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md md:[background:none] md:backdrop-blur-none border-b border-[#E8DAC7]/15 md:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:shadow-none">
+      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-2.5 md:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md md:[background:none] md:backdrop-blur-none border-b border-[#E8DAC7]/15 md:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:shadow-none">
 
-          {/* Left: ARTISUN Wordmark Logo (Mobile & Desktop) */}
-          <div className="flex items-center pointer-events-auto">
-            <Link
-              href="/"
-              className="flex items-center hover:opacity-85 transition-opacity"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset('/Artisun Primary Logo.webp')}
-                alt="ARTISUN"
-                className="h-6 md:h-8 lg:h-9 w-auto object-contain"
-              />
-            </Link>
-          </div>
+        {/* Left: ARTISUN Wordmark Logo (Mobile & Desktop) */}
+        <div className="flex items-center pointer-events-auto">
+          <Link
+            href="/"
+            className="flex items-center hover:opacity-85 transition-opacity"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset('/Artisun Primary Logo.webp')}
+              alt="ARTISUN"
+              className="h-6 md:h-8 lg:h-9 w-auto object-contain"
+            />
+          </Link>
+        </div>
 
-          {/* Desktop Right Corner: Beige Modular Tabs Box */}
-          <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
-            {/* 1. Shop All */}
-            <Link
-              href="/collection"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
-            >
-              Shop All
-            </Link>
+        {/* Desktop Right Corner: Beige Modular Tabs Box */}
+        <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
+          {/* 1. Shop All */}
+          <Link
+            href="/collection"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            Shop All
+          </Link>
 
-            {/* 2. Origin Bottle Box */}
-            <Link
-              href="/origin"
-              aria-label="Origin SPF 50+"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
-            >
-              <span
-                aria-hidden="true"
-                className="w-[13px] h-[25px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
-                style={{
-                  maskImage: `url(${asset('/origin.png')})`,
-                  WebkitMaskImage: `url(${asset('/origin.png')})`,
-                  maskSize: 'contain',
-                  WebkitMaskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-            </Link>
+          {/* 2. Origin Bottle Box */}
+          <Link
+            href="/origin"
+            aria-label="Origin SPF 50+"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
+          >
+            <span
+              aria-hidden="true"
+              className="w-[13px] h-[25px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
+              style={{
+                maskImage: `url(${asset('/origin.png')})`,
+                WebkitMaskImage: `url(${asset('/origin.png')})`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center',
+              }}
+            />
+          </Link>
 
-            {/* 3. Aura Jar Box */}
-            <Link
-              href="/aura"
-              aria-label="Aura SPF 40"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
-            >
-              <span
-                aria-hidden="true"
-                className="w-[22px] h-[16px] translate-y-[4.5px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
-                style={{
-                  maskImage: `url(${asset('/aura.png')})`,
-                  WebkitMaskImage: `url(${asset('/aura.png')})`,
-                  maskSize: 'contain',
-                  WebkitMaskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-            </Link>
+          {/* 3. Aura Jar Box */}
+          <Link
+            href="/aura"
+            aria-label="Aura SPF 40"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px]"
+          >
+            <span
+              aria-hidden="true"
+              className="w-[22px] h-[16px] translate-y-[4.5px] bg-[#A52A2C] group-hover:bg-[#E8DAC7] transition-colors duration-200 block shrink-0"
+              style={{
+                maskImage: `url(${asset('/aura.png')})`,
+                WebkitMaskImage: `url(${asset('/aura.png')})`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center',
+              }}
+            />
+          </Link>
 
-            {/* 4. Climate-smart */}
-            <Link
-              href="/climate"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
-            >
-              Climate-smart
-            </Link>
+          {/* 4. Climate-smart */}
+          <Link
+            href="/climate"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            Climate-smart
+          </Link>
 
-            {/* 5. Skinwear™ */}
-            <Link
-              href="/skinwear"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
-            >
-              Skinwear™
-            </Link>
+          {/* 5. Skinwear™ */}
+          <Link
+            href="/skinwear"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            Skinwear™
+          </Link>
 
-            {/* 6. About */}
-            <Link
-              href="/about"
-              className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
-            >
-              About
-            </Link>
+          {/* 6. About */}
+          <Link
+            href="/about"
+            className="group bg-[#E8DAC7] hover:bg-[#A52A2C] text-[#A52A2C] hover:text-[#E8DAC7] font-editorial text-[17px] tracking-tight px-4 py-1.5 flex items-center justify-center transition-all duration-200 whitespace-nowrap h-[36px]"
+          >
+            About
+          </Link>
 
-            {/* Cart Icon */}
-            <button
-              type="button"
-              onClick={() => setCartOpen(true)}
-              aria-label={`Open cart${cart?.totalQuantity ? `, ${cart.totalQuantity} items` : ''}`}
-              className="group relative bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px] cursor-pointer"
-            >
-              <svg className="w-5 h-5 text-[#A52A2C] group-hover:text-[#E8DAC7] transition-colors duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="21" r="1.5"></circle>
-                <circle cx="20" cy="21" r="1.5"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-              {!!cart?.totalQuantity && (
-                <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#A52A2C] text-[#E8DAC7] text-[10px] font-suisse font-medium grid place-items-center">
-                  {cart.totalQuantity}
-                </span>
-              )}
-            </button>
-          </div>
+          {/* Cart Icon */}
+          <button
+            type="button"
+            onClick={() => setCartOpen(true)}
+            aria-label={`Open cart${cart?.totalQuantity ? `, ${cart.totalQuantity} items` : ''}`}
+            className="group relative bg-[#E8DAC7] hover:bg-[#A52A2C] px-3.5 py-1.5 flex items-center justify-center transition-all duration-200 h-[36px] cursor-pointer"
+          >
+            <svg className="w-5 h-5 text-[#A52A2C] group-hover:text-[#E8DAC7] transition-colors duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1.5"></circle>
+              <circle cx="20" cy="21" r="1.5"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            {!!cart?.totalQuantity && (
+              <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#A52A2C] text-[#E8DAC7] text-[10px] font-suisse font-medium grid place-items-center">
+                {cart.totalQuantity}
+              </span>
+            )}
+          </button>
+        </div>
 
-          {/* Mobile Right Controls: Bag (Left) + RR Logo (Right) */}
-          <div className="md:hidden flex items-center gap-3.5 pointer-events-auto">
-            {/* Bag Icon */}
-            <button
-              type="button"
-              onClick={() => setCartOpen(true)}
-              aria-label={`Open cart${cart?.totalQuantity ? `, ${cart.totalQuantity} items` : ''}`}
-              className="relative text-[var(--brand-cream,#E8DAC7)] hover:opacity-75 transition-opacity p-1 cursor-pointer"
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="21" r="1.5"></circle>
-                <circle cx="20" cy="21" r="1.5"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-              {!!cart?.totalQuantity && (
-                <span className="absolute -top-1 -right-1 min-w-[15px] h-3.5 px-0.5 rounded-full bg-[#E8DAC7] text-[#78100E] text-[9px] font-suisse font-bold grid place-items-center">
-                  {cart.totalQuantity}
-                </span>
-              )}
-            </button>
+        {/* Mobile Right Controls: Bag (Left) + RR Logo (Right) */}
+        <div className="md:hidden flex items-center gap-3.5 pointer-events-auto">
+          {/* Bag Icon */}
+          <button
+            type="button"
+            onClick={() => setCartOpen(true)}
+            aria-label={`Open cart${cart?.totalQuantity ? `, ${cart.totalQuantity} items` : ''}`}
+            className="relative text-[var(--brand-cream,#E8DAC7)] hover:opacity-75 transition-opacity p-1 cursor-pointer"
+          >
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1.5"></circle>
+              <circle cx="20" cy="21" r="1.5"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            {!!cart?.totalQuantity && (
+              <span className="absolute -top-1 -right-1 min-w-[15px] h-3.5 px-0.5 rounded-full bg-[#E8DAC7] text-[#78100E] text-[9px] font-suisse font-bold grid place-items-center">
+                {cart.totalQuantity}
+              </span>
+            )}
+          </button>
 
-            {/* RR Monogram Hamburger Menu Button */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open menu"
-              className="flex items-center justify-center p-1 hover:opacity-80 transition-opacity cursor-pointer"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset('/logo-artisun.svg')}
-                alt="Menu"
-                className="h-6 w-auto object-contain [filter:brightness(0)_saturate(100%)_invert(87%)_sepia(11%)_saturate(671%)_hue-rotate(345deg)_brightness(97%)_contrast(90%)]"
-              />
-            </button>
-          </div>
+          {/* RR Monogram Hamburger Menu Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            className="flex items-center justify-center p-1 hover:opacity-80 transition-opacity cursor-pointer"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset('/logo-artisun.svg')}
+              alt="Menu"
+              className="h-6 w-auto object-contain [filter:brightness(0)_saturate(100%)_invert(87%)_sepia(11%)_saturate(671%)_hue-rotate(345deg)_brightness(97%)_contrast(90%)]"
+            />
+          </button>
         </div>
       </header>
 
