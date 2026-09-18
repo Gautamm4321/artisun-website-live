@@ -18,9 +18,9 @@ export default function GlobalHeader() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-2.5 md:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md md:[background:none] md:backdrop-blur-none border-b border-[#E8DAC7]/15 md:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:shadow-none">
+      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md lg:[background:none] lg:backdrop-blur-none border-b border-[#E8DAC7]/15 lg:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] lg:shadow-none">
 
-        {/* Left: ARTISUN Wordmark Logo (Mobile & Desktop) */}
+        {/* Left: ARTISUN Wordmark Logo (Mobile, Tablet & Desktop) */}
         <div className="flex items-center pointer-events-auto">
           <Link
             href="/"
@@ -30,13 +30,13 @@ export default function GlobalHeader() {
             <img
               src={asset('/Artisun Primary Logo.webp')}
               alt="ARTISUN"
-              className="h-6 md:h-8 lg:h-9 w-auto object-contain"
+              className="h-6 md:h-7 lg:h-9 w-auto object-contain"
             />
           </Link>
         </div>
 
         {/* Desktop Right Corner: Beige Modular Tabs Box */}
-        <div className="hidden md:flex items-center gap-[4px] pointer-events-auto">
+        <div className="hidden lg:flex items-center gap-[4px] pointer-events-auto">
           {/* 1. Shop All */}
           <Link
             href="/collection"
@@ -133,8 +133,8 @@ export default function GlobalHeader() {
           </button>
         </div>
 
-        {/* Mobile Right Controls: Bag (Left) + RR Logo (Right) */}
-        <div className="md:hidden flex items-center gap-3.5 pointer-events-auto">
+        {/* Mobile & Tablet Right Controls: Bag (Left) + RR Logo (Right) */}
+        <div className="lg:hidden flex items-center gap-3.5 md:gap-5 pointer-events-auto">
           {/* Bag Icon */}
           <button
             type="button"
@@ -171,16 +171,16 @@ export default function GlobalHeader() {
         </div>
       </header>
 
-      {/* Mobile Drawer (Right to Left Slide) */}
+      {/* Mobile & Tablet Drawer (Right to Left Slide) */}
       <div
         data-lenis-prevent="true"
-        className={`fixed inset-0 z-[120] md:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 overflow-hidden ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-[120] lg:hidden transition-transform duration-500 ease-out flex flex-col justify-between p-7 md:p-12 md:py-14 md:px-16 overflow-hidden ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         {/* Red Eclipse Site-wide Background */}
         <div className="artisun-bg pointer-events-none" />
-        <div className="flex items-center justify-between">
-          <div className="w-8 h-8 flex items-center justify-center">
+        <div className="flex items-center justify-between w-full max-w-lg md:max-w-2xl mx-auto">
+          <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={asset('/logo-artisun.svg')} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80" />
           </div>
@@ -188,25 +188,25 @@ export default function GlobalHeader() {
             type="button"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
-            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#E8DCC8] hover:bg-white/20 transition-colors"
+            className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/10 flex items-center justify-center text-[#E8DCC8] hover:bg-white/20 transition-colors"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" className="md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
 
-        <nav className="flex flex-col my-auto border-t border-b border-white/30 divide-y divide-white/30">
+        <nav className="flex flex-col my-auto border-t border-b border-white/30 divide-y divide-white/30 w-full max-w-lg md:max-w-2xl mx-auto">
           {/* 1. HOME (Arrow right next to text) */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-start py-3.5 group"
+            className="flex items-center justify-start py-3.5 md:py-6 group"
           >
-            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+            <span className="inline-flex items-center gap-2 md:gap-3 font-editorial text-[var(--brand-cream)] text-3xl md:text-[46px] tracking-tight group-hover:opacity-70 transition-opacity">
               Home
-              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+              <span className="text-[17px] md:text-[24px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
                 ↗
               </span>
             </span>
@@ -218,14 +218,14 @@ export default function GlobalHeader() {
             <Link
               href="/origin"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between py-3 group"
+              className="flex items-center justify-between py-3 md:py-5 group"
             >
-              {/* === BOTTLE SIZE CONTROL: Change h-[26px] to increase/decrease Origin bottle size === */}
-              <div className="w-8 h-8 flex items-center justify-start shrink-0">
+              {/* === BOTTLE SIZE CONTROL: Change h-[30px] to increase/decrease Origin bottle size === */}
+              <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-start shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset('/b2.webp')} alt="Origin" className="h-[30px] w-auto object-contain" />
+                <img src={asset('/b2.webp')} alt="Origin" className="h-[30px] md:h-[44px] w-auto object-contain" />
               </div>
-              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] md:text-[34px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
                 ORIGIN · SPF 50+
               </span>
             </Link>
@@ -234,14 +234,14 @@ export default function GlobalHeader() {
             <Link
               href="/aura"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between py-3 group"
+              className="flex items-center justify-between py-3 md:py-5 group"
             >
-              {/* === BOTTLE SIZE CONTROL: Change h-[20px] to increase/decrease Aura jar size === */}
-              <div className="w-8 h-8 flex items-center justify-start shrink-0">
+              {/* === BOTTLE SIZE CONTROL: Change h-[22px] to increase/decrease Aura jar size === */}
+              <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-start shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset('/b1.webp')} alt="Aura" className="h-[22px] w-auto object-contain" />
+                <img src={asset('/b1.webp')} alt="Aura" className="h-[22px] md:h-[32px] w-auto object-contain" />
               </div>
-              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] md:text-[34px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
                 AURA · SPF 40
               </span>
             </Link>
@@ -250,9 +250,9 @@ export default function GlobalHeader() {
             <Link
               href="/collection"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-end py-3 group"
+              className="flex items-center justify-end py-3 md:py-5 group"
             >
-              <span className="font-editorial text-[var(--brand-cream)] text-[23px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
+              <span className="font-editorial text-[var(--brand-cream)] text-[23px] md:text-[34px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
                 Shop All
               </span>
             </Link>
@@ -262,11 +262,11 @@ export default function GlobalHeader() {
           <Link
             href="/climate"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-start py-3.5 group"
+            className="flex items-center justify-start py-3.5 md:py-6 group"
           >
-            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+            <span className="inline-flex items-center gap-2 md:gap-3 font-editorial text-[var(--brand-cream)] text-3xl md:text-[46px] tracking-tight group-hover:opacity-70 transition-opacity">
               Climate-smart
-              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+              <span className="text-[17px] md:text-[24px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
                 ↗
               </span>
             </span>
@@ -276,11 +276,11 @@ export default function GlobalHeader() {
           <Link
             href="/skinwear"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-start py-3.5 group"
+            className="flex items-center justify-start py-3.5 md:py-6 group"
           >
-            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
-              Skinwear<span className="font-editorial text-[13px] sm:text-[14px] -mt-3.5 tracking-normal">TM</span>
-              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <span className="inline-flex items-center gap-2 md:gap-3 font-editorial text-[var(--brand-cream)] text-3xl md:text-[46px] tracking-tight group-hover:opacity-70 transition-opacity">
+              Skinwear<span className="font-editorial text-[13px] sm:text-[14px] md:text-[20px] -mt-3.5 md:-mt-5 tracking-normal">TM</span>
+              <span className="text-[17px] md:text-[24px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 ↗
               </span>
             </span>
@@ -290,18 +290,18 @@ export default function GlobalHeader() {
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-start py-3.5 group"
+            className="flex items-center justify-start py-3.5 md:py-6 group"
           >
-            <span className="inline-flex items-center gap-2 font-editorial text-[var(--brand-cream)] text-3xl tracking-tight group-hover:opacity-70 transition-opacity">
+            <span className="inline-flex items-center gap-2 md:gap-3 font-editorial text-[var(--brand-cream)] text-3xl md:text-[46px] tracking-tight group-hover:opacity-70 transition-opacity">
               About
-              <span className="text-[17px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
+              <span className="text-[17px] md:text-[24px] font-sans transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 opacity-80">
                 ↗
               </span>
             </span>
           </Link>
         </nav>
 
-        <div className="pt-4 border-t border-white/10 text-[#E8DCC8]/40 text-xs font-suisse tracking-wider uppercase">
+        <div className="pt-4 md:pt-6 border-t border-white/10 text-[#E8DCC8]/40 text-xs md:text-sm font-suisse tracking-wider uppercase w-full max-w-lg md:max-w-2xl mx-auto">
           Artisun Skinwear · 2026
         </div>
       </div>

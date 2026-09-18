@@ -23,18 +23,18 @@ export default function FashionSkinSection() {
             />
 
             {/* Model Image: Grounded on Mobile, Full Bleed on Laptop */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-end justify-center leading-none w-full h-[58vh] sm:h-[65vh] lg:h-full overflow-visible">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-end justify-center leading-none w-full h-[58vh] sm:h-[65vh] md:h-[60vh] lg:h-full overflow-visible">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/wo bg.webp"
                     alt=""
-                    className="h-[50vh] xs:h-[53vh] sm:h-[64vh] md:h-[75vh] lg:h-[90vh] max-w-none w-auto object-contain object-bottom block align-bottom select-none scale-[1.18] xs:scale-[1.22] sm:scale-100 origin-bottom -translate-x-[5%] sm:-translate-x-[8%] lg:translate-x-0 translate-y-0"
+                    className="h-[50vh] xs:h-[53vh] sm:h-[64vh] md:h-[58vh] lg:h-[90vh] max-w-none w-auto object-contain object-bottom block align-bottom select-none scale-[1.18] xs:scale-[1.22] sm:scale-100 origin-bottom -translate-x-[5%] sm:-translate-x-[8%] md:translate-x-[1%] lg:translate-x-0 translate-y-0"
                 />
             </div>
 
             {/* Description: Exactly Matched to 1st Reference Image on Mobile */}
-            <div className="absolute top-[82px] xs:top-[90px] sm:top-[110px] lg:top-[14%] xl:top-[16%] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-16 z-30 w-full max-w-[360px] sm:max-w-[460px] lg:max-w-[500px] pointer-events-none text-center lg:text-left px-4 sm:px-0">
-                <p className="font-suisse text-[var(--brand-cream,#f5f0eb)] text-[16px] xs:text-[20px] sm:text-[20px] lg:text-[31px] font-normal lg:font-light leading-[1.2] lg:leading-[1.12] tracking-[-0.01em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+            <div className="absolute top-[82px] xs:top-[90px] sm:top-[110px] md:top-[75px] lg:top-[14%] xl:top-[16%] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-16 z-30 w-full max-w-[360px] sm:max-w-[460px] md:max-w-[440px] lg:max-w-[500px] pointer-events-none text-center lg:text-left px-4 sm:px-0">
+                <p className="font-suisse text-[var(--brand-cream,#f5f0eb)] text-[16px] xs:text-[20px] sm:text-[20px] md:text-[18px] lg:text-[31px] font-normal lg:font-light leading-[1.2] lg:leading-[1.12] tracking-[-0.01em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
                     <span className="block lg:hidden">
                         Fashion gets weeks.<br />
                         Skin gets a shelf.<br />
@@ -48,9 +48,8 @@ export default function FashionSkinSection() {
             </div>
 
             {/* Heading & Button: Tightly Proportioned & Close to Model on Mobile */}
-            {/* Heading & Button: Tightly Proportioned & Close to Model on Mobile */}
-            <div className="absolute top-[150px] xs:top-[158px] sm:top-[230px] lg:top-[14%] xl:top-[16%] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-14 xl:right-16 z-30 flex flex-col items-center lg:items-end w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[520px] lg:w-auto lg:max-w-[440px] xl:max-w-[480px] pointer-events-auto text-center lg:text-left px-4 sm:px-0">
-                <h2 className="w-full font-editorial text-[var(--brand-cream,#f5f0eb)] text-[40px] xs:text-[49px] sm:text-[54px] lg:text-[58px] xl:text-[64px] leading-[0.94] lg:leading-[1.02] tracking-[-0.02em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
+            <div className="absolute top-[150px] xs:top-[158px] sm:top-[230px] md:top-[155px] lg:top-[14%] xl:top-[16%] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-14 xl:right-16 z-30 flex flex-col items-center lg:items-end w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[520px] md:max-w-[480px] lg:w-auto lg:max-w-[440px] xl:max-w-[480px] pointer-events-auto text-center lg:text-left px-4 sm:px-0">
+                <h2 className="w-full font-editorial text-[var(--brand-cream,#f5f0eb)] text-[40px] xs:text-[49px] sm:text-[54px] md:text-[44px] lg:text-[58px] xl:text-[64px] leading-[0.94] lg:leading-[1.02] tracking-[-0.02em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
                     <span className="block lg:hidden">
                         What&rsquo;s your skin<br />
                         wearing today?
@@ -62,7 +61,7 @@ export default function FashionSkinSection() {
                 </h2>
 
                 {/* Single Button: Compact width on mobile, full parallel width on desktop */}
-                <div className="w-full max-w-[260px] xs:max-w-[280px] lg:max-w-none mt-3.5 sm:mt-5 lg:mt-6 mx-auto lg:mx-0">
+                <div className="w-full max-w-[260px] xs:max-w-[280px] md:max-w-[250px] lg:max-w-none mt-3.5 sm:mt-5 md:mt-3.5 lg:mt-6 mx-auto lg:mx-0">
                     <a
                         href="/collection"
                         className="w-full py-1.5 sm:py-1.5 px-6 bg-[#E6D5C1] hover:bg-[#dcc8b1] text-[#A52A2C] font-suisse text-[13px] sm:text-[12.5px] lg:text-[13px] tracking-[0.16em] font-semibold uppercase flex items-center justify-center text-center transition-all duration-300 shadow-lg active:scale-[0.98] whitespace-nowrap rounded-none border border-[#A52A2C]/10"
@@ -75,7 +74,7 @@ export default function FashionSkinSection() {
             {/* ARTISUN Logo: Layered above Model (z-30) on Mobile/Tabs, Background (z-10) on Laptop */}
             <div
                 aria-hidden="true"
-                className="absolute bottom-0 sm:bottom-[1vh] lg:bottom-[4vh] left-1/2 -translate-x-1/2 z-30 lg:z-10 w-[98vw] sm:w-[94vw] lg:w-[98vw] max-w-[1500px] px-2 sm:px-4 flex justify-center pointer-events-none select-none"
+                className="absolute bottom-0 sm:bottom-[1vh] md:bottom-0 lg:bottom-[4vh] left-1/2 -translate-x-1/2 z-30 lg:z-10 w-[98vw] sm:w-[94vw] md:w-[92vw] lg:w-[98vw] max-w-[1500px] px-2 sm:px-4 flex justify-center pointer-events-none select-none"
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

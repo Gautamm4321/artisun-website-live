@@ -191,11 +191,11 @@ export default function OriginPage() {
       <GlobalHeader />
 
       <style jsx global>{`
-  /* ── Mobile snap: wrapper div as the scroll container ──
+  /* ── Mobile snap (<768px): wrapper div as the scroll container ──
      html/body are locked; #origin-snap-container (position:fixed,
      height:100svh, overflow-y:auto) is the ONLY scroll container.
      This completely bypasses the body{overflow-x:clip} interference. */
-  @media (max-width: 1023px) {
+  @media (max-width: 767px) {
     html, body {
       overflow: hidden !important;
     }
@@ -225,6 +225,39 @@ export default function OriginPage() {
     .panel-scroll {
       overflow: visible !important;
       height: auto !important;
+    }
+  }
+
+  /* ── Tablet (768px - 1023px): Exact 100svh per section with crisp scroll snapping ── */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    html, body {
+      overflow: hidden !important;
+    }
+
+    #origin-snap-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100svh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior-y: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .origin-panel {
+      height: 100svh !important;
+      max-height: 100svh !important;
+      overflow: hidden !important;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .panel-scroll {
+      height: 100% !important;
+      overflow: hidden !important;
     }
   }
 `}</style>

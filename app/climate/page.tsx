@@ -41,33 +41,74 @@ export default function ClimatePage() {
             <CustomCursor mouseProxy={mouseProxy} />
             <GlobalHeader />
 
-            {/* iOS 26 chrome fix: on mobile every scrollable section lives
-                inside this fixed 100svh frame (see MobileScrollFrame), so no
-                content ever slides behind Safari's translucent status bar or
-                bottom controls — same mechanic as the Origin page. Desktop
-                renders it as a plain div and is unaffected. */}
-            <MobileScrollFrame>
-                {/* SECTION 1: Climate Hero Widget */}
-                <ClimateHero />
+      {/* Tablet scroll snap style matching Aura & Origin */}
+      <style jsx global>{`
+  @media (min-width: 768px) and (max-width: 1023px) {
+    html, body {
+      overflow: hidden !important;
+    }
 
-                {/* SECTION 2 */}
-                <ClimateBuildForWeather />
+    [data-scroll-frame] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100svh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior-y: contain;
+      -webkit-overflow-scrolling: touch;
+    }
 
-                {/* SECTION 4 */}
-                <ClimatePartOfSkincare />
+    .climate-panel {
+      height: 100svh !important;
+      max-height: 100svh !important;
+      overflow: hidden !important;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
 
-                {/* SECTION 5 */}
-                <ClimateStats />
+    /* Guard against Framer Motion inline opacity:0 getting stuck on tablet */
+    .climate-panel [style*="opacity: 0"],
+    .climate-panel [style*="opacity:0"] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
 
-                {/* SECTION 6 */}
-                <ClimateRoutineGallery />
+    footer {
+      scroll-snap-align: start;
+    }
+  }
+`}</style>
 
-                {/* SECTION 7 */}
-                <ClimateCTA />
+      {/* iOS 26 chrome fix: on mobile every scrollable section lives
+          inside this fixed 100svh frame (see MobileScrollFrame), so no
+          content ever slides behind Safari's translucent status bar or
+          bottom controls — same mechanic as the Origin page. Desktop
+          renders it as a plain div and is unaffected. */}
+      <MobileScrollFrame>
+        {/* SECTION 1: Climate Hero Widget */}
+        <ClimateHero />
 
-                {/* Footer */}
-                <Footer />
-            </MobileScrollFrame>
-        </main>
-    );
+        {/* SECTION 2: Why We Build for Weather */}
+        <ClimateBuildForWeather />
+
+        {/* SECTION 3: Climate is Part of Skincare */}
+        <ClimatePartOfSkincare />
+
+        {/* SECTION 4: Climate Stats */}
+        <ClimateStats />
+
+        {/* SECTION 5: Routine Gallery + CTA (Single unified section on tablet) */}
+        <div className="climate-panel contents md:flex md:flex-col md:justify-center md:items-center md:gap-4 md:h-[100svh] md:max-h-[100svh] md:overflow-hidden md:py-4 lg:contents">
+          <ClimateRoutineGallery />
+          <ClimateCTA />
+        </div>
+
+        {/* Footer */}
+        <Footer />
+      </MobileScrollFrame>
+    </main>
+  );
 }

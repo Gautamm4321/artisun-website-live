@@ -44,7 +44,7 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="origin-panel relative w-screen shrink-0 h-auto lg:h-[100svh] overflow-visible lg:overflow-hidden">
+    <div className="origin-panel relative w-screen shrink-0 h-auto md:h-[100svh] lg:h-[100svh] overflow-visible md:overflow-hidden lg:overflow-hidden">
       {/* Background Radial Gradient */}
       <div
         className="absolute inset-0 -z-10"
@@ -59,7 +59,7 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
           so we overlay a red→transparent fade over the top ~100px to match the
           header colour and eliminate the visible dark gap. */}
       <div
-        className="absolute top-0 left-0 right-0 h-24 lg:hidden pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-24 md:hidden lg:hidden pointer-events-none"
         style={{
           background:
             'linear-gradient(to bottom, rgba(180,30,10,0.95) 0%, rgba(140,10,5,0.6) 40%, transparent 100%)',
@@ -71,12 +71,12 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
           the sticky bar); on desktop it's a centred, non-scrolling grid. */}
       <div
         ref={scrollerRef}
-        className="panel-scroll lg:overflow-hidden w-full lg:h-full flex flex-col justify-start lg:justify-center pt-20 pb-20 sm:pt-24 sm:pb-24 lg:py-0"
+        className="panel-scroll md:overflow-hidden lg:overflow-hidden w-full h-full flex flex-col justify-start md:justify-center lg:justify-center pt-20 pb-20 sm:pt-24 sm:pb-24 md:pt-20 md:pb-14 lg:py-0"
       >
-        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-4 sm:gap-6 lg:gap-12 items-center">
+        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:grid md:grid-cols-[minmax(380px,460px)_1fr] lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center my-auto">
 
-          {/* ── TOP ON MOBILE / LEFT ON DESKTOP: Product Visual ── */}
-          <div className="order-1 flex flex-col w-full max-w-[360px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
+          {/* ── TOP ON MOBILE / LEFT ON DESKTOP & TABLET: Product Visual ── */}
+          <div className="order-1 flex flex-col w-full max-w-[360px] md:max-w-[460px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
             <PdpGallery
               images={GALLERY}
               alt="Origin 4-in-1 Milk Emulsion"
@@ -84,8 +84,8 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
             />
           </div>
 
-          {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP: Info & Compact Navigation Copy ── */}
-          <div className="order-2 flex flex-col justify-center w-full max-w-[440px] lg:max-w-[540px] gap-2 lg:gap-2.5 py-0">
+          {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP & TABLET: Info & Compact Navigation Copy ── */}
+          <div className="order-2 flex flex-col justify-center w-full max-w-[440px] md:max-w-none lg:max-w-[540px] gap-2 md:gap-3.5 lg:gap-2.5 py-0">
             {/* Visual Breadcrumb Navigation */}
             {/* <Breadcrumbs
               items={[
@@ -99,13 +99,13 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
             <TagPills tags={BADGES} className="mb-0" />
 
             {/* Primary H1 */}
-            <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] lg:text-[34px] leading-[1.08] tracking-tight">
+            <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] md:text-[32px] lg:text-[34px] leading-[1.08] tracking-tight">
               Origin 4-in-1 Milk Sunscreen SPF 50+
             </h1>
 
             {/* Description weaving secondary keywords: sunscreen for oily skin, broad spectrum sunscreen, lightweight sunscreen, sunscreen serum, no white cast */}
-            <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] lg:text-[13.5px] leading-[1.4] mt-0.5 space-y-0.5">
-              <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px]">
+            <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[13.5px] leading-[1.4] md:leading-[1.45] mt-0.5 md:mt-1 space-y-0.5 md:space-y-1">
+              <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px] md:text-[14px]">
                 Four steps, done in one light layer.
               </p>
               <p className="w-full text-left">
@@ -114,15 +114,15 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
             </div>
 
             {/* Price + Buy */}
-            <div className="flex items-center gap-3 sm:gap-4 my-1">
-              <span className="font-editorial text-[var(--brand-cream)] text-[18px] sm:text-[22px] lg:text-[26px]">₹1499</span>
+            <div className="flex items-center gap-3 sm:gap-4 my-1 md:my-2">
+              <span className="font-editorial text-[var(--brand-cream)] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[26px]">₹1499</span>
               <AddToBagButton
                 product="origin"
-                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 py-2 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
+                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
               />
             </div>
 
-            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" />
+            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5 md:my-2" />
 
             {/* Sidebar Navigation */}
             <ul className="flex flex-col">
@@ -135,9 +135,9 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
                       <button
                         onClick={() => setIngredientsOpen((v) => !v)}
                         aria-expanded={ingredientsOpen}
-                        className="pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 text-left group"
+                        className="pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 md:py-3 text-left group"
                       >
-                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] lg:text-[13.5px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
+                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] md:text-[14px] lg:text-[13.5px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
                           {item.label}
                         </span>
                         <span className={`ml-auto text-sm text-[var(--brand-cream)]/60 transition-transform duration-300 ${ingredientsOpen ? 'rotate-45' : ''}`}>+</span>
@@ -170,9 +170,9 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
                     <button
                       disabled={soon}
                       onClick={() => item.target !== null && onNavigate(item.target)}
-                      className={`pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 sm:py-2 text-left group ${soon ? 'cursor-default' : ''}`}
+                      className={`pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 sm:py-2 md:py-3 text-left group ${soon ? 'cursor-default' : ''}`}
                     >
-                      <span className={`font-suisse text-[11.5px] sm:text-[13px] lg:text-[14px] transition-colors ${soon ? 'text-[var(--brand-cream)]/35' : 'text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)]'}`}>
+                      <span className={`font-suisse text-[11.5px] sm:text-[13px] md:text-[14.5px] lg:text-[14px] transition-colors ${soon ? 'text-[var(--brand-cream)]/35' : 'text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)]'}`}>
                         {item.label}
                       </span>
 

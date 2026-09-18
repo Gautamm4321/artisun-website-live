@@ -184,13 +184,13 @@ export default function ClimateRoutineGallery() {
   };
 
   return (
-    <section className="relative z-10 w-full lg:min-h-[85vh] flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 text-[var(--brand-cream)] overflow-hidden">
+    <section className="relative z-10 w-full lg:min-h-[85vh] flex flex-col items-center justify-center py-8 sm:py-12 md:py-0 text-[var(--brand-cream)] overflow-hidden">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-normal opacity-95 max-w-[1250px] mb-6 sm:mb-8 md:mb-10 leading-relaxed px-5"
+        className="text-center font-sans text-base sm:text-lg md:text-[17px] lg:text-2xl font-normal opacity-95 max-w-[1250px] md:max-w-[700px] mb-6 sm:mb-8 md:mb-3 leading-relaxed px-5"
       >
         Made to hold through early mornings, back-to-back meetings, the afternoon sun,
         <br className="hidden md:block" />
@@ -218,16 +218,16 @@ export default function ClimateRoutineGallery() {
         onBlur={() => {
           pausedRef.current = false;
         }}
-        className="edge-fade no-scrollbar w-full overflow-x-auto lg:overflow-x-hidden overflow-y-hidden py-4 select-none lg:cursor-default cursor-grab active:cursor-grabbing touch-pan-x pointer-events-auto"
+        className="edge-fade no-scrollbar w-full overflow-x-auto lg:overflow-x-hidden overflow-y-hidden py-4 md:py-1 select-none lg:cursor-default cursor-grab active:cursor-grabbing touch-pan-x pointer-events-auto"
       >
-        <div className="flex w-max gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-3 sm:px-4 md:px-5 lg:px-6">
+        <div className="flex w-max gap-3 sm:gap-4 md:gap-4 lg:gap-6 px-3 sm:px-4 md:px-5 lg:px-6">
           {loop.map((item, index) => (
             <article
               key={`${item.id}-${index}`}
               className="group relative flex-shrink-0 overflow-hidden
                          w-[210px] h-[300px]
                          sm:w-[250px] sm:h-[340px]
-                         md:w-[290px] md:h-[390px]
+                         md:w-[260px] md:h-[370px]
                          lg:w-[320px] lg:h-[430px]"
             >
               <Image
@@ -248,14 +248,14 @@ export default function ClimateRoutineGallery() {
               />
 
               <div
-                className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6
+                className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 md:p-4
                            text-center transition-all duration-500
                            lg:scale-95 lg:opacity-0 lg:group-hover:scale-100 lg:group-hover:opacity-100"
               >
-                <h3 className="font-editorial text-xl sm:text-2xl md:text-[28px] lg:text-3xl font-normal mb-2 tracking-wide text-[var(--brand-cream)]">
+                <h3 className="font-editorial text-xl sm:text-2xl md:text-[25px] lg:text-3xl font-normal mb-2 md:mb-1.5 tracking-wide text-[var(--brand-cream)]">
                   {item.name}
                 </h3>
-                <p className="font-sans text-[12px] sm:text-sm md:text-[15px] font-light leading-relaxed max-w-[260px] text-[var(--brand-cream)]/90">
+                <p className="font-sans text-[12px] sm:text-sm md:text-[13.5px] font-light leading-relaxed max-w-[260px] md:max-w-[220px] text-[var(--brand-cream)]/90">
                   {item.description}
                 </p>
               </div>

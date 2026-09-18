@@ -67,16 +67,16 @@ export default function OriginWhatsIn() {
             'var(--bg-eclipse)',
         }}
       />
-      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col justify-start lg:justify-center h-full overflow-y-auto lg:overflow-visible pb-0 [scrollbar-width:none]">
-        <div className="mb-2 sm:mb-4 lg:mb-10 shrink-0 mt-0 lg:mt-0">
-          <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic">
+      <div className="relative z-10 w-full max-w-[1500px] md:max-w-[740px] lg:max-w-[1500px] mx-auto px-4 sm:px-8 md:px-6 lg:px-14 flex flex-col justify-start md:justify-center lg:justify-center h-full overflow-y-auto md:overflow-hidden lg:overflow-visible pb-0 [scrollbar-width:none]">
+        <div className="mb-2 sm:mb-4 md:mb-5 lg:mb-10 shrink-0 mt-0 lg:mt-0 text-left md:text-center lg:text-left">
+          <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] md:text-[42px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic">
             The good version of everything.
           </h2>
         </div>
 
-        {/* ── Cards Container: 4 Rows in 1 Frame on Mobile | 4 Columns on Desktop ── */}
+        {/* ── Cards Container: 4 Rows in 1 Frame on Mobile | 2x2 Squares on Tablet | 4 Columns on Desktop ── */}
         <div
-          className="flex-1 lg:flex-initial flex flex-col lg:grid lg:grid-cols-4 gap-2 lg:gap-6 items-stretch lg:items-start overflow-hidden lg:overflow-visible"
+          className="flex-1 md:flex-none lg:flex-initial flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-2 md:gap-3.5 lg:gap-6 items-stretch lg:items-start overflow-hidden lg:overflow-visible w-full"
         >
 
           {INGREDIENTS_DATA.map((item, idx) => {
@@ -85,12 +85,12 @@ export default function OriginWhatsIn() {
             return (
               <div
                 key={item.name}
-                className="group relative w-full flex flex-col bg-white/[0.06] border border-white/15 backdrop-blur-md rounded-lg lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/30 shadow-xl flex-1 min-h-0 lg:flex-none"
+                className="group relative w-full flex flex-col bg-white/[0.06] border border-white/15 backdrop-blur-md rounded-lg md:rounded-2xl lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/30 shadow-xl flex-1 md:flex-none lg:flex-none min-h-0"
               >
-                {/* ── MOBILE VIEW: Country Left-Top | Name Bottom-Right | Proper Responsive Height ── */}
+                {/* ── MOBILE VIEW ONLY (<768px): Horizontal Banners ── */}
                 <div 
                   onClick={() => toggleAccordion(idx)}
-                  className="lg:hidden relative w-full h-[190px] sm:h-[205px] shrink-0 overflow-hidden flex flex-row cursor-pointer select-none"
+                  className="md:hidden relative w-full h-[190px] sm:h-[205px] shrink-0 overflow-hidden flex flex-row cursor-pointer select-none"
                 >
                   {/* Image Section with explicit absolute inset */}
                   <div className={`relative h-full transition-all duration-500 ease-out overflow-hidden shrink-0 ${isOpen ? 'w-[42%]' : 'w-full'}`}>
@@ -99,7 +99,7 @@ export default function OriginWhatsIn() {
                       alt={item.name}
                       fill
                       priority={idx === 0}
-                      sizes="(max-width: 1024px) 100vw, 25vw"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                       className="object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-[1]" />
@@ -157,6 +157,104 @@ export default function OriginWhatsIn() {
                           {item.detail}
                         </p>
                       </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* ── TABLET VIEW ONLY (768px - 1023px): SQUARES IN 2x2 GRID ── */}
+                <div
+                  onClick={() => toggleAccordion(idx)}
+                  className="hidden md:flex lg:hidden relative w-full aspect-square max-h-[33vh] overflow-hidden flex-col justify-between p-4 cursor-pointer select-none group/tab"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    priority={idx === 0}
+                    sizes="50vw"
+                    className="object-cover object-center transition-transform duration-700 group-hover/tab:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/25 z-[1]" />
+
+                  {/* Top Bar: Country badge + Action button */}
+                  <div className="relative z-10 flex items-center justify-between w-full">
+                    <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[#E8DCC8]/95 font-medium">
+                      {item.country}
+                    </span>
+
+                    <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#E8DCC8]">
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className={`transition-transform duration-300 ${isOpen ? '-rotate-90' : 'rotate-0'}`}
+                      >
+                        <polyline points="15 18 9 12 15 6" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Bottom Text */}
+                  <div className="relative z-10 text-left">
+                    <h3 className="font-editorial text-[22px] text-[#E8DCC8] tracking-tight leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                      {item.name}
+                    </h3>
+                    <p className="font-suisse text-[12px] leading-[1.35] text-[#E8DCC8]/85 mt-1 line-clamp-2 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                      {item.hook}
+                    </p>
+                  </div>
+
+                  {/* Overlay on Open: Shows full detail with matching phone red eclipse background */}
+                  {isOpen && (
+                    <div
+                      className="absolute inset-0 z-20 p-5 flex flex-col justify-between border border-white/20 transition-all duration-300 animate-in fade-in"
+                      style={{
+                        background:
+                          'radial-gradient(circle at 50% 25%, rgba(185, 30, 15, 0.75) 0%, rgba(77, 0, 7, 0.95) 55%, rgba(18, 2, 3, 0.99) 100%)',
+                      }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[#E8DCC8]/95 font-medium">
+                          {item.country}
+                        </span>
+                        <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#E8DCC8]/90">
+                          <svg
+                            width="11"
+                            height="11"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="-rotate-90"
+                          >
+                            <polyline points="15 18 9 12 15 6" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="my-auto py-1">
+                        <h3 className="font-editorial text-[23px] text-[#E8DCC8] tracking-tight leading-tight">
+                          {item.name}
+                        </h3>
+                        <p className="font-suisse text-[12.5px] text-[#E8DCC8] font-medium leading-[1.35] mt-1">
+                          {item.hook}
+                        </p>
+                        <div className="h-px w-full bg-white/20 my-2.5" />
+                        <p className="font-suisse text-[12px] leading-[1.45] text-[#E8DCC8]/90">
+                          {item.detail}
+                        </p>
+                      </div>
+
+                      <span className="font-suisse text-[9.5px] tracking-wider uppercase text-[#E8DCC8]/50 text-center">
+                        Tap to close
+                      </span>
                     </div>
                   )}
                 </div>

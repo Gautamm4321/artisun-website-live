@@ -239,12 +239,12 @@ export default function OriginQuestions() {
   const isExpanded = expandedTabs[tab] || false;
   const visibleItems = isExpanded
     ? activeCategory.items
-    : activeCategory.items.slice(0, VISIBLE_COUNT);
+    : activeCategory.items.slice(0, 6);
 
   return (
     <div
       id="origin-questions"
-      className="origin-panel relative w-screen shrink-0 h-screen flex flex-col items-center justify-start lg:justify-center pt-14 pb-14 sm:pt-16 sm:pb-16 lg:py-0 overflow-hidden pointer-events-auto"
+      className="origin-panel relative w-screen shrink-0 h-screen md:h-[100svh] lg:h-[100svh] flex flex-col items-center justify-start md:justify-center lg:justify-center pt-14 pb-14 sm:pt-16 sm:pb-16 md:py-0 lg:py-0 overflow-hidden pointer-events-auto"
     >
       {/* Background Radial Gradient */}
       <div
@@ -257,25 +257,25 @@ export default function OriginQuestions() {
 
       {/* Mobile: bridge overlay — var(--bg-eclipse) is dark at top */}
       <div
-        className="absolute top-0 left-0 right-0 h-20 lg:hidden pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-20 md:hidden lg:hidden pointer-events-none"
         style={{
           background:
             'linear-gradient(to bottom, rgba(180,30,10,0.9) 0%, rgba(140,10,5,0.5) 40%, transparent 100%)',
           zIndex: 0,
         }}
       />
-      <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 sm:pt-8 lg:pt-0 lg:my-auto flex flex-col justify-start lg:justify-center lg:max-h-[84vh]">
+      <div className="relative z-10 w-full max-w-[920px] md:max-w-[840px] lg:max-w-[920px] mx-auto px-4 sm:px-8 md:px-10 lg:px-12 pt-4 sm:pt-6 md:pt-10 lg:pt-0 md:pb-6 flex flex-col justify-start md:justify-center lg:justify-center h-full max-h-full md:max-h-[90vh] lg:max-h-[84vh]">
         {/* Eyebrow + Heading */}
-        <span className="self-center font-suisse text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
+        <span className="self-center font-suisse text-[11px] md:text-[13px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
           FAQS
         </span>
 
-        <h2 className="self-center font-editorial text-[#E8DCC8] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight mt-2 text-center not-italic">
+        <h2 className="self-center font-editorial text-[#E8DCC8] text-[30px] sm:text-[46px] md:text-[50px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight mt-2 md:mt-3 text-center not-italic">
           Everything, answered.
         </h2>
 
         {/* Search Bar */}
-        <div className="w-full max-w-[540px] mx-auto mt-5 sm:mt-6">
+        <div className="w-full max-w-[540px] md:max-w-[620px] mx-auto mt-5 sm:mt-6 md:mt-6">
           <input
             type="search"
             value={search}
@@ -284,14 +284,14 @@ export default function OriginQuestions() {
               setOpen(null);
             }}
             placeholder="Search a question — white cast, actives, under makeup…"
-            className="w-full font-suisse text-[16px] sm:text-[13px] px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-[#E8DCC8]/30 text-[var(--brand-cream)] placeholder-[#E8DCC8]/50 focus:outline-none focus:border-[#E8DCC8]/70 focus:bg-white/[0.14] transition-all text-center focus:text-left shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+            className="w-full font-suisse text-[16px] sm:text-[13px] md:text-[15px] px-5 py-2.5 sm:py-3 md:py-3.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-[#E8DCC8]/30 text-[var(--brand-cream)] placeholder-[#E8DCC8]/50 focus:outline-none focus:border-[#E8DCC8]/70 focus:bg-white/[0.14] transition-all text-center focus:text-left shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
           />
         </div>
 
         {/* Category Tabs: Centered and smooth scrolling */}
         {!isSearching && (
-          <div className="mt-4 sm:mt-6 lg:mt-7 border-t border-b border-t border-b border-[#E8DCC8]/70 shrink-0">
-            <div className="flex items-center justify-start sm:justify-center gap-x-3.5 sm:gap-x-6 lg:gap-x-7 py-2.5 sm:py-3 overflow-x-auto [scrollbar-width:none] flex-nowrap">
+          <div className="mt-4 sm:mt-6 md:mt-6 lg:mt-7 border-t border-b border-[#E8DCC8]/70 shrink-0">
+            <div className="flex items-center justify-start sm:justify-center gap-x-3.5 sm:gap-x-6 md:gap-x-8 lg:gap-x-7 py-2.5 sm:py-3 md:py-4 overflow-x-auto [scrollbar-width:none] flex-nowrap">
               {CATEGORIES.map((c, i) => {
                 const active = i === tab;
                 return (
@@ -301,7 +301,7 @@ export default function OriginQuestions() {
                       setTab(i);
                       setOpen(null); // ✅ Tab switch par bhi default closed rahega
                     }}
-                    className={`pointer-events-auto shrink-0 flex items-center gap-1.5 font-suisse text-[10.5px] sm:text-[12px] tracking-[0.1em] sm:tracking-[0.14em] uppercase transition-colors whitespace-nowrap ${active
+                    className={`pointer-events-auto shrink-0 flex items-center gap-1.5 font-suisse text-[10.5px] sm:text-[12px] md:text-[13px] tracking-[0.1em] sm:tracking-[0.14em] uppercase transition-colors whitespace-nowrap ${active
                       ? 'text-[var(--brand-cream)] font-medium'
                       : 'text-[var(--brand-cream)]/45 hover:text-[var(--brand-cream)]/80'
                       }`}
@@ -318,21 +318,22 @@ export default function OriginQuestions() {
         {/* Accordion Questions List with smooth isolated scroll */}
         <div
           ref={scrollerRef}
-          className="panel-scroll mt-2 flex-1 flex flex-col min-h-0 pr-1.5 sm:pr-2 pb-6"
+          className="panel-scroll overflow-y-auto mt-2 md:mt-3 flex-1 min-h-0 flex flex-col pr-1.5 sm:pr-2 pb-10 touch-pan-y"
         >
           <div className="divide-y divide-[#E8DCC8]/90">
             {/* Active Category Items View */}
             {!isSearching &&
               visibleItems.map((item, i) => {
                 const isOpen = open === i;
+                const isExtraItem = i >= VISIBLE_COUNT && !isExpanded;
                 return (
-                  <div key={item.q} className="transition-colors">
+                  <div key={item.q} className={`transition-colors ${isExtraItem ? 'hidden md:block lg:hidden' : ''}`}>
                     <button
                       onClick={() => setOpen(isOpen ? null : i)}
                       aria-expanded={isOpen}
-                      className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 text-left text-[var(--brand-cream)] group"
+                      className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 md:py-5 lg:py-4 text-left text-[var(--brand-cream)] group"
                     >
-                      <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors flex-1">
+                      <span className="font-editorial text-[#E8DCC8] text-[15px] sm:text-[17px] md:text-[20px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors flex-1">
                         {item.q}
                       </span>
                       <Chevron open={isOpen} />
@@ -342,7 +343,7 @@ export default function OriginQuestions() {
                         }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-[#E8DCC8]/80 pb-4 pr-2 whitespace-pre-line w-full">
+                        <div className="font-suisse text-[13px] sm:text-[14px] md:text-[15px] leading-[1.65] text-[#E8DCC8]/80 pb-4 md:pb-5 pr-2 whitespace-pre-line w-full">
                           {item.a}
                         </div>
                       </div>
@@ -360,13 +361,13 @@ export default function OriginQuestions() {
                     <button
                       onClick={() => setOpen(isOpen ? null : i)}
                       aria-expanded={isOpen}
-                      className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 text-left text-[var(--brand-cream)] group"
+                      className="pointer-events-auto w-full flex items-center justify-between gap-4 py-3.5 sm:py-4 md:py-5 lg:py-4 text-left text-[var(--brand-cream)] group"
                     >
                       <div>
                         <span className="block font-suisse text-[9.5px] uppercase tracking-widest text-[var(--brand-cream)]/60 mb-0.5">
                           {res.category}
                         </span>
-                        <span className="font-editorial text-[15px] sm:text-[17px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors">
+                        <span className="font-editorial text-[#E8DCC8] text-[15px] sm:text-[17px] md:text-[20px] lg:text-[19px] tracking-tight group-hover:text-[#E8DCC8] transition-colors">
                           {res.item.q}
                         </span>
                       </div>
@@ -377,7 +378,7 @@ export default function OriginQuestions() {
                         }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="font-suisse text-[13px] sm:text-[14px] leading-[1.65] text-[var(--brand-cream)]/75 pb-4 pr-4 sm:pr-8 whitespace-pre-line max-w-[70ch]">
+                        <div className="font-suisse text-[13px] sm:text-[14px] md:text-[15px] leading-[1.65] text-[var(--brand-cream)]/75 pb-4 pr-4 sm:pr-8 whitespace-pre-line max-w-[70ch]">
                           {res.item.a}
                         </div>
                       </div>
@@ -400,7 +401,9 @@ export default function OriginQuestions() {
           {!isSearching && !isExpanded && activeCategory.items.length > VISIBLE_COUNT && (
             <button
               onClick={() => setExpandedTabs((prev) => ({ ...prev, [tab]: true }))}
-              className="pointer-events-auto self-center mt-5 mb-4 shrink-0 font-suisse text-[11px] sm:text-[12px] tracking-[0.14em] uppercase px-6 sm:px-7 py-2 sm:py-2.5 rounded-full border border-[var(--brand-cream)]/30 text-[var(--brand-cream)]/90 hover:bg-[var(--brand-cream)] hover:text-[var(--brand-dark)] transition-all"
+              className={`pointer-events-auto self-center mt-5 mb-4 shrink-0 font-suisse text-[11px] sm:text-[12px] md:text-[13px] tracking-[0.14em] uppercase px-6 sm:px-7 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full border border-[var(--brand-cream)]/30 text-[var(--brand-cream)]/90 hover:bg-[var(--brand-cream)] hover:text-[var(--brand-dark)] transition-all ${
+                activeCategory.items.length <= 6 ? 'block md:hidden lg:block' : ''
+              }`}
             >
               View all {activeCategory.items.length} questions
             </button>
