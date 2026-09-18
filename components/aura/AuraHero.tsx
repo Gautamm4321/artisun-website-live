@@ -47,7 +47,7 @@ const NAV_ITEMS: NavItem[] = [
   { n: '03', label: 'Where it works', target: 3, kind: 'link' },    // AuraWhere
   { n: '04', label: "What's in it", target: 4, kind: 'link' },      // AuraWhatsIn
   { n: '05', label: "What makes it different", target: 5, kind: 'link' },      // AuraWhatsIn
-  { n: '06', label: 'Questions', target: 6, kind: 'link' },         // AuraQuestions
+  { n: '06', label: 'Questions', target: 7, kind: 'link' },         // AuraQuestions
   { n: '07', label: 'Full ingredient list', target: null, kind: 'accordion' },
 ];
 
@@ -81,6 +81,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
               images={GALLERY}
               alt="Aura Pearl Skinwear"
               frameClassName="aspect-square max-h-[70vh]"
+              videoPoster="/pdp/aura-video-poster.webp"
             />
           </div>
 

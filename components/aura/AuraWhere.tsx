@@ -21,7 +21,7 @@ const WEATHER: Weather[] = [
   {
     index: '03',
     title: 'Every skin type',
-    copy: 'Oily, dry, combination or sensitive. Every skin type — in just the right amount for the day.. Built for your weather, not just your skin type.',
+    copy: 'Oily, dry, combination or sensitive. Every skin type — in just the right amount for the day. Built for your weather, not just your skin type.',
     image: '/pdp/aura-skin.webp',
   },
 ];

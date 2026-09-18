@@ -25,11 +25,13 @@ export default function PdpGallery({
   images,
   alt,
   frameClassName = 'aspect-square',
+  videoPoster = '/pdp/aura-video-poster.webp',
 }: {
   images: string[];
   alt: string;
   /** Aspect/height classes for the main frame — the two PDPs differ slightly. */
   frameClassName?: string;
+  videoPoster?: string;
 }) {
   const count = images.length;
   const [index, setIndex] = useState(0);
@@ -111,6 +113,7 @@ export default function PdpGallery({
           <video
             key={activeImg + index}
             src={asset(activeImg)}
+            poster={videoPoster ? asset(videoPoster) : undefined}
             autoPlay
             muted
             loop
@@ -172,14 +175,36 @@ export default function PdpGallery({
             }`}
           >
             {isVideo(src) ? (
-              <video
-                src={asset(src)}
-                muted
-                playsInline
-                preload="metadata"
-                aria-label={`${alt} video preview`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              <>
+                {videoPoster ? (
+                  <Image
+                    src={asset(videoPoster)}
+                    alt={`${alt} video preview`}
+                    fill
+                    sizes="52px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <video
+                    src={asset(src)}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-label={`${alt} video preview`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+                {/* Subtle Play Badge */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/25">
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white drop-shadow"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </>
             ) : (
               <Image src={asset(src)} alt="" fill sizes="52px" className="object-cover" />
             )}
