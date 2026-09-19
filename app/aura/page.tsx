@@ -158,7 +158,20 @@ export default function AuraPage() {
       const wrapper = wrapperRef.current;
       const panels = document.querySelectorAll<HTMLElement>('.aura-panel');
       if (wrapper && panels[i]) {
-        wrapper.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
+        // The fixed GlobalHeader overlays the top of this scroll frame, so land
+        // the panel's top edge just below the header rather than at y=0 —
+        // otherwise its eyebrow/heading sits hidden behind the header.
+        // Measured at click time so it stays exact for the phone and tablet
+        // header heights. (CSS scroll-margin-top can't do this here: it is
+        // only honoured by anchor jumps / scrollIntoView, not scrollTo({top}).)
+        const header = document.querySelector<HTMLElement>('[data-site-header]');
+        const headerOffset = header
+          ? Math.max(0, header.getBoundingClientRect().bottom - wrapper.getBoundingClientRect().top)
+          : 0;
+        wrapper.scrollTo({
+          top: Math.max(0, panels[i].offsetTop - headerOffset),
+          behavior: 'smooth',
+        });
       }
     }
   };

@@ -46,13 +46,16 @@ export default function OriginWhy() {
       <div className="relative z-10 h-full w-full max-w-[1500px] mx-auto px-4 sm:px-8 md:px-10 lg:px-14 pt-20 pb-24 sm:pt-24 sm:pb-24 md:pt-20 md:pb-16 lg:pt-[104px] lg:pb-16 flex flex-col justify-between overflow-hidden">
         {/* Top: Center on mobile & tablet, 2-col on desktop */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:grid lg:grid-cols-2 lg:gap-16 shrink-0 mt-2 sm:mt-4 md:mt-3 lg:mt-0">
-          {/* Heading: Red on mobile, Beige on desktop */}
-          <h2 className="font-editorial text-[#C02D19] lg:text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic text-center lg:text-left lg:drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+          {/* Heading: #A52A2C on mobile, Beige on desktop.
+              Mobile: mt-4 nudges the heading down 16px; the description below
+              takes 1rem off its gap (15svh -> 15svh - 1rem) so the description
+              and stats stay exactly where they were. Desktop resets to mt-0. */}
+          <h2 className="font-editorial text-[#A52A2C] lg:text-[var(--brand-cream)] mt-4 lg:mt-0 text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic text-center lg:text-left lg:drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
             The most boring step in your<br className="lg:hidden" /> morning finally worth it
           </h2>
           
           {/* Mobile Description: Red color and 15px on mobile */}
-          <p className="font-suisse text-[#C02D19] text-[15px] leading-[1.4] text-center max-w-[34ch] mt-[15svh] mb-3 lg:hidden">
+          <p className="font-suisse text-[#C02D19] text-[15px] leading-[1.4] text-center max-w-[34ch] mt-[calc(15svh_-_1rem)] mb-3 lg:hidden">
             Four layers before your morning chai? Origin makes it one. So your morning is faster, no heaviness, no pilling & no greasiness.
           </p>
 

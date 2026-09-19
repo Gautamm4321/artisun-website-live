@@ -18,7 +18,7 @@ export default function GlobalHeader() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md lg:[background:none] lg:backdrop-blur-none border-b border-[#E8DAC7]/15 lg:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] lg:shadow-none">
+      <header data-site-header="" className="fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-6 z-[100] pointer-events-none bg-gradient-to-r from-[#D9381E]/95 via-[#9E1B0E]/95 to-[#500A06]/95 backdrop-blur-md lg:[background:none] lg:backdrop-blur-none border-b border-[#E8DAC7]/15 lg:border-b-0 shadow-[0_4px_20px_rgba(0,0,0,0.25)] lg:shadow-none">
 
         {/* Left: ARTISUN Wordmark Logo (Mobile, Tablet & Desktop) */}
         <div className="flex items-center pointer-events-auto">
