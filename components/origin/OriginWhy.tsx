@@ -83,6 +83,7 @@ export default function OriginWhy() {
                   <div className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[22px] lg:text-[60px] leading-none mt-1 lg:mt-2 tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
                     <CountUp end={s.value} suffix={s.suffix} play={inView} duration={2} />
                   </div>
+                </div>
 
                 <p className="font-suisse text-[11px] sm:text-[9.5px] lg:text-[13.5px] leading-[1.2] lg:leading-[1.45] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-1 lg:mt-2 line-clamp-2 lg:line-clamp-none drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                   <span className="lg:hidden">{s.mobileCopy}</span>
