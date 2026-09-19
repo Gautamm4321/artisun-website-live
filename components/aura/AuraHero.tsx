@@ -110,7 +110,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
                 Encapsulated pearls that melt into climate-smart sun protection.
               </p>
               <p className="w-full text-left">
-                Aura is an innovative pearl sunscreen with skincare beads that break on contact. A hydrating broad spectrum sunscreen for dry skin and fluctuating weather, delivering broad-spectrum SPF 40 PA++++ with a luminous dewy finish and zero white cast.
+                Aura is an innovative pearl sunscreen with skincare beads that dissolve into your skin on contact. A hydrating broad spectrum sunscreen for dry skin and fluctuating weather, delivering broad-spectrum SPF 40 PA++++ with a luminous dewy finish and zero white cast.
               </p>
             </div>
 

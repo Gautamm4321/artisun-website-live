@@ -108,7 +108,7 @@ export default function AuraDosage() {
                   onClick={() => setActiveTab(idx)}
                   className={`w-full py-3.5 px-5 md:py-5 md:px-7 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#E8DCC8] text-[#2A0805] border-[#E8DCC8] shadow-xl'
+                      ? 'bg-[#E8DCC8] text-[#A52A2C] border-[#E8DCC8] shadow-xl'
                       : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-white/15 hover:border-white/40 hover:bg-white/[0.1]'
                   }`}
                 >
