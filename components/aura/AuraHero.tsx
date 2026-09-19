@@ -123,7 +123,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
               />
             </div>
 
-            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" />
+           
 
             {/* Sidebar Navigation */}
             <ul className="flex flex-col">

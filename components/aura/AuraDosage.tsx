@@ -98,7 +98,7 @@ export default function AuraDosage() {
             Select Amount:
           </p>
 
-          <div className="flex flex-col gap-3 md:gap-4 w-full">
+          <div className="flex flex-col gap-3 w-full">
             {PEARL_TABS.map((tab, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -106,21 +106,18 @@ export default function AuraDosage() {
                   key={tab.label}
                   type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`w-full py-3.5 px-5 md:py-5 md:px-7 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${
+                  className={`w-full py-3.5 px-5 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${
                     isActive
                       ? 'bg-[#E8DCC8] text-[#A52A2C] border-[#E8DCC8] shadow-xl'
                       : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-white/15 hover:border-white/40 hover:bg-white/[0.1]'
                   }`}
                 >
                   <div className="text-left">
-                    <span className="font-suisse text-xs sm:text-sm md:text-[16px] uppercase tracking-wider font-semibold block">
+                    <span className="font-suisse text-xs sm:text-sm uppercase tracking-wider font-semibold block">
                       {tab.label}
                     </span>
-                    <span className="font-suisse text-[11px] opacity-70 block mt-0.5">
-                      {tab.weather}
-                    </span>
                   </div>
-                  <span className="font-editorial text-2xl sm:text-3xl md:text-4xl leading-none font-medium">
+                  <span className="font-editorial text-2xl sm:text-3xl leading-none font-medium">
                     {tab.pearls}
                   </span>
                 </button>
