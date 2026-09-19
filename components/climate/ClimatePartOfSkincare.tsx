@@ -40,15 +40,15 @@ const MOBILE_POINTS = [
 
 export default function ClimatePartOfSkincare() {
   return (
-    <section className="climate-panel relative z-10 w-full min-h-auto md:min-h-0 md:h-[100svh] md:max-h-[100svh] md:overflow-hidden lg:min-h-[85vh] flex flex-col items-center justify-center px-3 sm:px-6 md:px-8 lg:px-16 py-8 sm:py-12 md:py-0">
+    <section className="relative z-10 w-full min-h-auto lg:min-h-[85vh] flex flex-col items-center justify-center px-3 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 md:py-16">
 
       {/* 1. Top Serif Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6 }}
-        className="font-editorial text-[clamp(1.8rem,5.2vw,4.2rem)] md:text-[46px] text-center mb-6 sm:mb-8 md:mb-6 tracking-wide font-normal uppercase px-2 leading-tight"
+        className="font-editorial text-[clamp(1.8rem,5.2vw,4.2rem)] text-center mb-6 sm:mb-8 md:mb-12 tracking-wide font-normal uppercase px-2 leading-tight"
       >
         Climate is (a part of) skincare
       </motion.h2>
@@ -57,23 +57,23 @@ export default function ClimatePartOfSkincare() {
       <div className="relative w-full max-w-[1280px] flex items-center justify-center">
 
         {/* --- DESKTOP & TABLET LAYOUT (640px and up) --- */}
-        <div className="hidden sm:flex flex-row items-center justify-center gap-1 md:gap-3 lg:gap-0 w-full">
+        <div className="hidden sm:flex flex-row items-center justify-center gap-1 md:gap-2 lg:gap-0 w-full">
 
           {/* LEFT POINTERS CONTAINER */}
-          <div className="flex flex-col justify-between sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] sm:w-[160px] md:w-[240px] lg:w-[300px] xl:w-[380px] text-center z-20 sm:py-2 md:py-3 lg:py-4">
+          <div className="flex flex-col justify-between sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] sm:w-[160px] md:w-[220px] lg:w-[300px] xl:w-[380px] text-center z-20 sm:py-2 md:py-3 lg:py-4">
             {/* Point 1: Top Left */}
             <motion.div
               custom={0}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               variants={leftPointerVariants}
-              className="flex items-center justify-end gap-1 sm:translate-x-4 md:translate-x-4 lg:translate-x-10 mt-2"
+              className="flex items-center justify-end gap-1 sm:translate-x-4 md:translate-x-6 lg:translate-x-10 mt-2"
             >
-              <p className="sm:text-xs md:text-[15px] lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
+              <p className="sm:text-xs md:text-base lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
                 The sun you don&rsquo;t<br />feel ages your skin
               </p>
-              <span className="sm:w-8 md:w-10 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-mr-2 md:-mr-2 lg:-mr-4 relative z-30 shadow-sm" />
+              <span className="sm:w-8 md:w-12 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-mr-2 md:-mr-3 lg:-mr-4 relative z-30 shadow-sm" />
             </motion.div>
 
             {/* Point 3: Bottom Left */}
@@ -81,14 +81,14 @@ export default function ClimatePartOfSkincare() {
               custom={2}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               variants={leftPointerVariants}
-              className="flex items-center justify-end gap-1 sm:translate-x-4 md:translate-x-4 lg:translate-x-10 sm:mb-8 md:mb-8 lg:mb-16"
+              className="flex items-center justify-end gap-1 sm:translate-x-4 md:translate-x-6 lg:translate-x-10 sm:mb-8 md:mb-12 lg:mb-16"
             >
-              <p className="sm:text-xs md:text-[15px] lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
+              <p className="sm:text-xs md:text-base lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
                 Office AC quietly pulls<br />your skin&rsquo;s moisture out
               </p>
-              <span className="sm:w-8 md:w-10 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-mr-2 md:-mr-2 lg:-mr-4 relative z-30 shadow-sm" />
+              <span className="sm:w-8 md:w-12 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-mr-2 md:-mr-3 lg:-mr-4 relative z-30 shadow-sm" />
             </motion.div>
           </div>
 
@@ -96,9 +96,9 @@ export default function ClimatePartOfSkincare() {
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="relative sm:w-[220px] sm:h-[280px] md:w-[280px] md:h-[360px] lg:w-[320px] lg:h-[400px] xl:w-[420px] xl:h-[520px] flex-shrink-0 overflow-hidden shadow-2xl z-10 rounded-none border border-white/10"
+            className="relative sm:w-[220px] sm:h-[280px] md:w-[220px] md:h-[280px] lg:w-[320px] lg:h-[400px] xl:w-[420px] xl:h-[520px] flex-shrink-0 overflow-hidden shadow-2xl z-10 rounded-none border border-white/10"
           >
             <Image
               src={asset('/climate-face.webp')}
@@ -110,18 +110,18 @@ export default function ClimatePartOfSkincare() {
           </motion.div>
 
           {/* RIGHT POINTERS CONTAINER */}
-          <div className="flex flex-col justify-between sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] sm:w-[160px] md:w-[240px] lg:w-[300px] xl:w-[380px] text-center z-20 sm:py-2 md:py-3 lg:py-4">
+          <div className="flex flex-col justify-between sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] sm:w-[160px] md:w-[220px] lg:w-[300px] xl:w-[380px] text-center z-20 sm:py-2 md:py-3 lg:py-4">
             {/* Point 2: Top Right */}
             <motion.div
               custom={1}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               variants={rightPointerVariants}
-              className="flex items-center justify-start gap-1 sm:-translate-x-4 md:-translate-x-4 lg:-translate-x-10 sm:mt-14 md:mt-12 lg:mt-24"
+              className="flex items-center justify-start gap-1 sm:-translate-x-4 md:-translate-x-6 lg:-translate-x-10 sm:mt-14 md:mt-16 lg:mt-24"
             >
-              <span className="sm:w-8 md:w-10 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-ml-2 md:-ml-2 lg:-ml-4 relative z-30 shadow-sm" />
-              <p className="sm:text-xs md:text-[15px] lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
+              <span className="sm:w-8 md:w-12 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-ml-2 md:-ml-3 lg:-ml-4 relative z-30 shadow-sm" />
+              <p className="sm:text-xs md:text-base lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
                 A warm day pushes your<br />oil up by mid-morning
               </p>
             </motion.div>
@@ -131,12 +131,12 @@ export default function ClimatePartOfSkincare() {
               custom={3}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               variants={rightPointerVariants}
-              className="flex items-center justify-start gap-1 sm:-translate-x-4 md:-translate-x-4 lg:-translate-x-10 md:mb-4 lg:mb-4"
+              className="flex items-center justify-start gap-1 sm:-translate-x-4 md:-translate-x-6 lg:-translate-x-10 md:mb-3 lg:mb-4"
             >
-              <span className="sm:w-8 md:w-10 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-ml-2 md:-ml-2 lg:-ml-4 relative z-30 shadow-sm" />
-              <p className="sm:text-xs md:text-[15px] lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
+              <span className="sm:w-8 md:w-12 lg:w-16 xl:w-20 h-[1px] bg-white/90 flex-shrink-0 sm:-ml-2 md:-ml-3 lg:-ml-4 relative z-30 shadow-sm" />
+              <p className="sm:text-xs md:text-base lg:text-lg xl:text-xl font-sans font-normal leading-snug opacity-95 text-center">
                 Damp air decides whether<br />anything you put on stays put
               </p>
             </motion.div>
@@ -194,7 +194,7 @@ export default function ClimatePartOfSkincare() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="font-suisse text-center text-[15px] min-[400px]:text-[16px] sm:text-[18px] md:text-[20px] lg:text-[28px] text-[var(--brand-cream)] mt-8 sm:mt-8 md:mt-6 px-4 max-w-[95vw] md:max-w-[700px] lg:max-w-[1250px] font-normal leading-[1.3] tracking-tight whitespace-normal sm:whitespace-normal lg:whitespace-nowrap"
+        className="font-suisse text-center text-[15px] min-[400px]:text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] text-[var(--brand-cream)] mt-8 sm:mt-10 md:mt-12 px-4 max-w-[95vw] lg:max-w-[1250px] font-normal leading-[1.3] tracking-tight whitespace-normal sm:whitespace-nowrap"
       >
         Even the same routine can perform differently depending on where you are.
       </motion.p>

@@ -226,7 +226,7 @@ export default function ClimateHero() {
 
   return (
     <section
-      className="climate-panel relative z-10 min-h-screen md:min-h-0 md:h-[100svh] md:max-h-[100svh] md:overflow-hidden w-full flex flex-col items-center justify-center px-4 pt-24 pb-12 md:pt-16 md:pb-6 text-[var(--brand-cream)]"
+      className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center px-4 pt-24 pb-12 text-[var(--brand-cream)]"
       style={
         {
           '--sunx': bandVisual.sunx,
@@ -247,7 +247,7 @@ export default function ClimateHero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="font-editorial whitespace-nowrap text-[clamp(1.15rem,6.2vw,4.5rem)] md:text-[44px] text-center mb-3 md:mb-3 font-normal tracking-wide"
+        className="font-editorial whitespace-nowrap text-[clamp(1.15rem,6.2vw,4.5rem)] text-center mb-3 font-normal tracking-wide"
       >
         {heading}
       </motion.h2>
@@ -258,9 +258,9 @@ export default function ClimateHero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-[620px] md:max-w-[680px] bg-black/25 backdrop-blur-md rounded-lg pt-4 pb-5 md:pt-4 md:pb-5 px-6 md:px-8 border border-white/10 text-center shadow-2xl mb-4 md:mb-3.5"
+          className="w-full max-w-[620px] bg-black/25 backdrop-blur-md rounded-lg pt-4 pb-5 px-6 md:px-8 border border-white/10 text-center shadow-2xl mb-4"
         >
-          <p className="text-base md:text-lg font-editorial tracking-wide opacity-90 mb-3 md:mb-2.5">
+          <p className="text-base md:text-lg font-editorial tracking-wide opacity-90 mb-3">
             {weather?.city ? `Right now in ${weather.city}` : 'Sun care for your weather'}
           </p>
 
@@ -273,7 +273,7 @@ export default function ClimateHero() {
             <div className="grid grid-cols-3 gap-2 md:gap-4 items-baseline justify-center">
               {/* Temperature — count-up animated */}
               <div className="flex flex-col items-center">
-                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] md:text-[48px] leading-none">
+                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] leading-none">
                   {loading ? '--' : `${animatedTemp}°`}
                 </span>
                 <span className="text-xs md:text-sm opacity-80 mt-1 font-sans">Celsius</span>
@@ -281,7 +281,7 @@ export default function ClimateHero() {
 
               {/* Humidity */}
               <div className="flex flex-col items-center">
-                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] md:text-[48px] leading-none">
+                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] leading-none">
                   {loading ? '--' : `${weather?.humidity ?? 60}%`}
                 </span>
                 <span className="text-xs md:text-sm opacity-80 mt-1 font-sans">Humidity</span>
@@ -289,7 +289,7 @@ export default function ClimateHero() {
 
               {/* UV — current during day, today's peak at night */}
               <div className="flex flex-col items-center">
-                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] md:text-[48px] leading-none">
+                <span className="font-editorial text-[clamp(2.5rem,5.5vw,4.2rem)] leading-none">
                   {loading ? '--' : animatedUV}
                 </span>
                 <span className="text-xs md:text-sm opacity-80 mt-1 font-sans">{uvLabel}</span>
@@ -304,7 +304,7 @@ export default function ClimateHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-center max-w-[720px] mb-6 md:mb-4 px-4 font-sans leading-relaxed tracking-wide space-y-1"
+        className="text-center max-w-[720px] mb-6 px-4 font-sans leading-relaxed tracking-wide space-y-1"
       >
         <p className="text-lg md:text-xl font-normal opacity-95 italic">
           {activeConfig.readLine}
@@ -319,13 +319,13 @@ export default function ClimateHero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="grid grid-cols-2 gap-2 sm:gap-6 md:gap-5 w-full max-w-[760px] md:max-w-[720px]"
+        className="grid grid-cols-2 gap-2 sm:gap-6 w-full max-w-[760px]"
       >
         {/* CARD 1: Aura */}
         <div className="bg-black/25 backdrop-blur-md rounded-none border border-white/10 overflow-hidden flex flex-col justify-between h-full group hover:border-white/20 transition-all relative">
 
-          <div className="p-2.5 sm:p-5 md:p-4 flex items-start gap-2 sm:gap-4 md:gap-3">
-            <div className="relative w-14 h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-24 sm:h-24 md:w-22 md:h-22 bg-[#8B3A32] flex-shrink-0 overflow-hidden rounded-none">
+          <div className="p-2.5 sm:p-5 flex items-start gap-2 sm:gap-4">
+            <div className="relative w-14 h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-[#8B3A32] flex-shrink-0 overflow-hidden rounded-none">
               <Image
                 src={asset('/pdp/aura-1.webp')}
                 alt="Aura"
@@ -334,23 +334,23 @@ export default function ClimateHero() {
               />
             </div>
             <div className="flex flex-col justify-center pt-0.5">
-              <h3 className="font-editorial text-xl min-[400px]:text-2xl sm:text-3xl md:text-2xl mb-0.5 sm:mb-1 leading-none">Aura</h3>
-              <p className="text-[11px] min-[400px]:text-xs sm:text-sm md:text-xs opacity-90 leading-tight sm:leading-normal font-sans mt-0.5">
+              <h3 className="font-editorial text-xl min-[400px]:text-2xl sm:text-3xl md:text-4xl mb-0.5 sm:mb-1 leading-none">Aura</h3>
+              <p className="text-[11px] min-[400px]:text-xs sm:text-sm md:text-base opacity-90 leading-tight sm:leading-normal font-sans mt-0.5">
                 {activeConfig.auraPearls}
               </p>
             </div>
           </div>
           <AddToBagButton
             product="aura"
-            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 md:py-2.5 text-[11px] sm:text-[12.5px] md:text-xs tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
+            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 text-[11px] sm:text-[12.5px] tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
           />
         </div>
 
         {/* CARD 2: Origin */}
         <div className="bg-black/25 backdrop-blur-md rounded-none border border-white/10 overflow-hidden flex flex-col justify-between h-full group hover:border-white/20 transition-all relative">
 
-          <div className="p-2.5 sm:p-5 md:p-4 flex items-start gap-2 sm:gap-4 md:gap-3">
-            <div className="relative w-14 h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-24 sm:h-24 md:w-22 md:h-22 bg-[#8B3A32] flex-shrink-0 overflow-hidden rounded-none">
+          <div className="p-2.5 sm:p-5 flex items-start gap-2 sm:gap-4">
+            <div className="relative w-14 h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-[#8B3A32] flex-shrink-0 overflow-hidden rounded-none">
               <Image
                 src={asset('/pdp/origin-1.webp')}
                 alt="Origin"
@@ -359,15 +359,15 @@ export default function ClimateHero() {
               />
             </div>
             <div className="flex flex-col justify-center pt-0.5">
-              <h3 className="font-editorial text-xl min-[400px]:text-2xl sm:text-3xl md:text-2xl mb-0.5 sm:mb-1 leading-none">Origin</h3>
-              <p className="text-[11px] min-[400px]:text-xs sm:text-sm md:text-xs opacity-90 leading-tight sm:leading-normal font-sans mt-0.5">
+              <h3 className="font-editorial text-xl min-[400px]:text-2xl sm:text-3xl md:text-4xl mb-0.5 sm:mb-1 leading-none">Origin</h3>
+              <p className="text-[11px] min-[400px]:text-xs sm:text-sm md:text-base opacity-90 leading-tight sm:leading-normal font-sans mt-0.5">
                 {activeConfig.originPumps}
               </p>
             </div>
           </div>
           <AddToBagButton
             product="origin"
-            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 md:py-2.5 text-[11px] sm:text-[12.5px] md:text-xs tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
+            className="w-full bg-[#E6D5C1] text-[#A52A2C] py-2 sm:py-3 text-[11px] sm:text-[12.5px] tracking-[0.14em] uppercase font-suisse font-medium hover:bg-[#FAF6EE] transition-colors"
           />
         </div>
       </motion.div>
@@ -377,7 +377,7 @@ export default function ClimateHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="text-center text-xs md:text-sm opacity-80 mt-6 md:mt-3.5 font-sans font-light tracking-wide bg-black/20 px-4 py-2 border border-white/5 rounded-full"
+        className="text-center text-xs md:text-sm opacity-80 mt-6 font-sans font-light tracking-wide bg-black/20 px-4 py-2 border border-white/5 rounded-full"
       >
         <span className="font-medium text-[#E8DCC8]">Reapply:</span> {activeConfig.reapplyLine}
       </motion.p>
