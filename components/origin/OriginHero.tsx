@@ -122,7 +122,7 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
               />
             </div>
 
-            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" />
+            {/* <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" /> */}
 
             {/* Sidebar Navigation */}
             <ul className="flex flex-col border-b border-[#E8DCC8]/75">
