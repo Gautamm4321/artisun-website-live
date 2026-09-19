@@ -28,7 +28,7 @@ export default function TagPills({
       {tags.map((t) => (
         <span
           key={t}
-          className="font-suisse text-[9.5px] sm:text-[11px] font-normal tracking-[0.08em] uppercase whitespace-nowrap px-1.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-[var(--brand-cream)]/45 text-[var(--brand-cream)]/90 bg-transparent"
+          className="font-suisse text-[9.5px] sm:text-[11px] font-normal tracking-[0.08em] uppercase whitespace-nowrap px-1.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-[#E8DCC8]/75 text-[#E8DCC8] bg-transparent"
         >
           {t}
         </span>

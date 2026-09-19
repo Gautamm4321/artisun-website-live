@@ -17,7 +17,7 @@ const STATS: Stat[] = [
 ];
 
 const BG_IMAGE_DESKTOP = '/pdp/origin-why-desktop.webp';
-const BG_IMAGE_MOBILE = '/Origin, second frame.jpeg';
+const BG_IMAGE_MOBILE = '/Origin, second frame-image.jpeg';
 
 export default function OriginWhy() {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -50,12 +50,12 @@ export default function OriginWhy() {
         {/* Top: Center on mobile & tablet, 2-col on desktop */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:grid lg:grid-cols-2 lg:gap-16 shrink-0 mt-2 sm:mt-4 md:mt-3 lg:mt-0">
           {/* 2 Lines on mobile */}
-          <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] md:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic text-center lg:text-left drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+          <h2 className="font-editorial text-[var(--brand-cream)] text-[30px] sm:text-[46px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] tracking-tight not-italic text-center lg:text-left drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
             The most boring step in your<br className="lg:hidden" /> morning finally worth it
           </h2>
           
-          {/* Mobile & Tablet Description */}
-          <p className="font-suisse text-[var(--brand-cream)]/90 text-[17.5px] sm:text-[15px] md:text-[16.5px] leading-[1.4] md:leading-[1.5] text-center max-w-[34ch] md:max-w-[48ch] mt-[15svh] md:mt-6 mb-3 md:mb-6 lg:hidden drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+          {/* Mobile Description with large top spacing */}
+          <p className="font-suisse text-[var(--brand-cream)]/90 text-[17.5px] sm:text-[15px] leading-[1.4] text-center max-w-[34ch] mt-[15svh] mb-3 lg:hidden drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             Four layers before your morning chai? Origin makes it one. So your morning is faster, no heaviness, no pilling & no greasiness.
           </p>
 
@@ -74,18 +74,17 @@ export default function OriginWhy() {
             return (
               <div
                 key={s.index}
-                className={`${isLastOne ? 'col-span-2 md:col-span-1 justify-self-center md:justify-self-auto w-[52%] md:w-full lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] md:min-h-[145px] lg:min-h-[175px] p-2.5 sm:p-3 md:p-3.5 lg:p-4 rounded-xl md:rounded-2xl bg-gradient-to-b from-[#6e140d]/75 to-[#380805]/90 backdrop-blur-md border border-white/20 lg:border-white/15 flex flex-col justify-between shadow-lg hover:border-white/30 transition-all`}
+                className={`${isLastOne ? 'col-span-2 justify-self-center w-[52%] lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] lg:min-h-[175px] p-2.5 sm:p-3 lg:p-4 rounded-xl bg-gradient-to-b from-[#6e140d]/75 to-[#380805]/90 backdrop-blur-md border border-white/20 lg:border-white/15 flex flex-col justify-between shadow-lg hover:border-white/30 transition-all`}
               >
                 <div>
-                  <div className="font-suisse text-[8.5px] sm:text-[9.5px] md:text-[10px] lg:text-[11px] tracking-[0.12em] uppercase text-[var(--brand-cream)]/60">
+                  <div className="font-suisse text-[8.5px] sm:text-[9.5px] lg:text-[11px] tracking-[0.12em] uppercase text-[var(--brand-cream)]/60">
                     {s.index} · {s.label}
                   </div>
-                  <div className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[22px] md:text-[36px] lg:text-[60px] leading-none mt-1 md:mt-2 lg:mt-2 tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+                  <div className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[22px] lg:text-[60px] leading-none mt-1 lg:mt-2 tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
                     <CountUp end={s.value} suffix={s.suffix} play={inView} duration={2} />
                   </div>
-                </div>
 
-                <p className="font-suisse text-[11px] sm:text-[9.5px] md:text-[11.5px] lg:text-[13.5px] leading-[1.2] md:leading-[1.35] lg:leading-[1.45] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-1 md:mt-2 lg:mt-2 line-clamp-2 md:line-clamp-3 lg:line-clamp-none drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                <p className="font-suisse text-[11px] sm:text-[9.5px] lg:text-[13.5px] leading-[1.2] lg:leading-[1.45] text-[var(--brand-cream)]/90 lg:text-[#E8DCC8] mt-1 lg:mt-2 line-clamp-2 lg:line-clamp-none drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                   <span className="lg:hidden">{s.mobileCopy}</span>
                   <span className="hidden lg:inline">{s.copy}</span>
                 </p>

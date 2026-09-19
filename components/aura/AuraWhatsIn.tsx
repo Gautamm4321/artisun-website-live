@@ -44,7 +44,7 @@ export default function AuraWhatsIn() {
   return (
     <div
       id="aura-whatsin"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start md:justify-between lg:justify-between pt-8 pb-6 sm:py-16 md:pt-20 md:pb-16 lg:pt-24 lg:pb-14 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-6 sm:py-16 lg:pt-24 lg:pb-14 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Background Glow */}

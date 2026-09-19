@@ -48,7 +48,7 @@ export default function AuraDosage() {
     <div
       id="aura-dosage"
       ref={scrollerRef}
-      className="aura-panel relative w-screen shrink-0 min-h-[100svh] md:h-[100svh] lg:h-[100svh] overflow-visible md:overflow-hidden lg:overflow-hidden flex flex-col justify-start md:justify-between lg:justify-between pt-8 pb-8 sm:py-16 md:pt-16 md:pb-12 lg:py-20 px-5 sm:px-8 md:px-10 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 min-h-[100svh] lg:h-[100svh] overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-8 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Top Heading */}
@@ -108,7 +108,7 @@ export default function AuraDosage() {
                   onClick={() => setActiveTab(idx)}
                   className={`w-full py-3.5 px-5 md:py-5 md:px-7 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${
                     isActive
-                      ? 'bg-white text-black border-white shadow-xl'
+                      ? 'bg-[#E8DCC8] text-[#2A0805] border-[#E8DCC8] shadow-xl'
                       : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-white/15 hover:border-white/40 hover:bg-white/[0.1]'
                   }`}
                 >
@@ -116,7 +116,7 @@ export default function AuraDosage() {
                     <span className="font-suisse text-xs sm:text-sm md:text-[16px] uppercase tracking-wider font-semibold block">
                       {tab.label}
                     </span>
-                    <span className="font-suisse text-[11px] md:text-[13px] opacity-70 block mt-0.5 md:mt-1">
+                    <span className="font-suisse text-[11px] opacity-70 block mt-0.5">
                       {tab.weather}
                     </span>
                   </div>

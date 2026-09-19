@@ -30,7 +30,7 @@ export default function AuraWhere() {
   return (
     <div
       id="aura-where"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] flex flex-col overflow-hidden text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 h-[100svh] scroll-mt-[72px] lg:scroll-mt-0 flex flex-col overflow-hidden text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Heading block */}

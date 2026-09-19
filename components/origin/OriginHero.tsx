@@ -14,7 +14,7 @@ const BADGES = ['SPF 50+', 'PA++++', 'All Weathers', '50ml'];
 const GALLERY = [
   '/pdp/origin-1.webp',
   '/pdp/origin-2.webp',
-  '/pdp/First page, third image.webp',
+  '/Origion web imge.png',
   '/pdp/origin-3.webp',
   '/pdp/origin-4.webp',
   '/pdp/First page, fifth picture (1).webp',
@@ -122,25 +122,25 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
               />
             </div>
 
-            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5 md:my-2" />
+            <div className="h-px w-full bg-[#E8DCC8]/25 my-0.5" />
 
             {/* Sidebar Navigation */}
-            <ul className="flex flex-col">
+            <ul className="flex flex-col border-b border-[#E8DCC8]/75">
               {NAV_ITEMS.map((item) => {
                 const soon = item.kind === 'link' && item.target === null;
 
                 if (item.kind === 'accordion') {
                   return (
-                    <li key={item.n} className="relative border-b border-[var(--brand-cream)]/10">
+                    <li key={item.n} className="relative border-t first:border-t-0 border-[#E8DCC8]/75">
                       <button
                         onClick={() => setIngredientsOpen((v) => !v)}
                         aria-expanded={ingredientsOpen}
                         className="pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 md:py-3 text-left group"
                       >
-                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] md:text-[14px] lg:text-[13.5px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
+                        <span className="font-suisse text-[11.5px] sm:text-[12.5px] lg:text-[13.5px] text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)] transition-colors">
                           {item.label}
                         </span>
-                        <span className={`ml-auto text-sm text-[var(--brand-cream)]/60 transition-transform duration-300 ${ingredientsOpen ? 'rotate-45' : ''}`}>+</span>
+                        <span className={`ml-auto text-sm text-[#E8DCC8] transition-transform duration-300 ${ingredientsOpen ? 'rotate-45' : ''}`}>+</span>
                       </button>
                       
                       {/* Bottom-anchored popover to prevent clipping at screen edge */}
@@ -166,21 +166,21 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
                 }
 
                 return (
-                  <li key={item.n} className="border-b border-[var(--brand-cream)]/10">
+                  <li key={item.n} className="border-t first:border-t-0 border-[#E8DCC8]/75">
                     <button
                       disabled={soon}
                       onClick={() => item.target !== null && onNavigate(item.target)}
                       className={`pointer-events-auto w-full flex items-center gap-2 sm:gap-3 py-1.5 sm:py-2 md:py-3 text-left group ${soon ? 'cursor-default' : ''}`}
                     >
-                      <span className={`font-suisse text-[11.5px] sm:text-[13px] md:text-[14.5px] lg:text-[14px] transition-colors ${soon ? 'text-[var(--brand-cream)]/35' : 'text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)]'}`}>
+                      <span className={`font-suisse text-[11.5px] sm:text-[13px] lg:text-[14px] transition-colors ${soon ? 'text-[var(--brand-cream)]/35' : 'text-[var(--brand-cream)]/90 group-hover:text-[var(--brand-cream)]'}`}>
                         {item.label}
                       </span>
 
                       {soon ? (
-                        <span className="ml-auto font-suisse text-[10px] uppercase tracking-wider text-[var(--brand-cream)]/30 border border-[var(--brand-cream)]/15 rounded-full px-2 py-0.5">Soon</span>
+                        <span className="ml-auto font-suisse text-[10px] uppercase tracking-wider text-[#E8DCC8]/40 border border-[#E8DCC8]/20 rounded-full px-2 py-0.5">Soon</span>
                       ) : (
                         <span className="ml-auto text-[#E8DCC8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 flex items-center justify-center">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8DCC8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="7" y1="17" x2="17" y2="7" />
                             <polyline points="7 7 17 7 17 17" />
                           </svg>
