@@ -244,7 +244,7 @@ export default function OriginQuestions() {
   return (
     <div
       id="origin-questions"
-      className="origin-panel relative w-screen shrink-0 h-screen md:h-[100svh] lg:h-[100svh] flex flex-col items-center justify-start md:justify-center lg:justify-center pt-14 pb-14 sm:pt-16 sm:pb-16 md:py-0 lg:py-0 overflow-hidden pointer-events-auto"
+      className="origin-panel relative w-screen shrink-0 h-screen md:h-[100svh] lg:h-[100svh] scroll-mt-[135px] lg:scroll-mt-0 flex flex-col items-center justify-start md:justify-center lg:justify-center pt-24 pb-14 sm:pt-24 sm:pb-16 md:py-0 lg:py-0 overflow-hidden pointer-events-auto"
     >
       {/* Background Radial Gradient */}
       <div
@@ -255,16 +255,7 @@ export default function OriginQuestions() {
         }}
       />
 
-      {/* Mobile: bridge overlay — var(--bg-eclipse) is dark at top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-20 md:hidden lg:hidden pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(180,30,10,0.9) 0%, rgba(140,10,5,0.5) 40%, transparent 100%)',
-          zIndex: 0,
-        }}
-      />
-      <div className="relative z-10 w-full max-w-[920px] md:max-w-[840px] lg:max-w-[920px] mx-auto px-4 sm:px-8 md:px-10 lg:px-12 pt-4 sm:pt-6 md:pt-10 lg:pt-0 md:pb-6 flex flex-col justify-start md:justify-center lg:justify-center h-full max-h-full md:max-h-[90vh] lg:max-h-[84vh]">
+      <div className="relative z-10 w-full max-w-[920px] md:max-w-[840px] lg:max-w-[920px] mx-auto px-4 sm:px-8 md:px-10 lg:px-12 pt-8 sm:pt-10 md:pt-10 lg:pt-0 md:pb-6 flex flex-col justify-start md:justify-center lg:justify-center h-full max-h-full md:max-h-[90vh] lg:max-h-[84vh]">
         {/* Eyebrow + Heading */}
         <span className="self-center font-suisse text-[11px] md:text-[13px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium">
           FAQS

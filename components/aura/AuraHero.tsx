@@ -43,7 +43,7 @@ type NavItem = { n: string; label: string; target: number | null; kind: 'link' |
  */
 const NAV_ITEMS: NavItem[] = [
   { n: '01', label: 'Why Aura', target: 1, kind: 'link' },       // AuraDosage
-  { n: '02', label: 'How it wear', target: 2, kind: 'link' },      // AuraTexture
+  { n: '02', label: 'How to wear', target: 2, kind: 'link' },      // AuraTexture
   { n: '03', label: 'How it feels', target: 3, kind: 'link' },    // AuraWhere
   { n: '04', label: "Where it works", target: 4, kind: 'link' },      // AuraWhatsIn
   { n: '05', label: "What's in it", target: 5, kind: 'link' },      // AuraWhatsIn
