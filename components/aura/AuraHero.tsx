@@ -13,14 +13,14 @@ const BADGES = ['SPF 40', 'PA++++', 'All weathers', '50gm'];
 // GALLERY array me video add karein:
 const GALLERY = [
   '/pdp/aura-1.webp',
-  '/Aura video.mov', // <--- Client video file
   '/pdp/aura-2.webp',
-  '/pdp/aura-3.webp',
   '/pdp/aura-4.webp',
-  '/pdp/aura-5.webp',
-  '/pdp/aura-7.webp',
-  '/pdp/Aura, seventh image.webp',
+  '/Aura video.mov', // <--- video file
+  '/pdp/aura-3.webp',
   '/pdp/First page, sixth image.webp',
+  '/pdp/aura-5.webp',
+  '/pdp/Aura, seventh image.webp',
+  '/pdp/aura-7.webp',
   '/pdp/aura-8.webp',
 ];
 
@@ -42,11 +42,11 @@ type NavItem = { n: string; label: string; target: number | null; kind: 'link' |
  * count drops 8 -> 7 and every target after it shifts down by one.
  */
 const NAV_ITEMS: NavItem[] = [
-  { n: '01', label: 'How to wear', target: 1, kind: 'link' },       // AuraDosage
-  { n: '02', label: 'How it feels', target: 2, kind: 'link' },      // AuraTexture
-  { n: '03', label: 'Where it works', target: 3, kind: 'link' },    // AuraWhere
-  { n: '04', label: "What's in it", target: 4, kind: 'link' },      // AuraWhatsIn
-  { n: '05', label: "What makes it different", target: 5, kind: 'link' },      // AuraWhatsIn
+  { n: '01', label: 'Why Aura', target: 1, kind: 'link' },       // AuraDosage
+  { n: '02', label: 'How it wear', target: 2, kind: 'link' },      // AuraTexture
+  { n: '03', label: 'How it feels', target: 3, kind: 'link' },    // AuraWhere
+  { n: '04', label: "Where it works", target: 4, kind: 'link' },      // AuraWhatsIn
+  { n: '05', label: "What's in it", target: 5, kind: 'link' },      // AuraWhatsIn
   { n: '06', label: 'Questions', target: 7, kind: 'link' },         // AuraQuestions
   { n: '07', label: 'Full ingredient list', target: null, kind: 'accordion' },
 ];
@@ -110,7 +110,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
                 Encapsulated pearls that melt into climate-smart sun protection.
               </p>
               <p className="w-full text-left">
-                Aura is an innovative pearl sunscreen with skincare beads that dissolve into your skin on contact. A hydrating broad spectrum sunscreen for dry skin and fluctuating weather, delivering broad-spectrum SPF 40 PA++++ with a luminous dewy finish and zero white cast.
+               An innovative pearl sunscreen with beads of broad-spectrum SPF, suspended in a barrier repairing gel — combining protection and skincare in one layer. They break on your skin, sink in with no white cast, and leave an invisible finish. For every skin type, easiest absorption ever.
               </p>
             </div>
 

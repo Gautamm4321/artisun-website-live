@@ -9,11 +9,11 @@ import ScrollProgressBar from '@/components/ScrollProgressBar';
 import CustomCursor from '@/components/CustomCursor';
 import GlobalHeader from '@/components/GlobalHeader';
 import AuraHero from '@/components/aura/AuraHero';
+import AuraDiff from '@/components/aura/AuraDiff';
 import AuraDosage from '@/components/aura/AuraDosage';
 import AuraTexture from '@/components/aura/AuraTexture';
 import AuraWhere from '@/components/aura/AuraWhere';
 import AuraWhatsIn from '@/components/aura/AuraWhatsIn';
-import AuraDiff from '@/components/aura/AuraDiff';
 import AuraProduct from '@/components/aura/AuraProduct';
 import AuraQuestions from '@/components/aura/AuraQuestions';
 import AuraStickyCartBar from '@/components/aura/AuraStickyCartBar';
@@ -190,11 +190,11 @@ export default function AuraPage() {
           className="flex flex-col lg:flex-row flex-nowrap w-full lg:h-full will-change-transform"
         >
           <AuraHero onNavigate={goToPanel} />
+          <AuraDiff />
           <AuraDosage />
           <AuraTexture />
           <AuraWhere />
           <AuraWhatsIn />
-          <AuraDiff />
           <AuraProduct />
           <AuraQuestions />
         </div>

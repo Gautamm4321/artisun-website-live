@@ -15,10 +15,10 @@ const GALLERY = [
   '/pdp/origin-1.webp',
   '/pdp/origin-2.webp',
   '/Origion web imge.png',
+  '/pdp/First page, fifth picture.webp',
   '/pdp/origin-3.webp',
   '/pdp/origin-4.webp',
   '/pdp/First page, fifth picture (1).webp',
-  '/pdp/First page, fifth picture.webp',
   '/pdp/First page, eighth picture.webp',
 ];
 
