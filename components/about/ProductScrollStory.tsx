@@ -181,7 +181,7 @@ export default function ProductScrollStory({
           ))}
         </h2>
 
-        {/* Draggable/Swipable Image Container with Instant Smooth Transition */}
+        {/* Draggable/Swipable Image Container */}
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -195,12 +195,12 @@ export default function ProductScrollStory({
             return (
               <div
                 key={src}
-                className={`absolute inset-0 w-full h-full transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
+                className={`absolute inset-0 w-full h-full transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
                   isCurrent
                     ? 'opacity-100 translate-x-0 scale-100 z-10 pointer-events-auto'
                     : isPrev
-                    ? 'opacity-0 -translate-x-10 scale-[0.98] z-0 pointer-events-none'
-                    : 'opacity-0 translate-x-10 scale-[0.98] z-0 pointer-events-none'
+                    ? 'opacity-0 -translate-x-12 scale-[0.97] z-0 pointer-events-none'
+                    : 'opacity-0 translate-x-12 scale-[0.97] z-0 pointer-events-none'
                 }`}
               >
                 <Image
@@ -216,29 +216,35 @@ export default function ProductScrollStory({
           })}
         </motion.div>
 
-        {/* Dynamic Paragraph Text with Instant Transition */}
-        <div className="relative min-h-[75px] max-w-[420px] mx-auto flex flex-col justify-center mb-5 overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
+        {/* Draggable/Swipable Text Container (Swipes with finger gesture identically to image) */}
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
+          className="relative min-h-[75px] max-w-[420px] mx-auto flex flex-col justify-center mb-5 overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y"
+        >
           {paragraphs.map((p, idx) => {
             const isCurrent = mobileIndex === idx;
             const isPrev = idx < mobileIndex;
             return (
               <div
                 key={idx}
-                className={`transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                className={`transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
                   isCurrent
                     ? 'opacity-100 translate-x-0 pointer-events-auto relative z-10'
                     : isPrev
-                    ? 'opacity-0 -translate-x-8 pointer-events-none absolute inset-x-0 top-0 z-0'
-                    : 'opacity-0 translate-x-8 pointer-events-none absolute inset-x-0 top-0 z-0'
+                    ? 'opacity-0 -translate-x-10 pointer-events-none absolute inset-x-0 top-0 z-0'
+                    : 'opacity-0 translate-x-10 pointer-events-none absolute inset-x-0 top-0 z-0'
                 }`}
               >
-                <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] opacity-95">
+                <p className="font-suisse text-[var(--brand-cream)] text-[14px] sm:text-[15px] leading-[1.45] opacity-95 select-none pointer-events-none">
                   {p?.text}{p?.em ? ` ${p.em}` : ''}
                 </p>
               </div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* 3 Pagination Dots */}
         <div className="flex items-center justify-center gap-2.5">

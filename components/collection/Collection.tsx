@@ -150,18 +150,18 @@ export default function Collection({
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="relative w-full min-h-screen pt-14 md:pt-16 pb-20 font-suisse antialiased text-[#242623]">
+    <div className="relative w-full min-h-screen pt-0 pb-20 font-suisse antialiased text-[#242623]">
 
-      <div className="relative z-10 w-full space-y-16 sm:space-y-24">
+      <div className="relative z-10 w-full">
 
         {/* ══════════════════════════════════════════════════
             1. HERO / COVER SECTION (Single on Mobile, 50/50 Split on Desktop)
         ══════════════════════════════════════════════════ */}
-        <section className="relative w-full overflow-hidden">
-          {/* 1 column on mobile, 2 columns on desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[68svh] sm:h-[75svh] md:min-h-[580px] lg:min-h-[660px]">
+        <section className="relative w-full overflow-hidden pt-12 sm:pt-14 md:pt-0 bg-[#1f0b09]">
+          {/* 1 column on mobile, 2 columns edge-to-edge on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[68svh] sm:h-[75svh] md:h-[90vh] md:min-h-[650px] lg:min-h-[720px]">
 
-            {/* Left Side: Model Image (Edge-to-edge on mobile, left half on desktop) */}
+            {/* Left Side: Model Image (Edge-to-edge on desktop, hair & head framed cleanly) */}
             <div className="relative w-full h-full overflow-hidden md:border-r md:border-white/20">
               <Image
                 src={asset('/Collection page model (1).jpeg')}
@@ -169,11 +169,11 @@ export default function Collection({
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
+                className="object-cover object-top md:object-[center_top]"
               />
             </div>
 
-            {/* Right Side: Product Duo (Hidden on mobile, right half on desktop) */}
+            {/* Right Side: Product Duo (Edge-to-edge on desktop, bottles positioned safely under header) */}
             <div className="hidden md:block relative w-full h-full overflow-hidden bg-[#1f0b09]">
               <Image
                 src={asset('/Collection page right.png')}
@@ -181,7 +181,7 @@ export default function Collection({
                 fill
                 priority
                 sizes="50vw"
-                className="object-cover object-center"
+                className="object-cover object-center md:object-[center_28%]"
               />
             </div>
 
@@ -208,14 +208,10 @@ export default function Collection({
           </div>
         </section>
 
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 w-full">
-
-</div>
-
         {/* ══════════════════════════════════════════════════
             2. TRUST BADGES (CLEAN AUTO-SCROLLING TICKER)
         ══════════════════════════════════════════════════ */}
-        <section className="w-full border-y border-white/15 py-3 sm:py-3.5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+        <section className="w-full pt-3.5 pb-8 sm:pt-4 sm:pb-12 md:pb-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
           <div className="flex gap-4 sm:gap-6 w-max animate-badges-ticker hover:[animation-play-state:paused]">
             {[...TRUST_BADGES, ...TRUST_BADGES, ...TRUST_BADGES].map((badge, idx) => (
               <div

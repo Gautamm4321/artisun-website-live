@@ -248,8 +248,8 @@ export default function ClimateVideoSection() {
           style={{ background: 'var(--bg-eclipse-fill)' }}
         >
           <div className="relative h-full w-full">
-            {/* Mobile: shifted top-4 sm:top-6 so text sits vertically centered between image bottom and progress indicator */}
-            <div className="absolute left-0 right-0 top-4 sm:top-6 bottom-7 sm:bottom-8 lg:inset-0 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-4 sm:px-8 lg:px-12 xl:px-16 lg:pt-0 lg:pb-20">
+            {/* Mobile: shifted top-8 sm:top-10 with bottom-5 to drop text clean into the visual center */}
+            <div className="absolute left-0 right-0 top-8 sm:top-10 bottom-5 sm:bottom-6 lg:inset-0 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-4 sm:px-8 lg:px-12 xl:px-16 lg:pt-0 lg:pb-20">
               {/* Heading — fades over CITY_MS */}
               <h3
                 className="w-full font-editorial text-[var(--brand-cream)] text-[24px] xs:text-[27px] sm:text-[32px] lg:text-[42px] xl:text-[46px] leading-[1.04] tracking-tight mb-1 lg:mb-4 drop-shadow-sm will-change-[opacity]"

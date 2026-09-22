@@ -299,8 +299,8 @@ export default function ProductShowcaseSection() {
               transition={{ duration: 0.4, ease: EASE }}
               className="w-full flex flex-col items-center"
             >
-              {/* Product Badge: Unified Beige Color */}
-              <div className="inline-flex items-center justify-center px-3 py-1 mb-3 bg-[#E8DCC8] text-[#3A0D08] font-suisse text-[12px] tracking-[0.06em] uppercase font-semibold rounded-none shadow-sm">
+              {/* Product Badge: Unified Beige Color with Red Brand Text */}
+              <div className="inline-flex items-center justify-center px-3 py-1 mb-3 bg-[#E8DCC8] text-[#A52A2C] font-suisse text-[12px] tracking-[0.06em] uppercase  rounded-none shadow-sm">
                 {product.id === 'origin' ? 'ORIGIN · 4-in-1 Milk Emulsion' : 'AURA · Pearl Skinwear'}
               </div>
 
@@ -377,8 +377,9 @@ export default function ProductShowcaseSection() {
               transition={{ duration: 0.4, ease: EASE }}
               className="w-full flex flex-col items-center"
             >
-              {/* Row: Add to Bag (Suisse Int'l, Caps) + Matching Beige Arrow */}
-              <div className="flex items-center justify-center gap-3 mb-4">
+              {/* Row: ADD TO BAG centered independently, Arrow docked immediately to the right */}
+              <div className="relative w-full flex items-center justify-center mb-4">
+                {/* 1. Main ADD TO BAG Button — dead-centered horizontally */}
                 <button
                   type="button"
                   onClick={() => variant && add(variant.id, 1)}
@@ -388,16 +389,19 @@ export default function ProductShowcaseSection() {
                   ADD TO BAG
                 </button>
 
-                <Link
-                  href={product.href}
-                  aria-label={`Go to ${product.name}`}
-                  className="w-[42px] h-[42px] rounded-full border border-[#E8DCC8] bg-transparent flex items-center justify-center text-[#E8DCC8] active:scale-95 transition-transform shadow-md pointer-events-auto"
-                >
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </Link>
+                {/* 2. Smaller Arrow Circle — docked to the right edge of ADD TO BAG */}
+                <div className="absolute left-1/2 ml-[72px] sm:ml-[80px]">
+                  <Link
+                    href={product.href}
+                    aria-label={`Go to ${product.name}`}
+                    className="w-[32px] h-[32px] rounded-full border border-[#E8DCC8] bg-transparent flex items-center justify-center text-[#E8DCC8] active:scale-95 transition-transform shadow-md pointer-events-auto"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
 
               {/* Specs Headline */}
@@ -409,7 +413,9 @@ export default function ProductShowcaseSection() {
               <div className="font-suisse text-[13px] xs:text-[14px] leading-[1.35] text-[#E8DCC8]/90 max-w-[330px] space-y-0.5 whitespace-pre-line">
                 <p>{product.ingredients}</p>
                 {product.id === 'origin' ? (
-                  <p>Best for all weathers and cities.</p>
+                  <p>
+                    <span className="font-medium text-[#E8DCC8]">Best for:</span> All weather and cities.
+                  </p>
                 ) : (
                   <p>
                     <span className="font-medium text-[#E8DCC8]">Best for:</span> When you need something to adjust to changing weathers.
@@ -469,7 +475,7 @@ export default function ProductShowcaseSection() {
                 onClick={() => variant && add(variant.id, 1)}
                 disabled={!configured || !variant || busy || !variant.availableForSale}
                 style={{ backgroundColor: '#E8DCC8', color: '#3A0D08' }}
-                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[#E8DCC8] text-[#3A0D08] hover:bg-white transition-colors font-medium rounded-sm"
+                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[#E8DCC8] text-[#3A0D08] hover:bg-white transition-colors font-medium rounded-sm mb-1.5 lg:mb-2"
               >
                 {!configured
                   ? 'ADD TO BAG'

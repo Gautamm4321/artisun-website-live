@@ -96,13 +96,13 @@ export default function WornSection() {
         <img
           src={asset('/Without bg.webp')}
           alt="Artisun Model"
-          className="h-[72vh] xs:h-[88vh] sm:h-[72vh] md:h-[78vh] lg:h-[100vh] w-auto max-w-none object-contain object-bottom lg:object-left-bottom select-none -translate-x-[6%] sm:-translate-x-[8%] lg:-translate-x-[11%] translate-y-1 sm:translate-y-0 lg:translate-y-2 drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
+          className="h-[72svh] xs:h-[88svh] sm:h-[72svh] md:h-[78svh] lg:h-[100vh] w-auto max-w-none object-contain object-bottom lg:object-left-bottom select-none -translate-x-[6%] sm:-translate-x-[8%] lg:-translate-x-[11%] translate-y-1 sm:translate-y-0 lg:translate-y-2 drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
         />
       </div>
 
       {/* ── 2. TEXT BLOCK: Top Clamped (Zero Face Overlap on Mobile), Large on Laptop ── */}
       <div
-        className="relative z-20 w-full max-w-full lg:max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] ml-auto flex flex-col items-start text-left lg:items-end lg:text-right pt-0 sm:pt-4 lg:pt-0 -translate-y-8 xs:-translate-y-9 sm:-translate-y-6 lg:-translate-y-4 xl:-translate-y-6"
+      className="relative z-20 w-full max-w-full lg:max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] ml-auto flex flex-col items-start text-left lg:items-end lg:text-right pt-0 sm:pt-4 lg:pt-0 -translate-y-12 xs:-translate-y-14 sm:-translate-y-10 lg:-translate-y-4 xl:-translate-y-6"
       >
         {/* Main Headline */}
         <h2 className="font-editorial text-[var(--brand-cream,#f5f0eb)] text-[31px] xs:text-[35px] sm:text-[43px] md:text-[46px] lg:text-[42px] xl:text-[46px] lg:leading-[1.04] tracking-tight font-normal drop-shadow-md w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[560px] lg:max-w-[580px] xl:max-w-[640px]">

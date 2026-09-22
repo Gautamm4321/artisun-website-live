@@ -151,7 +151,6 @@ export default function AboutPage() {
             <p className="font-suisse text-[var(--brand-cream)]/95 text-[15px] sm:text-[19px] md:text-[24px] lg:text-[28px] xl:text-[31px] leading-[1.45] tracking-tight font-normal">
               <span className="block">Artisun is an Indian sun-care house, built around the sun and the way we live with it.</span>
               <span className="block mt-1">We make Skinwear™ — wearable layers that protect, hydrate, and move with the day.</span>
-              <span className="block mt-1.5 text-[var(--brand-cream)]/85">For the Indian skin, for the Indian climate and for the real Indian days.</span>
             </p>
           </div>
         </section>
@@ -209,7 +208,7 @@ export default function AboutPage() {
         />
 
         {/* ── Breaker Image Section ── */}
-        <section className="relative z-16 w-full px-6 md:px-16 lg:px-24 py-8 md:py-12 mx-auto overflow-hidden flex flex-col items-center justify-center">
+        <section className="relative z-16 w-full px-6 md:px-16 lg:px-24 py-2 md:py-4 mx-auto overflow-hidden flex flex-col items-center justify-center">
           <div className="relative w-full h-[260px] md:h-[360px] lg:h-[500px] rounded-[10px] overflow-hidden">
             <Image
               src={asset('/Artisun about us last.webp')}
@@ -223,7 +222,6 @@ export default function AboutPage() {
 
         {/* 3 — IN YEARS TO COME */}
         <FutureShowcase />
-
         <Footer />
       </MobileScrollFrame>
     </main>
