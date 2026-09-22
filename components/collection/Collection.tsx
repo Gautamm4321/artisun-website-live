@@ -19,24 +19,23 @@ const TRUST_BADGES = [
 const PRODUCTS = [
   {
     id: 'origin',
-    name: 'Artisun Origin',
-    subtitle: 'Pearl Lotion SPF 50+ · PA++++',
+    name: 'Origin',
+    subtitle: ' 4-in-1 Milk Emulsion SPF 50+ · PA++++',
     size: '50ml',
     finish: 'Wears dewy, light & protective',
     price: '₹1,499',
-    image: '/pdp/origin-region.webp',
-    tag: 'Daily Dewy Finish',
-    desc: 'Four-in-one sunscreen, moisturiser, primer, and antioxidant barrier. Disappears cleanly without a trace of white cast.',
+    name: 'The Weather Duo',
+    image: '/origin-shop-1.jpg',
+    desc: 'Four-in-one sunscreen, moisturiser, primer, and antioxidant barrier.',
   },
   {
     id: 'aura',
-    name: 'Artisun Aura',
+    name: 'Aura',
     subtitle: 'Pearl Skinwear SPF 40 · PA++++',
     size: '50g',
     finish: 'Wears weightless, plush & invisible',
     price: '₹1,799',
-    image: '/pdp/aura-1.webp',
-    tag: 'Climate-Smart Pearls',
+    image: '/aura-coll-1.jpg',
     desc: 'Pearls suspended in hydrating gel. Adjust the amount to the weather—more when dry, fewer when humid.',
   },
   {
@@ -47,7 +46,6 @@ const PRODUCTS = [
     finish: 'Your year-round dual climate wardrobe',
     price: '₹3,298',
     image: '/pdp/aura-last-desktop.webp',
-    tag: 'Bundled Savings',
     desc: 'Origin for high sun & commute; Aura for deep hydration & humidity. The complete Indian weather collection.',
   },
 ];
@@ -157,56 +155,56 @@ export default function Collection({
       <div className="relative z-10 w-full space-y-16 sm:space-y-24">
 
         {/* ══════════════════════════════════════════════════
-            1. HERO / COVER SPLIT SECTION (Edge-to-Edge 50/50)
+            1. HERO / COVER SECTION (Single on Mobile, 50/50 Split on Desktop)
         ══════════════════════════════════════════════════ */}
-        <section className="w-full overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[660px]">
+        <section className="relative w-full overflow-hidden">
+          {/* 1 column on mobile, 2 columns on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[68svh] sm:h-[75svh] md:min-h-[580px] lg:min-h-[660px]">
 
-            {/* Left Side: Model Background + Bottom-Left Overlay Text */}
-            <div className="relative w-full min-h-[420px] sm:min-h-[480px] md:min-h-full overflow-hidden flex flex-col justify-end p-5 sm:p-7 md:p-8 lg:p-10">
+            {/* Left Side: Model Image (Edge-to-edge on mobile, left half on desktop) */}
+            <div className="relative w-full h-full overflow-hidden md:border-r md:border-white/20">
               <Image
-                src={asset('/skinwear-media/Second picture.webp')}
+                src={asset('/Collection page model (1).jpeg')}
                 alt="Artisun Model"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
-              {/* Bottom Gradient for clear legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-
-              <div className="relative z-10 w-full max-w-[600px]">
-                <h1 className="font-editorial text-[28px] sm:text-[34px] md:text-[38px] lg:text-[45px] xl:text-[48px] leading-[1.08] tracking-tight text-[#F3ECE0] font-normal">
-                  {h1Title || (
-                    <>
-                      Your skin type didn&apos;t change this<br />
-                      morning. The weather did.
-                    </>
-                  )}
-                </h1>
-                <p className="font-suisse text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] text-[#F3ECE0]/90 leading-snug mt-2.5 sm:mt-3">
-                  {subtitle || (
-                    <>
-                      So we launched two layers. One wears dewy. One<br className="hidden sm:block" />
-                      wears invisible. Both are built for Indian weather.
-                    </>
-                  )}
-                </p>
-              </div>
             </div>
 
-            {/* Right Side: Product Duo Image Edge-to-Edge */}
-            <div className="relative w-full min-h-[320px] sm:min-h-[380px] md:min-h-full overflow-hidden bg-[#1f0b09]">
+            {/* Right Side: Product Duo (Hidden on mobile, right half on desktop) */}
+            <div className="hidden md:block relative w-full h-full overflow-hidden bg-[#1f0b09]">
               <Image
-                src={asset('/pdp/aura-last-desktop.webp')}
+                src={asset('/Collection page right.png')}
                 alt="Artisun Sunscreen Duo Products"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="50vw"
                 className="object-cover object-center"
               />
             </div>
 
+          </div>
+
+          {/* Smooth legibility gradient across the bottom of both frames */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none" />
+
+          {/* Bottom Overlay Text: Positioned at bottom-left across the split */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-5 sm:p-7 md:p-8 lg:p-12 pointer-events-none">
+            <div className="w-full max-w-[90%] sm:max-w-[580px] lg:max-w-[700px]">
+              <h1 className="font-editorial text-[26px] sm:text-[34px] md:text-[40px] lg:text-[48px] leading-[1.06] tracking-tight text-[#F3ECE0] font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                {h1Title || (
+                  <>
+                    Sun care, made<br />
+                    properly.
+                  </>
+                )}
+              </h1>
+              <p className="font-suisse text-[12px] sm:text-[14px] md:text-[16px] text-[#F3ECE0]/90 leading-snug mt-2 sm:mt-2.5 max-w-[42ch] drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
+                {subtitle || 'Two layers, built for Indian weather.'}
+              </p>
+            </div>
           </div>
         </section>
 
@@ -215,17 +213,16 @@ export default function Collection({
 </div>
 
         {/* ══════════════════════════════════════════════════
-            2. TRUST BADGES (EDGE-TO-EDGE HORIZONTAL STRIP)
+            2. TRUST BADGES (CLEAN AUTO-SCROLLING TICKER)
         ══════════════════════════════════════════════════ */}
-        <section className="w-full border-y border-white/10 bg-black/25 backdrop-blur-md py-3.5 sm:py-4 px-4 overflow-x-auto no-scrollbar">
-          <div className="max-w-[1500px] mx-auto flex items-center justify-between gap-4 sm:gap-6 min-w-max md:min-w-0">
-            {TRUST_BADGES.map((badge) => (
+        <section className="w-full border-y border-white/15 py-3 sm:py-3.5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+          <div className="flex gap-4 sm:gap-6 w-max animate-badges-ticker hover:[animation-play-state:paused]">
+            {[...TRUST_BADGES, ...TRUST_BADGES, ...TRUST_BADGES].map((badge, idx) => (
               <div
-                key={badge}
-                className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 transition-colors hover:bg-white/[0.12]"
+                key={`${badge}-${idx}`}
+                className="flex items-center px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.04] border border-white/15 shrink-0"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF9B45] shadow-[0_0_8px_#FF9B45] shrink-0" />
-                <span className="font-suisse text-[10px] sm:text-[11px] lg:text-[11.5px] tracking-[0.18em] uppercase font-medium text-[#E8DCC8]/90 whitespace-nowrap">
+                <span className="font-suisse text-[9.5px] sm:text-[11px] tracking-[0.16em] uppercase font-medium text-[#E8DCC8]/90 whitespace-nowrap">
                   {badge}
                 </span>
               </div>
@@ -236,77 +233,89 @@ export default function Collection({
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 w-full">
 
           {/* ══════════════════════════════════════════════════
-              3. PRODUCT SHOWCASE GRID (3 CARDS + DIRECT BUY)
+              3. PRODUCT SHOWCASE GRID (2 Top / 1 Bottom on Mobile, 3 Across on Desktop)
           ══════════════════════════════════════════════════ */}
-          <section id="products" className="w-full space-y-8">
+          <section id="products" className="w-full space-y-6 sm:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h2 className="font-editorial text-[32px] sm:text-[44px] leading-tight text-[#E8DCC8] mt-1">
+                <h2 className="font-editorial text-[28px] sm:text-[44px] leading-tight text-[#E8DCC8] mt-1">
                   Choose your layer.
                 </h2>
               </div>
-              <p className="font-suisse text-xs sm:text-sm text-[#E8DCC8]/80 max-w-[34ch]">
-                Every formulation is certified broad spectrum SPF, photostable, and cast-free.
-              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-              {PRODUCTS.map((prod) => (
-                <div
-                  key={prod.id}
-                  className="group relative flex flex-col justify-between bg-[#E8DAC7] border border-[#242623]/10 rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-                >
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className="text-[9px] uppercase tracking-[0.14em] font-semibold bg-[#242623] text-[#F3ECE0] px-3 py-1 rounded-full">
-                      {prod.tag}
-                    </span>
-                  </div>
+            {/* Mobile: 2-column grid; Desktop: 3-column grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6 lg:gap-8 items-stretch">
+              {PRODUCTS.map((prod) => {
+                const isCombo = prod.id === 'duo-bundle';
+                return (
+                  <div
+                    key={prod.id}
+                    className={`group relative flex flex-col justify-between bg-[#E8DAC7] border border-[#242623]/10 rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
+                      isCombo ? 'col-span-2 md:col-span-1' : 'col-span-1'
+                    }`}
+                  >
+                    
 
-                  <div className="relative w-full h-[260px] sm:h-[300px] overflow-hidden bg-[#3a2a23]/10 p-4">
-                    <Image
-                      src={asset(prod.image)}
-                      alt={prod.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                  </div>
-
-                  <div className="p-6 flex flex-col flex-1 justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-baseline justify-between">
-                        <h3 className="font-editorial text-2xl text-[#242623]">
-                          {prod.name}
-                        </h3>
-                        <span className="font-suisse text-xs text-[#242623]/60">
-                          {prod.size}
-                        </span>
-                      </div>
-
-                      <p className="font-suisse text-[11.5px] uppercase tracking-wider text-[#A52A2C] font-semibold">
-                        {prod.subtitle}
-                      </p>
-
-                      <p className="font-suisse text-xs text-[#242623]/75 leading-relaxed pt-1">
-                        {prod.desc}
-                      </p>
-                    </div>
-
-                    <div className="pt-6 mt-6 border-t border-[#242623]/10 flex items-center justify-between gap-3">
-                      <div>
-                        <span className="font-editorial text-xl text-[#242623] font-semibold">
-                          {prod.price}
-                        </span>
-                      </div>
-
-                      <AddToBagButton
-                        product={prod.id === 'origin' ? 'origin' : 'aura'}
-                        className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wider px-5 py-2.5 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-sm"
+                    {/* Image - increased mobile height */}
+                    <div
+                      className={`relative w-full overflow-hidden bg-[#3a2a23]/10 p-1.5 sm:p-4 ${
+                        isCombo
+                          ? 'h-[175px] sm:h-[260px] md:h-[300px]'
+                          : 'h-[155px] sm:h-[260px] md:h-[300px]'
+                      }`}
+                    >
+                      <Image
+                        src={asset(prod.image)}
+                        alt={prod.name}
+                        fill
+                        sizes={
+                          isCombo
+                            ? '(max-width: 768px) 100vw, 33vw'
+                            : '(max-width: 768px) 50vw, 33vw'
+                        }
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                     </div>
+
+                    {/* Content Details - tightened padding & line gaps */}
+                    <div className="p-2.5 sm:p-6 flex flex-col flex-1 justify-between">
+                      <div className="space-y-0.5 sm:space-y-2">
+                        <div className="flex items-baseline justify-between gap-1">
+                          <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
+                            {prod.name}
+                          </h3>
+                          <span className="font-suisse text-[9px] sm:text-xs text-[#242623]/60 shrink-0">
+                            {prod.size}
+                          </span>
+                        </div>
+
+                        <p className="font-suisse text-[8.5px] sm:text-[11.5px] uppercase tracking-wider text-[#A52A2C] font-semibold leading-[1.2] sm:leading-normal">
+                          {prod.subtitle}
+                        </p>
+
+                        <p className="font-suisse text-[10px] sm:text-xs text-[#242623]/75 leading-[1.25] sm:leading-relaxed pt-0.5 sm:pt-1">
+                          {prod.desc}
+                        </p>
+                      </div>
+
+                      {/* Price & CTA Button - trimmed mobile margins */}
+                      <div className="pt-2 sm:pt-6 mt-2 sm:mt-6 border-t border-[#242623]/10 flex items-center justify-between gap-1.5 sm:gap-3">
+                        <div>
+                          <span className="font-editorial text-sm sm:text-xl text-[#242623] font-semibold">
+                            {prod.price}
+                          </span>
+                        </div>
+
+                        <AddToBagButton
+                          product={prod.id === 'origin' ? 'origin' : 'aura'}
+                          className="pointer-events-auto font-suisse text-[8.5px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-5 py-1.5 sm:py-2.5 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-none"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 
@@ -402,8 +411,19 @@ export default function Collection({
             transform: translateX(-50%);
           }
         }
+        @keyframes badgesTicker {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-33.333%);
+          }
+        }
         .animate-carousel {
           animation: carousel 38s linear infinite;
+        }
+        .animate-badges-ticker {
+          animation: badgesTicker 28s linear infinite;
         }
       `}</style>
     </div>

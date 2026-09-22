@@ -34,8 +34,8 @@ export default function CollectionPage() {
           controls (same mechanic as the Origin page). Desktop unaffected. */}
       <MobileScrollFrame>
         <Collection
-          h1Title="Sun care, made properly."
-          subtitle="Two layers built for Indian weather. One wears dewy. One wears invisible. Explore the Artisun collection."
+          h1Title="Your skin type didn't change this morning. The weather did."
+          subtitle="So we launched two layers. One wears dewy. One wears invisible. Both are built for Indian weather."
         />
         <Footer />
       </MobileScrollFrame>

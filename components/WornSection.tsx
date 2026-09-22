@@ -105,7 +105,7 @@ export default function WornSection() {
         className="relative z-20 w-full max-w-full lg:max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] ml-auto flex flex-col items-start text-left lg:items-end lg:text-right pt-0 sm:pt-4 lg:pt-0 -translate-y-8 xs:-translate-y-9 sm:-translate-y-6 lg:-translate-y-4 xl:-translate-y-6"
       >
         {/* Main Headline */}
-        <h2 className="font-editorial text-[var(--brand-cream,#f5f0eb)] text-[31px] xs:text-[35px] sm:text-[43px] md:text-[46px] lg:text-[clamp(39px,2.6vw,48px)]  lg:leading-[1.1] tracking-[-0.02em] font-normal drop-shadow-md w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[560px] lg:max-w-none">
+        <h2 className="font-editorial text-[var(--brand-cream,#f5f0eb)] text-[31px] xs:text-[35px] sm:text-[43px] md:text-[46px] lg:text-[42px] xl:text-[46px] lg:leading-[1.04] tracking-tight font-normal drop-shadow-md w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[560px] lg:max-w-[580px] xl:max-w-[640px]">
           {/* Mobile & Tablet: Exact 3 Lines */}
           <span className="block lg:hidden">
             Most sunscreens are made<br />
@@ -113,10 +113,11 @@ export default function WornSection() {
             designed to be worn.
           </span>
 
-          {/* Desktop & Laptops: Standard 2 Lines */}
+          {/* Desktop & Laptops: Clean 3 Lines */}
           <span className="hidden lg:block">
-            <span className="block whitespace-nowrap">Most sunscreens are made to be</span>
-            <span className="block whitespace-nowrap">tolerated, ours is designed to be worn.</span>
+            <span className="block whitespace-nowrap">Most sunscreens are made</span>
+            <span className="block whitespace-nowrap">to be tolerated, ours is</span>
+            <span className="block whitespace-nowrap">designed to be worn.</span>
           </span>
         </h2>
 

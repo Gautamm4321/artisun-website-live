@@ -59,10 +59,11 @@ export default function TextRevealSection() {
       />
 
       {/* 2-Line Locked Editorial Typography */}
-      <div className="w-full max-w-[1280px] mx-auto text-center flex flex-col items-center justify-center font-editorial font-normal text-[clamp(25px,5.12vw,68px)] leading-[1.12] tracking-tight text-[var(--brand-cream,#f5f0eb)]">
+      <div className="w-full max-w-[1280px] mx-auto text-center flex flex-col items-center justify-center font-editorial font-normal text-[clamp(25px,5.12vw,46px)] lg:text-[42px] xl:text-[46px] leading-[1.12] lg:leading-[1.04] tracking-tight text-[var(--brand-cream,#f5f0eb)]">
 
         {/* Line 1: Locked single line on mobile */}
         <div className="flex flex-nowrap justify-center items-center gap-x-[0.22em] whitespace-nowrap">
+          
           {line1.map((word, idx) => (
             <span
               key={`l1-${idx}`}
