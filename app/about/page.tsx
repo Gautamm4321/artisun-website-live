@@ -148,9 +148,13 @@ export default function AboutPage() {
 
         <section className="relative z-16 w-full max-w-[96vw] lg:max-w-[1650px] mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-14">
           <div className="w-full text-center">
-            <p className="font-suisse text-[var(--brand-cream)]/95 text-[15px] sm:text-[19px] md:text-[24px] lg:text-[28px] xl:text-[31px] leading-[1.45] tracking-tight font-normal">
-              <span className="block">Artisun is an Indian sun-care house, built around the sun and the way we live with it.</span>
-              <span className="block mt-1">We make Skinwear™ — wearable layers that protect, hydrate, and move with the day.</span>
+            <p className="font-suisse text-[var(--brand-cream)]/95 text-[14.5px] xs:text-[15.5px] sm:text-[19px] md:text-[24px] lg:text-[28px] xl:text-[31px] leading-[1.6] sm:leading-[1.45] tracking-normal md:tracking-tight font-normal max-w-[330px] xs:max-w-[360px] sm:max-w-none mx-auto text-center">
+              <span className="inline md:block">
+                Artisun is an Indian sun-care house, built around the sun and the way we live with it.{' '}
+              </span>
+              <span className="inline md:block md:mt-1">
+                We make Skinwear™ — wearable layers that protect, hydrate, and move with the day.
+              </span>
             </p>
           </div>
         </section>

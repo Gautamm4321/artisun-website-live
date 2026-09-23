@@ -16,15 +16,14 @@ const TRUST_BADGES = [
 ];
 
 // ── DATA: PRODUCTS ──
-const PRODUCTS = [
+  const PRODUCTS = [
   {
     id: 'origin',
     name: 'Origin',
-    subtitle: ' 4-in-1 Milk Emulsion SPF 50+ · PA++++',
+    subtitle: '4-in-1 Milk Emulsion SPF 50+ · PA++++',
     size: '50ml',
     finish: 'Wears dewy, light & protective',
     price: '₹1,499',
-    name: 'The Weather Duo',
     image: '/origin-shop-1.jpg',
     desc: 'Four-in-one sunscreen, moisturiser, primer, and antioxidant barrier.',
   },
@@ -45,7 +44,7 @@ const PRODUCTS = [
     size: 'Complete Kit',
     finish: 'Your year-round dual climate wardrobe',
     price: '₹3,298',
-    image: '/pdp/aura-last-desktop.webp',
+    image: '/Collection page right.png',
     desc: 'Origin for high sun & commute; Aura for deep hydration & humidity. The complete Indian weather collection.',
   },
 ];
@@ -257,8 +256,8 @@ export default function Collection({
                     <div
                       className={`relative w-full overflow-hidden bg-[#3a2a23]/10 p-1.5 sm:p-4 ${
                         isCombo
-                          ? 'h-[175px] sm:h-[260px] md:h-[300px]'
-                          : 'h-[155px] sm:h-[260px] md:h-[300px]'
+                          ? 'h-[180px] sm:h-[266px] md:h-[308px]'
+                          : 'h-[160px] sm:h-[266px] md:h-[308px]'
                       }`}
                     >
                       <Image
@@ -290,7 +289,11 @@ export default function Collection({
                           {prod.subtitle}
                         </p>
 
-                        <p className="font-suisse text-[10px] sm:text-xs text-[#242623]/75 leading-[1.25] sm:leading-relaxed pt-0.5 sm:pt-1">
+                        <p
+                          className={`font-suisse text-[10px] sm:text-xs text-[#242623]/75 leading-[1.25] sm:leading-relaxed pt-0.5 sm:pt-1 ${
+                            isCombo ? 'block' : 'hidden md:block'
+                          }`}
+                        >
                           {prod.desc}
                         </p>
                       </div>

@@ -28,7 +28,7 @@ export default function OriginPage() {
   const stRef = useRef<ScrollTrigger | null>(null);
   const isDesktopRef = useRef(false);
 
-  // E-commerce View Item Analytics Tracking
+    // E-commerce View Item Analytics Tracking
   useEffect(() => {
     trackViewItem({
       id: 'origin-spf50',
@@ -37,6 +37,15 @@ export default function OriginPage() {
       category: 'Sunscreen',
       variant: '50ml',
     });
+
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'ViewContent', {
+        content_ids: ['43804935520319'],
+        content_type: 'product',
+        value: 1499,
+        currency: 'INR',
+      });
+    }
   }, []);
 
   // cursor proxy

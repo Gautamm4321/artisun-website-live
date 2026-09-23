@@ -29,7 +29,7 @@ export default function AuraPage() {
   const lenisRef = useRef<Lenis | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
 
-  // E-commerce View Item Analytics Tracking
+    // E-commerce View Item Analytics Tracking
   useEffect(() => {
     trackViewItem({
       id: 'aura-spf40',
@@ -38,6 +38,15 @@ export default function AuraPage() {
       category: 'Sunscreen',
       variant: '50ml',
     });
+
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'ViewContent', {
+        content_ids: ['43804935553087'],
+        content_type: 'product',
+        value: 1799,
+        currency: 'INR',
+      });
+    }
   }, []);
 
   useEffect(() => {

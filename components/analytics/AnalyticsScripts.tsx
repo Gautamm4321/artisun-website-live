@@ -6,6 +6,7 @@ export default function AnalyticsScripts() {
   const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID; // ← NEW
 
   return (
     <>
@@ -24,7 +25,20 @@ export default function AnalyticsScripts() {
         `}
       </Script>
 
-      {/* 2. Google Analytics 4 (GA4) */}
+      {/* 2. Google Tag Manager — NEW BLOCK */}
+      {GTM_ID && (
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
+      )}
+
+      {/* 3. Google Analytics 4 (GA4) */}
       {GA_ID && (
         <>
           <Script
@@ -44,7 +58,7 @@ export default function AnalyticsScripts() {
         </>
       )}
 
-      {/* 3. Meta Pixel */}
+      {/* 4. Meta Pixel */}
       {META_PIXEL_ID && (
         <Script id="meta-pixel-init" strategy="afterInteractive">
           {`
@@ -62,7 +76,7 @@ export default function AnalyticsScripts() {
         </Script>
       )}
 
-      {/* 4. Microsoft Clarity (Heatmaps & Horizontal Scroll Session Recording) */}
+      {/* 5. Microsoft Clarity */}
       {CLARITY_ID && (
         <Script id="clarity-init" strategy="afterInteractive">
           {`

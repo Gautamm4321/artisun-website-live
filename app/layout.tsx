@@ -34,6 +34,8 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
     other: {
       'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || '',
+      /* ── NEW: Facebook domain verification ── */
+      'facebook-domain-verification': '9hsr7ci8mhibzgzub0yxajw0jnjf9n',
     },
   },
 };
@@ -74,6 +76,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ppEditorialNew.variable} ${suisseIntl.variable}`}>
       <body suppressHydrationWarning>
+        {/* ── NEW: GTM noscript fallback — must be first thing in body ── */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WLV28NVT"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         <JsonLd schema={organizationSchema} />
         <AnalyticsScripts />
         <CartProvider>

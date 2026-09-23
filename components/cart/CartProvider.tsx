@@ -75,14 +75,23 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
         setCart(next);
         setOpen(true);
-        const addedLine = next.lines.nodes.find((l) => l.merchandise.id === variantId);
+                const addedLine = next.lines.nodes.find((l) => l.merchandise.id === variantId);
         if (addedLine) {
+          const unitPrice = parseFloat(addedLine.cost.totalAmount.amount) / addedLine.quantity;
           trackAddToCart({
             id: variantId,
             name: addedLine.merchandise.product.title,
-            price: parseFloat(addedLine.cost.totalAmount.amount) / addedLine.quantity,
+            price: unitPrice,
             quantity: qty,
           });
+          if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('track', 'AddToCart', {
+              content_ids: [variantId],
+              content_type: 'product',
+              value: unitPrice * qty,
+              currency: 'INR',
+            });
+          }
         }
       } catch (e) {
         setError((e as Error).message);

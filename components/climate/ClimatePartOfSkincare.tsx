@@ -31,32 +31,44 @@ const rightPointerVariants: Variants = {
   }),
 };
 
-const MOBILE_POINTS = [
-  "The sun you don't feel ages your skin",
-  "A warm day pushes your oil up by mid-morning",
-  "Office AC quietly pulls your skin's moisture out",
-  "Damp air decides whether anything you put on stays put"
+const MOBILE_ORDERED_POINTS = [
+  { num: '01', text: "The sun you don't feel ages your skin." },
+  { num: '02', text: "A warm day pushes your oil up by mid-morning." },
+  { num: '03', text: "Office AC quietly pulls your skin's moisture out." },
+  { num: '04', text: "Damp air decides whether anything you put on stays put." },
 ];
 
 export default function ClimatePartOfSkincare() {
   return (
-    <section className="relative z-10 w-full min-h-auto lg:min-h-[85vh] flex flex-col items-center justify-center px-3 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 md:py-16">
+    <section className="relative z-10 w-full min-h-auto lg:min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-12 md:py-16 text-[var(--brand-cream)]">
 
-      {/* 1. Top Serif Heading */}
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6 }}
-        className="font-editorial text-[clamp(1.8rem,5.2vw,4.2rem)] text-center mb-6 sm:mb-8 md:mb-12 tracking-wide font-normal uppercase px-2 leading-tight"
-      >
-        Climate is (a part of) skincare
-      </motion.h2>
+      {/* ── UNIFIED HEADER: Mobile + Desktop (Subheading directly under Heading) ── */}
+      <div className="flex flex-col items-center text-center w-full max-w-[380px] sm:max-w-[850px] md:max-w-[950px] mx-auto mb-6 sm:mb-8 md:mb-10 px-2">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="font-editorial text-[25px] min-[390px]:text-[28px] sm:text-[34px] md:text-[42px] lg:text-[48px] leading-tight tracking-tight font-normal text-[#F3ECE0] whitespace-nowrap"
+        >
+          Climate is (a part of) skincare
+        </motion.h2>
 
-      {/* 2. Main Wrapper Container */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="font-suisse text-[12.5px] sm:text-[14.5px] md:text-[16px] leading-[1.45] text-[#F3ECE0]/85 mt-2.5 sm:mt-3.5 font-normal max-w-[340px] sm:max-w-[700px]"
+        >
+          Even the same routine can perform differently depending on where you are. Understanding the skin means understanding the conditions it lives in.
+        </motion.p>
+      </div>
+
+      {/* ── MAIN CONTENT WRAPPER ── */}
       <div className="relative w-full max-w-[1280px] flex items-center justify-center">
 
-        {/* --- DESKTOP & TABLET LAYOUT (640px and up) --- */}
+        {/* ── 1. DESKTOP & TABLET LAYOUT (>=640px) [Pointers and Image Untouched] ── */}
         <div className="hidden sm:flex flex-row items-center justify-center gap-1 md:gap-2 lg:gap-0 w-full">
 
           {/* LEFT POINTERS CONTAINER */}
@@ -144,41 +156,42 @@ export default function ClimatePartOfSkincare() {
 
         </div>
 
-        {/* --- MOBILE LAYOUT (under 640px): Left Image & Right Pointers --- */}
-        <div className="flex sm:hidden flex-row items-center justify-between gap-3 w-full max-w-[480px] px-2 py-2">
+        {/* ── 2. MOBILE LAYOUT (<640px): Image -> Row Layout (Number on Left + Text on Right, Single Line) ── */}
+        <div className="flex sm:hidden flex-col items-center w-full max-w-[420px] mx-auto px-2">
 
-          {/* Left: Model Portrait Image */}
+          {/* Centered Image with Rounded Corners */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative w-[130px] min-[400px]:w-[145px] h-[210px] min-[400px]:h-[235px] flex-shrink-0 overflow-hidden shadow-xl rounded-none border border-white/10"
+            className="relative w-full aspect-square max-w-[340px] rounded-[22px] overflow-hidden shadow-2xl border border-white/10 mb-7"
           >
             <Image
               src={asset('/climate-face.webp')}
               alt="Climate impact on skin"
               fill
-              sizes="145px"
+              sizes="340px"
               className="object-cover"
             />
           </motion.div>
 
-          {/* Right: Stacked 4 Text Pointers with Arrows extended into the Left Image */}
-          <div className="flex flex-col justify-between h-[210px] min-[400px]:h-[235px] flex-1 py-1 z-20">
-            {MOBILE_POINTS.map((text, idx) => (
+          {/* Number on Left, Text on Right, Single Line */}
+          <div className="flex flex-col items-start w-full space-y-3.5 px-1">
+            {MOBILE_ORDERED_POINTS.map((item, idx) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: 15 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                key={item.num}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.1 * idx }}
-                className="flex items-center gap-1 -ml-6 min-[400px]:-ml-7 relative z-20"
+                transition={{ duration: 0.35, delay: 0.06 * idx }}
+                className="flex items-baseline gap-2.5 w-full text-left"
               >
-                {/* Pointer Line extending slightly inside the Image on Left */}
-                <span className="w-6 min-[400px]:w-8 h-[1px] bg-white/90 flex-shrink-0 relative z-30 shadow-md" />
-                <p className="text-[11px] min-[400px]:text-[12px] font-sans font-normal leading-tight opacity-95 text-left">
-                  {text}
+                <span className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-snug text-[#F3ECE0]/70 font-normal shrink-0 w-[20px]">
+                  {item.num}
+                </span>
+                <p className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-snug text-[#F3ECE0]/90 font-normal whitespace-nowrap overflow-hidden text-ellipsis">
+                  {item.text}
                 </p>
               </motion.div>
             ))}
@@ -188,19 +201,7 @@ export default function ClimatePartOfSkincare() {
 
       </div>
 
-      {/* 3. Bottom Subline under Image */}
-      <motion.p
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="font-suisse text-center text-[15px] min-[400px]:text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] text-[var(--brand-cream)] mt-8 sm:mt-10 md:mt-12 px-4 max-w-[95vw] lg:max-w-[1250px] font-normal leading-[1.3] tracking-tight whitespace-normal sm:whitespace-nowrap"
-      >
-        Even the same routine can perform differently depending on where you are.
-      </motion.p>
-
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/20" />
-
     </section>
   );
 }
