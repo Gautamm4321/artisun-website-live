@@ -6,6 +6,11 @@ on:
       - main
       - claude/artisun-website-access-dnwu32
   workflow_dispatch:
+  # Journal posts are pulled from Shopify at build time. Rebuild a few times a
+  # day so new or edited posts go live without a code push. To publish right
+  # away: Actions → Deploy to GitHub Pages → Run workflow.
+  schedule:
+    - cron: '30 */6 * * *'
 
 permissions:
   contents: read
@@ -42,6 +47,10 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           NEXT_PUBLIC_BASE_PATH: /artisun
+          # Repo → Settings → Secrets and variables → Actions. Needed for the
+          # Journal (and the cart) — without them the blog builds empty.
+          NEXT_PUBLIC_SHOPIFY_DOMAIN: ${{ secrets.NEXT_PUBLIC_SHOPIFY_DOMAIN }}
+          NEXT_PUBLIC_SHOPIFY_PUBLIC_TOKEN: ${{ secrets.NEXT_PUBLIC_SHOPIFY_PUBLIC_TOKEN }}
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

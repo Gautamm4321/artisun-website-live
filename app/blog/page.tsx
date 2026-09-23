@@ -1,31 +1,57 @@
-'use client';
+import type { Metadata } from 'next';
+import JsonLd from '@/components/seo/JsonLd';
+import JournalShell from '@/components/journal/JournalShell';
+import JournalIndex from '@/components/journal/JournalIndex';
+import { getJournalArticles, REVALIDATE } from '@/lib/journal';
 
-import { useEffect, useRef } from 'react';
-import GlobalHeader from '@/components/GlobalHeader';
-import CustomCursor from '@/components/CustomCursor';
-import Blog from '@/components/blog/Blog';
-import Footer from '@/components/Footer';
+// Server deploys (Netlify) re-check Shopify at most this often.
+export const revalidate = REVALIDATE;
 
-export default function BlogPage() {
-  const mouseProxy = useRef({ x: 0, y: 0, px: 0, py: 0 });
+const TITLE = 'Artifacts — The Skinwear Journal by Artisun';
+const DESCRIPTION =
+  'Field notes on weather, wear, and the science of sunscreen that actually holds up. Guides to sun protection for Indian skin and Indian weather.';
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseProxy.current.px = e.clientX;
-      mouseProxy.current.py = e.clientY;
-      mouseProxy.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseProxy.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: 'https://artisunskin.com/blog',
+    siteName: 'Artisun',
+    locale: 'en_IN',
+    type: 'website',
+  },
+};
+
+export default async function BlogPage() {
+  const cards = await getJournalArticles();
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Artifacts by Artisun',
+    url: 'https://artisunskin.com/blog',
+    description: DESCRIPTION,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Artisun',
+      url: 'https://artisunskin.com',
+      logo: 'https://artisunskin.com/logo.png',
+    },
+    blogPost: cards.slice(0, 20).map((c) => ({
+      '@type': 'BlogPosting',
+      headline: c.title,
+      url: `https://artisunskin.com/blog/${c.handle}`,
+      datePublished: c.publishedAt,
+    })),
+  };
 
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden">
-      <CustomCursor mouseProxy={mouseProxy} />
-      <GlobalHeader />
-      <Blog />
-      <Footer />
-    </main>
+    <JournalShell>
+      <JsonLd schema={schema} />
+      <JournalIndex cards={cards} />
+    </JournalShell>
   );
 }

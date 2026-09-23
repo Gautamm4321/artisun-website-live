@@ -1,0 +1,274 @@
+/*
+  ARTISUN — Journal (Artifacts) stylesheet
+  Ported from the Shopify theme's assets/artisun-journal.css so the site and
+  the shop render posts identically. Differences from the theme file:
+
+  - Everything is scoped under .journal-page / .journal so nothing leaks into
+    the rest of the site (the theme version set :root vars and global resets).
+  - Uses the licensed PP Editorial New + Suisse Int'l already loaded by
+    app/fonts.ts instead of the Instrument Serif / Hanken Grotesk stand-ins.
+  - The paper sheet sits inside the site's Red Eclipse background so the
+    GlobalHeader (cream on red) stays legible above it.
+  - Restores list, table and emphasis styles inside .prose that Tailwind's
+    preflight resets (the theme had no reset to undo).
+*/
+
+.journal-page {
+  --ink: #242623;
+  --red: #A52A2C;
+  --cream: #E6D5C1;
+  --clay: #A67B5B;
+  --paper: #F3ECE0;
+  --paper2: #EFE6D6;
+  --line: rgba(36, 38, 35, .18);
+  --serif: var(--font-editorial), Georgia, "Times New Roman", serif;
+  --sans: var(--font-suisse), -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Native cursor on reading pages: the site's cream cursor dot disappears
+   against paper, and long-form text needs an I-beam for selection. */
+.journal-page, .journal-page * { cursor: auto; }
+.journal-page a, .journal-page button, .journal-page summary { cursor: pointer; }
+
+/* ---------- PAGE / SHEET ---------- */
+/* The desktop GlobalHeader is transparent (it's designed to float over red).
+   Over the paper sheet its cream logo and beige tabs disappear, so on Journal
+   pages it gets a dark backing that matches the top of the Red Eclipse. */
+@media (min-width: 1024px) {
+  .journal-page [data-site-header] {
+    background: rgba(24, 3, 7, .88) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Clearance for the fixed header. Lives on the inner wrapper, not the page:
+   on phones MobileScrollFrame is itself position:fixed, so padding outside
+   it would not push the content down. */
+.journal-page-inner { padding-top: 68px; }
+@media (min-width: 1024px) { .journal-page-inner { padding-top: 104px; } }
+
+.journal {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  margin: 0 10px;
+  border-radius: 14px;
+}
+@media (min-width: 1024px) { .journal { margin: 0 16px; border-radius: 20px; } }
+.journal ::selection { background: var(--red); color: var(--paper); }
+
+/* ---------- CARD GRID / MASTHEAD ---------- */
+.journal .j-grid-wrap { max-width: 1240px; margin: 0 auto; padding: 48px 24px 100px; }
+.journal .j-header { margin-bottom: 44px; }
+.journal .j-header-eyebrow {
+  font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: .32em;
+  text-transform: uppercase; color: var(--red); margin-bottom: 16px;
+}
+.journal .j-header-title {
+  font-family: var(--serif); font-weight: 300; font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.02; letter-spacing: -.02em; margin: 0; color: var(--ink);
+}
+.journal .j-header-title .accent { font-style: italic; font-weight: 400; color: var(--red); display: block; }
+.journal .j-header-title .by {
+  display: flex; align-items: flex-end; gap: 9px; font-family: var(--sans); font-weight: 600; font-size: .24em;
+  letter-spacing: .16em; text-transform: uppercase; margin-top: 16px;
+}
+.journal .j-header-title .by-label { color: var(--ink); opacity: .55; line-height: 1; padding-bottom: .06em; }
+.journal .j-header-logo-mark { height: .95em; width: auto; aspect-ratio: 4.448 / 1; display: block; }
+.journal .j-header-sub {
+  margin-top: 18px; font-family: var(--sans); font-size: 15px; line-height: 1.6;
+  color: var(--ink); opacity: .65; max-width: 48ch;
+}
+
+.journal .j-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.journal .j-filters button {
+  font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  padding: 9px 16px; border: 1px solid var(--line); border-radius: 40px; color: var(--ink); background: transparent;
+  white-space: nowrap; transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.journal .j-filters button.is-active,
+.journal .j-filters button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.journal .j-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+@media (max-width: 980px) { .journal .j-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .journal .j-grid { grid-template-columns: 1fr; } }
+
+.journal .j-empty {
+  border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px; text-align: center;
+  font-size: 15px; opacity: .75;
+}
+.journal .j-empty button { color: var(--red); text-decoration: underline; text-underline-offset: 3px; background: none; font: inherit; }
+
+/* ---------- MORE LIKE THIS ---------- */
+.journal .j-more-wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px 100px; }
+.journal .j-more-head { padding-top: 56px; margin-bottom: 28px; border-top: 1px solid var(--line); }
+.journal .j-more-title { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3.2vw, 38px); margin: 8px 0 0; color: var(--ink); }
+.journal .j-more-grid { gap: 24px; }
+
+/* ---------- CARD ---------- */
+.journal .j-card { display: block; text-decoration: none; color: inherit; }
+.journal .field {
+  aspect-ratio: 1 / 1; border-radius: 6px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 22px;
+}
+.journal .field img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.journal .field > * { position: relative; z-index: 1; }
+.journal .field.f-red { background: var(--red); color: var(--paper); }
+.journal .field.f-ink { background: var(--ink); color: var(--paper); }
+.journal .field.f-clay { background: var(--clay); color: var(--paper); }
+.journal .field.f-cream { background: var(--cream); color: var(--ink); }
+.journal .field.f-paper { background: var(--paper2); color: var(--ink); }
+
+.journal .j-card .tag { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; opacity: .85; margin-bottom: 10px; }
+.journal .j-card h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.15; margin: 0 0 8px; }
+.journal .j-card .excerpt { font-size: 13px; line-height: 1.5; opacity: .85; max-width: 32ch; }
+.journal .j-card .meta { margin-top: 14px; font-size: 11px; letter-spacing: .06em; opacity: .7; }
+
+/* ---------- ARTICLE ---------- */
+.journal .j-article { max-width: 760px; margin: 0 auto; padding: 56px 24px 120px; }
+.journal .j-back {
+  display: inline-block; font-size: 12px; letter-spacing: .04em; color: var(--ink); opacity: .6;
+  text-decoration: none; margin-bottom: 28px;
+}
+.journal .j-back:hover { opacity: 1; color: var(--red); }
+.journal .j-article-head .eyebrow { font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; }
+.journal .j-article-head h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(32px, 5vw, 52px); line-height: 1.06; letter-spacing: -.015em; margin: 0 0 20px; color: var(--ink); }
+.journal .j-article-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; letter-spacing: .04em; opacity: .65; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+
+.journal .j-answer { background: var(--paper2); border-left: 3px solid var(--red); padding: 20px 24px; margin: 32px 0; border-radius: 2px; }
+.journal .j-answer .label { font-family: var(--sans); font-weight: 600; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 10px; }
+.journal .j-answer p { font-family: var(--serif); font-weight: 300; font-size: 18px; line-height: 1.5; margin: 0; }
+
+/* TOC — red underlined links, trailing arrow, row dividers. */
+.journal .j-toc { background: var(--paper2); border-radius: 4px; padding: 16px 20px; margin: 32px 0; font-size: 14px; }
+.journal .j-toc .label { font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 10px; opacity: .6; margin-bottom: 6px; }
+.journal .j-toc ul { list-style: none; margin: 0; padding: 0; }
+.journal .j-toc li { border-bottom: 1px solid rgba(36, 38, 35, .1); }
+.journal .j-toc li:last-child { border-bottom: none; }
+.journal .j-toc a {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 12px 2px; color: var(--red); font-weight: 500;
+  text-decoration: underline; text-decoration-color: rgba(165, 42, 44, .35); text-underline-offset: 3px;
+}
+.journal .j-toc a::after {
+  content: "→"; font-size: 13px; line-height: 1; flex-shrink: 0; opacity: .55;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.journal .j-toc a:hover, .journal .j-toc a:focus-visible, .journal .j-toc a.is-active { text-decoration-color: var(--red); }
+.journal .j-toc a:hover::after, .journal .j-toc a:focus-visible::after, .journal .j-toc a.is-active::after { opacity: 1; transform: translateX(3px); }
+.journal .j-toc a:active { opacity: .65; }
+
+/* ---------- PROSE (Shopify post body) ---------- */
+.journal .prose { font-family: var(--sans); font-size: 16px; line-height: 1.75; color: var(--ink); }
+.journal .prose h2 {
+  font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 56px 0 20px; letter-spacing: -.01em;
+  color: var(--ink); padding-bottom: 14px; border-bottom: 1px solid var(--line);
+  scroll-margin-top: 96px; /* clears the fixed site header on anchor jumps */
+}
+.journal .prose h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.25; margin: 38px 0 14px; color: var(--red); scroll-margin-top: 96px; }
+.journal .prose h4 { font-family: var(--sans); font-weight: 600; font-size: 16px; margin: 28px 0 10px; }
+.journal .prose p { margin: 0 0 18px; color: var(--ink); }
+.journal .prose img { width: 100%; height: auto; border-radius: 4px; margin: 24px 0; }
+.journal .prose a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
+.journal .prose strong, .journal .prose b { font-weight: 600; }
+.journal .prose em, .journal .prose i { font-style: italic; }
+.journal .prose sup { font-size: .7em; line-height: 0; vertical-align: super; }
+.journal .prose ul, .journal .prose ol { margin: 0 0 18px; padding-left: 1.4em; }
+.journal .prose ul { list-style: disc; }
+.journal .prose ol { list-style: decimal; }
+.journal .prose li { margin: 0 0 6px; padding-left: .2em; }
+.journal .prose li::marker { color: var(--ink); }
+.journal .prose blockquote { margin: 24px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--red); font-family: var(--serif); font-size: 19px; line-height: 1.5; }
+.journal .prose hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+.journal .prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 8px 0 22px; font-size: 14px; line-height: 1.5; }
+.journal .prose th, .journal .prose td { padding: 6px 12px 6px 0; vertical-align: top; text-align: left; }
+.journal .prose th { font-weight: 600; white-space: nowrap; border-bottom: 1px solid var(--line); }
+
+.journal .j-faq { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 32px; }
+.journal .j-faq h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 0 0 20px; }
+.journal .j-faq details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+.journal .j-faq summary { font-family: var(--sans); font-weight: 600; list-style: none; padding: 4px 0; }
+.journal .j-faq summary::-webkit-details-marker { display: none; }
+.journal .j-faq p { margin-top: 10px; font-size: 14px; opacity: .85; }
+
+.journal .j-sources { margin-top: 40px; font-size: 13px; opacity: .75; border-top: 1px solid var(--line); padding-top: 24px; }
+.journal .j-sources .label { font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 10px; margin-bottom: 10px; }
+.journal .j-sources a { color: var(--red); }
+.journal .j-sources ul { list-style: disc; padding-left: 1.4em; }
+
+.journal .j-author-card { display: flex; gap: 16px; align-items: center; margin-top: 48px; padding: 20px; background: var(--paper2); border-radius: 6px; }
+.journal .j-author-card .name { font-family: var(--serif); font-size: 17px; }
+.journal .j-author-card .role { font-size: 12px; opacity: .65; }
+
+.journal a:focus-visible, .journal button:focus-visible, .journal summary:focus-visible {
+  outline: 2px solid var(--red); outline-offset: 2px;
+}
+
+/* ============================================================
+   MOBILE — same breakpoints as the theme (980 / 820 / 600 / 380)
+   ============================================================ */
+@media (max-width: 820px) {
+  .journal .j-grid-wrap, .journal .j-article, .journal .j-more-wrap { padding-left: 18px; padding-right: 18px; }
+}
+
+@media (max-width: 600px) {
+  .journal .j-grid-wrap { padding-top: 32px; padding-bottom: 64px; }
+  .journal .j-header { margin-bottom: 28px; }
+  .journal .j-header-eyebrow { font-size: 10px; letter-spacing: .22em; margin-bottom: 12px; }
+  .journal .j-header-title { font-size: clamp(34px, 12vw, 44px); }
+  .journal .j-header-title .by { font-size: .3em; gap: 7px; margin-top: 12px; }
+  .journal .j-header-logo-mark { height: .9em; }
+  .journal .j-header-sub { font-size: 14px; line-height: 1.55; max-width: none; }
+
+  /* filters become a horizontally scrolling chip row */
+  .journal .j-filters {
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    margin: 0 -18px 24px; padding: 0 18px 6px; gap: 8px; scrollbar-width: none;
+  }
+  .journal .j-filters::-webkit-scrollbar { display: none; }
+  .journal .j-filters button { flex: 0 0 auto; padding: 8px 14px; font-size: 10px; }
+
+  .journal .j-grid { gap: 16px; }
+  .journal .field { padding: 16px; }
+  .journal .j-card h3 { font-size: 19px; }
+  .journal .j-card .tag { font-size: 9px; margin-bottom: 8px; }
+  .journal .j-card .meta { margin-top: 10px; font-size: 10px; }
+
+  .journal .j-more-wrap { padding-bottom: 64px; }
+  .journal .j-more-head { padding-top: 40px; margin-bottom: 20px; }
+  .journal .j-more-title { font-size: clamp(24px, 8vw, 30px); }
+
+  .journal .j-article { padding-top: 36px; padding-bottom: 72px; }
+  .journal .j-article-head .eyebrow { font-size: 10px; margin-bottom: 14px; }
+  .journal .j-article-head h1 { font-size: clamp(28px, 9vw, 36px); margin-bottom: 16px; }
+  .journal .j-article-meta { gap: 8px 14px; font-size: 11px; margin-bottom: 28px; padding-bottom: 18px; }
+
+  .journal .j-answer { padding: 16px 18px; margin: 24px 0; }
+  .journal .j-answer p { font-size: 16px; }
+
+  .journal .j-toc { padding: 12px 16px; margin: 24px 0; }
+  .journal .j-toc a { padding: 11px 2px; font-size: 14px; }
+
+  .journal .prose { font-size: 15px; line-height: 1.7; }
+  .journal .prose h2 { font-size: 23px; margin: 44px 0 16px; padding-bottom: 10px; scroll-margin-top: 72px; }
+  .journal .prose h3 { font-size: 19px; margin: 32px 0 10px; scroll-margin-top: 72px; }
+
+  .journal .j-faq { margin-top: 36px; padding-top: 24px; }
+  .journal .j-faq h2 { font-size: 22px; margin-bottom: 16px; }
+  .journal .j-sources { margin-top: 32px; padding-top: 18px; }
+  .journal .j-author-card { padding: 16px; gap: 12px; margin-top: 36px; }
+  .journal .j-author-card .name { font-size: 16px; }
+}
+
+@media (max-width: 380px) {
+  .journal .j-header-title { font-size: clamp(30px, 13vw, 38px); }
+  .journal .j-article-head h1 { font-size: clamp(25px, 9.5vw, 32px); }
+  .journal .j-card .excerpt { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal .j-toc a::after, .journal .j-filters button { transition: none; }
+}

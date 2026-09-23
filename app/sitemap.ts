@@ -1,8 +1,18 @@
 import { MetadataRoute } from 'next';
+import { getJournalArticles } from '@/lib/journal';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://artisunskin.com';
   const now = new Date();
+
+  // Every Journal post, straight from the Shopify blog.
+  const articles = await getJournalArticles().catch(() => []);
+  const articleEntries: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${baseUrl}/blog/${a.handle}`,
+    lastModified: new Date(a.publishedAt),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
 
   return [
     {
@@ -89,5 +99,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    ...articleEntries,
   ];
 }
