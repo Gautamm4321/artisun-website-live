@@ -9,13 +9,13 @@ export default function ClimateCTA() {
       {/* Container to sync Heading & Paragraph Width */}
       <div className="flex flex-col items-center w-full max-w-[800px] text-center px-2 my-0">
 
-        {/* 1. Uppercase Serif Heading (Responsive clamp, wrap-safe) */}
+        {/* 1. Uppercase Serif Heading (Exact 35.2px / 2.2rem on a single line) */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8 }}
-          className="font-editorial text-[clamp(1.8rem,5vw,3.6rem)] tracking-tight font-normal uppercase mb-2 sm:mb-3 leading-tight"
+          className="font-editorial text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal uppercase mb-2 sm:mb-3 whitespace-nowrap"
         >
           Designed for exposure
         </motion.h2>

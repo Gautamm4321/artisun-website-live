@@ -14,7 +14,7 @@ export default function ClimateStats() {
         transition={{ duration: 0.8 }}
         className="w-full max-w-[1000px] mb-8 md:mb-12 text-left sm:text-center px-1"
       >
-        <p className="font-editorial text-[22px] sm:text-2xl md:text-3xl font-normal opacity-95 leading-[1.25] sm:leading-relaxed sm:underline sm:underline-offset-4 decoration-white/80">
+        <p className="font-editorial text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0] ">
           The weather is doing more to your skin than you think.
         </p>
       </motion.div>

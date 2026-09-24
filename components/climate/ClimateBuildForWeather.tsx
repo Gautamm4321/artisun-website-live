@@ -5,10 +5,6 @@ import { motion } from 'framer-motion';
 export default function ClimateSkinVsWeather() {
   return (
     <section className="relative z-10 w-full flex flex-col items-center justify-center px-6 py-16 md:py-24 overflow-hidden">
-      {/* Ghost Background Accent */}
-      <div className="absolute right-[-2%] bottom-[-8%] font-editorial italic font-extralight text-[30vw] leading-none text-[#A52A2C] opacity-[0.04] pointer-events-none select-none">
-        weather
-      </div>
 
       <div className="w-full max-w-[1180px] mx-auto text-[var(--brand-cream)] space-y-10">
         {/* Eyebrow kicker */}

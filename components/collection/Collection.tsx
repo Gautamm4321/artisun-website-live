@@ -246,7 +246,7 @@ export default function Collection({
                 return (
                   <div
                     key={prod.id}
-                    className={`group relative flex flex-col justify-between bg-[#E8DAC7] border border-[#242623]/10 rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
+                    className={`group relative flex flex-col justify-between bg-[#E6D5C1] border border-[#242623]/10 rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
                       isCombo ? 'col-span-2 md:col-span-1' : 'col-span-1'
                     }`}
                   >
@@ -333,7 +333,7 @@ export default function Collection({
                 {[...REVIEWS, ...REVIEWS].map((rev, idx) => (
                   <div
                     key={idx}
-                    className="w-[280px] sm:w-[340px] shrink-0 p-6 rounded-2xl bg-[#E8DAC7] backdrop-blur-md border border-[#242623]/10 shadow-sm flex flex-col justify-between"
+                    className="w-[280px] sm:w-[340px] shrink-0 p-6 rounded-2xl bg-[#E6D5C1] backdrop-blur-md border border-[#242623]/10 shadow-sm flex flex-col justify-between"
                   >
                     <p className="font-editorial text-base sm:text-lg leading-snug text-[#242623]">
                       &ldquo;{rev.quote}&rdquo;

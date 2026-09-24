@@ -226,7 +226,7 @@ export default function ClimateHero() {
 
   return (
     <section
-      className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center px-4 pt-24 pb-12 text-[var(--brand-cream)]"
+      className="relative z-10 min-h-0 sm:min-h-screen w-full flex flex-col items-center justify-start sm:justify-center px-4 pt-[112px] pb-5 sm:pt-24 sm:pb-12 text-[var(--brand-cream)]"
       style={
         {
           '--sunx': bandVisual.sunx,
@@ -247,7 +247,7 @@ export default function ClimateHero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="font-editorial whitespace-nowrap text-[clamp(1.15rem,6.2vw,4.5rem)] text-center mb-3 font-normal tracking-wide"
+        className="font-editorial whitespace-nowrap text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight text-center mb-3 font-normal"
       >
         {heading}
       </motion.h2>
@@ -381,6 +381,9 @@ export default function ClimateHero() {
       >
         <span className="font-medium text-[#E8DCC8]">Reapply:</span> {activeConfig.reapplyLine}
       </motion.p>
+
+      {/* Faint divider line matching other sections */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10" />
     </section>
   );
 }

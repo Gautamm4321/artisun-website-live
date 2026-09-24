@@ -276,10 +276,6 @@ export default function Footer() {
               © Artisun Private Limited 2026
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-3 gap-y-1 text-center md:text-right">
-              <span>
-                <strong className="text-[var(--brand-cream)]/80 font-medium">Grievance Officer:</strong> Nodal Officer, Artisun Pvt. Ltd.
-              </span>
-              <span>·</span>
               <a
                 href="mailto:grievance@artisunskin.com"
                 className="underline hover:text-[#E8DCC8] transition-colors"

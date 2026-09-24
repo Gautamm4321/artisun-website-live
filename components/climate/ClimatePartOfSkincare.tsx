@@ -49,7 +49,7 @@ export default function ClimatePartOfSkincare() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
-          className="font-editorial text-[25px] min-[390px]:text-[28px] sm:text-[34px] md:text-[42px] lg:text-[48px] leading-tight tracking-tight font-normal text-[#F3ECE0] whitespace-nowrap"
+          className="font-editorial text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0] whitespace-nowrap"
         >
           Climate is (a part of) skincare
         </motion.h2>
@@ -176,7 +176,7 @@ export default function ClimatePartOfSkincare() {
             />
           </motion.div>
 
-          {/* Number on Left, Text on Right, Single Line */}
+          {/* Number on Left, Text on Right, Full Natural Wrap */}
           <div className="flex flex-col items-start w-full space-y-3.5 px-1">
             {MOBILE_ORDERED_POINTS.map((item, idx) => (
               <motion.div
@@ -185,12 +185,12 @@ export default function ClimatePartOfSkincare() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: 0.06 * idx }}
-                className="flex items-baseline gap-2.5 w-full text-left"
+                className="flex items-start gap-2.5 w-full text-left"
               >
-                <span className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-snug text-[#F3ECE0]/70 font-normal shrink-0 w-[20px]">
+                <span className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-[1.35] text-[#F3ECE0]/70 font-normal shrink-0 w-[20px]">
                   {item.num}
                 </span>
-                <p className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-snug text-[#F3ECE0]/90 font-normal whitespace-nowrap overflow-hidden text-ellipsis">
+                <p className="font-suisse text-[12.5px] min-[390px]:text-[13px] leading-[1.35] text-[#F3ECE0]/90 font-normal flex-1">
                   {item.text}
                 </p>
               </motion.div>
