@@ -114,6 +114,7 @@ export default function LoadingScreen({
   return (
     <div
       ref={containerRef}
+      data-loading-screen=""
       className="fixed inset-0 z-[1000] flex items-center justify-center overflow-hidden will-change-transform"
       style={{ background: 'var(--bg-eclipse)' }}
     >

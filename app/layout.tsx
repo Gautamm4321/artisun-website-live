@@ -3,6 +3,7 @@ import { ppEditorialNew, suisseIntl } from "./fonts";
 import { CartProvider } from "@/components/cart/CartProvider";
 import CartDrawer from "@/components/cart/CartDrawer";
 import RouteAnalytics from "@/components/analytics/RouteAnalytics";
+import SignupPopup from "@/components/SignupPopup";
 import { CLARITY_ID, GA4_MEASUREMENT_ID, GTM_ID, META_PIXEL_ID } from "@/lib/tracking-config";
 import JsonLd from "@/components/seo/JsonLd";
 import "./globals.css";
@@ -158,6 +159,7 @@ export default function RootLayout({
         <CartProvider>
           {children}
           <CartDrawer />
+          <SignupPopup />
         </CartProvider>
       </body>
     </html>
