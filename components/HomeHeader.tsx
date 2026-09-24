@@ -64,6 +64,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const menuLogoRef = useRef<HTMLButtonElement>(null);
+  const wordmarkWrapRef = useRef<HTMLDivElement>(null);
 
   /* ── Wordmark → header morph ───────────────────────────────────────────
      Previously this ran through a scrubbed ScrollTrigger that re-measured on
@@ -146,7 +147,10 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
       geo.tx = padX - r.left;
       geo.ty = padY - r.top;
 
-      travel = Math.max(1, window.innerHeight * 0.85);
+      // Mobile/tablet: the wordmark now rests at the TOP of the hero, so it has
+      // a short way to go — dock it over the first ~55% of a screen instead of
+      // 85%, otherwise it lingers big over the product. Desktop unchanged.
+      travel = Math.max(1, window.innerHeight * (isMobileOrTablet ? 0.55 : 0.85));
       lastWidth = window.innerWidth;
 
       if (useCssTimeline) {
@@ -233,6 +237,32 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
   useEffect(() => {
     if (!ready) return;
     gsap.to(headerRef.current, { opacity: 1, duration: 1.0, ease: 'power2.out' });
+  }, [ready]);
+
+  /* ── Mobile/tablet wordmark entrance ──
+     Once the loader finishes, the big wordmark is revealed top-down with a
+     clip-path wipe. clip-path (not a transform) is used on purpose: it never
+     changes the element's measured box, so the scroll morph's geometry
+     (measured from getBoundingClientRect) stays exact. Desktop untouched. */
+  useEffect(() => {
+    const wrap = wordmarkWrapRef.current;
+    if (!wrap || window.innerWidth >= 1024) return;
+    if (!ready) {
+      gsap.set(wrap, { clipPath: 'inset(0% 0% 100% 0%)', opacity: 0 });
+      return;
+    }
+    gsap.fromTo(
+      wrap,
+      { clipPath: 'inset(0% 0% 100% 0%)', opacity: 0 },
+      {
+        clipPath: 'inset(0% 0% 0% 0%)',
+        opacity: 1,
+        duration: 1.3,
+        delay: 0.25,
+        ease: 'power3.out',
+        clearProps: 'clipPath',
+      },
+    );
   }, [ready]);
 
   const scrollToHero = () => {
@@ -413,12 +443,13 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
         </div>
 
         {/* Flying Animated Wordmark.
-            Mobile/tablet: the wordmark rests on the FLOOR of the first screen —
-            the box is a full 100svh tall and aligns its child to the bottom, so
-            the resting position tracks the real visible viewport rather than a
-            guessed percentage. Desktop keeps its original top-anchored spot. */}
+            Mobile/tablet: the wordmark rests at the TOP of the first screen,
+            full width over the product shot (per the client's reference), and
+            shrinks into the header as the page scrolls.
+            Desktop keeps its original top-anchored spot. */}
         <div
-          className="pointer-events-none absolute left-0 right-0 top-0 h-[100svh] flex items-end justify-center pb-[4.5svh] lg:h-auto lg:items-start lg:pb-0 lg:pt-[8vh]"
+          ref={wordmarkWrapRef}
+          className="pointer-events-none absolute left-0 right-0 top-0 flex items-start justify-center pt-[4.5svh] lg:pt-[8vh]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -434,7 +465,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
                 scrollToHero();
               }
             }}
-            className="pointer-events-auto w-[min(90vw,1300px)] h-auto select-none drop-shadow-[0_6px_30px_rgba(0,0,0,0.45)] cursor-pointer"
+            className="pointer-events-auto w-[min(92vw,1300px)] lg:w-[min(90vw,1300px)] h-auto select-none drop-shadow-[0_6px_30px_rgba(0,0,0,0.45)] cursor-pointer"
             draggable={false}
           />
         </div>

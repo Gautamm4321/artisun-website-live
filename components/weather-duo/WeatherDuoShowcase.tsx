@@ -278,9 +278,13 @@ export default function WeatherDuoShowcase() {
                   {/* ── ORIGIN: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/origin"
-                    className="hidden lg:block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                    className="hidden lg:flex items-center justify-between gap-4 text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide group"
                   >
-                    Origin, in full · 4-in-1 Milk Emulsion SPF 50+ · PA++++
+                    <span>Origin, in full · 4-in-1 Milk Emulsion SPF 50+ · PA++++</span>
+                    {/* Same arrow as the mobile links below */}
+                    <span aria-hidden="true" className="text-[17px] font-light opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                      ↗
+                    </span>
                   </Link>
                 </div>
 
@@ -322,9 +326,13 @@ export default function WeatherDuoShowcase() {
                   {/* ── AURA: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/aura"
-                    className="hidden lg:block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                    className="hidden lg:flex items-center justify-between gap-4 text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide group"
                   >
-                    Aura, in full · Pearl Skinwear SPF 40 · PA++++
+                    <span>Aura, in full · Pearl Skinwear SPF 40 · PA++++</span>
+                    {/* Same arrow as the mobile links below */}
+                    <span aria-hidden="true" className="text-[17px] font-light opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                      ↗
+                    </span>
                   </Link>
                 </div>
               </div>

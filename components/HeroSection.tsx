@@ -1,9 +1,24 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import { asset } from '@/lib/asset';
 
 export default function HeroSection({ ready = false }: { ready?: boolean }) {
-  void ready;
+  const mobileImgRef = useRef<HTMLImageElement>(null);
+
+  /* Mobile/tablet entrance: once the loader finishes, the product shot settles
+     from a slight zoom while fading up. Runs on the <img>; the scroll parallax
+     runs on its wrapper, so the two transforms never fight. Desktop untouched. */
+  useEffect(() => {
+    const img = mobileImgRef.current;
+    if (!img || window.innerWidth >= 1024) return;
+    if (!ready) {
+      gsap.set(img, { scale: 1.1, opacity: 0 });
+      return;
+    }
+    gsap.to(img, { scale: 1, opacity: 1, duration: 1.8, ease: 'power3.out', clearProps: 'transform' });
+  }, [ready]);
 
   return (
     <section
@@ -20,9 +35,10 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
       />
 
       {/* 1. MOBILE HERO (below lg): full-bleed portrait product shot */}
-      <div className="lg:hidden absolute inset-0 z-[2] pointer-events-none">
+      <div className="hero-parallax lg:hidden absolute inset-0 z-[2] pointer-events-none">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          ref={mobileImgRef}
           src={asset('/hero-mobile.webp')}
           alt="Artisun Aura pearl sunscreen SPF 40 PA++++ on a marble plinth"
           width={1080}
@@ -61,6 +77,31 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
       />
 
       <style jsx>{`
+        /* Mobile/tablet parallax: as the page scrolls up and the wordmark docks
+           into the header, the product shot drifts up at ~half speed and eases
+           in slightly, instead of leaving with the page 1:1. Driven by a CSS
+           scroll timeline on the compositor (same technique as the wordmark,
+           so both stay in lock-step). Browsers without scroll timelines simply
+           scroll the image normally. */
+        @supports (animation-timeline: scroll()) {
+          @media (max-width: 1023px) {
+            .hero-parallax {
+              animation: heroParallax linear both;
+              animation-timeline: scroll(root block);
+              animation-range: 0px 100svh;
+              will-change: transform;
+            }
+          }
+        }
+        @keyframes heroParallax {
+          from {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          to {
+            transform: translate3d(0, 45svh, 0) scale(1.06);
+          }
+        }
+
         /* Desktop split-eye alignment */
         .hero-model-desktop {
           height: 94vh;

@@ -20,7 +20,7 @@ export default function WeatherDuoPage() {
   }, []);
 
   return (
-    <main className="relative w-full min-h-screen text-[var(--brand-cream)] font-suisse antialiased pb-28 md:pb-24 overflow-x-hidden">
+    <main className="relative w-full min-h-screen text-[var(--brand-cream)] font-suisse antialiased overflow-x-hidden">
       {/* Mood Red Eclipse Background */}
       <div
         className="fixed inset-0 pointer-events-none -z-20 theme-red-eclipse"
@@ -49,8 +49,38 @@ export default function WeatherDuoPage() {
       <CustomCursor mouseProxy={mouseProxy} />
       <GlobalHeader />
 
-      {/* Weather Duo Main Showcase (3 Frames + Sticky Bar) */}
-      <WeatherDuoShowcase />
+      {/* ── Mobile & tablet (<1024px): same scroll model as Origin / Aura ──
+          html/body are locked and #wd-scroll-container (fixed, 100svh) is the
+          only scroll container. Content can then never scroll up past the
+          fixed header into the browser's top bar area, which is what was
+          showing through above the header on mobile.
+          Desktop (>=1024px): untouched — normal page scroll drives the GSAP
+          horizontal track. No bottom padding there, so once the horizontal
+          scroll ends there is nothing left to scroll vertically and frame 2
+          stays put instead of sliding up. */}
+      <style jsx global>{`
+        @media (max-width: 1023px) {
+          html,
+          body {
+            overflow: hidden !important;
+          }
+          #wd-scroll-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100svh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+      `}</style>
+      <div id="wd-scroll-container" data-scroll-frame="" className="pb-28 md:pb-24 lg:pb-0">
+        {/* Weather Duo Main Showcase (3 Frames + Sticky Bar) */}
+        <WeatherDuoShowcase />
+      </div>
     </main>
   );
 }
