@@ -87,13 +87,13 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
           {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP & TABLET: Info & Compact Navigation Copy ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] md:max-w-none lg:max-w-[540px] gap-2 md:gap-3.5 lg:gap-2.5 py-0">
             {/* Visual Breadcrumb Navigation */}
-            <Breadcrumbs
+            {/* <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },
                 { label: 'Products', href: '/collection' },
                 { label: 'Origin' },
               ]}
-            />
+            /> */}
 
             {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />

@@ -83,7 +83,7 @@ export default function WeatherDuoShowcase() {
           className="flex flex-col lg:flex-row lg:w-max lg:h-screen lg:overflow-hidden will-change-transform"
         >
           {/* ── 1. FRAME 1: HERO & GALLERY ── */}
-          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-28 sm:pt-32 lg:pt-28 lg:pb-24 pb-12 px-5 sm:px-8 lg:px-14 border-b lg:border-b-0 lg:border-r border-white/10">
+          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-28 sm:pt-32 lg:pt-28 lg:pb-24 pb-6 sm:pb-8 px-5 sm:px-8 lg:px-14 border-b lg:border-b-0 lg:border-r border-white/10">
             <div className="max-w-[1180px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-8 md:gap-12 items-center">
 
               {/* Left: Gallery */}
@@ -173,53 +173,53 @@ export default function WeatherDuoShowcase() {
                 </div>
               </div>
 
-              {/* Right: Product Editorial Details (Reference Order: Pills -> Heading -> Subheading -> Price + Button) */}
-          <div className="flex flex-col gap-3.5 text-left max-w-[520px]">
-            {/* 1. Rounded Pills */}
-            <div className="flex flex-wrap gap-2">
-              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
-              ORIGIN + AURA    
-              </span>
-              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
-              SUN · RAIN · SMOG    
-              </span>
-              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
-               50ML + 50GM
-              </span>
-            </div>
+              {/* Right: Product Editorial Details (Exact 1:1 Match with OriginHero Typography) */}
+              <div className="order-2 flex flex-col justify-center w-full max-w-[440px] md:max-w-none lg:max-w-[540px] gap-2 md:gap-3.5 lg:gap-2.5 py-0 text-left">
+                {/* 1. Outlined tag pills (Exact TagPills sizing from Origin) */}
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0">
+                  <span className="font-suisse text-[10px] sm:text-[11px] tracking-wider uppercase font-medium text-[var(--brand-cream)]/90 px-3 py-1 rounded-full border border-white/20 bg-white/[0.04]">
+                    ORIGIN + AURA
+                  </span>
+                  <span className="font-suisse text-[10px] sm:text-[11px] tracking-wider uppercase font-medium text-[var(--brand-cream)]/90 px-3 py-1 rounded-full border border-white/20 bg-white/[0.04]">
+                    SUN · RAIN · SMOG
+                  </span>
+                  <span className="font-suisse text-[10px] sm:text-[11px] tracking-wider uppercase font-medium text-[var(--brand-cream)]/90 px-3 py-1 rounded-full border border-white/20 bg-white/[0.04]">
+                    50ML + 50GM
+                  </span>
+                </div>
 
-            {/* 2. Main Heading */}
-            <h1 className="font-editorial text-[clamp(32px,4.2vw,48px)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0]">
-              The weather duo
-            </h1>
+                {/* 2. Primary H1 (Exact Origin Hero font, clamp & leading) */}
+                <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] md:text-[32px] lg:text-[34px] leading-[1.08] tracking-tight">
+                  The weather duo
+                </h1>
 
-            {/* 3. Subheadings & Narrative Copy */}
-            <div className="space-y-2">
-              <p className="text-[16px] sm:text-[17px] font-medium text-[#F3ECE0] leading-snug">
-                Sun, rain and smog don&apos;t ask for the same thing.
-              </p>
-              <p className="text-[14px] sm:text-[14.5px] leading-relaxed text-[#F3ECE0]/85 font-light">
-                Origin is the milk emulsion for the dry months: high sun, AC indoors, and the smog that settles on skin by November. Aura is the pearl for the wet ones, when the air is thick and anything heavier slides off by noon. Sun, rain, smog. Keep both and you&apos;re dressed for all three.
-              </p>
-            </div>
+                {/* 3. Subheadings & Description (Exact font-suisse sizes & line-heights) */}
+                <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[13.5px] leading-[1.4] md:leading-[1.45] mt-0.5 md:mt-1 space-y-0.5 md:space-y-1">
+                  <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px] md:text-[14px]">
+                    Sun, rain and smog don&apos;t ask for the same thing.
+                  </p>
+                  <p className="w-full text-left">
+                    Origin is the milk emulsion for the dry months: high sun, AC indoors, and the smog that settles on skin by November. Aura is the pearl for the wet ones, when the air is thick and anything heavier slides off by noon. Sun, rain, smog. Keep both and you&apos;re dressed for all three.
+                  </p>
+                </div>
 
-            {/* 4. Price & Add to Bag Button Row (Origin Hero Match) */}
-            <div className="flex items-center gap-3 sm:gap-4 pt-3">
-              <span className="font-editorial text-[var(--brand-cream)] text-[22px] sm:text-[26px] leading-none">
-                ₹3,298
-              </span>
-              <AddToBagButton
-                product="duo-bundle"
-                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
-              />
-            </div>
-          </div>
+                {/* 4. Price + Buy (Exact Origin Hero spacing & font) */}
+                <div className="flex items-center gap-3 sm:gap-4 my-1 md:my-2">
+                  <span className="font-editorial text-[var(--brand-cream)] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[26px]">
+                    ₹3,298
+                  </span>
+                  <AddToBagButton
+                    product="duo-bundle"
+                    className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
+                  />
+                </div>
+              </div>
 
             </div>
           </section>
 
           {/* ── 2. FRAME 2: WHY BOTH & DUAL CARDS ── */}
-          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-24 pb-10 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12 select-none">
+          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-10 sm:pt-12 pb-10 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12 select-none">
             <div className="max-w-[1360px] w-full mx-auto flex flex-col justify-center my-auto">
               
               <div className="space-y-1.5 w-full text-left">
@@ -275,10 +275,10 @@ export default function WeatherDuoShowcase() {
                     </div>
                   </article>
 
-                  {/* ── ORIGIN: OUTSIDE BOX LINK (Unified Font & Color) ── */}
+                  {/* ── ORIGIN: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/origin"
-                    className="block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                    className="hidden lg:block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
                   >
                     Origin, in full · 4-in-1 Milk Emulsion SPF 50+ · PA++++
                   </Link>
@@ -319,10 +319,10 @@ export default function WeatherDuoShowcase() {
                     </div>
                   </article>
 
-                  {/* ── AURA: OUTSIDE BOX LINK (Unified Font & Color) ── */}
+                  {/* ── AURA: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/aura"
-                    className="block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                    className="hidden lg:block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
                   >
                     Aura, in full · Pearl Skinwear SPF 40 · PA++++
                   </Link>
