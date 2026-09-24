@@ -49,7 +49,7 @@ export default function ClimatePartOfSkincare() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
-          className="font-editorial text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0] whitespace-nowrap"
+          className="font-editorial text-[27px] xs:text-[29px] sm:text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0] whitespace-nowrap"
         >
           Climate is (a part of) skincare
         </motion.h2>

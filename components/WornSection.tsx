@@ -122,7 +122,7 @@ export default function WornSection() {
         </h2>
 
         {/* Sub-Description */}
-        <p className="font-suisse text-[var(--brand-cream,#f5f0eb)]/90 text-[16px] xs:text-[17px] sm:text-[19px] lg:text-[18px] xl:text-[20px] 2xl:text-[21px] leading-[1.32] sm:leading-[1.45] font-normal mt-3 xs:mt-3.5 sm:mt-5 lg:mt-7 w-full max-w-[300px] xs:max-w-[330px] sm:max-w-[480px] lg:max-w-[480px] drop-shadow-sm">
+        <p className="font-suisse text-[var(--brand-cream,#f5f0eb)]/90 text-[16px] xs:text-[17px] sm:text-[19px] lg:text-[18px] xl:text-[20px] 2xl:text-[21px] leading-[1.32] sm:leading-[1.45] font-normal mt-5 xs:mt-6 sm:mt-5 lg:mt-7 w-full max-w-[300px] xs:max-w-[330px] sm:max-w-[480px] lg:max-w-[480px] drop-shadow-sm">
           Light, invisible, and built for Indian cities.
         </p>
       </div>

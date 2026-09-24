@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import AddToBagButton from '@/components/cart/AddToBagButton';
 import { asset } from '@/lib/asset';
 
@@ -44,7 +45,7 @@ const TRUST_BADGES = [
     size: 'Complete Kit',
     finish: 'Your year-round dual climate wardrobe',
     price: '₹3,298',
-    image: '/Collection page right.png',
+    image: '/lansdcape image.png',
     desc: 'Origin for high sun & commute; Aura for deep hydration & humidity. The complete Indian weather collection.',
   },
 ];
@@ -243,6 +244,13 @@ export default function Collection({
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6 lg:gap-8 items-stretch">
               {PRODUCTS.map((prod) => {
                 const isCombo = prod.id === 'duo-bundle';
+                // Teno cards ke liye respective URLs
+                const targetHref = prod.id === 'origin' 
+                  ? '/origin' 
+                  : prod.id === 'aura' 
+                  ? '/aura' 
+                  : '/weather-duo';
+
                 return (
                   <div
                     key={prod.id}
@@ -250,36 +258,69 @@ export default function Collection({
                       isCombo ? 'col-span-2 md:col-span-1' : 'col-span-1'
                     }`}
                   >
-                    
-
-                    {/* Image - increased mobile height */}
+                    {/* Clickable Image Box with Top-Right Minimal Arrow (No circle) */}
                     <div
-                      className={`relative w-full overflow-hidden bg-[#3a2a23]/10 p-1.5 sm:p-4 ${
+                      className={`relative w-full overflow-hidden bg-[#2a0e0b] ${
                         isCombo
-                          ? 'h-[180px] sm:h-[266px] md:h-[308px]'
-                          : 'h-[160px] sm:h-[266px] md:h-[308px]'
+                          ? 'h-[190px] sm:h-[290px] md:h-[370px] lg:h-[410px]'
+                          : 'h-[175px] sm:h-[290px] md:h-[370px] lg:h-[410px]'
                       }`}
                     >
-                      <Image
-                        src={asset(prod.image)}
-                        alt={prod.name}
-                        fill
-                        sizes={
-                          isCombo
-                            ? '(max-width: 768px) 100vw, 33vw'
-                            : '(max-width: 768px) 50vw, 33vw'
-                        }
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                      />
+                      {/* Entire image is a link */}
+                      <Link
+                        href={targetHref}
+                        className="absolute inset-0 z-0 block cursor-pointer"
+                        aria-label={`View details for ${prod.name}`}
+                      >
+                        <Image
+                          src={asset(prod.image)}
+                          alt={prod.name}
+                          fill
+                          sizes={
+                            isCombo
+                              ? '(max-width: 768px) 100vw, 33vw'
+                              : '(max-width: 768px) 50vw, 33vw'
+                          }
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
+                      </Link>
+
+                      {/* Top-Right Minimal Arrow Only (No background circle) */}
+                      <Link
+                        href={targetHref}
+                        aria-label={`Open ${prod.name}`}
+                        className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-10 text-[#F3ECE0]/80 hover:text-white transition-all duration-200 hover:translate-x-0.5 hover:-translate-y-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                      >
+                        <svg
+                          className="w-4 h-4 sm:w-5 sm:h-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="7" y1="17" x2="17" y2="7" />
+                          <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                      </Link>
                     </div>
 
                     {/* Content Details - tightened padding & line gaps */}
                     <div className="p-2.5 sm:p-6 flex flex-col flex-1 justify-between">
                       <div className="space-y-0.5 sm:space-y-2">
                         <div className="flex items-baseline justify-between gap-1">
-                          <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
-                            {prod.name}
-                          </h3>
+                          {isCombo ? (
+                            <Link href="/weather-duo" className="hover:opacity-80 transition-opacity">
+                              <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
+                                {prod.name}
+                              </h3>
+                            </Link>
+                          ) : (
+                            <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
+                              {prod.name}
+                            </h3>
+                          )}
                           <span className="font-suisse text-[9px] sm:text-xs text-[#242623]/60 shrink-0">
                             {prod.size}
                           </span>
