@@ -47,6 +47,8 @@ export default function JournalIndex({ cards }: { cards: Card[] }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={asset('/journal/artisun-wordmark.svg')} alt="Artisun" className="j-header-logo-mark" />
             </span>
+            {/* Text for search engines and screen readers; the visible heading is unchanged. */}
+            <span className="sr-only">: The Sun Care Journal</span>
           </h1>
           <p className="j-header-sub">
             Field notes on weather, wear, and the science of sunscreen that actually holds up.

@@ -75,24 +75,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
         setCart(next);
         setOpen(true);
-                const addedLine = next.lines.nodes.find((l) => l.merchandise.id === variantId);
-        if (addedLine) {
-          const unitPrice = parseFloat(addedLine.cost.totalAmount.amount) / addedLine.quantity;
-          trackAddToCart({
-            id: variantId,
-            name: addedLine.merchandise.product.title,
-            price: unitPrice,
-            quantity: qty,
-          });
-          if (typeof window !== 'undefined' && (window as any).fbq) {
-            (window as any).fbq('track', 'AddToCart', {
-              content_ids: [variantId],
-              content_type: 'product',
-              value: unitPrice * qty,
-              currency: 'INR',
-            });
-          }
-        }
+        // One GA4 add_to_cart + one Meta AddToCart, only after Shopify confirms
+        // the add. lib/analytics converts the variant GID to its numeric ID and
+        // uses the real catalogue price for Origin / Aura.
+        const addedLine = next.lines.nodes.find((l) => l.merchandise.id === variantId);
+        trackAddToCart({
+          id: variantId,
+          name: addedLine?.merchandise.product.title ?? '',
+          price: addedLine ? parseFloat(addedLine.cost.totalAmount.amount) / addedLine.quantity : 0,
+          quantity: qty,
+        });
       } catch (e) {
         setError((e as Error).message);
       } finally {

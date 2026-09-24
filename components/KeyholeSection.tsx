@@ -110,7 +110,7 @@ export default function KeyholeSection() {
       <div ref={imageLayerRef} className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset('/keyhole-bg.webp')}
+          src={asset('/keyhole-bg.webp')} width={5347} height={3565}
           alt="Keyhole Background"
           className="w-full h-[120vh] object-cover scale-110"
         />

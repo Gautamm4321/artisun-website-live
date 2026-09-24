@@ -16,6 +16,7 @@ import OriginQuestions from '@/components/origin/OriginQuestions';
 import StickyCartBar from '@/components/origin/StickyCartBar';
 import { asset } from '@/lib/asset';
 import { trackViewItem } from '@/lib/analytics';
+import { PRODUCTS } from '@/lib/tracking-config';
 
 const PANELS = 6;
 const DESKTOP_MIN_WIDTH = 1024; // matches Tailwind `lg`
@@ -28,24 +29,10 @@ export default function OriginPage() {
   const stRef = useRef<ScrollTrigger | null>(null);
   const isDesktopRef = useRef(false);
 
-    // E-commerce View Item Analytics Tracking
+    // GA4 view_item + Meta ViewContent — numeric variant ID, real price.
+  // (Shopify PRODUCT_VIEW is sent by components/analytics/RouteAnalytics.)
   useEffect(() => {
-    trackViewItem({
-      id: 'origin-spf50',
-      name: 'Origin 4-in-1 Milk Sunscreen SPF 50+ PA++++',
-      price: 1299,
-      category: 'Sunscreen',
-      variant: '50ml',
-    });
-
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'ViewContent', {
-        content_ids: ['43804935520319'],
-        content_type: 'product',
-        value: 1499,
-        currency: 'INR',
-      });
-    }
+    trackViewItem(PRODUCTS.origin);
   }, []);
 
   // cursor proxy

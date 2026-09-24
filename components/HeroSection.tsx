@@ -19,17 +19,19 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
         }}
       />
 
-      {/* 1. MOBILE MODEL CUTOUT (Below lg: Portrait cutout as per original design) */}
-      <div className="lg:hidden absolute inset-x-0 bottom-0 z-[2] flex justify-center pointer-events-none">
+      {/* 1. MOBILE HERO (below lg): full-bleed portrait product shot */}
+      <div className="lg:hidden absolute inset-0 z-[2] pointer-events-none">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset('/hero-model.webp')}
-          alt="Artisun Climate-Smart Sunscreen for Indian Skin and Weather"
+          src={asset('/hero-mobile.webp')}
+          alt="Artisun Aura pearl sunscreen SPF 40 PA++++ on a marble plinth"
+          width={1080}
+          height={1920}
           // @ts-ignore
           fetchPriority="high"
           loading="eager"
           decoding="async"
-          className="hero-model-mobile w-auto max-w-none object-contain object-bottom select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+          className="hero-mobile absolute inset-0 w-full h-full object-cover object-center select-none"
           draggable={false}
         />
       </div>
@@ -38,7 +40,7 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
       <div className="hidden lg:flex absolute inset-x-0 bottom-0 z-[2] justify-center pointer-events-none">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset('/Adjusting_head_direction_to_right_202608281524.webp')}
+          src={asset('/Adjusting_head_direction_to_right_202608281524.webp')} width={1800} height={1005}
           alt="Artisun Climate-Smart Sunscreen for Indian Cities"
           // @ts-ignore
           fetchPriority="high"
@@ -65,13 +67,6 @@ export default function HeroSection({ ready = false }: { ready?: boolean }) {
           transform: translateX(1.2%);
         }
 
-        /* Mobile full-bleed original portrait alignment */
-        .hero-model-mobile {
-          height: 92svh;
-          width: auto;  
-          max-width: none;
-          transform: translate(var(--hero-model-x, 0%), var(--hero-model-y, 0%));
-        }
       `}</style>
     </section>
   );

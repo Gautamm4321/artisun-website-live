@@ -14,7 +14,7 @@ import { asset } from '@/lib/asset';
  */
 const IMAGES = [
   asset('/Artisun Primary Logo.webp'),
-  asset('/hero-model.webp'),
+  asset('/hero-mobile.webp'),
   asset('/Adjusting_head_direction_to_right_202608281524.webp'),
   asset('/Without bg.webp'),
 ];

@@ -34,7 +34,7 @@ export default function AuraStats() {
       {/* Full-bleed background */}
       <Image
         src={asset(BG_IMAGE)}
-        alt=""
+        alt="Artisun sunscreen worn on skin"
         fill
         sizes="100vw"
         className="object-cover object-center"

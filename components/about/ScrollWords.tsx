@@ -94,7 +94,7 @@ export default function WornSection() {
       <div className="absolute inset-x-0 lg:inset-x-auto lg:left-0 bottom-0 z-10 w-full lg:w-1/2 xl:w-[54%] h-full pointer-events-none flex items-end justify-center lg:justify-start overflow-visible">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset('/Without bg.webp')}
+          src={asset('/Without bg.webp')} width={1800} height={1005}
           alt="Artisun Model"
           className="h-[58vh] xs:h-[62vh] sm:h-[75vh] md:h-[82vh] lg:h-[95vh] xl:h-[100vh] w-auto max-w-none object-contain object-bottom lg:object-left-bottom select-none -translate-x-[4%] sm:-translate-x-[8%] lg:-translate-x-[6%] xl:-translate-x-[3%] translate-y-1 sm:translate-y-0 lg:translate-y-2 drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
         />

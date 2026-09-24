@@ -28,7 +28,7 @@ export default function OriginWhy() {
       {/* Background Image: flipped horizontally on mobile */}
       <Image
         src={asset(BG_IMAGE_MOBILE)}
-        alt=""
+        alt="Origin 4-in-1 milk sunscreen SPF 50+"
         fill
         sizes="100vw"
         priority
@@ -36,7 +36,7 @@ export default function OriginWhy() {
       />
       <Image
         src={asset(BG_IMAGE_DESKTOP)}
-        alt=""
+        alt="Origin 4-in-1 milk sunscreen SPF 50+"
         fill
         sizes="100vw"
         className="object-cover object-center hidden lg:block"

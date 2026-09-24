@@ -197,7 +197,7 @@ export default function CartDrawer() {
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={asset('/cart-star.png')}
+                        src={asset('/cart-star.png')} width={1254} height={1254}
                         alt="Clean"
                         className="w-full h-full object-contain"
                       />
@@ -212,7 +212,7 @@ export default function CartDrawer() {
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={asset('/cart-rebbit.png')}
+                        src={asset('/cart-rebbit.png')} width={1278} height={1230}
                         alt="Cruelty Free"
                         className="w-full h-full object-contain"
                       />
@@ -227,7 +227,7 @@ export default function CartDrawer() {
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={asset('/cart-cream.png')}
+                        src={asset('/cart-cream.png')} width={1254} height={1254}
                         alt="Paraben Free"
                         className="w-full h-full object-contain"
                       />
@@ -242,7 +242,7 @@ export default function CartDrawer() {
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={asset('/cart-leaves.png')}
+                        src={asset('/cart-leaves.png')} width={1254} height={1254}
                         alt="Vegan"
                         className="w-full h-full object-contain"
                       />

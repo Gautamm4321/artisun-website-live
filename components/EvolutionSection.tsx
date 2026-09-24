@@ -118,7 +118,7 @@ export default function EvolutionSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset('/logo-artisun.svg')}
+          src={asset('/logo-artisun.svg')} width={964} height={800}
           alt="Artisun Monogram"
           className="w-full h-full object-contain"
         />

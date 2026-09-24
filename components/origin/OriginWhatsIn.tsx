@@ -109,21 +109,24 @@ export default function OriginWhatsIn() {
                       {item.country}
                     </span>
 
+                    {/* SEO: only the desktop layout uses <h3> for ingredient names. The mobile and
+                        tablet copies use <p> with identical classes, so they look the same but
+                        Google no longer sees each heading three times. */}
                     {/* Closed State: Ingredient Name at Bottom-Right */}
                     {!isOpen && (
                       <div className="absolute bottom-2.5 right-3 z-10 text-right max-w-[70%]">
-                        <h3 className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[13px] sm:text-[14px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
+                        <p className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[13px] sm:text-[14px] leading-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
                           {item.name}
-                        </h3>
+                        </p>
                       </div>
                     )}
 
                     {/* Opened State: Ingredient Name at Bottom-Left */}
                     {isOpen && (
                       <div className="absolute bottom-2 left-2.5 z-10 max-w-[90%] text-left">
-                        <h3 className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[11px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                        <p className="font-suisse font-semibold text-[#E8DCC8] tracking-tight text-[11px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                           {item.name}
-                        </h3>
+                        </p>
                       </div>
                     )}
 
@@ -201,9 +204,9 @@ export default function OriginWhatsIn() {
 
                   {/* Bottom Text */}
                   <div className="relative z-10 text-left">
-                    <h3 className="font-editorial text-[22px] text-[#E8DCC8] tracking-tight leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                    <p className="font-editorial text-[22px] text-[#E8DCC8] tracking-tight leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                       {item.name}
-                    </h3>
+                    </p>
                     <p className="font-suisse text-[12px] leading-[1.35] text-[#E8DCC8]/85 mt-1 line-clamp-2 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                       {item.hook}
                     </p>
@@ -240,9 +243,9 @@ export default function OriginWhatsIn() {
                       </div>
 
                       <div className="my-auto py-1">
-                        <h3 className="font-editorial text-[23px] text-[#E8DCC8] tracking-tight leading-tight">
+                        <p className="font-editorial text-[23px] text-[#E8DCC8] tracking-tight leading-tight">
                           {item.name}
-                        </h3>
+                        </p>
                         <p className="font-suisse text-[12.5px] text-[#E8DCC8] font-medium leading-[1.35] mt-1">
                           {item.hook}
                         </p>

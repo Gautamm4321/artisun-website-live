@@ -23,8 +23,9 @@ export const metadata: Metadata = {
       },
     ],
     locale: 'en_IN',
-    type: 'website',
   },
+  // og:type=product is rendered as <meta property> in the layout below,
+  // because Next's typed openGraph.type has no "product" option.
 };
 
 const productSchema = {
@@ -44,7 +45,7 @@ const productSchema = {
     '@type': 'Offer',
     url: 'https://artisunskin.com/aura',
     priceCurrency: 'INR',
-    price: '1299',
+    price: '1799',
     priceValidUntil: '2027-12-31',
     availability: 'https://schema.org/InStock',
     itemCondition: 'https://schema.org/NewCondition',
@@ -83,6 +84,11 @@ export default function AuraLayout({
 }) {
   return (
     <>
+      {/* Open Graph product tags. Rendered as <meta property> (what Facebook reads);
+          React hoists these into <head>. */}
+      <meta property="og:type" content="product" />
+      <meta property="product:price:amount" content="1799" />
+      <meta property="product:price:currency" content="INR" />
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {children}

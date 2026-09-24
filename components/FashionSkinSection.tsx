@@ -26,8 +26,8 @@ export default function FashionSkinSection() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-end justify-center leading-none w-full h-[58vh] sm:h-[65vh] md:h-[60vh] lg:h-full overflow-visible">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src="/wo bg.webp"
-                    alt=""
+                    src="/wo bg.webp" width={1800} height={1005}
+                    alt="Model wearing Artisun sunscreen"
                     className="h-[50vh] xs:h-[53vh] sm:h-[64vh] md:h-[58vh] lg:h-[90vh] max-w-none w-auto object-contain object-bottom block align-bottom select-none scale-[1.18] xs:scale-[1.22] sm:scale-100 origin-bottom -translate-x-[5%] sm:-translate-x-[8%] md:translate-x-[1%] lg:translate-x-0 translate-y-0"
                 />
             </div>
@@ -78,7 +78,7 @@ export default function FashionSkinSection() {
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src="/Artisun Primary Logo.webp"
+                    src="/Artisun Primary Logo.webp" width={1800} height={411}
                     alt=""
                     className="w-full h-auto object-contain opacity-95 drop-shadow-[0_10px_35px_rgba(0,0,0,0.3)]"
                     draggable={false}

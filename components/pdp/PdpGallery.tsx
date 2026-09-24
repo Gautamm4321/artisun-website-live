@@ -184,7 +184,7 @@ export default function PdpGallery({
           >
             <Image
               src={asset(isVideo(src) && videoPoster ? videoPoster : src)}
-              alt=""
+              alt={`${alt}, image ${i + 1}`}
               fill
               sizes="52px"
               className="object-cover"

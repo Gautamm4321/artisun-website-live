@@ -19,6 +19,7 @@ import AuraQuestions from '@/components/aura/AuraQuestions';
 import AuraStickyCartBar from '@/components/aura/AuraStickyCartBar';
 import { asset } from '@/lib/asset';
 import { trackViewItem } from '@/lib/analytics';
+import { PRODUCTS } from '@/lib/tracking-config';
 
 const PANELS = 8;
 
@@ -29,24 +30,10 @@ export default function AuraPage() {
   const lenisRef = useRef<Lenis | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
 
-    // E-commerce View Item Analytics Tracking
+    // GA4 view_item + Meta ViewContent — numeric variant ID, real price.
+  // (Shopify PRODUCT_VIEW is sent by components/analytics/RouteAnalytics.)
   useEffect(() => {
-    trackViewItem({
-      id: 'aura-spf40',
-      name: 'Aura Pearl Sunscreen SPF 40 PA++++',
-      price: 1299,
-      category: 'Sunscreen',
-      variant: '50ml',
-    });
-
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'ViewContent', {
-        content_ids: ['43804935553087'],
-        content_type: 'product',
-        value: 1799,
-        currency: 'INR',
-      });
-    }
+    trackViewItem(PRODUCTS.aura);
   }, []);
 
   useEffect(() => {
