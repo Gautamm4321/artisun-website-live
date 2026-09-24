@@ -22,7 +22,7 @@ export default function PrivacyPage() {
   }, []);
 
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden">
+    <main className="relative w-full min-h-screen overflow-x-clip">
       {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
           iOS treats position:fixed elements inside a touch scroll container
           as absolute, so inside the frame it would scroll away. */}

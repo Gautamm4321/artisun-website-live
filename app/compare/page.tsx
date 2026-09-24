@@ -8,7 +8,7 @@ import Collection from '@/components/collection/Collection';
 
 export default function ComparePage() {
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
+    <main className="relative w-full min-h-screen overflow-x-clip selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
       <ScrollProgressBar />
       <CustomCursor mouseProxy={{ current: { px: 0, py: 0 } }} />
       <GlobalHeader />

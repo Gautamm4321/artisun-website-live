@@ -22,7 +22,7 @@ export default function CollectionPage() {
   }, []);
 
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
+    <main className="relative w-full min-h-screen overflow-x-clip selection:bg-[#A52A2C] selection:text-[#F3ECE0]">
       {/* Red Eclipse background — kept OUTSIDE the mobile scroll frame:
           iOS treats position:fixed elements inside a touch scroll container
           as absolute, so inside the frame it would scroll away. */}

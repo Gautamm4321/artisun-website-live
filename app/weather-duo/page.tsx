@@ -20,7 +20,7 @@ export default function WeatherDuoPage() {
   }, []);
 
   return (
-    <main className="relative w-full min-h-screen text-[var(--brand-cream)] font-suisse antialiased overflow-x-hidden">
+    <main className="relative w-full min-h-screen text-[var(--brand-cream)] font-suisse antialiased overflow-x-clip">
       {/* Mood Red Eclipse Background */}
       <div
         className="fixed inset-0 pointer-events-none -z-20 theme-red-eclipse"
