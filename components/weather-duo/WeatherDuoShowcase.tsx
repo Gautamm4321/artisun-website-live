@@ -10,6 +10,7 @@ import { asset } from '@/lib/asset';
 
 const GALLERY_IMAGES = [
   { id: 1, label: 'Both angled', src: '/Bundle image 1 (1).png' },
+  { id: 2, label: 'Pearls close', src: '/IMG_2805.PNG' },
   { id: 2, label: 'Pearls close', src: '/Bundle image 2.png' },
   { id: 3, label: 'Emulsion texture', src: '/Bundle image 3.jpg' },
   { id: 4, label: 'On skin', src: '/Bundle image 4.png' },
@@ -19,6 +20,7 @@ const GALLERY_IMAGES = [
 
 export default function WeatherDuoShowcase() {
   const [selectedImg, setSelectedImg] = useState<string>(GALLERY_IMAGES[0].src);
+  const touchStartX = useRef<number | null>(null);
 
   // ── Horizontal Scroll Refs for Desktop ──
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
@@ -86,7 +88,31 @@ export default function WeatherDuoShowcase() {
 
               {/* Left: Gallery */}
               <div className="flex flex-col gap-2.5 w-full lg:max-w-[600px] xl:max-w-[850px] mx-auto">
-                <div className="relative w-full aspect-square max-h-[54svh] lg:max-h-[66vh] rounded-[14px] overflow-hidden bg-black/40 border border-white/15 shadow-2xl backdrop-blur-sm group">
+                <div 
+                  onTouchStart={(e) => {
+                    touchStartX.current = e.touches[0].clientX;
+                  }}
+                  onTouchEnd={(e) => {
+                    if (touchStartX.current === null) return;
+                    const diff = touchStartX.current - e.changedTouches[0].clientX;
+                    const threshold = 40; // minimum swipe distance (px)
+
+                    if (Math.abs(diff) > threshold) {
+                      const cur = GALLERY_IMAGES.findIndex((img) => img.src === selectedImg);
+                      if (diff > 0) {
+                        // Swipe Left -> Agli image
+                        const next = (cur + 1) % GALLERY_IMAGES.length;
+                        setSelectedImg(GALLERY_IMAGES[next].src);
+                      } else {
+                        // Swipe Right -> Pichli image
+                        const prev = (cur - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
+                        setSelectedImg(GALLERY_IMAGES[prev].src);
+                      }
+                    }
+                    touchStartX.current = null;
+                  }}
+                  className="relative w-full aspect-square max-h-[54svh] lg:max-h-[66vh] rounded-[14px] overflow-hidden bg-black/40 border border-white/15 shadow-2xl backdrop-blur-sm group touch-pan-y"
+                >
                   <Image
                     src={asset(selectedImg)}
                     alt="The Weather Duo - Origin + Aura"
@@ -147,46 +173,53 @@ export default function WeatherDuoShowcase() {
                 </div>
               </div>
 
-              {/* Right: Editorial Details */}
-              <div className="flex flex-col gap-4 text-left">
-                <span className="text-[11px] tracking-[0.24em] uppercase text-[#E8DCC8]/75 font-medium">
-                  Origin &amp; Aura
-                </span>
+              {/* Right: Product Editorial Details (Reference Order: Pills -> Heading -> Subheading -> Price + Button) */}
+          <div className="flex flex-col gap-3.5 text-left max-w-[520px]">
+            {/* 1. Rounded Pills */}
+            <div className="flex flex-wrap gap-2">
+              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
+              ORIGIN + AURA    
+              </span>
+              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
+              SUN · RAIN · SMOG    
+              </span>
+              <span className="border border-white/20 rounded-full px-3.5 py-1 text-[11.5px] tracking-[0.06em] uppercase bg-white/[0.04] text-[#F3ECE0]/90 font-medium">
+               50ML + 50GM
+              </span>
+            </div>
 
-                <h1 className="font-editorial text-[clamp(32px,4.5vw,48px)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0]">
-                  The Layers.
-                </h1>
+            {/* 2. Main Heading */}
+            <h1 className="font-editorial text-[clamp(32px,4.2vw,48px)] leading-[1.05] tracking-tight font-normal text-[#F3ECE0]">
+              The weather duo
+            </h1>
 
-                <div className="flex flex-wrap gap-2.5 my-1">
-                  <span className="border border-white/20 rounded-full px-4 py-1.5 text-[12.5px] tracking-[0.04em] bg-white/[0.05] text-[#F3ECE0]/90">
-                    SUN · RAIN · SMOG
-                  </span>
-                  <span className="border border-white/20 rounded-full px-4 py-1.5 text-[12.5px] tracking-[0.04em] bg-white/[0.05] text-[#F3ECE0]/90">
-                    50ML + 50GM
-                  </span>
-                </div>
+            {/* 3. Subheadings & Narrative Copy */}
+            <div className="space-y-2">
+              <p className="text-[16px] sm:text-[17px] font-medium text-[#F3ECE0] leading-snug">
+                Sun, rain and smog don&apos;t ask for the same thing.
+              </p>
+              <p className="text-[14px] sm:text-[14.5px] leading-relaxed text-[#F3ECE0]/85 font-light">
+                Origin is the milk emulsion for the dry months: high sun, AC indoors, and the smog that settles on skin by November. Aura is the pearl for the wet ones, when the air is thick and anything heavier slides off by noon. Sun, rain, smog. Keep both and you&apos;re dressed for all three.
+              </p>
+            </div>
 
-                <p className="text-[17px] font-medium text-[#F3ECE0] leading-snug">
-                  Sun, rain and smog don&apos;t ask for the same thing.
-                </p>
-
-                <p className="text-[15.5px] leading-relaxed text-[#F3ECE0]/85 font-light">
-                  Origin is the milk emulsion for the dry months: high sun, AC indoors, and the smog that settles on skin by November. Aura is the pearl for the wet ones, when the air is thick and anything heavier slides off by noon. Sun, rain, smog. Keep both and you&apos;re dressed for all three.
-                </p>
-
-                <div className="flex items-baseline gap-3 pt-2">
-                  <b className="font-editorial text-[30px] font-normal text-[#F3ECE0]">₹3,298</b>
-                  <span className="text-[13.5px] text-[#F3ECE0]/70 font-light">
-                    ₹1,499 + ₹1,799 · both full size
-                  </span>
-                </div>
-              </div>
+            {/* 4. Price & Add to Bag Button Row (Origin Hero Match) */}
+            <div className="flex items-center gap-3 sm:gap-4 pt-3">
+              <span className="font-editorial text-[var(--brand-cream)] text-[22px] sm:text-[26px] leading-none">
+                ₹3,298
+              </span>
+              <AddToBagButton
+                product="duo-bundle"
+                className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
+              />
+            </div>
+          </div>
 
             </div>
           </section>
 
           {/* ── 2. FRAME 2: WHY BOTH & DUAL CARDS ── */}
-          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-24 pb-16 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12 border-b lg:border-b-0 lg:border-r border-white/10 select-none">
+          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-24 pb-10 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12 select-none">
             <div className="max-w-[1360px] w-full mx-auto flex flex-col justify-center my-auto">
               
               <div className="space-y-1.5 w-full text-left">
@@ -204,86 +237,106 @@ export default function WeatherDuoShowcase() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mt-5 lg:mt-6 w-full">
-                {/* Card 1: Origin */}
-                <article className="border border-white/15 rounded-[16px] overflow-hidden bg-black/40 backdrop-blur-md shadow-xl hover:border-white/25 transition-all flex flex-col">
-                  <Link href="/origin" className="relative w-full aspect-[16/8.2] max-h-[145px] sm:max-h-[165px] lg:max-h-[185px] bg-[#1a0504] block cursor-pointer group overflow-hidden">
-                    <Image
-                      src={asset('/origin-shop-1.jpg')}
-                      alt="Origin Dry Heat"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                  </Link>
-                  <div className="p-3.5 sm:p-4 lg:p-4.5 flex flex-col gap-1 flex-1 justify-between text-left">
-                    <div>
-                      <span className="text-[9.5px] sm:text-[10px] tracking-[0.18em] uppercase text-[#E8DCC8]/75 font-medium">
-                        Dry heat · air conditioning · smog days
-                      </span>
-                      <h3 className="font-editorial text-lg sm:text-xl lg:text-[22px] text-[#F3ECE0] mt-0.5">
-                        Origin
-                      </h3>
-                      <p className="text-[12px] sm:text-[13px] lg:text-[13.5px] leading-relaxed text-[#F3ECE0]/80 font-light mt-0.5">
-                        A milk emulsion doing four jobs: serum, moisturiser, sunscreen, primer. Goes on first, on clean skin, alone or under makeup.
-                      </p>
+                {/* ── COLUMN 1: ORIGIN ── */}
+                <div className="flex flex-col gap-3">
+                  <article className="border border-white/15 rounded-[16px] overflow-hidden bg-black/40 backdrop-blur-md shadow-xl hover:border-white/25 transition-all flex flex-col">
+                    <Link href="/origin" className="relative w-full aspect-[16/8.2] max-h-[145px] sm:max-h-[165px] lg:max-h-[185px] bg-[#1a0504] block cursor-pointer group overflow-hidden">
+                      <Image
+                        src={asset('/origion 1920x1080.png')}
+                        alt="Origin Dry Heat"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </Link>
+                    <div className="p-3.5 sm:p-4 lg:p-4.5 flex flex-col gap-1 flex-1 justify-between text-left">
+                      <div>
+                        <span className="text-[9.5px] sm:text-[10px] tracking-[0.18em] uppercase text-[#E8DCC8]/75 font-medium">
+                          Dry heat · air conditioning · smog days
+                        </span>
+                        <h3 className="font-editorial text-lg sm:text-xl lg:text-[22px] text-[#F3ECE0] mt-0.5">
+                          Origin
+                        </h3>
+                        <p className="text-[12px] sm:text-[13px] lg:text-[13.5px] leading-relaxed text-[#F3ECE0]/80 font-light mt-0.5">
+                          A milk emulsion doing four jobs: serum, moisturiser, sunscreen, primer. Goes on first, on clean skin, alone or under makeup.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mt-2 pt-1 border-t border-white/10">
+                        <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
+                          Pollution defence
+                        </span>
+                        <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
+                          Barrier repair
+                        </span>
+                        <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
+                          Sits under makeup
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-1.5 mt-2 pt-1 border-t border-white/10">
-                      <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
-                        Pollution defence
-                      </span>
-                      <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
-                        Barrier repair
-                      </span>
-                      <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
-                        Sits under makeup
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                  </article>
 
-                {/* Card 2: Aura */}
-                <article className="border border-white/15 rounded-[16px] overflow-hidden bg-black/40 backdrop-blur-md shadow-xl hover:border-white/25 transition-all flex flex-col">
-                  <Link href="/aura" className="relative w-full aspect-[16/8.2] max-h-[145px] sm:max-h-[165px] lg:max-h-[185px] bg-[#1a0504] block cursor-pointer group overflow-hidden">
-                    <Image
-                      src={asset('/aura-coll-1.jpg')}
-                      alt="Aura Pearl Humid Day"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
+                  {/* ── ORIGIN: OUTSIDE BOX LINK (Unified Font & Color) ── */}
+                  <Link
+                    href="/origin"
+                    className="block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                  >
+                    Origin, in full · 4-in-1 Milk Emulsion SPF 50+ · PA++++
                   </Link>
-                  <div className="p-3.5 sm:p-4 lg:p-4.5 flex flex-col gap-1 flex-1 justify-between text-left">
-                    <div>
-                      <span className="text-[9.5px] sm:text-[10px] tracking-[0.18em] uppercase text-[#E8DCC8]/75 font-medium">
-                        Dual hydration · humidity
-                      </span>
-                      <h3 className="font-editorial text-lg sm:text-xl lg:text-[22px] text-[#F3ECE0] mt-0.5">
-                        Aura Pearl
-                      </h3>
-                      <p className="text-[12px] sm:text-[13px] lg:text-[13.5px] leading-relaxed text-[#F3ECE0]/80 font-light mt-0.5">
-                        Pearls you can see and count, held in a barrier-repairing gel. They break on skin, sink in, and leave nothing behind.
-                      </p>
+                </div>
+
+                {/* ── COLUMN 2: AURA ── */}
+                <div className="flex flex-col gap-3">
+                  <article className="border border-white/15 rounded-[16px] overflow-hidden bg-black/40 backdrop-blur-md shadow-xl hover:border-white/25 transition-all flex flex-col">
+                    <Link href="/aura" className="relative w-full aspect-[16/8.2] max-h-[145px] sm:max-h-[165px] lg:max-h-[185px] bg-[#1a0504] block cursor-pointer group overflow-hidden">
+                      <Image
+                        src={asset('/aura 1920x1080 size.png')}
+                        alt="Aura Pearl Humid Day"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </Link>
+                    <div className="p-3.5 sm:p-4 lg:p-4.5 flex flex-col gap-1 flex-1 justify-between text-left">
+                      <div>
+                        <span className="text-[9.5px] sm:text-[10px] tracking-[0.18em] uppercase text-[#E8DCC8]/75 font-medium">
+                          Dual hydration · humidity
+                        </span>
+                        <h3 className="font-editorial text-lg sm:text-xl lg:text-[22px] text-[#F3ECE0] mt-0.5">
+                          Aura Pearl
+                        </h3>
+                        <p className="text-[12px] sm:text-[13px] lg:text-[13.5px] leading-relaxed text-[#F3ECE0]/80 font-light mt-0.5">
+                          Pearls you can see and count, held in a barrier-repairing gel. They break on skin, sink in, and leave nothing behind.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mt-2 pt-1 border-t border-white/10">
+                        <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
+                          Humidity defence
+                        </span>
+                        <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
+                          Calms &amp; repairs
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-1.5 mt-2 pt-1 border-t border-white/10">
-                      <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
-                        Humidity defence
-                      </span>
-                      <span className="border border-white/20 rounded-full px-2.5 py-0.5 text-[10.5px] text-[#F3ECE0]/90 bg-white/[0.04]">
-                        Calms &amp; repairs
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+
+                  {/* ── AURA: OUTSIDE BOX LINK (Unified Font & Color) ── */}
+                  <Link
+                    href="/aura"
+                    className="block text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide"
+                  >
+                    Aura, in full · Pearl Skinwear SPF 40 · PA++++
+                  </Link>
+                </div>
               </div>
 
             </div>
           </section>
 
-          {/* ── 3. FRAME 3: LINKS & FAQ ── */}
-          <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center py-10 lg:py-0 px-5 sm:px-8 lg:px-14 border-b lg:border-b-0 border-white/10 lg:overflow-hidden select-none">
+          {/* ── 3. FRAME 3: LINKS & FAQ (Mobile only, Desktop hidden) ── */}
+          <section className="lg:hidden relative z-10 w-full flex items-center justify-center pt-2 pb-10 px-5 sm:px-8 select-none">
             <div className="max-w-[880px] w-full mx-auto flex flex-col justify-center">
 
-              <div className="border-t border-b border-white/20 divide-y divide-white/20 w-full">
+              <div className="border-b border-white/20 divide-y divide-white/20 w-full">
                 <Link
                   href="/origin"
                   className="flex items-center justify-between py-4 sm:py-5 text-base sm:text-lg lg:text-[19px] font-editorial text-[#F3ECE0] hover:text-[#E8DCC8] transition-colors group"
@@ -320,30 +373,42 @@ export default function WeatherDuoShowcase() {
         </div>
       </div>
 
-      {/* ── STICKY BOTTOM BAR ── */}
-      <div className="fixed left-0 right-0 bottom-0 z-40 flex items-center justify-between gap-2 bg-[#180307]/95 backdrop-blur-md border-t border-white/10 px-4 sm:px-8 py-1.5 sm:py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center gap-2.5">
-          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-[5px] overflow-hidden border border-white/15 flex-shrink-0 bg-[#2a0e0b]">
-            <Image
-              src={asset('/Collection page right.png')}
-              alt="The Layers"
-              fill
-              className="object-cover"
+      {/* ── STICKY BOTTOM BAR (Origin Transparent Style Match) ── */}
+      <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] bg-black/20 backdrop-blur-md border-t border-white/10 pointer-events-auto transition-all">
+        <div className="h-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
+          
+          {/* Left: Compact Thumb + Title + Subtitle */}
+          <div className="flex items-center gap-3">
+            <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden shrink-0 border border-white/15">
+              <Image
+                src={asset('/Collection page right.png')}
+                alt="Weather Duo"
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-editorial text-[var(--brand-cream)] text-sm sm:text-base leading-none tracking-wide whitespace-nowrap">
+                WEATHER DUO
+              </span>
+              <span className="hidden md:inline font-suisse text-[10px] text-[var(--brand-cream)]/50 tracking-[0.14em] uppercase">
+                · Origin (50ml) + Aura (50g)
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Sleek Price + Clean Minimal Button */}
+          <div className="flex items-center gap-3 sm:gap-5">
+            <span className="font-editorial text-[var(--brand-cream)] text-sm sm:text-base whitespace-nowrap">
+              ₹3,298
+            </span>
+            <AddToBagButton
+              product="duo-bundle"
+              className="font-suisse text-[10px] sm:text-[11px] uppercase tracking-[0.14em] px-4 sm:px-5 py-1.5 bg-[var(--brand-cream)] text-[var(--brand-dark,#1a1a1a)] font-medium hover:bg-white transition-colors"
             />
           </div>
-          <span className="font-editorial text-[13.5px] sm:text-[15px] tracking-wide text-[#F3ECE0] whitespace-nowrap">
-            WETHER DUO
-          </span>
-        </div>
 
-        <div className="flex items-center gap-3 sm:gap-5">
-          <span className="font-editorial text-[15px] sm:text-[17px] text-[#F3ECE0] font-normal whitespace-nowrap">
-            ₹3,298
-          </span>
-          <AddToBagButton
-            product="origin"
-            className="!bg-[#E6D5C1] !text-[#A52A2C] hover:!bg-[#FAF6EE] text-[10.5px] sm:text-[11px] uppercase tracking-wider font-semibold px-3 sm:px-4 py-1.5 rounded-none"
-          />
         </div>
       </div>
     </>

@@ -88,13 +88,13 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
           {/* ── CONTENT: right on desktop & tablet / bottom on mobile ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] md:max-w-none lg:max-w-[540px] gap-2 md:gap-3.5 lg:gap-2.5 py-0">
             {/* Visual Breadcrumb Navigation */}
-            {/* <Breadcrumbs
+            <Breadcrumbs
               items={[
                 { label: 'Home', href: '/' },
                 { label: 'Products', href: '/collection' },
                 { label: 'Aura' },
               ]}
-            /> */}
+            />
 
             {/* Outlined tag pills */}
             <TagPills tags={BADGES} className="mb-0" />

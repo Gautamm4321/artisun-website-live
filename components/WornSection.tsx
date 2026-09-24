@@ -105,7 +105,7 @@ export default function WornSection() {
       className="relative z-20 w-full max-w-full lg:max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] ml-auto flex flex-col items-start text-left lg:items-end lg:text-right pt-0 sm:pt-4 lg:pt-0 -translate-y-12 xs:-translate-y-14 sm:-translate-y-10 lg:-translate-y-4 xl:-translate-y-6"
       >
         {/* Main Headline */}
-        <h2 className="font-editorial text-[var(--brand-cream,#f5f0eb)] text-[31px] xs:text-[35px] sm:text-[43px] md:text-[46px] lg:text-[42px] xl:text-[46px] leading-[1.15] lg:leading-[1.04] tracking-tight font-normal drop-shadow-md w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[560px] lg:max-w-[580px] xl:max-w-[640px]">
+        <h2 className="font-editorial text-[var(--brand-cream,#f5f0eb)] text-[31px] xs:text-[35px] sm:text-[43px] md:text-[46px] lg:text-[42px] xl:text-[46px] leading-[1.25] lg:leading-[1.04] tracking-tight font-normal drop-shadow-md w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[560px] lg:max-w-[580px] xl:max-w-[640px]">
           {/* Mobile & Tablet: Exact 3 Lines */}
           <span className="block lg:hidden">
             Most sunscreens are made<br />
@@ -122,7 +122,7 @@ export default function WornSection() {
         </h2>
 
         {/* Sub-Description */}
-        <p className="font-suisse text-[var(--brand-cream,#f5f0eb)]/90 text-[16px] xs:text-[17px] sm:text-[19px] lg:text-[18px] xl:text-[20px] 2xl:text-[21px] leading-[1.32] sm:leading-[1.45] font-normal mt-5 xs:mt-6 sm:mt-5 lg:mt-7 w-full max-w-[300px] xs:max-w-[330px] sm:max-w-[480px] lg:max-w-[480px] drop-shadow-sm">
+        <p className="font-suisse text-[var(--brand-cream,#f5f0eb)]/90 text-[16px] xs:text-[17px] sm:text-[19px] lg:text-[18px] xl:text-[20px] 2xl:text-[21px] leading-[1.32] sm:leading-[1.45] font-normal mt-3 xs:mt-3.5 sm:mt-5 lg:mt-7 w-full max-w-[300px] xs:max-w-[330px] sm:max-w-[480px] lg:max-w-[480px] drop-shadow-sm">
           Light, invisible, and built for Indian cities.
         </p>
       </div>

@@ -254,7 +254,7 @@ export default function Collection({
                 return (
                   <div
                     key={prod.id}
-                    className={`group relative flex flex-col justify-between bg-[#E6D5C1] border border-[#242623]/10 rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
+                    className={`group relative flex flex-col justify-between bg-[#E6D5C1] border border-[#242623]/10 rounded-none overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ${
                       isCombo ? 'col-span-2 md:col-span-1' : 'col-span-1'
                     }`}
                   >
@@ -306,21 +306,22 @@ export default function Collection({
                       </Link>
                     </div>
 
-                    {/* Content Details - tightened padding & line gaps */}
-                    <div className="p-2.5 sm:p-6 flex flex-col flex-1 justify-between">
-                      <div className="space-y-0.5 sm:space-y-2">
+                    {/* Content Details - Poora beige area clickable link ban gaya */}
+                    <div className="relative flex flex-col flex-1 justify-between p-2.5 sm:p-6 cursor-pointer">
+                      
+                      {/* Full-box Background Link: Beige part par kahin bhi click karne se page khulega */}
+                      <Link
+                        href={targetHref}
+                        className="absolute inset-0 z-0 block"
+                        aria-label={`View ${prod.name}`}
+                      />
+
+                      {/* Text details (pointer-events-none taaki direct link trigger ho) */}
+                      <div className="space-y-0.5 sm:space-y-2 relative z-10 pointer-events-none">
                         <div className="flex items-baseline justify-between gap-1">
-                          {isCombo ? (
-                            <Link href="/weather-duo" className="hover:opacity-80 transition-opacity">
-                              <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
-                                {prod.name}
-                              </h3>
-                            </Link>
-                          ) : (
-                            <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
-                              {prod.name}
-                            </h3>
-                          )}
+                          <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
+                            {prod.name}
+                          </h3>
                           <span className="font-suisse text-[9px] sm:text-xs text-[#242623]/60 shrink-0">
                             {prod.size}
                           </span>
@@ -339,19 +340,26 @@ export default function Collection({
                         </p>
                       </div>
 
-                      {/* Price & CTA Button - trimmed mobile margins */}
-                      <div className="pt-2 sm:pt-6 mt-2 sm:mt-6 border-t border-[#242623]/10 flex items-center justify-between gap-1.5 sm:gap-3">
-                        <div>
+                      {/* Price & CTA Button Area */}
+                      <div className="pt-2 sm:pt-6 mt-2 sm:mt-6 border-t border-[#242623]/10 flex items-center justify-between gap-1.5 sm:gap-3 relative z-10">
+                        <div className="pointer-events-none">
                           <span className="font-editorial text-sm sm:text-xl text-[#242623] font-semibold">
                             {prod.price}
                           </span>
                         </div>
 
-                        <AddToBagButton
-                          product={prod.id === 'origin' ? 'origin' : 'aura'}
-                          className="pointer-events-auto font-suisse text-[8.5px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-5 py-1.5 sm:py-2.5 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-none"
-                        />
+                        {/* Button click par stopPropagation lagega taaki page redirect na ho, sirf bag mein add ho */}
+                        <div
+                          className="relative z-20"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <AddToBagButton
+                            product={prod.id === 'origin' ? 'origin' : prod.id === 'aura' ? 'aura' : 'duo-bundle'}
+                            className="pointer-events-auto font-suisse text-[8.5px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-5 py-1.5 sm:py-2.5 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-none"
+                          />
+                        </div>
                       </div>
+
                     </div>
                   </div>
                 );
@@ -374,7 +382,7 @@ export default function Collection({
                 {[...REVIEWS, ...REVIEWS].map((rev, idx) => (
                   <div
                     key={idx}
-                    className="w-[280px] sm:w-[340px] shrink-0 p-6 rounded-2xl bg-[#E6D5C1] backdrop-blur-md border border-[#242623]/10 shadow-sm flex flex-col justify-between"
+                    className="w-[280px] sm:w-[340px] shrink-0 p-6 rounded-2xl bg-[#E6D5C1] border border-[#242623]/10 shadow-sm flex flex-col justify-between transform-gpu"
                   >
                     <p className="font-editorial text-base sm:text-lg leading-snug text-[#242623]">
                       &ldquo;{rev.quote}&rdquo;
@@ -445,25 +453,29 @@ export default function Collection({
       <style jsx>{`
         @keyframes carousel {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
           }
         }
         @keyframes badgesTicker {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-33.333%);
+            transform: translate3d(-33.333%, 0, 0);
           }
         }
         .animate-carousel {
-          animation: carousel 38s linear infinite;
+          animation: carousel 42s linear infinite;
+          will-change: transform;
+          transform: translateZ(0);
         }
         .animate-badges-ticker {
-          animation: badgesTicker 28s linear infinite;
+          animation: badgesTicker 32s linear infinite;
+          will-change: transform;
+          transform: translateZ(0);
         }
       `}</style>
     </div>

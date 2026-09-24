@@ -21,6 +21,7 @@ interface WeatherData {
 
 interface BandDetails {
   readLine: string;
+  nightReadLine: string; // shown when Open-Meteo is_day === 0
   originPumps: string;
   auraPearls: string;
   reapplyLine: string;
@@ -36,6 +37,7 @@ interface BandVisual {
 const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   HUMID_HEAT: {
     readLine: 'Sticky and hot out. You want light, not layers, today.',
+    nightReadLine: "Warm and sticky tonight. Keep tomorrow's layer light.",
     originPumps: '2 pumps — one light layer, sweat-proof and breathable',
     auraPearls: '2 pearls - light and fresh, melts right in',
     reapplyLine: 'Top up every 2 hours - the sweat eats it faster today.',
@@ -43,6 +45,7 @@ const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   },
   DRY_HEAT: {
     readLine: 'Dry heat and strong sun. Your skin will drink this up.',
+    nightReadLine: 'Hot, dry night. Your skin will want this first thing tomorrow.',
     originPumps: '3 pumps — extra coverage for strong, dry sun',
     auraPearls: '2 pearls - and Origin underneath if you want the extra moisture',
     reapplyLine: 'Reapply every 2 hours - high sun, low mercy.',
@@ -50,6 +53,7 @@ const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   },
   HIGH_SUN: {
     readLine: "Bright out. The UV is doing the most today, even if it doesn't feel like it.",
+    nightReadLine: "Sun's down, but today's UV ran high. Plan for it again tomorrow.",
     originPumps: '3 pumps — build it up when the UV is high',
     auraPearls: '2 pearls - even, light coverage',
     reapplyLine: "This is a reapply day — every 2 hours if you're out.",
@@ -57,6 +61,7 @@ const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   },
   COLD: {
     readLine: 'Cold and dry. Your skin wants a little more today.',
+    nightReadLine: 'Cold and dry tonight. Your skin wants a little more tomorrow.',
     originPumps: '3 pumps — a richer layer for dry, cold skin',
     auraPearls: '3 pearls - more nourishment for the dry cold',
     reapplyLine: "Every 3 hours is fine - the sun's gentler now.",
@@ -64,6 +69,7 @@ const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   },
   WET: {
     readLine: 'Damp and humid. A little goes a long way right now.',
+    nightReadLine: 'Damp and humid tonight. A little goes a long way tomorrow.',
     originPumps: '2 pumps — light, and it holds through the damp',
     auraPearls: '1-2 pearls - light, and it holds through the damp',
     reapplyLine: 'After you get caught in the rain, or every 2-3 hours out.',
@@ -71,6 +77,7 @@ const BAND_CONFIGS: Record<WeatherBand, BandDetails> = {
   },
   MILD: {
     readLine: "Easy weather today but the sun's still on. Don't skip it.",
+    nightReadLine: "Easy evening out. The sun's back tomorrow, so don't skip it.",
     originPumps: '2 pumps — your everyday layer',
     auraPearls: '2 pearls - your everyday amount',
     reapplyLine: "Every 2-3 hours if you're out for long.",
@@ -91,7 +98,7 @@ const BAND_VISUALS: Record<WeatherBand, BandVisual> = {
 const GEO_FAIL_DEFAULTS = {
   readLine: 'Built for skin, built for weather — wherever you are.',
   originPumps: '2 pumps — your everyday layer',
-  auraPearls: '2 pearls - "your everyday amount"',
+  auraPearls: '2 pearls - your everyday amount',
   reapplyLine: 'Every 2-3 hours if you\'re out for long.',
   leadProduct: 'Aura' as const,
 };
@@ -163,17 +170,22 @@ export default function ClimateHero() {
         // Step 1 — Classify. Classification always uses today's PEAK UV
         // (per spec: "shows peak, not 0 at night" — the band logic shouldn't
         // flip to a lower band just because it's dark out).
-        let band: WeatherBand = 'MILD';
+        // MILD is only for genuinely mild days (16–29°C, UV < 8, not wet).
+        // Previously hot-but-not-extreme days (e.g. 35°C / 45%) and high-UV
+        // days with humidity ≥ 55 fell through the gaps into MILD.
+        let band: WeatherBand;
         if (precip || humidity >= 80) {
           band = 'WET';
         } else if (temp <= 15) {
           band = 'COLD';
-        } else if (temp >= 38 && humidity < 40) {
-          band = 'DRY_HEAT';
         } else if (temp >= 30 && humidity >= 55) {
           band = 'HUMID_HEAT';
-        } else if (peakUV >= 8 && humidity < 55) {
-          band = 'HIGH_SUN';
+        } else if (temp >= 33) {
+          band = 'DRY_HEAT'; // hot and humidity < 55
+        } else if (peakUV >= 8 || temp >= 30) {
+          band = 'HIGH_SUN'; // strong UV, or warm (30–32°C) and fairly dry
+        } else {
+          band = 'MILD';
         }
 
         setWeather({ city: city as string, temp, humidity, currentUV, peakUV, isDay, precip, band });
@@ -200,9 +212,12 @@ export default function ClimateHero() {
     fetchLocationAndWeather();
   }, []);
 
-  const currentBand = weather?.band || 'MILD';
-  const bandConfig = geoError ? null : BAND_CONFIGS[currentBand];
-  const bandVisual = geoError ? BAND_VISUALS.MILD : BAND_VISUALS[currentBand];
+  // Only trust the band once real weather data is in. While loading, or if
+  // the weather API failed, there is no band — never default to MILD copy.
+  const hasWeather = !loading && !geoError && !weatherError && weather !== null;
+  const currentBand: WeatherBand | null = hasWeather ? weather.band : null;
+  const bandConfig = currentBand ? BAND_CONFIGS[currentBand] : null;
+  const bandVisual = BAND_VISUALS[currentBand ?? 'MILD'];
 
   const animatedTemp = useCountUp(!loading && !geoError && !weatherError ? weather?.temp ?? null : null, 1.2);
 
@@ -220,9 +235,15 @@ export default function ClimateHero() {
   else if (weatherError) heading = "Sun care built for your weather, whatever it's doing today";
 
   // ── Content used for read-line / doses / reapply / lead product ──
-  const activeConfig = geoError
-    ? GEO_FAIL_DEFAULTS
-    : bandConfig ?? GEO_FAIL_DEFAULTS;
+  // No band (loading / geo failed / weather failed) → neutral defaults.
+  const activeConfig = bandConfig ?? GEO_FAIL_DEFAULTS;
+
+  // Read-line: placeholder while loading, night copy after dark.
+  let readLine: string = activeConfig.readLine;
+  if (loading) readLine = 'Checking the sky where you are…';
+  else if (bandConfig && !isDay) readLine = bandConfig.nightReadLine;
+
+  const wearWhen = bandConfig && !isDay ? 'tomorrow' : 'today';
 
   return (
     <section
@@ -307,10 +328,10 @@ export default function ClimateHero() {
         className="text-center max-w-[720px] mb-6 px-4 font-sans leading-relaxed tracking-wide space-y-1"
       >
         <p className="text-lg md:text-xl font-normal opacity-95 italic">
-          {activeConfig.readLine}
+          {readLine}
         </p>
         <p className="text-sm md:text-base opacity-80 font-light">
-          Here&rsquo;s what your skin can wear today:
+          Here&rsquo;s what your skin can wear {wearWhen}:
         </p>
       </motion.div>
 
