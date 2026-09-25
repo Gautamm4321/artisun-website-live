@@ -31,23 +31,68 @@ const nextConfig = {
       {
         source: '/shop',
         destination: '/collection',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/collections/all',
         destination: '/collection',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/privacypolicy',
         destination: '/privacy',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/shipping',
         destination: '/shipping-returns',
-        permanent: true,
+        statusCode: 301,
       },
+
+      // ── Old Shopify storefront URLs → new site ─────────────────────────────
+      // statusCode 301 (not `permanent: true`, which makes Next send 308).
+      // Order matters: specific rules first, catch-alls last.
+
+      // Products
+      { source: '/products/origin', destination: '/origin', statusCode: 301 },
+      { source: '/products/aura', destination: '/aura', statusCode: 301 },
+      // Collection-scoped product URLs Shopify also generates
+      { source: '/collections/:collection/products/origin', destination: '/origin', statusCode: 301 },
+      { source: '/collections/:collection/products/aura', destination: '/aura', statusCode: 301 },
+      // Any other old product handle → shop page
+      { source: '/products/:handle*', destination: '/collection', statusCode: 301 },
+      { source: '/collections/:path*', destination: '/collection', statusCode: 301 },
+      { source: '/collections', destination: '/collection', statusCode: 301 },
+
+      // Blog. The Journal lives at /blog and articles at /blog/{handle}
+      // (handles come from the Shopify "artifacts" blog).
+      { source: '/blogs/artisun', destination: '/blog', statusCode: 301 },
+      { source: '/blogs/artifacts', destination: '/blog', statusCode: 301 },
+      { source: '/blogs/:blog/tagged/:tag*', destination: '/blog', statusCode: 301 },
+      { source: '/blogs/artisun/:handle', destination: '/blog/:handle', statusCode: 301 },
+      { source: '/blogs/artifacts/:handle', destination: '/blog/:handle', statusCode: 301 },
+      { source: '/blogs/:path*', destination: '/blog', statusCode: 301 },
+
+      // Shopify pages
+      { source: '/pages/contact', destination: '/contact', statusCode: 301 },
+      { source: '/pages/contact-us', destination: '/contact', statusCode: 301 },
+      { source: '/pages/faq', destination: '/faq', statusCode: 301 },
+      { source: '/pages/faqs', destination: '/faq', statusCode: 301 },
+      { source: '/pages/about', destination: '/about', statusCode: 301 },
+      { source: '/pages/about-us', destination: '/about', statusCode: 301 },
+      { source: '/pages/shipping', destination: '/shipping-returns', statusCode: 301 },
+      { source: '/pages/shipping-policy', destination: '/shipping-returns', statusCode: 301 },
+      { source: '/pages/:path*', destination: '/', statusCode: 301 },
+
+      // Shopify policies
+      { source: '/policies/privacy-policy', destination: '/privacy', statusCode: 301 },
+      { source: '/policies/terms-of-service', destination: '/terms', statusCode: 301 },
+      { source: '/policies/refund-policy', destination: '/shipping-returns', statusCode: 301 },
+      { source: '/policies/shipping-policy', destination: '/shipping-returns', statusCode: 301 },
+      { source: '/policies/contact-information', destination: '/contact', statusCode: 301 },
+      { source: '/policies/:path*', destination: '/terms', statusCode: 301 },
+
+      // Add any extra URLs from the Search Console "Pages" export below.
     ];
   },
 

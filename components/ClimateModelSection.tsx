@@ -161,6 +161,8 @@ useEffect(() => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={asset('/2.webp')}
+          width={1080}
+          height={1350}
           alt="Model wearing Artisun"
           className="model-cutout drop-shadow-[0_25px_40px_rgba(0,0,0,0.85)]"
         />

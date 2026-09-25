@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import dynamic from 'next/dynamic';
 import { asset } from '@/lib/asset';
 

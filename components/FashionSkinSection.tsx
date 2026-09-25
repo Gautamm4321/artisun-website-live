@@ -1,5 +1,6 @@
 'use client';
 
+import SizedImg from '@/components/media/SizedImg';
 export default function FashionSkinSection() {
     return (
         <section
@@ -25,7 +26,7 @@ export default function FashionSkinSection() {
             {/* Model Image: Grounded on Mobile, Full Bleed on Laptop */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-end justify-center leading-none w-full h-[58vh] sm:h-[65vh] md:h-[60vh] lg:h-full overflow-visible">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <SizedImg
                     src="/wo bg.webp" width={1800} height={1005}
                     alt="Model wearing Artisun sunscreen"
                     className="h-[50vh] xs:h-[53vh] sm:h-[64vh] md:h-[58vh] lg:h-[90vh] max-w-none w-auto object-contain object-bottom block align-bottom select-none scale-[1.18] xs:scale-[1.22] sm:scale-100 origin-bottom -translate-x-[5%] sm:-translate-x-[8%] md:translate-x-[1%] lg:translate-x-0 translate-y-0"
@@ -77,7 +78,7 @@ export default function FashionSkinSection() {
                 className="absolute bottom-0 sm:bottom-[1vh] md:bottom-0 lg:bottom-[4vh] left-1/2 -translate-x-1/2 z-30 lg:z-10 w-[98vw] sm:w-[94vw] md:w-[92vw] lg:w-[98vw] max-w-[1500px] px-2 sm:px-4 flex justify-center pointer-events-none select-none"
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <SizedImg
                     src="/Artisun Primary Logo.webp" width={1800} height={411}
                     alt=""
                     className="w-full h-auto object-contain opacity-95 drop-shadow-[0_10px_35px_rgba(0,0,0,0.3)]"

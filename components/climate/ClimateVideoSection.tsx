@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -220,7 +221,7 @@ export default function ClimateVideoSection() {
               style={{ opacity: i === 0 ? 1 : 0 }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <SizedImg
                 src={card.image}
                 alt={`${card.city} — ${card.condition}`}
                 className="absolute inset-0 w-full h-full object-cover object-center lg:object-[50%_48%]"

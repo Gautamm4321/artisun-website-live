@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 const line1 = "Suncare needed to evolve";
 const line2 = "and Artisun begins with this understanding.";
 
@@ -117,7 +118,7 @@ export default function EvolutionSection() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <SizedImg
           src={asset('/logo-artisun.svg')} width={964} height={800}
           alt="Artisun Monogram"
           className="w-full h-full object-contain"

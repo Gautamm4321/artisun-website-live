@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import JsonLd from '@/components/seo/JsonLd';
+import ProductViewContent from '@/components/analytics/ProductViewContent';
+import { PRODUCTS } from '@/lib/tracking-config';
 
 export const metadata: Metadata = {
   title: 'Aura Pearl Sunscreen SPF 40 PA++++ | Skinwear by Artisun',
@@ -89,6 +91,8 @@ export default function AuraLayout({
       <meta property="og:type" content="product" />
       <meta property="product:price:amount" content="1799" />
       <meta property="product:price:currency" content="INR" />
+      {/* Meta ViewContent in the initial HTML (see component for de-dupe logic) */}
+      <ProductViewContent product={PRODUCTS.aura} />
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {children}

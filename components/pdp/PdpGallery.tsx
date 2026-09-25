@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { asset } from '@/lib/asset';
 
 /**

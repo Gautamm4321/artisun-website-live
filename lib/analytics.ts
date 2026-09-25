@@ -35,6 +35,8 @@ declare global {
     fbq?: (...args: any[]) => void;
     clarity?: (...args: any[]) => void;
     dataLayer?: unknown[];
+    /** Set by components/analytics/ProductViewContent when the server HTML already sent ViewContent. */
+    __artisunInitialVC?: string;
   }
 }
 
@@ -60,7 +62,10 @@ function fbqSafe(...args: any[]) {
   if (typeof window !== 'undefined' && typeof window.fbq === 'function') window.fbq(...args);
 }
 
-/** Product page view → GA4 view_item + Meta ViewContent. */
+/**
+ * Product page view → GA4 view_item + Meta ViewContent.
+ * (Meta ViewContent is skipped when the page's server HTML already sent it.)
+ */
 export function trackViewItem(product: TrackedProduct) {
   if (typeof window === 'undefined') return;
 
@@ -79,6 +84,14 @@ export function trackViewItem(product: TrackedProduct) {
       },
     ],
   });
+
+  // Full page load: the inline script in the product layout already sent
+  // ViewContent from the HTML. Consume the flag so later client-side visits
+  // to a product page still send their own.
+  if (window.__artisunInitialVC === product.variantId) {
+    delete window.__artisunInitialVC;
+    return;
+  }
 
   fbqSafe('track', 'ViewContent', {
     content_ids: [product.variantId],

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { asset } from '@/lib/asset';
 import ScrollProgressBar from '../../components/ScrollProgressBar';
 import CustomCursor from '../../components/CustomCursor';

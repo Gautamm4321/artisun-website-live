@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 const line1 = "Skin protection should exist in multiple";
 const line2 = "forms that fit seamlessly into daily living.";
 
@@ -114,7 +115,7 @@ export default function SkinProtectionSection() {
       {/* Background Image Layer */}
       <div ref={bgLayerRef} className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <SizedImg
           ref={bgRef}
           src={asset('/a-new-language-of-suncare-3.webp')}
           alt="Model side profile"

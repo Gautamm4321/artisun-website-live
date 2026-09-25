@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/gen-image-dims.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "build:static": "STATIC_EXPORT=1 next build",
-    "analyze": "ANALYZE=1 next build"
+    "analyze": "ANALYZE=1 next build",
+    "images:dims": "node scripts/gen-image-dims.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

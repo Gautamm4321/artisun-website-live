@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { motion, useScroll, useTransform, PanInfo, AnimatePresence } from 'framer-motion';
 import { asset } from '@/lib/asset';
 

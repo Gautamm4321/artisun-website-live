@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 const keyholeTitle = "Welcome to Climate-smart Skinwear™";
 const keyholeSubtitle = "Clothing for your skin, built for daily life.";
 
@@ -109,7 +110,7 @@ export default function KeyholeSection() {
       */}
       <div ref={imageLayerRef} className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <SizedImg
           src={asset('/keyhole-bg.webp')} width={5347} height={3565}
           alt="Keyhole Background"
           className="w-full h-[120vh] object-cover scale-110"

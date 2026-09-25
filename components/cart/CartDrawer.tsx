@@ -6,6 +6,7 @@ import { formatPrice, firstVariant } from '@/lib/shopify';
 import { asset } from '@/lib/asset';
 import { trackBeginCheckout } from '@/lib/analytics';
 
+import SizedImg from '@/components/media/SizedImg';
 export default function CartDrawer() {
   const { cart, open, setOpen, setQty, remove, checkout, busy, error, configured, products, add } = useCart();
 
@@ -123,7 +124,7 @@ export default function CartDrawer() {
                   <li key={l.id} className="flex gap-4 py-4">
                     {l.merchandise.image && (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
+                      <SizedImg
                         src={l.merchandise.image.url}
                         alt={l.merchandise.image.altText ?? ''}
                         className="h-20 w-20 rounded-[10px] object-cover ring-1 ring-white/20"
@@ -196,7 +197,7 @@ export default function CartDrawer() {
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <SizedImg
                         src={asset('/cart-star.png')} width={1254} height={1254}
                         alt="Clean"
                         className="w-full h-full object-contain"
@@ -211,7 +212,7 @@ export default function CartDrawer() {
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <SizedImg
                         src={asset('/cart-rebbit.png')} width={1278} height={1230}
                         alt="Cruelty Free"
                         className="w-full h-full object-contain"
@@ -226,7 +227,7 @@ export default function CartDrawer() {
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <SizedImg
                         src={asset('/cart-cream.png')} width={1254} height={1254}
                         alt="Paraben Free"
                         className="w-full h-full object-contain"
@@ -241,7 +242,7 @@ export default function CartDrawer() {
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 flex items-center justify-center mb-1 shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <SizedImg
                         src={asset('/cart-leaves.png')} width={1254} height={1254}
                         alt="Vegan"
                         className="w-full h-full object-contain"
@@ -263,7 +264,7 @@ export default function CartDrawer() {
                   <div className="flex items-center gap-3">
                     {crossSellProduct.featuredImage && (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
+                      <SizedImg
                         src={crossSellProduct.featuredImage.url}
                         alt={crossSellProduct.title}
                         className="h-14 w-14 rounded-xl object-cover ring-1 ring-white/15 shrink-0"

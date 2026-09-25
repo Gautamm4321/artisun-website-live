@@ -234,6 +234,8 @@ export default function ProductShowcaseSection() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={p.image}
+                width={1080}
+                height={1080}
                 alt={`${p.name} — ${p.type}`}
                 className="h-full w-full object-contain select-none rounded-[22px] shadow-[0_30px_80px_-24px_rgba(0,0,0,0.75)]"
                 draggable={false}
@@ -264,7 +266,7 @@ export default function ProductShowcaseSection() {
               }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={PRODUCTS[0].thumb} alt="Origin" className="h-full w-full object-cover pointer-events-none" />
+            <img src={PRODUCTS[0].thumb} width={1080} height={1080} alt="Origin" className="h-full w-full object-cover pointer-events-none" />
             {active === 0 && <span className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-[#E8DCC8] shadow-glow pointer-events-none" />}
           </button>
 
@@ -283,7 +285,7 @@ export default function ProductShowcaseSection() {
               }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={PRODUCTS[1].thumb} alt="Aura" className="h-full w-full object-cover pointer-events-none" />
+            <img src={PRODUCTS[1].thumb} width={1080} height={1080} alt="Aura" className="h-full w-full object-cover pointer-events-none" />
             {active === 1 && <span className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-[#E8DCC8] shadow-glow pointer-events-none" />}
           </button>
         </div>

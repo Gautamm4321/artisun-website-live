@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 import { useCart } from './cart/CartProvider';
 
+import SizedImg from '@/components/media/SizedImg';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -433,7 +434,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               className="flex items-center justify-center p-1 hover:opacity-80 transition-opacity cursor-pointer"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <SizedImg
                 src={asset('/logo-artisun.svg')} width={964} height={800}
                 alt="Menu"
                 className="h-6 w-auto object-contain [filter:brightness(0)_saturate(100%)_invert(87%)_sepia(11%)_saturate(671%)_hue-rotate(345deg)_brightness(97%)_contrast(90%)]"
@@ -452,7 +453,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           className="pointer-events-none absolute left-0 right-0 top-0 flex items-start justify-center pt-[4.5svh] lg:pt-[8vh]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <SizedImg
             ref={wordmarkRef}
             src={asset('/Artisun Primary Logo.webp')} width={1800} height={411}
             alt="ARTISUN"
@@ -482,7 +483,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
         <div className="flex items-center justify-between w-full max-w-lg md:max-w-2xl mx-auto">
           <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset('/logo-artisun.svg')} width={964} height={800} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80" />
+            <SizedImg src={asset('/logo-artisun.svg')} width={964} height={800} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80" />
           </div>
           <button
             type="button"
@@ -523,7 +524,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               {/* === BOTTLE SIZE CONTROL: Change h-[30px] to increase/decrease Origin bottle size === */}
               <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-start shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset('/b2.webp')} width={162} height={320} alt="Origin" className="h-[30px] md:h-[44px] w-auto object-contain" />
+                <SizedImg src={asset('/b2.webp')} width={162} height={320} alt="Origin" className="h-[30px] md:h-[44px] w-auto object-contain" />
               </div>
               <span className="font-editorial text-[var(--brand-cream)] text-[23px] md:text-[34px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
                 ORIGIN · SPF 50+
@@ -539,7 +540,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
               {/* === BOTTLE SIZE CONTROL: Change h-[22px] to increase/decrease Aura jar size === */}
               <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-start shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset('/b1.webp')} width={445} height={320} alt="Aura" className="h-[22px] md:h-[32px] w-auto object-contain" />
+                <SizedImg src={asset('/b1.webp')} width={445} height={320} alt="Aura" className="h-[22px] md:h-[32px] w-auto object-contain" />
               </div>
               <span className="font-editorial text-[var(--brand-cream)] text-[23px] md:text-[34px] tracking-tight group-hover:opacity-70 transition-opacity text-right">
                 AURA · SPF 40

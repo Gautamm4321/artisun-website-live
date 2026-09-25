@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import Image from '@/components/media/SizedImage';
 import { useInView } from 'framer-motion';
 import { asset } from '@/lib/asset';
 import CountUp from './CountUp';
@@ -21,7 +21,33 @@ const BG_IMAGE_MOBILE = '/Origin second frame final.png';
 
 export default function OriginWhy() {
   const statsRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(statsRef, { once: true, margin: '-15%' });
+  const observed = useInView(statsRef, { once: true, amount: 0.25 });
+
+  // Fallback trigger. The page scrolls in three different ways (Lenis +
+  // horizontal GSAP track on desktop, a fixed scroll frame on mobile, jump
+  // links), so we don't rely on IntersectionObserver alone: any scroll event
+  // anywhere (capture phase) re-checks whether the stats are on screen.
+  const [scrolledIn, setScrolledIn] = useState(false);
+  useEffect(() => {
+    if (observed || scrolledIn) return;
+    const check = () => {
+      const el = statsRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const visibleX = Math.min(r.right, window.innerWidth) - Math.max(r.left, 0);
+      const visibleY = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+      if (visibleX > r.width * 0.25 && visibleY > r.height * 0.25) setScrolledIn(true);
+    };
+    document.addEventListener('scroll', check, { capture: true, passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+    return () => {
+      document.removeEventListener('scroll', check, { capture: true } as EventListenerOptions);
+      window.removeEventListener('resize', check);
+    };
+  }, [observed, scrolledIn]);
+
+  const inView = observed || scrolledIn;
 
   return (
     <div id="origin-why" className="origin-panel relative w-screen shrink-0 h-[100svh] scroll-mt-[105px] lg:scroll-mt-0 overflow-hidden">

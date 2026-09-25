@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { asset } from '@/lib/asset';
 import { usePanelEdgeScroll } from '@/hooks/usePanelEdgeScroll';
 

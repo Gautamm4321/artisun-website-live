@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { asset } from '@/lib/asset';
 
 interface Ingredient {

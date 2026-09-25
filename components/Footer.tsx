@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
@@ -228,14 +228,8 @@ export default function Footer() {
                       placeholder="Enter Email"
                       style={{ fontSize: '16px' }}
                       onBlur={() => {
-                        const viewport = document.querySelector('meta[name="viewport"]');
-                        if (viewport) {
-                          const original = viewport.getAttribute('content') || '';
-                          viewport.setAttribute('content', `${original}, maximum-scale=1`);
-                          setTimeout(() => {
-                            viewport.setAttribute('content', original);
-                          }, 300);
-                        }
+                        // No viewport/zoom tricks here: the input is 16px, which already
+                        // stops iOS auto-zooming on focus, and pinch-zoom must stay enabled.
                         window.scrollTo({ top: window.scrollY, behavior: 'smooth' });
                       }}
                       className="w-full bg-[var(--brand-cream)] text-[#C02D19] placeholder:text-[#C02D19] rounded-full px-6 py-3 md:py-3.5 text-base font-suisse outline-none touch-manipulation"
@@ -277,7 +271,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-3 gap-y-1 text-center md:text-right">
               <a
-                href="mailto:grievance@artisunskin.com"
+                href="mailto:support@artisunskin.com"
                 className="underline hover:text-[#E8DCC8] transition-colors"
               >
                 support@artisunskin.com

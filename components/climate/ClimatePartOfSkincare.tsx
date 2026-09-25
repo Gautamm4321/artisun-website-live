@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, type Variants } from 'framer-motion';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import { asset } from '@/lib/asset';
 
 // Fast Pointer Variants for Desktop/Tablet

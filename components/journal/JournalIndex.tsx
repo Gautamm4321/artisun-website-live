@@ -5,6 +5,7 @@ import { asset } from '@/lib/asset';
 import { PILLARS, type JournalCard as Card } from '@/lib/journal-shared';
 import JournalCard from './JournalCard';
 
+import SizedImg from '@/components/media/SizedImg';
 const toKey = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 /**
@@ -45,7 +46,7 @@ export default function JournalIndex({ cards }: { cards: Card[] }) {
             <span className="by">
               <span className="by-label">by</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset('/journal/artisun-wordmark.svg')} alt="Artisun" className="j-header-logo-mark" />
+              <SizedImg src={asset('/journal/artisun-wordmark.svg')} alt="Artisun" className="j-header-logo-mark" />
             </span>
             {/* Text for search engines and screen readers; the visible heading is unchanged. */}
             <span className="sr-only">: The Sun Care Journal</span>

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+import SizedImg from '@/components/media/SizedImg';
 export default function ScrollProgressBar({ 
   marker, 
   markerHeight = 18 
@@ -99,7 +100,7 @@ export default function ScrollProgressBar({
       />
       {marker && (
         /* eslint-disable-next-line @next/next/no-img-element */
-        <img
+        <SizedImg
           ref={markerRef}
           src={marker}
           alt=""

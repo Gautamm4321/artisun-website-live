@@ -1,11 +1,12 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -93,7 +94,7 @@ export default function WornSection() {
       {/* ── 1. MODEL IMAGE: Perfectly Grounded on Mobile, Exact Full-Bleed on Laptop ── */}
       <div className="absolute inset-x-0 lg:right-auto lg:left-0 bottom-0 z-10 w-full lg:w-[86vw] h-full pointer-events-none flex items-end justify-center lg:justify-start overflow-visible">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <SizedImg
           src={asset('/Without bg.webp')} width={1800} height={1005}
           alt="Artisun Model"
           className="h-[72svh] xs:h-[88svh] sm:h-[72svh] md:h-[78svh] lg:h-[100vh] w-auto max-w-none object-contain object-bottom lg:object-left-bottom select-none -translate-x-[6%] sm:-translate-x-[8%] lg:-translate-x-[11%] translate-y-1 sm:translate-y-0 lg:translate-y-2 drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"

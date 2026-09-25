@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 
 export default function SkinwearDailyLife() {
   return (

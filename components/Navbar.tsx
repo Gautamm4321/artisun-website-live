@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import MagneticLink from './MagneticLink';
 import { asset } from '@/lib/asset';
 
+import SizedImg from '@/components/media/SizedImg';
 export default function Navbar({ showIcon }: { showIcon: boolean }) {
   return (
     <>
@@ -22,7 +23,7 @@ export default function Navbar({ showIcon }: { showIcon: boolean }) {
       >
         {showIcon && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img 
+          <SizedImg 
             id="nav-icon"
             src={asset('/icon-artisun.png')} 
             alt="ARTISUN" 

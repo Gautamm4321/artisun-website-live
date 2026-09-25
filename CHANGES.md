@@ -32,3 +32,23 @@ Cookie banner and Consent Mode "denied" default removed.
 
 ## Hero
 Mobile hero (below `lg`) is now `public/hero-mobile.webp` (1080x1920, 34 KB). Desktop hero unchanged.
+
+# Client fixes (round 2)
+
+- **Meta ViewContent**: now in the server HTML of /origin and /aura
+  (`components/analytics/ProductViewContent.tsx`), fires right after PageView.
+  `trackViewItem` skips Meta on that same page load, so there is exactly one
+  ViewContent per product view (client-side navigation still sends its own).
+- **Image width/height**: every image on every page now has width/height.
+  `scripts/gen-image-dims.mjs` (runs as `prebuild`) writes
+  `lib/image-dimensions.json`; `components/media/SizedImage` (next/image) and
+  `SizedImg` (<img>) add the attributes. Rendering is unchanged (checked
+  431 images, desktop + mobile, 0 layout differences).
+  Components that use `<style jsx>` keep native `<img>` tags with explicit
+  sizes, because scoped styled-jsx rules only apply to native tags.
+- **Footer email** link now matches the text: support@artisunskin.com.
+- **Pinch-zoom** re-enabled (no maximum-scale / user-scalable=no).
+- **Stat counters** (Origin "Four steps"): final values in the server HTML;
+  count-up still runs on scroll, with a scroll-listener fallback.
+- **Redirects**: 301s for old Shopify URLs (/products, /collections, /blogs,
+  /pages, /policies) in `next.config.mjs`.

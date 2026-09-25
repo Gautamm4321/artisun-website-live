@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import { cardFlavor, shortDate, truncate, type JournalCard as Card } from '@/lib/journal-shared';
 
+import SizedImg from '@/components/media/SizedImg';
 export default function JournalCard({ card }: { card: Card }) {
   return (
     <Link className="j-card" href={`/blog/${card.handle}`}>
       <div className={`field ${cardFlavor(card.tags)}`}>
         {card.image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <SizedImg
             src={card.image.url}
             alt={card.image.altText || card.title}
             loading="lazy"

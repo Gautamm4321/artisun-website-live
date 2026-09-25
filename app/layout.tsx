@@ -57,8 +57,7 @@ export const viewport: Viewport = {
   themeColor: "#C93B1A",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // No maximumScale / userScalable: pinch-zoom must stay available (WCAG 1.4.4).
 };
 
 const organizationSchema = {

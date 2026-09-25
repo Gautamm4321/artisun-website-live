@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import Image from '@/components/media/SizedImage';
 
 /*
  * Mirror of SkinwearImgShrink — image on left (desktop), text on right.

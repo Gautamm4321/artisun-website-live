@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import JsonLd from '@/components/seo/JsonLd';
+import ProductViewContent from '@/components/analytics/ProductViewContent';
+import { PRODUCTS } from '@/lib/tracking-config';
 
 export const metadata: Metadata = {
   title: 'Origin 4-in-1 Milk Sunscreen SPF 50+ PA++++ | Artisun',
@@ -89,6 +91,8 @@ export default function OriginLayout({
       <meta property="og:type" content="product" />
       <meta property="product:price:amount" content="1499" />
       <meta property="product:price:currency" content="INR" />
+      {/* Meta ViewContent in the initial HTML (see component for de-dupe logic) */}
+      <ProductViewContent product={PRODUCTS.origin} />
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {children}
