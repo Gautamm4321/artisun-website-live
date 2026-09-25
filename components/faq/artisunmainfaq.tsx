@@ -238,13 +238,7 @@ export default function ArtisunMainFAQ() {
 
     return (
         <div className="relative w-full min-h-screen text-[var(--brand-cream)] flex flex-col items-center">
-            
-
-            {/* GlobalHeader is rendered once by app/faq/page.tsx — a second
-                copy here stacked two fixed headers (and two mobile drawers)
-                on top of each other. */}
-
-            <div className="relative z-10 w-full max-w-[920px] mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 pb-28 flex flex-col">
+            <div className="relative z-10 w-full max-w-[920px] mx-auto px-4 sm:px-8 lg:px-12 pt-32 sm:pt-40 pb-28 flex flex-col">
                 {/* Header Section */}
                 <span className="self-center font-suisse text-[11px] sm:text-xs tracking-[0.34em] uppercase text-[var(--brand-cream)]/75 font-semibold mb-3">
                     Everything you want to know
@@ -254,19 +248,15 @@ export default function ArtisunMainFAQ() {
                     Questions, <em className="italic text-[var(--brand-cream)] font-normal">answered.</em>
                 </h1>
 
-                <p className="self-center font-suisse text-[14px] sm:text-[16px] text-[var(--brand-cream)]/85 mt-4 text-center max-w-[50ch] leading-relaxed">
-                    The honest answers to what people ask us most — about
-                    <br />
-                    the brand, our sun care, and how we work. For questions on
-                    <br />
-                    a specific product, you'll find those on its own page.
+                {/* Natural Paragraph without forced line breaks */}
+                <p className="self-center font-suisse text-[13.5px] sm:text-[15.5px] text-[var(--brand-cream)]/85 mt-4 text-center max-w-[56ch] leading-relaxed">
+                    The honest answers to what people ask us most — about the brand, our sun care, and how we work. For questions on a specific product, you&apos;ll find those on its own page.
                 </p>
 
-
-                {/* Category Tabs */}
+                {/* Category Tabs: Exact match with AuraQuestions single line style */}
                 {!searchResults && (
-                    <div className="mt-10 border-t border-b border-[var(--brand-cream)]/15 w-full overflow-hidden">
-                        <div className="flex items-center justify-center flex-wrap gap-2.5 sm:gap-4 py-4 px-2">
+                    <div className="mt-8 sm:mt-10 border-t border-b border-[#E8DCC8]/70 w-full shrink-0">
+                        <div className="flex items-center justify-start sm:justify-center gap-x-4 sm:gap-x-7 md:gap-x-8 py-3 md:py-4 overflow-x-auto [scrollbar-width:none] flex-nowrap">
                             {FAQ_DATA.map((c, i) => {
                                 const active = i === activeTab;
                                 return (
@@ -276,11 +266,15 @@ export default function ArtisunMainFAQ() {
                                             setActiveTab(i);
                                             setOpenIndex(null);
                                         }}
-                                        className={`shrink-0 inline-flex items-center justify-center font-suisse text-[11px] sm:text-[12.5px] tracking-[0.12em] uppercase transition-all px-4 py-2 rounded-full font-semibold ${active
-                                            ? 'text-[var(--brand-cream)] bg-white/15 shadow-sm'
-                                            : 'text-[var(--brand-cream)]/50 hover:text-[var(--brand-cream)]/85'
-                                            }`}
+                                        className={`pointer-events-auto shrink-0 flex items-center gap-1.5 font-suisse text-[11px] sm:text-[12.5px] tracking-[0.12em] uppercase transition-colors whitespace-nowrap ${
+                                            active
+                                                ? 'text-[var(--brand-cream)] font-semibold'
+                                                : 'text-[var(--brand-cream)]/45 hover:text-[var(--brand-cream)]/80'
+                                        }`}
                                     >
+                                        {active && (
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] shadow-[0_0_6px_var(--brand-red)] shrink-0" />
+                                        )}
                                         {c.label}
                                     </button>
                                 );

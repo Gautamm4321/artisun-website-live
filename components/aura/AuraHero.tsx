@@ -107,7 +107,7 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
             {/* Description weaving secondary keywords: broad spectrum sunscreen, sunscreen for dry skin, climate-smart sunscreen, pearl sunscreen, dewy finish sunscreen */}
             <div className="w-full font-suisse text-[var(--brand-cream)]/85 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[13.5px] leading-[1.4] md:leading-[1.45] mt-0.5 md:mt-1 space-y-0.5 md:space-y-1">
               <p className="text-[var(--brand-cream)] font-medium text-[12.5px] sm:text-[13px] md:text-[14px]">
-                Encapsulated pearls that melt into climate-smart sun protection.
+                Pearl that melt into sun protection.
               </p>
               <p className="w-full text-left">
                An innovative pearl sunscreen with beads of broad-spectrum SPF, suspended in a barrier repairing gel — combining protection and skincare in one layer. They break on your skin, sink in with no white cast, and leave an invisible finish. For every skin type, easiest absorption ever.

@@ -15,6 +15,7 @@ const GALLERY = [
   '/pdp/origin-1.webp',
   '/pdp/origin-2.webp',
   '/Origion web imge.png',
+  '/originhero.mp4',
   '/pdp/First page, fifth picture.webp',
   '/pdp/origin-3.webp',
   '/pdp/origin-4.webp',
@@ -76,13 +77,14 @@ export default function OriginHero({ onNavigate }: { onNavigate: (panelIndex: nu
         <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:grid md:grid-cols-[minmax(380px,460px)_1fr] lg:grid lg:grid-cols-[540px_1fr] xl:grid-cols-[580px_1fr] gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center my-auto">
 
           {/* ── TOP ON MOBILE / LEFT ON DESKTOP & TABLET: Product Visual ── */}
-          <div className="order-1 flex flex-col w-full max-w-[360px] md:max-w-[460px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
-            <PdpGallery
-              images={GALLERY}
-              alt="Origin 4-in-1 Milk Emulsion"
-              frameClassName="aspect-square max-h-[70vh]"
-            />
-          </div>
+<div className="order-1 flex flex-col w-full max-w-[360px] md:max-w-[460px] lg:max-w-[540px] xl:max-w-[580px] shrink-0 min-h-0">
+  <PdpGallery
+    images={GALLERY}
+    alt="Origin 4-in-1 Milk Emulsion"
+    frameClassName="aspect-square max-h-[70vh]"
+    videoPoster="/pdp/origin-1.webp"
+  />
+</div>
 
           {/* ── BOTTOM ON MOBILE / RIGHT ON DESKTOP & TABLET: Info & Compact Navigation Copy ── */}
           <div className="order-2 flex flex-col justify-center w-full max-w-[440px] md:max-w-none lg:max-w-[540px] gap-2 md:gap-3.5 lg:gap-2.5 py-0">

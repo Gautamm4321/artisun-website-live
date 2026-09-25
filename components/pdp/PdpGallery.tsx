@@ -182,13 +182,23 @@ export default function PdpGallery({
                 : 'opacity-50 border-white/20 hover:opacity-80'
             }`}
           >
-            <Image
-              src={asset(isVideo(src) && videoPoster ? videoPoster : src)}
-              alt={`${alt}, image ${i + 1}`}
-              fill
-              sizes="52px"
-              className="object-cover"
-            />
+            {isVideo(src) ? (
+              <video
+                src={`${asset(src)}#t=0.001`}
+                preload="metadata"
+                muted
+                playsInline
+                className="w-full h-full object-cover pointer-events-none"
+              />
+            ) : (
+              <Image
+                src={asset(src)}
+                alt={`${alt}, image ${i + 1}`}
+                fill
+                sizes="52px"
+                className="object-cover"
+              />
+            )}
           </button>
         ))}
       </div>

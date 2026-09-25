@@ -21,12 +21,12 @@ import { asset } from '@/lib/asset';
  */
 
 // ── Settings ──
-const SHOW_AFTER_MS = 5_000;
+const SHOW_AFTER_MS = 10_000;
 const DISMISS_DAYS = 7;
 const HIDDEN_ON = ['/privacy', '/terms', '/shipping-returns'];
 const ENDPOINT = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT || '/.netlify/functions/subscribe';
 const IMG_DESKTOP = asset('/popup/popup-desktop.webp');
-const IMG_MOBILE = asset('/popup/popup-mobile.webp');
+const IMG_MOBILE = asset('/popup.PNG');
 
 const STORAGE_KEY = 'artisun_signup_popup';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

@@ -229,7 +229,7 @@ export default function Collection({
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 w-full">
 
           {/* ══════════════════════════════════════════════════
-              3. PRODUCT SHOWCASE GRID (2 Top / 1 Bottom on Mobile, 3 Across on Desktop)
+              3. PRODUCT SHOWCASE GRID (Compact Desktop Tiles)
           ══════════════════════════════════════════════════ */}
           <section id="products" className="w-full space-y-6 sm:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -240,11 +240,10 @@ export default function Collection({
               </div>
             </div>
 
-            {/* Mobile: 2-column grid; Desktop: 3-column grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6 lg:gap-8 items-stretch">
+            {/* Mobile: 2-column grid; Desktop: 3-column compact grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6 items-stretch">
               {PRODUCTS.map((prod) => {
                 const isCombo = prod.id === 'duo-bundle';
-                // Teno cards ke liye respective URLs
                 const targetHref = prod.id === 'origin' 
                   ? '/origin' 
                   : prod.id === 'aura' 
@@ -258,12 +257,12 @@ export default function Collection({
                       isCombo ? 'col-span-2 md:col-span-1' : 'col-span-1'
                     }`}
                   >
-                    {/* Clickable Image Box with Top-Right Minimal Arrow (No circle) */}
+                    {/* Clickable Image Box: Slightly taller image container on desktop */}
                     <div
                       className={`relative w-full overflow-hidden bg-[#2a0e0b] ${
                         isCombo
-                          ? 'h-[190px] sm:h-[290px] md:h-[370px] lg:h-[410px]'
-                          : 'h-[175px] sm:h-[290px] md:h-[370px] lg:h-[410px]'
+                          ? 'h-[190px] sm:h-[300px] md:h-[390px] lg:h-[430px]'
+                          : 'h-[175px] sm:h-[300px] md:h-[390px] lg:h-[430px]'
                       }`}
                     >
                       {/* Entire image is a link */}
@@ -285,14 +284,14 @@ export default function Collection({
                         />
                       </Link>
 
-                      {/* Top-Right Minimal Arrow Only (No background circle) */}
+                      {/* Top-Right Minimal Arrow Only */}
                       <Link
                         href={targetHref}
                         aria-label={`Open ${prod.name}`}
-                        className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-10 text-[#F3ECE0]/80 hover:text-white transition-all duration-200 hover:translate-x-0.5 hover:-translate-y-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                        className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 text-[#F3ECE0]/80 hover:text-white transition-all duration-200 hover:translate-x-0.5 hover:-translate-y-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                       >
                         <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5"
+                          className="w-4 h-4 sm:w-4.5 sm:h-4.5"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -306,33 +305,32 @@ export default function Collection({
                       </Link>
                     </div>
 
-                    {/* Content Details - Poora beige area clickable link ban gaya */}
-                    <div className="relative flex flex-col flex-1 justify-between p-2.5 sm:p-6 cursor-pointer">
+                    {/* Content Details: Reduced padding on desktop (p-2.5 sm:p-4 lg:p-4.5) to cut excess beige height */}
+                    <div className="relative flex flex-col flex-1 justify-between p-2.5 sm:p-4 lg:p-4.5 cursor-pointer">
                       
-                      {/* Full-box Background Link: Beige part par kahin bhi click karne se page khulega */}
                       <Link
                         href={targetHref}
                         className="absolute inset-0 z-0 block"
                         aria-label={`View ${prod.name}`}
                       />
 
-                      {/* Text details (pointer-events-none taaki direct link trigger ho) */}
-                      <div className="space-y-0.5 sm:space-y-2 relative z-10 pointer-events-none">
+                      {/* Text details */}
+                      <div className="space-y-0.5 sm:space-y-1 relative z-10 pointer-events-none">
                         <div className="flex items-baseline justify-between gap-1">
-                          <h3 className="font-editorial text-[15px] sm:text-2xl text-[#242623] leading-[1.1] sm:leading-tight">
+                          <h3 className="font-editorial text-[15px] sm:text-xl lg:text-[22px] text-[#242623] leading-[1.1] sm:leading-tight">
                             {prod.name}
                           </h3>
-                          <span className="font-suisse text-[9px] sm:text-xs text-[#242623]/60 shrink-0">
+                          <span className="font-suisse text-[9px] sm:text-[11px] text-[#242623]/60 shrink-0">
                             {prod.size}
                           </span>
                         </div>
 
-                        <p className="font-suisse text-[8.5px] sm:text-[11.5px] uppercase tracking-wider text-[#A52A2C] font-semibold leading-[1.2] sm:leading-normal">
+                        <p className="font-suisse text-[8.5px] sm:text-[10.5px] lg:text-[11px] uppercase tracking-wider text-[#A52A2C] font-semibold leading-[1.2] sm:leading-normal">
                           {prod.subtitle}
                         </p>
 
                         <p
-                          className={`font-suisse text-[10px] sm:text-xs text-[#242623]/75 leading-[1.25] sm:leading-relaxed pt-0.5 sm:pt-1 ${
+                          className={`font-suisse text-[10px] sm:text-[11px] lg:text-[11.5px] text-[#242623]/75 leading-[1.25] sm:leading-snug pt-0.5 ${
                             isCombo ? 'block' : 'hidden md:block'
                           }`}
                         >
@@ -340,22 +338,21 @@ export default function Collection({
                         </p>
                       </div>
 
-                      {/* Price & CTA Button Area */}
-                      <div className="pt-2 sm:pt-6 mt-2 sm:mt-6 border-t border-[#242623]/10 flex items-center justify-between gap-1.5 sm:gap-3 relative z-10">
+                      {/* Price & CTA Button Area: Tightened vertical margins (mt-2 sm:mt-3 pt-2 sm:pt-3) */}
+                      <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-[#242623]/10 flex items-center justify-between gap-1.5 sm:gap-3 relative z-10">
                         <div className="pointer-events-none">
-                          <span className="font-editorial text-sm sm:text-xl text-[#242623] font-semibold">
+                          <span className="font-editorial text-sm sm:text-lg lg:text-xl text-[#242623] font-semibold">
                             {prod.price}
                           </span>
                         </div>
 
-                        {/* Button click par stopPropagation lagega taaki page redirect na ho, sirf bag mein add ho */}
                         <div
                           className="relative z-20"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <AddToBagButton
                             product={prod.id === 'origin' ? 'origin' : prod.id === 'aura' ? 'aura' : 'duo-bundle'}
-                            className="pointer-events-auto font-suisse text-[8.5px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-5 py-1.5 sm:py-2.5 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-none"
+                            className="pointer-events-auto font-suisse text-[8.5px] sm:text-[11px] uppercase tracking-wider px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#242623] text-[#F3ECE0] hover:bg-[#A52A2C] transition-colors font-medium rounded-none"
                           />
                         </div>
                       </div>

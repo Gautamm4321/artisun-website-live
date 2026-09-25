@@ -84,11 +84,11 @@ export default function WeatherDuoShowcase() {
         >
           {/* ── 1. FRAME 1: HERO & GALLERY ── */}
           <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-28 sm:pt-32 lg:pt-28 lg:pb-24 pb-6 sm:pb-8 px-5 sm:px-8 lg:px-14 border-b lg:border-b-0 lg:border-r border-white/10">
-            <div className="max-w-[1180px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-8 md:gap-12 items-center">
+            <div className="max-w-[1180px] w-full mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-2.5 md:gap-12 items-center">
 
               {/* Left: Gallery */}
               <div className="flex flex-col gap-2.5 w-full lg:max-w-[600px] xl:max-w-[850px] mx-auto">
-                <div 
+                <div
                   onTouchStart={(e) => {
                     touchStartX.current = e.touches[0].clientX;
                   }}
@@ -161,11 +161,10 @@ export default function WeatherDuoShowcase() {
                       key={idx}
                       type="button"
                       onClick={() => setSelectedImg(img.src)}
-                      className={`relative flex-shrink-0 w-[68px] h-[68px] rounded-[9px] overflow-hidden border snap-start transition-all ${
-                        selectedImg === img.src
+                      className={`relative flex-shrink-0 w-[68px] h-[68px] rounded-[9px] overflow-hidden border snap-start transition-all ${selectedImg === img.src
                           ? 'border-[#F3ECE0] ring-2 ring-[#F3ECE0]/40'
                           : 'border-white/20 opacity-70 hover:opacity-100'
-                      }`}
+                        }`}
                     >
                       <Image src={asset(img.src)} alt={img.label} fill className="object-cover" />
                     </button>
@@ -221,18 +220,18 @@ export default function WeatherDuoShowcase() {
           {/* ── 2. FRAME 2: WHY BOTH & DUAL CARDS ── */}
           <section className="relative z-10 w-full lg:w-screen lg:min-w-[100vw] lg:h-screen lg:flex-shrink-0 flex items-center justify-center pt-10 sm:pt-12 pb-10 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12 select-none">
             <div className="max-w-[1360px] w-full mx-auto flex flex-col justify-center my-auto">
-              
+
               <div className="space-y-1.5 w-full text-left">
                 <span className="text-[10.5px] tracking-[0.24em] uppercase text-[#E8DCC8]/70 font-medium block">
                   Why both
                 </span>
-                
+
                 <h2 className="font-editorial text-[24px] sm:text-[30px] lg:text-[clamp(28px,2.8vw,38px)] leading-[1.08] font-normal text-[#F3ECE0] lg:whitespace-nowrap tracking-tight">
-                  You don&apos;t wear the same thing in May and August.
+                  You don&apos;t wear the same thing in July and Novemebr.
                 </h2>
 
                 <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] leading-relaxed text-[#F3ECE0]/85 font-light max-w-[110ch] pt-0.5">
-                  Your skin doesn&apos;t either. The sun is the one constant. Everything around it changes: sticky in August, hazy and dry by November. One texture is built for each, and owning both is how you stop compromising for nine months of the year.
+                  Your skin doesn&apos;t either. The sun is the one constant. Everything around it changes: sticky in July, hazy and dry by November. One texture is built for each, and owning both is how you stop compromising for nine months of the year.
                 </p>
               </div>
 
@@ -278,10 +277,9 @@ export default function WeatherDuoShowcase() {
                   {/* ── ORIGIN: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/origin"
-                    className="hidden lg:flex items-center justify-between gap-4 text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide group"
+                    className="hidden lg:inline-flex items-center gap-2 w-fit text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide group"
                   >
-                    <span>Origin, in full · 4-in-1 Milk Emulsion SPF 50+ · PA++++</span>
-                    {/* Same arrow as the mobile links below */}
+                    <span>Origin, in full</span>
                     <span aria-hidden="true" className="text-[17px] font-light opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                       ↗
                     </span>
@@ -326,11 +324,10 @@ export default function WeatherDuoShowcase() {
                   {/* ── AURA: OUTSIDE BOX LINK (Desktop Only) ── */}
                   <Link
                     href="/aura"
-                    className="hidden lg:flex items-center justify-between gap-4 text-left px-1.5 py-1 text-[16px] sm:text-[18px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-snug tracking-wide group"
+                    className="hidden lg:inline-flex items-center gap-2 w-fit text-left px-1.5 py-1 text-[17px] font-editorial text-[#F3ECE0] hover:text-white transition-colors leading-none tracking-wide group"
                   >
-                    <span>Aura, in full · Pearl Skinwear SPF 40 · PA++++</span>
-                    {/* Same arrow as the mobile links below */}
-                    <span aria-hidden="true" className="text-[17px] font-light opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                    <span className="leading-none">Aura, in full</span>
+                    <span aria-hidden="true" className="text-[15px] font-light leading-none opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                       ↗
                     </span>
                   </Link>
@@ -384,7 +381,7 @@ export default function WeatherDuoShowcase() {
       {/* ── STICKY BOTTOM BAR (Origin Transparent Style Match) ── */}
       <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] bg-black/20 backdrop-blur-md border-t border-white/10 pointer-events-auto transition-all">
         <div className="h-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
-          
+
           {/* Left: Compact Thumb + Title + Subtitle */}
           <div className="flex items-center gap-3">
             <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden shrink-0 border border-white/15">
