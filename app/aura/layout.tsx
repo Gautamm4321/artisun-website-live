@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import JsonLd from '@/components/seo/JsonLd';
 import ProductViewContent from '@/components/analytics/ProductViewContent';
 import { PRODUCTS } from '@/lib/tracking-config';
+import { getVariantGtin13 } from '@/lib/shopify';
+
+// Used only if the Shopify barcode can't be read at build/revalidate time.
+const GTIN13_FALLBACK = '8908032751018';
 
 export const metadata: Metadata = {
   title: 'Aura Pearl Sunscreen SPF 40 PA++++ | Skinwear by Artisun',
@@ -30,7 +34,7 @@ export const metadata: Metadata = {
   // because Next's typed openGraph.type has no "product" option.
 };
 
-const productSchema = {
+const baseProductSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Aura Pearl Sunscreen SPF 40 PA++++',
@@ -79,11 +83,14 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function AuraLayout({
+export default async function AuraLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const gtin13 = await getVariantGtin13(PRODUCTS.aura.variantGid, GTIN13_FALLBACK);
+  const productSchema = { ...baseProductSchema, gtin13 };
+
   return (
     <>
       {/* Open Graph product tags. Rendered as <meta property> (what Facebook reads);

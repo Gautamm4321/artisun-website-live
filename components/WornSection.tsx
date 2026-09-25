@@ -116,9 +116,9 @@ export default function WornSection() {
 
           {/* Desktop & Laptops: Clean 3 Lines */}
           <span className="hidden lg:block">
-            <span className="block whitespace-nowrap">Most sunscreens are made</span>
-            <span className="block whitespace-nowrap">to be tolerated, ours is</span>
-            <span className="block whitespace-nowrap">designed to be worn.</span>
+            <span className="block whitespace-nowrap">Most sunscreens are</span>
+            <span className="block whitespace-nowrap">made to be tolerated, ours</span>
+            <span className="block whitespace-nowrap">is designed to be worn.</span>
           </span>
         </h2>
 

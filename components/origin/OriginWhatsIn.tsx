@@ -85,7 +85,7 @@ export default function OriginWhatsIn() {
             return (
               <div
                 key={item.name}
-                className="group relative w-full flex flex-col bg-white/[0.06] border border-white/15 backdrop-blur-md rounded-lg md:rounded-2xl lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/30 shadow-xl flex-1 md:flex-none lg:flex-none min-h-0"
+                className="group relative w-full flex flex-col bg-white/[0.06] border border-[#E6D5C1]/15 backdrop-blur-md rounded-lg md:rounded-2xl lg:rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#E6D5C1]/30 shadow-xl flex-1 md:flex-none lg:flex-none min-h-0"
               >
                 {/* ── MOBILE VIEW ONLY (<768px): Horizontal Banners ── */}
                 <div 
@@ -105,7 +105,7 @@ export default function OriginWhatsIn() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-[1]" />
 
                     {/* Top-Left: Country Badge */}
-                    <span className="absolute top-2.5 left-2.5 z-10 font-suisse text-[8.5px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[#E8DCC8]/95">
+                    <span className="absolute top-2.5 left-2.5 z-10 font-suisse text-[8.5px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-[#E6D5C1]/20 text-[#E8DCC8]/95">
                       {item.country}
                     </span>
 
@@ -132,7 +132,7 @@ export default function OriginWhatsIn() {
 
                     {/* Floating Right Arrow */}
                     {!isOpen && (
-                      <div className="absolute right-3 top-2.5 z-10 w-5 h-5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-[#E8DCC8]/90">
+                      <div className="absolute right-3 top-2.5 z-10 w-5 h-5 rounded-full bg-black/50 backdrop-blur-md border border-[#E6D5C1]/20 flex items-center justify-center text-[#E8DCC8]/90">
                         <svg
                           width="9"
                           height="9"
@@ -151,7 +151,7 @@ export default function OriginWhatsIn() {
 
                   {/* Right Half: Hook & Description */}
                   {isOpen && (
-                    <div className="w-[58%] h-full flex flex-col justify-center px-3.5 py-2 bg-black/75 backdrop-blur-md border-l border-white/15 overflow-hidden">
+                    <div className="w-[58%] h-full flex flex-col justify-center px-3.5 py-2 bg-black/75 backdrop-blur-md border-l border-[#E6D5C1]/15 overflow-hidden">
                       <div className="overflow-y-auto max-h-full pr-1 [scrollbar-width:none] space-y-1.5">
                         <p className="font-suisse text-[9.5px] text-[#E8DCC8] font-medium leading-[1.35]">
                           {item.hook}
@@ -181,11 +181,11 @@ export default function OriginWhatsIn() {
 
                   {/* Top Bar: Country badge + Action button */}
                   <div className="relative z-10 flex items-center justify-between w-full">
-                    <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[#E8DCC8]/95 font-medium">
+                    <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#E6D5C1]/25 text-[#E8DCC8]/95 font-medium">
                       {item.country}
                     </span>
 
-                    <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#E8DCC8]">
+                    <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-[#E6D5C1]/25 flex items-center justify-center text-[#E8DCC8]">
                       <svg
                         width="11"
                         height="11"
@@ -215,17 +215,17 @@ export default function OriginWhatsIn() {
                   {/* Overlay on Open: Shows full detail with matching phone red eclipse background */}
                   {isOpen && (
                     <div
-                      className="absolute inset-0 z-20 p-5 flex flex-col justify-between border border-white/20 transition-all duration-300 animate-in fade-in"
+                      className="absolute inset-0 z-20 p-5 flex flex-col justify-between border border-[#E6D5C1]/20 transition-all duration-300 animate-in fade-in"
                       style={{
                         background:
                           'radial-gradient(circle at 50% 25%, rgba(185, 30, 15, 0.75) 0%, rgba(77, 0, 7, 0.95) 55%, rgba(18, 2, 3, 0.99) 100%)',
                       }}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[#E8DCC8]/95 font-medium">
+                        <span className="font-suisse text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#E6D5C1]/25 text-[#E8DCC8]/95 font-medium">
                           {item.country}
                         </span>
-                        <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#E8DCC8]/90">
+                        <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-[#E6D5C1]/25 flex items-center justify-center text-[#E8DCC8]/90">
                           <svg
                             width="11"
                             height="11"
@@ -249,7 +249,7 @@ export default function OriginWhatsIn() {
                         <p className="font-suisse text-[12.5px] text-[#E8DCC8] font-medium leading-[1.35] mt-1">
                           {item.hook}
                         </p>
-                        <div className="h-px w-full bg-white/20 my-2.5" />
+                        <div className="h-px w-full bg-[#E6D5C1]/20 my-2.5" />
                         <p className="font-suisse text-[12px] leading-[1.45] text-[#E8DCC8]/90">
                           {item.detail}
                         </p>
@@ -274,12 +274,12 @@ export default function OriginWhatsIn() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-                    <span className="absolute top-3.5 left-3.5 font-suisse text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#E8DCC8]/90">
+                    <span className="absolute top-3.5 left-3.5 font-suisse text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-[#E6D5C1]/20 text-[#E8DCC8]/90">
                       {item.country}
                     </span>
                   </div>
 
-                  <div className="p-4 flex flex-col bg-black/25 border-t border-white/10">
+                  <div className="p-4 flex flex-col bg-black/25 border-t border-[#E6D5C1]/10">
                     <div
                       onClick={() => toggleAccordion(idx)}
                       className="flex items-start justify-between gap-3 cursor-pointer select-none"
@@ -299,7 +299,7 @@ export default function OriginWhatsIn() {
                       <button
                         type="button"
                         aria-label="Toggle details"
-                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-[#E8DCC8] hover:bg-white/25 transition-all duration-300 shrink-0"
+                        className="w-6 h-6 rounded-full flex items-center justify-center bg-white/10 border border-[#E6D5C1]/20 text-[#E8DCC8] hover:bg-white/25 transition-all duration-300 shrink-0"
                       >
                         <svg
                           className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}
@@ -316,7 +316,7 @@ export default function OriginWhatsIn() {
                     </div>
 
                     <div
-                      className={`grid transition-[grid-template-rows] duration-400 ease-out ${isOpen ? 'grid-rows-[1fr] mt-2.5 pt-2.5 border-t border-white/10' : 'grid-rows-[0fr]'
+                      className={`grid transition-[grid-template-rows] duration-400 ease-out ${isOpen ? 'grid-rows-[1fr] mt-2.5 pt-2.5 border-t border-[#E6D5C1]/10' : 'grid-rows-[0fr]'
                         }`}
                     >
                       <div className="overflow-hidden max-h-[16vh] overflow-y-auto [scrollbar-width:none]">

@@ -27,8 +27,8 @@ export default function AddToBagButton({
   showPrice = false,
   quantity = 1,
 }: {
-  /** Which of the two products this button buys. */
-  product: 'origin' | 'aura';
+  /** Which product this button buys. `duo` = the Weather Duo combo product. */
+  product: 'origin' | 'aura' | 'duo';
   className?: string;
   /** Override the resting label, e.g. "Buy now". */
   label?: string;
@@ -38,13 +38,13 @@ export default function AddToBagButton({
 }) {
   const { add, products, loadingProducts, busy, configured } = useCart();
 
-  const shopProduct = product === 'origin' ? products.origin : products.aura;
+  const shopProduct = products[product] ?? null;
   const variant = firstVariant(shopProduct);
 
   const soldOut = Boolean(variant && !variant.availableForSale);
   const disabled = !configured || loadingProducts || busy || !variant || soldOut;
 
-  const text = !configured
+  const text = !configured || (!loadingProducts && !variant)
     ? 'Unavailable'
     : loadingProducts
       ? 'Loading…'

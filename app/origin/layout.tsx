@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import JsonLd from '@/components/seo/JsonLd';
 import ProductViewContent from '@/components/analytics/ProductViewContent';
 import { PRODUCTS } from '@/lib/tracking-config';
+import { getVariantGtin13 } from '@/lib/shopify';
+
+// Used only if the Shopify barcode can't be read at build/revalidate time.
+const GTIN13_FALLBACK = '8908032751001';
 
 export const metadata: Metadata = {
   title: 'Origin 4-in-1 Milk Sunscreen SPF 50+ PA++++ | Artisun',
@@ -30,7 +34,7 @@ export const metadata: Metadata = {
   // because Next's typed openGraph.type has no "product" option.
 };
 
-const productSchema = {
+const baseProductSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Origin 4-in-1 Milk Sunscreen SPF 50+ PA++++',
@@ -79,11 +83,14 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function OriginLayout({
+export default async function OriginLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const gtin13 = await getVariantGtin13(PRODUCTS.origin.variantGid, GTIN13_FALLBACK);
+  const productSchema = { ...baseProductSchema, gtin13 };
+
   return (
     <>
       {/* Open Graph product tags. Rendered as <meta property> (what Facebook reads);

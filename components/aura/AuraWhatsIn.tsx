@@ -44,7 +44,7 @@ export default function AuraWhatsIn() {
   return (
     <div
       id="aura-whatsin"
-      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start lg:justify-between pt-8 pb-6 sm:py-16 lg:pt-24 lg:pb-14 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
+      className="aura-panel relative w-screen shrink-0 h-[100svh] overflow-hidden flex flex-col justify-start lg:justify-center pt-8 pb-6 sm:py-16 lg:py-10 px-5 sm:px-8 lg:px-14 text-[var(--brand-cream)]"
       style={{ background: 'var(--bg-eclipse)' }}
     >
       {/* Background Glow */}
@@ -56,22 +56,22 @@ export default function AuraWhatsIn() {
         }}
       />
 
-      <div className="relative z-10 h-full w-full max-w-[1440px] mx-auto flex flex-col justify-start md:justify-between lg:justify-between">
+      <div className="relative z-10 h-full lg:h-auto w-full max-w-[1440px] lg:max-w-[1500px] mx-auto flex flex-col justify-start md:justify-between lg:justify-center">
         {/* Heading */}
-        <div className="shrink-0 md:pt-2">
-          <span className="font-suisse text-[11px] sm:text-xs md:text-[13px] tracking-[0.22em] uppercase text-[#E8DCC8]/70">
+        <div className="shrink-0 md:pt-2 lg:pt-14 xl:pt-16">
+          <span className="font-suisse text-[11px] sm:text-xs md:text-[13px] tracking-[0.22em] lg:tracking-[0.2em] uppercase text-[#E8DCC8]/70">
             What&apos;s in it
           </span>
-         <h2 className="font-editorial text-[30px] sm:text-[46px] md:text-[48px] lg:text-[58px] leading-[1.08] lg:leading-[1.03] text-[#E8DCC8] tracking-tight not-italic mt-2 md:mt-3 max-w-[18ch]">
+         <h2 className="font-editorial text-[30px] sm:text-[46px] md:text-[48px] lg:text-[clamp(32px,2.8vw,42px)] leading-[1.08] text-[#E8DCC8] tracking-tight not-italic mt-2 md:mt-3 lg:mt-1 max-w-[18ch] lg:max-w-none lg:whitespace-nowrap">
             Sourced better than they needed to be.
           </h2>
         </div>
 
         {/* Center Grid */}
-        <div className="w-full flex flex-col md:grid md:grid-cols-[1fr_1.1fr] gap-3 sm:gap-4 md:gap-8 lg:gap-12 items-center justify-center min-h-0 mt-3 sm:mt-4 md:my-auto">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[1fr_1.1fr] lg:grid-cols-2 gap-3 sm:gap-4 md:gap-8 lg:gap-14 items-center justify-center min-h-0 mt-3 sm:mt-4 md:my-auto lg:my-auto lg:pt-4">
           
           {/* Left Visual Image */}
-          <div className="relative w-full h-[27vh] sm:h-[30vh] md:h-[580px] md:min-h-[580px] md:max-h-[620px] max-h-[480px] md:max-h-none lg:h-[50vh] lg:max-h-[480px] xl:h-[54vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 shrink-0">
+          <div className="relative w-full h-[27vh] sm:h-[30vh] md:h-[580px] md:min-h-[580px] md:max-h-[620px] max-h-[480px] md:max-h-none lg:h-[400px] lg:min-h-0 lg:max-h-[420px] xl:h-[400px] rounded-2xl lg:rounded-none overflow-hidden border border-[#E6D5C1]/10 shadow-2xl bg-white/5 shrink-0">
             <Image
               src={asset('/pdp/aura-whatsin.webp')}
               alt="Aura Ingredients"
@@ -83,16 +83,16 @@ export default function AuraWhatsIn() {
           </div>
 
           {/* Right Ingredient Accordion List */}
-          <div className="w-full flex flex-col space-y-1.5 sm:space-y-2 md:space-y-4 lg:space-y-2.5 justify-center shrink-0 md:max-h-none lg:max-h-[50vh] xl:max-h-[54vh]">
+          <div className="w-full flex flex-col space-y-1.5 sm:space-y-2 md:space-y-4 lg:space-y-2.5 justify-center shrink-0 md:max-h-none lg:max-h-[420px] lg:max-w-[540px] lg:mx-0">
 
             {INGREDIENTS.map((ing, i) => {
               const isOpen = open === i;
               return (
                 <div
                   key={ing.name}
-                  className={`border rounded-xl md:rounded-2xl p-2.5 sm:p-3.5 md:p-5 lg:p-4 backdrop-blur-sm transition-all duration-300 ${isOpen
-                      ? 'border-white/25 bg-white/[0.08] shadow-md'
-                      : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.05]'
+                  className={`border rounded-xl md:rounded-2xl p-2.5 sm:p-3.5 md:p-5 lg:py-3 lg:px-4 lg:rounded-none backdrop-blur-sm transition-all duration-300 ${isOpen
+                      ? 'border-[#E6D5C1]/25 bg-white/[0.08] shadow-md'
+                      : 'border-[#E6D5C1]/10 bg-white/[0.03] hover:bg-white/[0.05]'
                     }`}
                 >
                   <button
@@ -118,7 +118,7 @@ export default function AuraWhatsIn() {
                       }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="font-suisse text-[11px] sm:text-xs md:text-[13px] leading-relaxed text-[var(--brand-cream)]/80 pt-2 md:pt-3 border-t border-white/10 mt-2 md:mt-3">
+                      <p className="font-suisse text-[11px] sm:text-xs md:text-[13px] leading-relaxed text-[var(--brand-cream)]/80 pt-2 md:pt-3 border-t border-[#E6D5C1]/10 mt-2 md:mt-3">
                         {ing.long}
                       </p>
                     </div>
@@ -131,6 +131,8 @@ export default function AuraWhatsIn() {
         </div>
 
       </div>
+
+      <div className="hidden lg:block relative z-10 max-w-[1500px] w-full mx-auto pt-2" />
     </div>
   );
 }

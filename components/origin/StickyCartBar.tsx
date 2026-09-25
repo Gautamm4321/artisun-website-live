@@ -6,11 +6,11 @@ import AddToBagButton from '@/components/cart/AddToBagButton';
 
 export default function StickyCartBar() {
   return (
-    <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] bg-black/20 backdrop-blur-md border-t border-white/10 pointer-events-auto transition-all">
+    <div className="fixed bottom-0 left-0 w-full h-11 sm:h-12 z-[60] bg-black/20 backdrop-blur-md border-t border-[#E6D5C1]/10 pointer-events-auto transition-all">
       <div className="h-full max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between">
         {/* Left: Compact Thumb + Title */}
         <div className="flex items-center gap-3">
-          <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden shrink-0 border border-white/15">
+          <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden shrink-0 border border-[#E6D5C1]/15">
             <Image src={asset('/about-media/origin-hero.webp')} alt="Origin" fill sizes="32px" className="object-cover" />
           </div>
           <div className="flex items-center gap-2">

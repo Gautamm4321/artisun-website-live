@@ -487,8 +487,20 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
             aria-label="Go to home"
             className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center cursor-pointer hover:opacity-100 transition-opacity"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <SizedImg src={asset('/logo-artisun.svg')} width={964} height={800} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80 hover:opacity-100" />
+            <span
+              aria-hidden="true"
+              className="block w-full h-full bg-[#E6D5C1]"
+              style={{
+                maskImage: `url(${asset('/logo-artisun.svg')})`,
+                WebkitMaskImage: `url(${asset('/logo-artisun.svg')})`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center',
+              }}
+            />
           </Link>
           <button
             type="button"
@@ -503,7 +515,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           </button>
         </div>
 
-        <nav className="flex flex-col my-auto border-t border-b border-white/30 divide-y divide-white/30 w-full max-w-lg md:max-w-2xl mx-auto">
+        <nav className="flex flex-col my-auto border-t border-b border-[#E6D5C1]/30 divide-y divide-[#E6D5C1]/30 w-full max-w-lg md:max-w-2xl mx-auto">
           {/* 1. HOME (Arrow right next to text) */}
           <Link
             href="/"
@@ -519,7 +531,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           </Link>
 
           {/* 2. RIGHT STACK: AURA, ORIGIN, SHOP ALL (With interior divider lines) */}
-          <div className="flex flex-col divide-y divide-white/20">
+          <div className="flex flex-col divide-y divide-[#E6D5C1]/20">
             {/* ORIGIN */}
             <Link
               href="/origin"
@@ -607,7 +619,7 @@ export default function HomeHeader({ ready = false }: { ready?: boolean }) {
           </Link>
         </nav>
 
-        <div className="pt-4 md:pt-6 border-t border-white/10 text-[#E8DCC8]/40 text-xs md:text-sm font-suisse tracking-wider uppercase w-full max-w-lg md:max-w-2xl mx-auto">
+        <div className="pt-4 md:pt-6 border-t border-[#E6D5C1]/10 text-[#E8DCC8]/40 text-xs md:text-sm font-suisse tracking-wider uppercase w-full max-w-lg md:max-w-2xl mx-auto">
           Artisun Skinwear · 2026
         </div>
       </div>

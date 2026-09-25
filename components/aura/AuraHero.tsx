@@ -150,8 +150,8 @@ export default function AuraHero({ onNavigate }: { onNavigate: (panelIndex: numb
                             : 'opacity-0 scale-95 pointer-events-none'
                         }`}
                       >
-                        <div className="bg-[#120403]/95 backdrop-blur-xl border border-white/20 shadow-2xl rounded-lg p-3.5">
-                          <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/10">
+                        <div className="bg-[#120403]/95 backdrop-blur-xl border border-[#E6D5C1]/20 shadow-2xl rounded-lg p-3.5">
+                          <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-[#E6D5C1]/10">
                             <span className="font-suisse text-[11px] uppercase tracking-wider text-[var(--brand-cream)] font-medium">Full Ingredients</span>
                             <button onClick={() => setIngredientsOpen(false)} className="text-[#E8DCC8]/60 hover:text-[#E8DCC8] text-xs">✕</button>
                           </div>

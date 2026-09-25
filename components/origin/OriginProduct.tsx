@@ -65,7 +65,7 @@ export default function OriginProduct() {
               <TagPills tags={BADGES} align="start" className="mt-3 sm:mt-4 md:mt-4 justify-center md:justify-start" />
             </div>
 
-            <div className="w-full max-w-[360px] md:max-w-[480px] lg:max-w-[420px] p-3 sm:p-4 md:p-5 rounded-xl bg-white/[0.06] border border-white/15 backdrop-blur-md shadow-lg space-y-2 sm:space-y-2.5 md:space-y-3.5">
+            <div className="w-full max-w-[360px] md:max-w-[480px] lg:max-w-[420px] p-3 sm:p-4 md:p-5 rounded-xl bg-white/[0.06] border border-[#E6D5C1]/15 backdrop-blur-md shadow-lg space-y-2 sm:space-y-2.5 md:space-y-3.5">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-editorial text-[var(--brand-cream)] text-[20px] sm:text-[24px] md:text-[28px] leading-none">
                   {PRICE} <span className="font-suisse text-xs md:text-sm text-[var(--brand-cream)]/60">· {SIZE}</span>

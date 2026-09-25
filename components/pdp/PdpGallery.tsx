@@ -146,7 +146,7 @@ export default function PdpGallery({
         <button
           onClick={() => go(-1)}
           aria-label="Previous image"
-          className="pointer-events-auto hidden lg:grid absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full place-items-center bg-black/30 backdrop-blur-sm border border-white/20 text-[#E8DCC8] hover:bg-black/60 transition-all duration-300"
+          className="pointer-events-auto hidden lg:grid absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full place-items-center bg-black/30 backdrop-blur-sm border border-[#E6D5C1]/20 text-[#E8DCC8] hover:bg-black/60 transition-all duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
@@ -156,7 +156,7 @@ export default function PdpGallery({
         <button
           onClick={() => go(1)}
           aria-label="Next image"
-          className="pointer-events-auto hidden lg:grid absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full place-items-center bg-black/30 backdrop-blur-sm border border-white/20 text-[#E8DCC8] hover:bg-black/60 transition-all duration-300"
+          className="pointer-events-auto hidden lg:grid absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full place-items-center bg-black/30 backdrop-blur-sm border border-[#E6D5C1]/20 text-[#E8DCC8] hover:bg-black/60 transition-all duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="9 18 15 12 9 6" />
@@ -178,8 +178,8 @@ export default function PdpGallery({
             aria-current={i === index}
             className={`pointer-events-auto relative h-[46px] w-[46px] lg:h-[52px] lg:w-[52px] shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
               i === index
-                ? 'opacity-100 border-white/75'
-                : 'opacity-50 border-white/20 hover:opacity-80'
+                ? 'opacity-100 border-[#E6D5C1]/75'
+                : 'opacity-50 border-[#E6D5C1]/20 hover:opacity-80'
             }`}
           >
             {isVideo(src) ? (

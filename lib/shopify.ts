@@ -125,7 +125,10 @@ export const getAllProducts = () =>
      query All { products(first: 30) { nodes { ...ProductFields } } }`,
   ).then((d) => d.products.nodes);
 
-export type Catalogue = { origin: Product | null; aura: Product | null };
+export type Catalogue = { origin: Product | null; aura: Product | null; duo: Product | null };
+
+/** The Weather Duo combo product (Origin + Aura) — Shopify admin product 8395873878079. */
+export const DUO_PRODUCT_GID = 'gid://shopify/Product/8395873878079';
 
 /**
  * Resolve the two products by TITLE PREFIX rather than handle.
@@ -143,7 +146,13 @@ export async function getCatalogue(): Promise<Catalogue> {
   const all = await getAllProducts();
   const find = (prefix: string) =>
     all.find((p) => p.title.trim().toLowerCase().startsWith(prefix)) ?? null;
-  return { origin: find('origin'), aura: find('aura') };
+  // The duo is matched by its product ID first (exact), then by title, so an
+  // Origin/Aura title that happens to mention "duo" can never be picked up.
+  const duo =
+    all.find((p) => p.id === DUO_PRODUCT_GID) ??
+    all.find((p) => /weather\s*duo/i.test(p.title)) ??
+    null;
+  return { origin: find('origin'), aura: find('aura'), duo };
 }
 
 export const firstVariant = (p: Product | null): Variant | null =>
@@ -248,3 +257,33 @@ export const removeLine = (cartId: string, lineId: string) =>
      }`,
     { cartId, lineIds: [lineId] },
   ).then(unwrap('cartLinesRemove') as never) as Promise<Cart>;
+
+/**
+ * GTIN-13 for a variant, read from the Shopify "Barcode" field.
+ * Runs on the server (product layouts) so the value is in the raw HTML
+ * Product schema. Falls back to `fallback` if Shopify is unreachable or the
+ * barcode is blank / not a valid 13-digit code, so the schema never breaks.
+ */
+export async function getVariantGtin13(variantGid: string, fallback: string): Promise<string> {
+  const isGtin13 = (v: unknown): v is string => typeof v === 'string' && /^\d{13}$/.test(v.trim());
+  if (!shopifyConfigured) return fallback;
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': TOKEN,
+      },
+      body: JSON.stringify({
+        query: `query Barcode($id: ID!) { node(id: $id) { ... on ProductVariant { barcode } } }`,
+        variables: { id: variantGid },
+      }),
+      next: { revalidate: 3600 },
+    } as RequestInit);
+    const json = await res.json();
+    const barcode = json?.data?.node?.barcode;
+    return isGtin13(barcode) ? barcode.trim() : fallback;
+  } catch {
+    return fallback;
+  }
+}

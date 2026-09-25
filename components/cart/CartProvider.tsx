@@ -35,7 +35,7 @@ const CartCtx = createContext<Ctx | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
-  const [products, setProducts] = useState<Catalogue>({ origin: null, aura: null });
+  const [products, setProducts] = useState<Catalogue>({ origin: null, aura: null, duo: null });
   const [loadingProducts, setLoadingProducts] = useState(shopifyConfigured);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);

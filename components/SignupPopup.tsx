@@ -16,7 +16,7 @@ import { asset } from '@/lib/asset';
  * Shows SHOW_AFTER_MS after the page loads. Closing it hides it for
  * DISMISS_DAYS; signing up hides it for good.
  *
- * Submits to netlify/functions/subscribe.mts, which saves the email as a
+ * Submits to /api/subscribe (lib/subscribe-handler.ts), which saves the email as a
  * Shopify customer subscribed to email marketing (tag: newsletter-popup).
  */
 
@@ -24,7 +24,7 @@ import { asset } from '@/lib/asset';
 const SHOW_AFTER_MS = 10_000;
 const DISMISS_DAYS = 7;
 const HIDDEN_ON = ['/privacy', '/terms', '/shipping-returns'];
-const ENDPOINT = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT || '/.netlify/functions/subscribe';
+const ENDPOINT = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT || '/api/subscribe';
 const IMG_DESKTOP = asset('/popup/popup-desktop.webp');
 const IMG_MOBILE = asset('/popup.PNG');
 
@@ -124,7 +124,7 @@ export default function SignupPopup() {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: clean, website }),
+        body: JSON.stringify({ email: clean, website, source: 'popup' }),
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong. Try again.');

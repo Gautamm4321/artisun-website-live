@@ -38,7 +38,7 @@ export default function AuraDiff() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-7 items-stretch">
             
             {/* Card 1: The Pearl */}
-            <div className="bg-black/30 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden flex flex-col justify-between">
+            <div className="bg-black/30 backdrop-blur-md rounded-xl border border-[#E6D5C1]/10 overflow-hidden flex flex-col justify-between">
               <div className="relative w-full h-[130px] sm:h-[180px] md:h-[270px] lg:h-[185px] xl:h-[210px] bg-[#613622] overflow-hidden">
                 <Image
                   src={asset('/pdp/The pearl, Aura new frame.jpeg')}
@@ -66,11 +66,11 @@ export default function AuraDiff() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-1.5 md:gap-2 pt-3 md:pt-5 mt-3 md:mt-5 border-t border-white/10">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 pt-3 md:pt-5 mt-3 md:mt-5 border-t border-[#E6D5C1]/10">
                   {['Uvinul A Plus', 'Broad-spectrum SPF 40', 'Beta-Glucan', 'Bisabolol'].map((badge) => (
                     <span
                       key={badge}
-                      className="text-[9.5px] sm:text-[10px] md:text-[11.5px] font-sans px-2.5 md:px-3.5 py-0.5 md:py-1 rounded-full bg-white/5 border border-white/15 text-[var(--brand-cream)]/90"
+                      className="text-[9.5px] sm:text-[10px] md:text-[11.5px] font-sans px-2.5 md:px-3.5 py-0.5 md:py-1 rounded-full bg-white/5 border border-[#E6D5C1]/15 text-[var(--brand-cream)]/90"
                     >
                       {badge}
                     </span>
@@ -80,7 +80,7 @@ export default function AuraDiff() {
             </div>
 
             {/* Card 2: The Gel */}
-            <div className="bg-black/30 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden flex flex-col justify-between">
+            <div className="bg-black/30 backdrop-blur-md rounded-xl border border-[#E6D5C1]/10 overflow-hidden flex flex-col justify-between">
               <div className="relative w-full h-[130px] sm:h-[180px] md:h-[270px] lg:h-[185px] xl:h-[210px] bg-[#4a3e2a] overflow-hidden">
                 <Image
                   src={asset('/pdp/The gel, Aura new frame.jpeg')}
@@ -108,11 +108,11 @@ export default function AuraDiff() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-1.5 md:gap-2 pt-3 md:pt-5 mt-3 md:mt-5 border-t border-white/10">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 pt-3 md:pt-5 mt-3 md:mt-5 border-t border-[#E6D5C1]/10">
                   {['Ectoin', 'Sodium Hyaluronate', '72-hour hydration'].map((badge) => (
                     <span
                       key={badge}
-                      className="text-[9.5px] sm:text-[10px] md:text-[11.5px] font-sans px-2.5 md:px-3.5 py-0.5 md:py-1 rounded-full bg-white/5 border border-white/15 text-[var(--brand-cream)]/90"
+                      className="text-[9.5px] sm:text-[10px] md:text-[11.5px] font-sans px-2.5 md:px-3.5 py-0.5 md:py-1 rounded-full bg-white/5 border border-[#E6D5C1]/15 text-[var(--brand-cream)]/90"
                     >
                       {badge}
                     </span>

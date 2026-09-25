@@ -71,7 +71,7 @@ export default function CartDrawer() {
           color: 'var(--brand-cream, #f5f0eb)',
         }}
       >
-        <header className="flex items-center justify-between border-b border-white/12 px-5 py-4 shrink-0">
+        <header className="flex items-center justify-between border-b border-[#E6D5C1]/12 px-5 py-4 shrink-0">
           <h2 className="font-editorial text-[22px] tracking-tight">
             Your bag{cart?.totalQuantity ? ` (${cart.totalQuantity})` : ''}
           </h2>
@@ -110,7 +110,7 @@ export default function CartDrawer() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded-none border border-white/30 px-6 py-2.5 font-suisse text-[13px] uppercase tracking-wider transition-colors hover:bg-white/10"
+                  className="rounded-none border border-[#E6D5C1]/30 px-6 py-2.5 font-suisse text-[13px] uppercase tracking-wider transition-colors hover:bg-white/10"
                 >
                   Keep looking
                 </button>
@@ -119,7 +119,7 @@ export default function CartDrawer() {
 
             {/* 1. Products in Bag (Always at Top) */}
             {lines.length > 0 && (
-              <ul className="divide-y divide-white/10">
+              <ul className="divide-y divide-[#E6D5C1]/10">
                 {lines.map((l) => (
                   <li key={l.id} className="flex gap-4 py-4">
                     {l.merchandise.image && (
@@ -146,7 +146,7 @@ export default function CartDrawer() {
                       </p>
 
                       <div className="mt-2.5 flex items-center gap-3">
-                        <div className="flex items-center border border-white/25">
+                        <div className="flex items-center border border-[#E6D5C1]/25">
                           <button
                             type="button"
                             disabled={busy}
@@ -191,7 +191,7 @@ export default function CartDrawer() {
             <div className="flex flex-col justify-end w-full">
              
             {/* 4 Trust Badges: Compact Height & Spacing */}
-              <div className="py-3 my-1 border-t border-white/10">
+              <div className="py-3 my-1 border-t border-[#E6D5C1]/10">
                 <div className="grid grid-cols-4 gap-2 text-center">
                   {/* 1. Clean (Star) */}
                   <div className="flex flex-col items-center">
@@ -257,7 +257,7 @@ export default function CartDrawer() {
 
               {/* Cross-Sell Box: Anchored just above Free Shipping */}
               {showCrossSell && crossSellProduct && crossSellVariant && (
-                <div className="mb-4 rounded-2xl bg-white/[0.07] border border-white/15 p-3.5 backdrop-blur-md">
+                <div className="mb-4 rounded-2xl bg-white/[0.07] border border-[#E6D5C1]/15 p-3.5 backdrop-blur-md">
                   <div className="text-[10.5px] font-suisse uppercase tracking-[0.16em] text-[#E8DAC7]/70 font-semibold mb-2.5">
                     Add one more thing to your skin
                   </div>
@@ -300,7 +300,7 @@ export default function CartDrawer() {
 
         {/* Footer (Free Shipping + Subtotal + Checkout) */}
         {lines.length > 0 && cart && (
-          <footer className="border-t border-white/12 px-5 py-4 bg-black/20 shrink-0">
+          <footer className="border-t border-[#E6D5C1]/12 px-5 py-4 bg-black/20 shrink-0">
             {/* Free Shipping Mention */}
             <div className="mb-3 flex items-center justify-center gap-2 rounded-lg bg-white/10 py-1.5 px-3 text-[11px] font-suisse tracking-[0.14em] uppercase text-[#E8DAC7]">
               <span>✓</span> Free shipping on all orders

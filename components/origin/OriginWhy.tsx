@@ -101,7 +101,7 @@ export default function OriginWhy() {
             return (
               <div
                 key={s.index}
-                className={`${isLastOne ? 'col-span-2 justify-self-center w-[52%] lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] lg:min-h-[175px] p-2.5 sm:p-3 lg:p-4 rounded-none lg:rounded-xl bg-[#8B1E13] lg:bg-gradient-to-b lg:from-[#6e140d]/75 lg:to-[#380805]/90 border-0 lg:border lg:border-white/15 flex flex-col justify-between shadow-lg hover:border-white/30 transition-all`}
+                className={`${isLastOne ? 'col-span-2 justify-self-center w-[52%] lg:w-full lg:col-span-1' : 'w-full'} min-h-[82px] sm:min-h-[92px] lg:min-h-[175px] p-2.5 sm:p-3 lg:p-4 rounded-none lg:rounded-xl bg-[#8B1E13] lg:bg-gradient-to-b lg:from-[#6e140d]/75 lg:to-[#380805]/90 border-0 lg:border lg:border-[#E6D5C1]/15 flex flex-col justify-between shadow-lg hover:border-[#E6D5C1]/30 transition-all`}
               >
                 <div>
                   {/* Category label */}

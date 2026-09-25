@@ -82,7 +82,7 @@ export default function AuraDosage() {
           />
 
           {/* Bottom Card Glass Overlay */}
-          <div className="absolute bottom-3 left-3 right-3 md:bottom-3.5 md:left-3.5 md:right-3.5 bg-black/60 backdrop-blur-md p-3 md:p-3.5 border border-white/10 z-20">
+          <div className="absolute bottom-3 left-3 right-3 md:bottom-3.5 md:left-3.5 md:right-3.5 bg-black/60 backdrop-blur-md p-3 md:p-3.5 border border-[#E6D5C1]/10 z-20">
             <span className="font-editorial text-[#E8DCC8] text-base sm:text-lg md:text-xl block font-semibold">
               {current.weather}
             </span>
@@ -108,7 +108,7 @@ export default function AuraDosage() {
                   onClick={() => setActiveTab(idx)}
                   className={`w-full py-2.5 sm:py-3 px-4 sm:px-5 border flex items-center justify-between backdrop-blur-md transition-all duration-300 ${isActive
                       ? 'bg-[#E8DCC8] text-[#A52A2C] border-[#E8DCC8] shadow-xl'
-                      : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-white/15 hover:border-white/40 hover:bg-white/[0.1]'
+                      : 'bg-white/[0.05] text-[var(--brand-cream)]/85 border-[#E6D5C1]/15 hover:border-[#E6D5C1]/40 hover:bg-white/[0.1]'
                     }`}
                 >
                   <div className="text-left">
@@ -125,7 +125,7 @@ export default function AuraDosage() {
           </div>
 
           {/* Bottom Lines */}
-          <div className="pt-2 md:pt-3 border-t border-white/15 space-y-1">
+          <div className="pt-2 md:pt-3 border-t border-[#E6D5C1]/15 space-y-1">
             <p className="font-editorial text-base sm:text-lg md:text-[18px] non-italic text-[var(--brand-cream)]/90">
               One sunscreen. Every season. Never the wrong amount.
             </p>

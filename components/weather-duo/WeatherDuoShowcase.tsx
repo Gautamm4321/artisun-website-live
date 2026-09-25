@@ -155,18 +155,18 @@ export default function WeatherDuoShowcase() {
                 </div>
 
                 {/* Thumbnails Strip */}
-                <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+                <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-none snap-x snap-mandatory">
                   {GALLERY_IMAGES.map((img, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setSelectedImg(img.src)}
-                      className={`relative flex-shrink-0 w-[68px] h-[68px] rounded-[9px] overflow-hidden border snap-start transition-all ${selectedImg === img.src
-                          ? 'border-[#F3ECE0] ring-2 ring-[#F3ECE0]/40'
-                          : 'border-white/20 opacity-70 hover:opacity-100'
+                      className={`relative flex-shrink-0 h-[46px] w-[46px] lg:h-[52px] lg:w-[52px] rounded-md overflow-hidden border snap-start transition-all duration-300 ${selectedImg === img.src
+                          ? 'opacity-100 border-[#E6D5C1]/75'
+                          : 'opacity-50 border-[#E6D5C1]/20 hover:opacity-80'
                         }`}
                     >
-                      <Image src={asset(img.src)} alt={img.label} fill className="object-cover" />
+                      <Image src={asset(img.src)} alt={img.label} fill sizes="52px" className="object-cover" />
                     </button>
                   ))}
                 </div>
@@ -208,7 +208,7 @@ export default function WeatherDuoShowcase() {
                     ₹3,298
                   </span>
                   <AddToBagButton
-                    product="duo-bundle"
+                    product="duo"
                     className="pointer-events-auto font-suisse text-[10px] sm:text-xs uppercase tracking-wide px-5 sm:px-6 md:px-7 py-2 md:py-2.5 bg-[var(--brand-cream)] text-[var(--brand-dark)] hover:bg-white transition-colors font-medium rounded-sm"
                   />
                 </div>
@@ -409,7 +409,7 @@ export default function WeatherDuoShowcase() {
               ₹3,298
             </span>
             <AddToBagButton
-              product="duo-bundle"
+              product="duo"
               className="font-suisse text-[10px] sm:text-[11px] uppercase tracking-[0.14em] px-4 sm:px-5 py-1.5 bg-[var(--brand-cream)] text-[var(--brand-dark,#1a1a1a)] font-medium hover:bg-white transition-colors"
             />
           </div>

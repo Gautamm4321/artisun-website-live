@@ -93,7 +93,7 @@ export default function ScrollProgressBar({
         className={`fixed left-0 ${bottomPositionClass} w-full h-[2px] md:h-[3px] origin-left pointer-events-none`}
         style={{
           zIndex: 9999,
-          background: 'linear-gradient(90deg, #FF8C22, #C93B1A, #E8DCC8)',
+          background: 'linear-gradient(90deg, #FF8C22, #C93B1A, #E6D5C1)',
           transform: 'scaleX(0)',
           willChange: 'transform',
         }}

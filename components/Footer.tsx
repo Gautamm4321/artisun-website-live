@@ -197,8 +197,9 @@ export default function Footer() {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
+                    const form = e.currentTarget;
                     if (!newsletterEmail || !newsletterEmail.includes('@')) {
                       setNewsletterStatus('error');
                       setErrorMessage('Please enter a valid email address.');
@@ -209,9 +210,25 @@ export default function Footer() {
                       setErrorMessage('Please check the consent box to receive updates as per privacy regulations.');
                       return;
                     }
-                    setNewsletterStatus('success');
-                    setErrorMessage('');
-                    (e.currentTarget.querySelector('input') as HTMLInputElement | null)?.blur();
+                    // Previously this showed "success" without sending the email anywhere.
+                    // It now saves the signup to Shopify, same as the popup.
+                    try {
+                      const res = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: newsletterEmail.trim(), source: 'footer' }),
+                      });
+                      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+                      if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+                      setNewsletterStatus('success');
+                      setErrorMessage('');
+                      window.gtag?.('event', 'generate_lead', { method: 'footer_newsletter' });
+                      window.fbq?.('track', 'Lead', { content_name: 'footer_newsletter' });
+                      (form.querySelector('input') as HTMLInputElement | null)?.blur();
+                    } catch (err) {
+                      setNewsletterStatus('error');
+                      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+                    }
                   }}
                   className="w-full sm:w-80 md:w-full lg:w-96 flex flex-col"
                 >
