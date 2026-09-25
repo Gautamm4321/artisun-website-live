@@ -181,10 +181,15 @@ export default function GlobalHeader() {
         {/* Red Eclipse Site-wide Background */}
         <div className="artisun-bg pointer-events-none" />
         <div className="flex items-center justify-between w-full max-w-lg md:max-w-2xl mx-auto">
-          <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Go to home"
+            className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center cursor-pointer hover:opacity-100 transition-opacity"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <SizedImg src={asset('/logo-artisun.svg')} width={964} height={800} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80" />
-          </div>
+            <SizedImg src={asset('/logo-artisun.svg')} width={964} height={800} alt="Artisun Icon" className="w-full h-full object-contain brightness-0 invert opacity-80 hover:opacity-100" />
+          </Link>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}

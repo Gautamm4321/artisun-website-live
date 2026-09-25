@@ -189,7 +189,7 @@ export default function WeatherDuoShowcase() {
 
                 {/* 2. Primary H1 (Exact Origin Hero font, clamp & leading) */}
                 <h1 className="font-editorial text-[var(--brand-cream)] text-[21px] sm:text-[26px] md:text-[32px] lg:text-[34px] leading-[1.08] tracking-tight">
-                  The weather duo
+                  The Weather Duo
                 </h1>
 
                 {/* 3. Subheadings & Description (Exact font-suisse sizes & line-heights) */}
@@ -227,7 +227,7 @@ export default function WeatherDuoShowcase() {
                 </span>
 
                 <h2 className="font-editorial text-[24px] sm:text-[30px] lg:text-[clamp(28px,2.8vw,38px)] leading-[1.08] font-normal text-[#F3ECE0] lg:whitespace-nowrap tracking-tight">
-                  You don&apos;t wear the same thing in July and Novemebr.
+                  You don&apos;t wear the same thing in July and November.
                 </h2>
 
                 <p className="text-[13px] sm:text-[14px] lg:text-[14.5px] leading-relaxed text-[#F3ECE0]/85 font-light max-w-[110ch] pt-0.5">
@@ -395,7 +395,7 @@ export default function WeatherDuoShowcase() {
             </div>
             <div className="flex items-center gap-2">
               <span className="font-editorial text-[var(--brand-cream)] text-sm sm:text-base leading-none tracking-wide whitespace-nowrap">
-                WEATHER DUO
+                THE WEATHER DUO
               </span>
               <span className="hidden md:inline font-suisse text-[10px] text-[var(--brand-cream)]/50 tracking-[0.14em] uppercase">
                 · Origin (50ml) + Aura (50g)
